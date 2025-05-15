@@ -1,23 +1,31 @@
 # frozen_string_literal: true
 
-# Module for handling critical hit resolution in the Gemstone game system.
-# Manages critical hit tables and provides lookup functionality for determining
-# critical hit results based on type, location, and rank.
 #
-# @author Lich5 Documentation Generator
+# module CritRanks used to resolve critical hits into their mechanical results
+# queries against crit_tables files in lib/crit_tables/
+# 20240625
+#
+
+#
+# See generic_critical_table.rb for the general template used
+#
 module Lich
   module Gemstone
     module CritRanks
       @critical_table ||= {}
       @types           = []
       @locations       = []
-      @ranks          = []
+      @ranks           = []
 
-      # Initializes the critical hit tables by loading all *critical_table.rb files
-      # from the critranks directory and creating necessary indices.
+      #
+      # Initializes the critical table by loading all critical table files.
       #
       # @return [void]
-      # @note Only initializes if the critical table is empty
+      # @note This method will only run if the critical table is empty.
+      #
+      # @example
+      #   CritRanks.init
+      #
       def self.init
         return unless @critical_table.empty?
         Dir.glob("#{File.join(LIB_DIR, "gemstone", "critranks", "*critical_table.rb")}").each do |file|
@@ -26,26 +34,39 @@ module Lich
         create_indices
       end
 
-      # Returns the current critical hit table hash
       #
-      # @return [Hash] The complete critical hit table data structure
+      # Returns the current critical table.
+      #
+      # @return [Hash] the critical table containing critical hit data.
+      #
+      # @example
+      #   table = CritRanks.table
+      #
       def self.table
         @critical_table
       end
 
-      # Reloads all critical hit tables by clearing existing data and reinitializing
+      #
+      # Reloads the critical table by clearing the current data and reinitializing it.
       #
       # @return [void]
+      #
+      # @example
+      #   CritRanks.reload!
+      #
       def self.reload!
         @critical_table = {}
         init
       end
 
-      # Returns a list of available critical hit table names
       #
-      # @return [Array<String>] List of table names with colons removed
+      # Returns an array of types available in the critical table.
+      #
+      # @return [Array<String>] the types of critical hits.
+      #
       # @example
-      #   CritRanks.tables #=> ["crushing", "slashing", "piercing"]
+      #   types = CritRanks.tables
+      #
       def self.tables
         @tables = []
         @types.each do |type|
@@ -54,34 +75,51 @@ module Lich
         @tables
       end
 
-      # Returns the list of valid critical hit types
       #
-      # @return [Array<Symbol>] List of critical hit types
+      # Returns an array of types available in the critical table.
+      #
+      # @return [Array<Symbol>] the types of critical hits.
+      #
+      # @example
+      #   types = CritRanks.types
+      #
       def self.types
         @types
       end
 
-      # Returns the list of valid hit locations
       #
-      # @return [Array<Symbol>] List of body locations for critical hits
+      # Returns an array of locations available in the critical table.
+      #
+      # @return [Array<Symbol>] the locations of critical hits.
+      #
+      # @example
+      #   locations = CritRanks.locations
+      #
       def self.locations
         @locations
       end
 
-      # Returns the list of valid critical hit ranks
       #
-      # @return [Array<Symbol,Integer>] List of critical hit rank values
+      # Returns an array of ranks available in the critical table.
+      #
+      # @return [Array<Symbol>] the ranks of critical hits.
+      #
+      # @example
+      #   ranks = CritRanks.ranks
+      #
       def self.ranks
         @ranks
       end
 
-      # Normalizes input keys by converting to proper format
       #
-      # @param key [String,Symbol,Integer] The key to clean
-      # @return [String,Integer] Normalized key value
+      # Cleans the provided key by converting it to a standardized format.
+      #
+      # @param key [Integer, Symbol, String] the key to clean.
+      # @return [String, Integer] the cleaned key.
+      #
       # @example
-      #   CritRanks.clean_key("Head-Shot") #=> "head_shot"
-      #   CritRanks.clean_key("123") #=> 123
+      #   cleaned_key = CritRanks.clean_key("Some Key - Example")
+      #
       def self.clean_key(key)
         return key.to_i if key.is_a?(Integer) || key =~ (/^\d+$/)
         return key.downcase if key.is_a?(Symbol)
@@ -89,14 +127,17 @@ module Lich
         key.strip.downcase.gsub(/[ -]/, '_')
       end
 
-      # Validates that a given key exists in the valid options list
       #
-      # @param key [String,Symbol,Integer] The key to validate
-      # @param valid [Array] List of valid values
-      # @return [String,Integer] The cleaned, validated key
-      # @raise [RuntimeError] If key is not in valid list
+      # Validates the provided key against a list of valid keys.
+      #
+      # @param key [String, Symbol] the key to validate.
+      # @param valid [Array<String>] the list of valid keys.
+      # @return [String] the cleaned key if valid.
+      # @raise [RuntimeError] if the key is invalid.
+      #
       # @example
-      #   CritRanks.validate("head", [:head, :torso]) #=> :head
+      #   valid_key = CritRanks.validate(:some_key, CritRanks.types)
+      #
       def self.validate(key, valid)
         clean = clean_key(key)
         raise "Invalid key '#{key}', expecting one of #{valid.join(',')}" unless valid.include?(clean)
@@ -104,10 +145,13 @@ module Lich
         clean
       end
 
-      # Creates lookup indices for critical hit records
+      #
+      # Creates indices for types, locations, and ranks from the critical table.
       #
       # @return [void]
-      # @note Builds @types, @locations, @ranks, and regex lookup tables
+      #
+      # @note This method is called internally during initialization.
+      #
       def self.create_indices
         @index_rx ||= {}
         @critical_table.each do |type, typedata|
@@ -122,28 +166,33 @@ module Lich
         end
       end
 
-      # Parses a line of text to find matching critical hit results
       #
-      # @param line [String] The text line to parse
-      # @return [Hash] Matching critical hit records
+      # Parses a line to find matches against the critical table's regex patterns.
+      #
+      # @param line [String] the line to parse.
+      # @return [Array] an array of matches found.
+      #
       # @example
-      #   CritRanks.parse("You score a solid hit to the head!")
+      #   matches = CritRanks.parse("Some input line")
+      #
       def self.parse(line)
         @index_rx.filter do |rx, _data|
           rx =~ line.strip # need to strip spaces to support anchored regex in tables
         end
       end
 
-      # Retrieves a specific critical hit record
       #
-      # @param type [String,Symbol] The critical hit type (crushing, slashing, etc)
-      # @param location [String,Symbol] The hit location (head, torso, etc)
-      # @param rank [String,Integer] The critical hit rank
-      # @return [Hash,nil] The critical hit record if found
-      # @raise [RuntimeError] If any parameter is invalid
+      # Fetches the critical hit data for a given type, location, and rank.
+      #
+      # @param type [String, Symbol] the type of critical hit.
+      # @param location [String, Symbol] the location of the critical hit.
+      # @param rank [String, Symbol] the rank of the critical hit.
+      # @return [Hash, nil] the critical hit data or nil if not found.
+      # @raise [RuntimeError] if any of the keys are invalid.
+      #
       # @example
-      #   CritRanks.fetch(:crushing, :head, 5)
-      # @note Returns nil and logs error if lookup fails
+      #   data = CritRanks.fetch(:type, :location, :rank)
+      #
       def self.fetch(type, location, rank)
         table.dig(
           validate(type, types),

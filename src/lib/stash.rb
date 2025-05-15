@@ -1,19 +1,19 @@
-# Core module for the Lich game scripting system
+=begin
+stash.rb: Core lich file for extending free_hands, empty_hands functions in
+  item / container script indifferent method.  Usage will ensure no regex is
+  required to be maintained.
+=end
+
 module Lich
-
-  # Provides functionality for managing items and containers in hands and inventory
-  # Extends free_hands and empty_hands functions with container-aware capabilities
   module Stash
-
-    # Locates a container in the player's inventory by name
+    # Finds a container by its name.
     #
-    # @param param [String, GameObj] Container name or GameObj to search for
-    # @param loud_fail [Boolean] Whether to raise an error if container not found
-    # @return [GameObj, nil] The found container object or nil if not found
-    # @raise [RuntimeError] When container not found and loud_fail is true
+    # @param param [String, GameObj] The name of the container or a GameObj instance.
+    # @param loud_fail [Boolean] Whether to raise an error if the container is not found. Default is true.
+    # @return [GameObj, nil] The found container or nil if not found.
+    # @raise [RuntimeError] If the container is not found and loud_fail is true.
     # @example
-    #   Lich::Stash.find_container("backpack")
-    #   Lich::Stash.find_container(some_game_obj, loud_fail: false)
+    #   container = Lich::Stash.find_container("my_container")
     def self.find_container(param, loud_fail: true)
       param = param.name if param.is_a?(GameObj) # (Lich::Gemstone::GameObj)
       found_container = GameObj.inv.find do |container|
@@ -26,12 +26,12 @@ module Lich
       end
     end
 
-    # Gets or initializes a container, ensuring it's open and contents are visible
+    # Retrieves a container and ensures it is displayed.
     #
-    # @param param [String, GameObj] Container name or object to initialize
-    # @return [GameObj] The initialized container object
+    # @param param [String] The name of the container.
+    # @return [GameObj] The found container.
     # @example
-    #   container = Lich::Stash.container("backpack")
+    #   container = Lich::Stash.container("my_container")
     def self.container(param)
       @weapon_displayer ||= []
       container_to_check = find_container(param)
@@ -43,14 +43,14 @@ module Lich
       return container_to_check
     end
 
-    # Attempts to execute a command with timeout and verification
+    # Executes a command and waits for a specified duration.
     #
-    # @param seconds [Integer] Timeout duration in seconds
-    # @param command [String] Command to execute
-    # @return [Boolean] True if successful, false otherwise
-    # @raise [RuntimeError] When command fails or times out
+    # @param seconds [Integer] The number of seconds to wait before failing. Default is 2.
+    # @param command [String] The command to execute.
+    # @return [Boolean] True if the command was successful within the time limit.
+    # @raise [RuntimeError] If the command does not succeed within the specified time.
     # @example
-    #   Lich::Stash.try_or_fail(seconds: 3, command: "get gem") { condition_met? }
+    #   Lich::Stash.try_or_fail(command: "some_command")
     def self.try_or_fail(seconds: 2, command: nil)
       fput(command)
       expiry = Time.now + seconds
@@ -58,13 +58,13 @@ module Lich
       fail "Error[command: #{command}, seconds: #{seconds}]" if Time.now > expiry
     end
 
-    # Adds an item to a specified container
+    # Adds an item to a specified bag.
     #
-    # @param bag [String, GameObj] Container to add item to
-    # @param item [GameObj] Item to add to container
-    # @return [Boolean] True if successful, false if failed
+    # @param bag [String] The name of the bag to add the item to.
+    # @param item [GameObj] The item to be added to the bag.
+    # @return [Boolean] True if the item was successfully added, false otherwise.
     # @example
-    #   Lich::Stash.add_to_bag("backpack", sword)
+    #   result = Lich::Stash.add_to_bag("my_bag", item)
     def self.add_to_bag(bag, item)
       bag = container(bag)
       try_or_fail(command: "_drag ##{item.id} ##{bag.id}") do
@@ -78,12 +78,12 @@ module Lich
       end
     end
 
-    # Moves an item from hands to worn inventory
+    # Wears an item to the inventory.
     #
-    # @param item [GameObj] Item to wear
-    # @return [Boolean] True if successful, false if failed
+    # @param item [GameObj] The item to wear.
+    # @return [Boolean] True if the item was successfully worn, false otherwise.
     # @example
-    #   Lich::Stash.wear_to_inv(shield)
+    #   result = Lich::Stash.wear_to_inv(item)
     def self.wear_to_inv(item)
       try_or_fail(command: "wear ##{item.id}") do
         20.times {
@@ -95,9 +95,9 @@ module Lich
       end
     end
 
-    # Initializes sheath information from ready list settings
+    # Checks and retrieves the settings for sheaths.
     #
-    # @note Updates @sheath hash with primary and secondary sheath information
+    # @return [void]
     # @example
     #   Lich::Stash.sheath_bags
     def self.sheath_bags
@@ -123,33 +123,32 @@ module Lich
       @checked_sheaths = true
     end
 
-    # Checks if primary sheath is missing from inventory
+    # Checks if the primary sheath is missing from the inventory.
     #
-    # @return [Boolean] True if primary sheath is missing
+    # @return [Boolean] True if the primary sheath is missing, false otherwise.
     # @example
-    #   Lich::Stash.missing_primary_sheath?
+    #   is_missing = Lich::Stash.missing_primary_sheath?
     def self.missing_primary_sheath? # check entry against actual inventory to catch inventory updatees
       @sheath.has_key?(:sheath) && !GameObj.inv.any? { |item| item.id == @sheath[:sheath].id }
     end
 
-    # Checks if secondary sheath is missing from inventory
+    # Checks if the secondary sheath is missing from the inventory.
     #
-    # @return [Boolean] True if secondary sheath is missing
+    # @return [Boolean] True if the secondary sheath is missing, false otherwise.
     # @example
-    #   Lich::Stash.missing_secondary_sheath?
+    #   is_missing = Lich::Stash.missing_secondary_sheath?
     def self.missing_secondary_sheath? # check entry against actual inventory to catch inventory updates
       @sheath.has_key?(:secondary_sheath) && !GameObj.inv.any? { |item| item.id == @sheath[:secondary_sheath].id }
     end
 
-    # Stores items from hands into appropriate containers
+    # Stashes items in the hands based on the specified parameters.
     #
-    # @param right [Boolean] Whether to stash right hand
-    # @param left [Boolean] Whether to stash left hand
-    # @param both [Boolean] Whether to stash both hands
-    # @note Prioritizes sheaths for weapons, then weaponsack, then lootsack
+    # @param right [Boolean] Whether to stash items in the right hand.
+    # @param left [Boolean] Whether to stash items in the left hand.
+    # @param both [Boolean] Whether to stash items in both hands.
+    # @return [void]
     # @example
-    #   Lich::Stash.stash_hands(right: true)
-    #   Lich::Stash.stash_hands(both: true)
+    #   Lich::Stash.stash_hands(right: true, left: false)
     def self.stash_hands(right: false, left: false, both: false)
       $fill_hands_actions ||= Array.new
       $fill_left_hand_actions ||= Array.new
@@ -275,14 +274,14 @@ module Lich
       $fill_right_hand_actions.push(actions) if right
     end
 
-    # Retrieves previously stashed items back to hands
+    # Equips items in the hands based on the specified parameters.
     #
-    # @param right [Boolean] Whether to equip right hand
-    # @param left [Boolean] Whether to equip left hand
-    # @param both [Boolean] Whether to equip both hands
+    # @param left [Boolean] Whether to equip items in the left hand.
+    # @param right [Boolean] Whether to equip items in the right hand.
+    # @param both [Boolean] Whether to equip items in both hands.
+    # @return [void]
     # @example
     #   Lich::Stash.equip_hands(left: true)
-    #   Lich::Stash.equip_hands(both: true)
     def self.equip_hands(left: false, right: false, both: false)
       if both
         for action in $fill_hands_actions.pop

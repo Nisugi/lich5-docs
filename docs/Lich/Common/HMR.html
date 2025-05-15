@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Implements Hot Module Reloading (HMR) functionality Provides methods to reload Ruby files dynamically during runtime</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -127,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Clears the Ruby Gem paths cache This ensures newly added gems are discoverable after reloading.</p>
+<p>Clears the gem cache by calling ‘Gem.clear_paths`.</p>
 </div></span>
   
 </li>
@@ -151,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns an array of loaded Ruby files.</p>
+<p>Retrieves a list of loaded Ruby files.</p>
 </div></span>
   
 </li>
@@ -175,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Outputs a message through the appropriate channel Attempts to use _respond for HTML-formatted messages, falls back to respond, then puts.</p>
+<p>Sends a message to the appropriate output method.</p>
 </div></span>
   
 </li>
@@ -199,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Reloads Ruby files matching the given pattern First clears the gem cache, then attempts to reload each matching file.</p>
+<p>Reloads files that match the given pattern.</p>
 </div></span>
   
 </li>
@@ -226,7 +215,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Clears the Ruby Gem paths cache This ensures newly added gems are discoverable after reloading</p>
+<p>Clears the gem cache by calling ‘Gem.clear_paths`.</p>
 
 
   </div>
@@ -248,12 +237,12 @@
       <pre class="lines">
 
 
-17
-18
-19</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear_cache'>clear_cache</span>
   <span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_clear_paths'>clear_paths</span>
@@ -275,7 +264,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns an array of loaded Ruby files</p>
+<p>Retrieves a list of loaded Ruby files.</p>
 
 
   </div>
@@ -286,8 +275,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_loaded_files'>loaded_files</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_loaded'>loaded</span>
-<span class='comment'># =&gt; [&quot;/path/to/file1.rb&quot;, &quot;/path/to/file2.rb&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_loaded_files'>loaded_files</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_loaded'>loaded</span></code></pre>
     
   </div>
 
@@ -303,7 +291,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of paths to loaded .rb files</p>
+<p>An array of paths to loaded Ruby files.</p>
 </div>
       
     </li>
@@ -316,12 +304,12 @@
       <pre class="lines">
 
 
-44
-45
-46</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_loaded'>loaded</span>
   <span class='gvar'>$LOADED_FEATURES</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -343,7 +331,9 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Outputs a message through the appropriate channel Attempts to use _respond for HTML-formatted messages, falls back to respond, then puts</p>
+<p>Sends a message to the appropriate output method.</p>
+
+<p>If ‘_respond` is defined and the message contains “&lt;b&gt;”, it will call `_respond`. If `respond` is defined, it will call `respond`. Otherwise, it will print the message.</p>
 
 
   </div>
@@ -354,8 +344,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Regular message</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;b&gt;Bold message&lt;/b&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello, World!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -372,7 +361,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to output</p>
+<p>The message to be sent or printed.</p>
 </div>
       
     </li>
@@ -386,18 +375,18 @@
       <pre class="lines">
 
 
-31
-32
-33
-34
-35</pre>
+25
+26
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid__respond'>_respond</span> <span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='symbol'>:_respond</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_message'>message</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;b&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_respond'>respond</span> <span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='symbol'>:respond</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid__respond'><span class='object_link'><a href="../../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='symbol'>:_respond</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_message'>message</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;b&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='id identifier rubyid_message'>message</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='symbol'>:respond</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_message'>message</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -416,16 +405,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This will attempt to reload ALL matching files in $LOADED_FEATURES Failed reloads will output the exception and stack trace If no files match the pattern, a message will be displayed</p>
-</div>
-  </div>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Reloads files that match the given pattern.</p>
 
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Reloads Ruby files matching the given pattern First clears the gem cache, then attempts to reload each matching file</p>
+<p>This method clears the cache, finds files matching the pattern, and attempts to load them. If loading fails, it captures and reports the exception.</p>
 
 
   </div>
@@ -436,8 +419,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='comment'># Reload all files containing &#39;script&#39;
-</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>script</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::HMR (module)">HMR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>my_file</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -454,7 +436,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Regular expression pattern to match files for reloading</p>
+<p>The pattern to match file paths against.</p>
 </div>
       
     </li>
@@ -467,13 +449,13 @@
     <li>
       
       
-        <span class='type'>(<tt>StandardError</tt>)</span>
+        <span class='type'>(<tt>LoadError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>If there’s an error loading any of the files</p>
+<p>If the file cannot be loaded.</p>
 </div>
       
     </li>
@@ -486,6 +468,15 @@
       <pre class="lines">
 
 
+53
+54
+55
+56
+57
+58
+59
+60
+61
 62
 63
 64
@@ -493,19 +484,10 @@
 66
 67
 68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/common/hmr.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear_cache'>clear_cache</span>
@@ -534,7 +516,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

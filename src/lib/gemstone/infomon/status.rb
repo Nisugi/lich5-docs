@@ -5,129 +5,103 @@ require "ostruct"
 
 module Lich
   module Gemstone
-    # Provides status checking functionality for a character in the Gemstone game
-    # Handles various character states and debuffs
-    #
-    # @author Lich5 Documentation Generator
     module Status
-      # Checks if the character is affected by Wall of Thorns poison
+      # Checks if the character is thorned.
       #
-      # @return [Boolean] true if character is thorned, false otherwise
+      # @return [Boolean] true if the character is thorned, false otherwise.
       # @example
-      #   Status.thorned? #=> true
-      #
-      # @note Added 2024-09-08
-      def self.thorned?
+      #   Lich::Gemstone::Status.thorned? # => true or false
+      def self.thorned? # added 2024-09-08
         (Infomon.get_bool("status.thorned") && Effects::Debuffs.active?(/Wall of Thorns Poison [1-5]/))
       end
 
-      # Checks if the character is magically bound/restrained
+      # Checks if the character is bound.
       #
-      # @return [Boolean] true if character is bound, false otherwise
+      # @return [Boolean] true if the character is bound, false otherwise.
       # @example
-      #   Status.bound? #=> false
-      #
-      # @note Checks both 'Bind' effect and effect ID 214
+      #   Lich::Gemstone::Status.bound? # => true or false
       def self.bound?
         Infomon.get_bool("status.bound") && (Effects::Debuffs.active?('Bind') || Effects::Debuffs.active?(214))
       end
 
-      # Checks if the character is under calming effects
+      # Checks if the character is calmed.
       #
-      # @return [Boolean] true if character is calmed, false otherwise
+      # @return [Boolean] true if the character is calmed, false otherwise.
       # @example
-      #   Status.calmed? #=> true
-      #
-      # @note Checks both 'Calm' effect and effect ID 201
+      #   Lich::Gemstone::Status.calmed? # => true or false
       def self.calmed?
         Infomon.get_bool("status.calmed") && (Effects::Debuffs.active?('Calm') || Effects::Debuffs.active?(201))
       end
 
-      # Checks if the character is bleeding from a cutthroat attack
+      # Checks if the character is cutthroat.
       #
-      # @return [Boolean] true if character has major bleeding, false otherwise
+      # @return [Boolean] true if the character is cutthroat, false otherwise.
       # @example
-      #   Status.cutthroat? #=> false
-      #
-      # @note Specifically checks for 'Major Bleed' effect
+      #   Lich::Gemstone::Status.cutthroat? # => true or false
       def self.cutthroat?
         Infomon.get_bool("status.cutthroat") && Effects::Debuffs.active?('Major Bleed')
       end
 
-      # Checks if the character is magically silenced
+      # Checks if the character is silenced.
       #
-      # @return [Boolean] true if character is silenced, false otherwise
+      # @return [Boolean] true if the character is silenced, false otherwise.
       # @example
-      #   Status.silenced? #=> true
+      #   Lich::Gemstone::Status.silenced? # => true or false
       def self.silenced?
         Infomon.get_bool("status.silenced") && Effects::Debuffs.active?('Silenced')
       end
 
-      # Checks if the character is asleep
+      # Checks if the character is sleeping.
       #
-      # @return [Boolean] true if character is sleeping, false otherwise
+      # @return [Boolean] true if the character is sleeping, false otherwise.
       # @example
-      #   Status.sleeping? #=> false
-      #
-      # @note Checks both 'Sleep' effect and effect ID 501
+      #   Lich::Gemstone::Status.sleeping? # => true or false
       def self.sleeping?
         Infomon.get_bool("status.sleeping") && (Effects::Debuffs.active?('Sleep') || Effects::Debuffs.active?(501))
       end
 
-      # Checks if the character is caught in a web
+      # Checks if the character is webbed.
       #
-      # @return [Boolean] true if character is webbed, false otherwise
+      # @return [Boolean] true if the character is webbed, false otherwise.
+      # @note This method is planned for deprecation in global_defs.
       # @example
-      #   Status.webbed? #=> true
-      #
-      # @deprecated Use new status system instead
-      # @note Relies on XMLData indicator
+      #   Lich::Gemstone::Status.webbed? # => true or false
       def self.webbed?
         XMLData.indicator['IconWEBBED'] == 'y'
       end
 
-      # Checks if the character is dead
+      # Checks if the character is dead.
       #
-      # @return [Boolean] true if character is dead, false otherwise
+      # @return [Boolean] true if the character is dead, false otherwise.
       # @example
-      #   Status.dead? #=> false
-      #
-      # @deprecated Use new status system instead
-      # @note Relies on XMLData indicator
+      #   Lich::Gemstone::Status.dead? # => true or false
       def self.dead?
         XMLData.indicator['IconDEAD'] == 'y'
       end
 
-      # Checks if the character is stunned
+      # Checks if the character is stunned.
       #
-      # @return [Boolean] true if character is stunned, false otherwise
+      # @return [Boolean] true if the character is stunned, false otherwise.
       # @example
-      #   Status.stunned? #=> false
-      #
-      # @deprecated Use new status system instead
-      # @note Relies on XMLData indicator
+      #   Lich::Gemstone::Status.stunned? # => true or false
       def self.stunned?
         XMLData.indicator['IconSTUNNED'] == 'y'
       end
 
-      # Checks if the character is incapacitated by any major debilitating effect
+      # Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping).
       #
-      # @return [Boolean] true if character is webbed, dead, stunned, bound or sleeping
+      # @return [Boolean] true if the character is muckled, false otherwise.
       # @example
-      #   Status.muckled? #=> true
-      #
-      # @note Combines multiple status checks into one convenience method
+      #   Lich::Gemstone::Status.muckled? # => true or false
       def self.muckled?
         return Status.webbed? || Status.dead? || Status.stunned? || Status.bound? || Status.sleeping?
       end
 
-      # Serializes the character's status into an array of boolean values
+      # Serializes the status of the character.
       #
-      # @return [Array<Boolean>] Array containing bound, calmed, cutthroat, silenced and sleeping states
+      # @return [Array<Boolean>] an array of booleans representing the character's status.
       # @example
-      #   Status.serialize #=> [false, true, false, false, false]
-      #
-      # @note May be deprecated in future versions
+      #   Lich::Gemstone::Status.serialize # => [true, false, true, false, true]
       def self.serialize
         [self.bound?, self.calmed?, self.cutthroat?, self.silenced?, self.sleeping?]
       end

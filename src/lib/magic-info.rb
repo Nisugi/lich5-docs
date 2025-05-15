@@ -1,10 +1,5 @@
-# Provides magic spell information and management functionality for the Lich system
-# @author Lich5 Documentation Generator
 module Lich
-  # Utility functions for the Lich system
   module Util
-    # Handles magic spell information display and management
-    # Tracks active spells, their durations, and various magical effects
     module Magicinfo
       _respond "Landed in Magicinfo" if $infomon_debug
 
@@ -13,14 +8,13 @@ module Lich
       @gift_state = Lich.magicinfo_gift
       @messages_state = Lich.magicinfo_messages # for future need
 
-      # Processes magic-related commands and routes them to appropriate handlers
+      # Handles requests for various magic commands.
       #
-      # @param type [String] The command type to process ('help', 'announce', 'clear', etc)
+      # @param type [String] The type of request to handle. Defaults to 'announce'.
       # @return [void]
+      # @raise [StandardError] Raises an error for unrecognized command types.
       # @example
-      #   Magicinfo.request('help')
-      #   Magicinfo.request('announce') 
-      #   Magicinfo.request('clear 101')
+      #   Lich::Util::Magicinfo.request('help')
       def self.request(type = 'announce')
         case type
         when /help/
@@ -56,11 +50,11 @@ module Lich
         end
       end
 
-      # Displays help information about available magic commands
+      # Displays help information for magic commands.
       #
       # @return [void]
       # @example
-      #   Magicinfo.help
+      #   Lich::Util::Magicinfo.help
       def self.help
         respond
         respond 'Magic usage:'
@@ -75,13 +69,13 @@ module Lich
         respond
       end
 
-      # Clears active spells from the tracking list
+      # Clears the active spell list or a specific spell.
       #
-      # @param rd [String, nil] Specific spell to clear, or nil to clear all
+      # @param rd [String, nil] The spell identifier to clear. If nil, clears all spells.
       # @return [void]
+      # @raise [StandardError] Raises an error if the spell cannot be identified.
       # @example
-      #   Magicinfo.clear(nil) # Clears all spells
-      #   Magicinfo.clear("101") # Clears spell #101
+      #   Lich::Util::Magicinfo.clear('1')
       def self.clear(rd)
         # requested_drop = rd
         if rd.nil? or rd.empty?
@@ -105,11 +99,11 @@ module Lich
         end
       end
 
-      # Toggles display of spell circle labels in the active spell list
+      # Toggles the display of spell circle labels in the active spell list.
       #
       # @return [void]
       # @example
-      #   Magicinfo.circle
+      #   Lich::Util::Magicinfo.circle
       def self.circle
         if @circle_state == false
           Lich.magicinfo_circle = true
@@ -122,12 +116,11 @@ module Lich
         end
       end
 
-      # Toggles display of spell duration messages after casting
-      # Note: Currently placeholder functionality
+      # Toggles the display of spell duration messages after each cast.
       #
       # @return [void]
       # @example
-      #   Magicinfo.messages
+      #   Lich::Util::Magicinfo.messages
       def self.messages
         # if $infomon_values['show_messages'] == false
         #   $infomon_values['show_messages'] = true
@@ -139,11 +132,11 @@ module Lich
         respond('This command may be coming soon!')
       end
 
-      # Toggles display of spell bonuses in the active spell list
+      # Toggles the display of spell bonuses in the active spell list.
       #
       # @return [void]
       # @example
-      #   Magicinfo.bonus
+      #   Lich::Util::Magicinfo.bonus
       def self.bonus
         if @bonus_state == false
           Lich.magicinfo_bonus = true
@@ -156,11 +149,12 @@ module Lich
         end
       end
 
-      # Toggles display of Gift of Lumnis information in spell list
+      # Toggles the display of the Gift of Lumnis in the active spell list.
       #
-      # @return [void]
+      # @return [void] This method does not return a value.
+      # @note This method maintains the state of the gift display.
       # @example
-      #   Magicinfo.gift
+      #   Lich::Util::Magicinfo.gift
       def self.gift
         if @gift_state == false
           Lich.magicinfo_gift = true
@@ -173,23 +167,22 @@ module Lich
         end
       end
 
-      # Handles deprecated command functionality
+      # Notifies that the setting is deprecated and no longer in use.
       #
-      # @return [void]
+      # @return [void] This method does not return a value.
       # @example
-      #   Magicinfo.deprecated
+      #   Lich::Util::Magicinfo.deprecated
       def self.deprecated
         respond('this setting is no longer used')
       end
 
-      # Sets the duration for a specific spell
+      # Sets the spell based on the provided request actions.
       #
-      # @param ra [String] Request string containing spell number and duration in minutes
-      # @return [void]
-      # @raise [RuntimeError] When spell number cannot be found
+      # @param ra [String] The request actions containing the spell number and optional time left.
+      # @return [void] This method does not return a value.
+      # @raise [ArgumentError] If the spell number is invalid or cannot be found.
       # @example
-      #   Magicinfo.set("101 30") # Sets spell 101 to 30 minutes duration
-      # @note Requires spell number rather than name for accuracy
+      #   Lich::Util::Magicinfo.set("1 10")
       def self.set(ra)
         request_actions = ra
         if request_actions.nil?
@@ -212,16 +205,17 @@ module Lich
         end
       end
 
-      # Announces current active spells and their effects
+      # Announce the active spells and their bonuses.
       #
-      # @return [void]
+      # This method generates a formatted string that lists all active spells,
+      # their bonuses, and totals for offense, defense, stats, and skills.
+      # If there are no active spells, it indicates that as well.
+      #
+      # @return [String] the formatted announcement of active spells and their bonuses.
+      # @raise [StandardError] if there is an issue with spell data retrieval.
       # @example
-      #   Magicinfo.announce
-      # @note Displays comprehensive information including:
-      #   - Active spells with durations
-      #   - Spell bonuses (if enabled)
-      #   - Total combined effects
-      #   - Gift of Lumnis info (if enabled)
+      #   Lich::Util::Magicinfo.announce
+      #   # => Outputs a string with active spells and their bonuses.
       def self.announce
         output = String.new
         if Spell.active.empty?

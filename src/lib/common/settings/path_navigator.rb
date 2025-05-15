@@ -1,81 +1,46 @@
-# A module containing common functionality for the Lich system
 module Lich
-  # Contains common utility classes used across the Lich system
   module Common
-    # Handles navigation and manipulation of nested data structures via paths
-    #
-    # PathNavigator provides functionality to traverse nested Hashes and Arrays
-    # using an internal path array, with support for creating missing nodes.
-    #
-    # @author Lich5 Documentation Generator
+    # Path navigator to encapsulate path navigation logic
     class PathNavigator
-      # Creates a new PathNavigator instance
+      # Initializes a new PathNavigator instance.
       #
-      # @param db_adapter [Object] The database adapter used to retrieve settings
-      # @return [PathNavigator] A new PathNavigator instance
-      #
-      # @example
-      #   navigator = PathNavigator.new(database_adapter)
+      # @param db_adapter [Object] The database adapter used for retrieving settings.
       def initialize(db_adapter)
         @db_adapter = db_adapter
         @path = []
       end
 
-      # The current navigation path
+      # Returns the current path.
       #
-      # @return [Array] Array containing the current path elements
-      # @note Read-only attribute
+      # @return [Array] The current path as an array.
       attr_reader :path
 
-      # Resets the current path to empty
+      # Resets the path to an empty array.
       #
-      # @return [Array] Empty array representing cleared path
-      #
-      # @example
-      #   navigator.reset_path # => []
+      # @return [void]
       def reset_path
         @path = []
       end
 
-      # Resets the path and returns the provided value
+      # Resets the path and returns the provided value.
       #
-      # @param value [Object] Value to return after resetting path
-      # @return [Object] The provided value parameter
-      #
-      # @example
-      #   navigator.reset_path_and_return("some value") # => "some value"
-      #   navigator.path # => []
+      # @param value [Object] The value to return after resetting the path.
+      # @return [Object] The provided value.
       def reset_path_and_return(value)
         reset_path
         value
       end
 
-      # Navigates to a path within nested settings data
+      # Navigates to a specified path based on the script name and scope.
       #
-      # Traverses nested Hash/Array structures following the current path.
-      # Can optionally create missing nodes along the way.
-      #
-      # @param script_name [String] Name of script whose settings to navigate
-      # @param create_missing [Boolean] Whether to create missing path elements
-      # @param scope [String] The settings scope, defaults to ":"
-      # @return [Array<Object>] Two-element array containing:
-      #   - The target value at the path location
-      #   - The root settings object
-      # @raise [TypeError] If target is not a Hash/Array when trying to navigate
-      #
-      # @example Navigate existing path
-      #   navigator.path = ["users", 0, "name"] 
-      #   target, root = navigator.navigate_to_path("myapp")
-      #   # Returns value at myapp.settings.users[0].name
-      #
-      # @example Create missing path
-      #   navigator.path = ["new", "path"]
-      #   target, root = navigator.navigate_to_path("myapp", create_missing: true)
-      #   # Creates empty Hash/Array nodes along path
-      #
-      # @note
-      #   - Returns [nil, root] if path doesn't exist and create_missing is false
-      #   - Creates Arrays for Integer keys and Hashes for other key types
+      # @param script_name [String] The name of the script to navigate.
+      # @param create_missing [Boolean] Whether to create missing path elements (default: true).
+      # @param scope [String] The scope to use for retrieving settings (default: ":").
+      # @return [Array] An array containing the target value and the root value.
+      # @raise [KeyError] If the key does not exist and create_missing is false.
+      # @example
+      #   navigator = Lich::Common::PathNavigator.new(db_adapter)
+      #   target, root = navigator.navigate_to_path("script_name")
       def navigate_to_path(script_name, create_missing = true, scope = ":")
         root = @db_adapter.get_settings(script_name, scope)
         return [root, root] if @path.empty?

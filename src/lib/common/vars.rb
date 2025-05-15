@@ -1,22 +1,17 @@
-# Provides persistent variable storage functionality for the Lich system.
-# Variables are stored per game and character in an SQLite database.
-#
-# @author Lich5 Documentation Generator
+# Carve out module Vars (should this be in settings path?)
+# 2024-06-13
+
 module Lich
   module Common
     module Vars
-      # Internal hash storing variable values
-      # @private
       @@vars   = Hash.new
-
-      # MD5 hash of the variables for change detection
-      # @private 
       md5      = nil
-
-      # Flag indicating if variables have been loaded
-      # @private
       @@loaded = false
-
+      
+      # Proc to load variables from the database.
+      # 
+      # @return [NilClass] always returns nil.
+      # @raise [SQLite3::BusyException] if the database is busy.
       @@load = proc {
         Lich.db_mutex.synchronize {
           unless @@loaded
@@ -41,7 +36,11 @@ module Lich
         }
         nil
       }
-
+      
+      # Proc to save variables to the database.
+      # 
+      # @return [NilClass] always returns nil.
+      # @raise [SQLite3::BusyException] if the database is busy.
       @@save = proc {
         Lich.db_mutex.synchronize {
           if @@loaded
@@ -59,7 +58,8 @@ module Lich
         }
         nil
       }
-
+      
+      # Thread to periodically save variables to the database every 300 seconds.
       Thread.new {
         loop {
           sleep 300
@@ -71,27 +71,21 @@ module Lich
           end
         }
       }
-
-      # Retrieves a stored variable value by name
+      
+      # Retrieves the value associated with the given name.
       #
-      # @param name [Object] The variable name/key to lookup
-      # @return [Object, nil] The stored value or nil if not found
-      # @example
-      #   Vars['my_variable'] # => returns stored value
-      #   Vars['nonexistent'] # => returns nil
+      # @param name [String] the name of the variable to retrieve.
+      # @return [Object, NilClass] the value associated with the name, or nil if not found.
       def Vars.[](name)
         @@load.call unless @@loaded
         @@vars[name]
       end
 
-      # Sets a variable value by name
+      # Sets the value for the given name.
       #
-      # @param name [Object] The variable name/key to set
-      # @param val [Object, nil] The value to store. If nil, deletes the variable
-      # @return [Object] The stored value
-      # @example
-      #   Vars['my_var'] = 123
-      #   Vars['to_delete'] = nil # Deletes the variable
+      # @param name [String] the name of the variable to set.
+      # @param val [Object, NilClass] the value to assign, or nil to delete the variable.
+      # @return [NilClass] always returns nil.
       def Vars.[]=(name, val)
         @@load.call unless @@loaded
         if val.nil?
@@ -101,36 +95,27 @@ module Lich
         end
       end
 
-      # Returns a copy of all stored variables
+      # Returns a duplicate of the current variables hash.
       #
-      # @return [Hash] A duplicate of the internal variables hash
-      # @example
-      #   all_vars = Vars.list
-      #   puts all_vars.inspect
+      # @return [Hash] a duplicate of the variables hash.
       def Vars.list
         @@load.call unless @@loaded
         @@vars.dup
       end
 
-      # Forces an immediate save of variables to the database
+      # Saves the current variables to the database.
       #
-      # @return [nil]
-      # @example
-      #   Vars.save
+      # @return [NilClass] always returns nil.
       def Vars.save
         @@save.call
       end
 
-      # Provides dynamic getter/setter functionality for variables
+      # Handles dynamic method calls for getting and setting variables.
       #
-      # @param arg1 [Symbol] The method name, interpreted as variable name
-      # @param arg2 [Object] The value to set (for setters)
-      # @return [Object] The variable value for getters, the assigned value for setters
-      # @example Getter usage
-      #   Vars.my_variable # => returns value of 'my_variable'
-      # @example Setter usage
-      #   Vars.new_var = 'value' # Sets 'new_var' to 'value'
-      # @note Method names ending with '=' are treated as setters
+      # @param arg1 [Symbol] the name of the variable or the setter method (ending with '=').
+      # @param arg2 [Object, NilClass] the value to set if it's a setter method.
+      # @return [Object, NilClass] the value of the variable or nil if deleted.
+      # @note This method will call @@load if the variables have not been loaded yet.
       def Vars.method_missing(arg1, arg2 = '')
         @@load.call unless @@loaded
         if arg1[-1, 1] == '='

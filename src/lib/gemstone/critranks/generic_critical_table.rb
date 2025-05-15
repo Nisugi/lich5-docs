@@ -1,62 +1,52 @@
-# A module containing Gemstone game-specific functionality
 #
-# @author Lich5 Documentation Generator
+#  2024/06/25 - Creating critical table hashes by extending module CritRanks
+#  2025/03/14 - Standardizing regex to /^String and downcase to all type / location
+#             - support XML parsing by using consistent .*?
+#
+
+#  Generic crits are crits where the specifics of the crit are not defined by the crit table.
+#  This means that the crit is not specific to a location or type, and can be applied to any
+#  location or type.  An example of this would be a crit that causes the target to be stunned,
+#  but does not specify where the stun occurs or what type of crit it is, such as a snake that
+#  gets an RIGHT ARM critical that would stun, but has no RIGHT ARM.
+
+# requireds template for a crit
+# GENERIC:                                              <<-- the 'crit table name'
+#  UNSPECIFIED:                                         <<-- the 'location'
+#    0:                                                 <<-- the 'crit rank'
+#      :type: GENERIC                                   <<-- this must match the crit table name
+#      :location: UNSPECIFIED                           <<-- this must match the location
+#      :rank: 0                                         <<-- this must match the crit rank
+#      :damage: 0                                       <<-- additional damage per crit table
+#      :position:                                       <<-- if the crit causing KNEEL, SITTING or PRONE
+#      :fatal: false                                    <<-- if the crit is fatal
+#      :stunned: 999                                    <<-- rounds of stun caused by the crit - use 999 for unknown
+#      :amputated: false                                <<-- if the crit causes the LOCATION to be severed
+#      :crippled: false                                 <<-- if the crit causes the location to be useless
+#      :sleeping: false                                 <<-- if the crit causes an unconcious / sleeping state
+#      :dazed: false                                    <<-- UAC can caused dazed effect (possible PSMs too?)
+#      :limb_favored:                                   <<-- limb favored (true false or location tbd)
+#      :roundtime: 0                                    <<-- if the crit causes additional roundtime
+#      :silenced: false                                 <<-- if the crit prevents speaking / casting
+#      :slowed: false                                   <<-- if the crit causes slower actions
+#      :wound_rank: 0                                   <<-- rank of wound caused at LOCATION
+#      :secondary_wound:                                <<-- second wound caused at different LOCATIONI
+#      :regex: !ruby/regexp /.*? is stunned!/       <<-- the regex that denotes the crit text for capture
+
 module Lich
-
-  # Contains Gemstone-specific game mechanics and systems 
   module Gemstone
-
-    # Defines critical hit tables and rankings for the combat system
-    # This module handles generic critical hits that are not specific to a particular
-    # location or type of damage.
-    #
-    # Generic crits represent universal effects that can apply to any target,
-    # regardless of their anatomy or damage type. For example, a stunning effect
-    # that works on any creature even if they lack the specific body part targeted.
-    #
-    # @note Generic crits use a standardized format with required fields for damage,
-    #   effects, and matching regex patterns
-    #
-    # @example Critical Table Structure
-    #   GENERIC:
-    #     UNSPECIFIED:
-    #       0:
-    #         type: GENERIC
-    #         location: UNSPECIFIED
-    #         rank: 0
-    #         # ... additional attributes
-    #
-    # @attribute [r] table
-    #   @return [Hash] The complete critical hit table definitions
-    #
-    # @note Critical table entries must include:
-    #   - :type - Must match the table name
-    #   - :location - Body location affected
-    #   - :rank - Severity ranking
-    #   - :damage - Additional damage dealt
-    #   - :position - Forced position changes
-    #   - :fatal - Whether crit causes death
-    #   - :stunned - Rounds of stun (999 for unknown)
-    #   - :amputated - Whether location is severed
-    #   - :crippled - Whether location becomes unusable
-    #   - :sleeping - Whether target falls unconscious
-    #   - :dazed - Mental effect status
-    #   - :limb_favored - Limb favor status
-    #   - :roundtime - Additional action delay
-    #   - :silenced - Speaking/casting prevention
-    #   - :slowed - Movement speed reduction
-    #   - :wound_rank - Severity of wound
-    #   - :secondary_wound - Additional wound location
-    #   - :regex - Pattern matching the crit message
-    #
-    # @note As of 2025/03/14, regex patterns use standardized /^String format
-    #   and consistent .*? patterns for XML parsing compatibility
     module CritRanks
+      # Defines the generic critical ranks for the crit table.
+      #
+      # @note This module extends the CritRanks module to include generic crits.
+      # @example
+      #   Lich::Gemstone::CritRanks.table[:generic]
+      #   # => { :unspecified => { 0 => { :type => "generic", ... } } }
       CritRanks.table[:generic] =
         { :unspecified =>
                           { 0 =>
                                  { :type            => "generic",
-                                   :location        => "unspecified", 
+                                   :location        => "unspecified",
                                    :rank            => 0,
                                    :damage          => 0,
                                    :position        => nil,

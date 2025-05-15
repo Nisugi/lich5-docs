@@ -1,72 +1,100 @@
-# A module containing common functionality for the Lich system
 module Lich
   module Common
-    # A proxy class that provides Ruby-compatible access to settings objects.
-    # Handles both scalar and container types (Hash, Array) with support for
-    # nested access, comparison operations, and enumeration.
+    # This module provides a proxy class for settings objects, allowing them to be accessed
+    # in a Ruby-compatible way. It handles both scalar and container types, and
+    # provides methods for comparison, conversion, and enumeration.
     #
-    # @author Lich5 Documentation Generator
+    # The proxy is designed to work with settings objects that are either Hashes or Arrays.
+    # It allows for nested access to settings, while also providing a way to save changes
+    # made to the settings.
+    #
+    # The proxy also provides a way to handle non-destructive methods, which return a new
+    # object instead of modifying the original. This is done by creating a duplicate of the
+    # target object before calling the method, and then returning a new proxy for the result
+    # if it is a container type.
+    #
+    # The proxy also handles method delegation, allowing methods to be called directly on
+    # the target object. It uses method_missing to catch calls to methods that are not
+    # defined on the proxy itself, and delegates them to the target object.
+    #
+    # The proxy also provides a way to handle results of non-destructive methods, which
+    # return a new object instead of modifying the original. This is done by creating a
+    # duplicate of the target object before calling the method, and then returning a new
+    # proxy for the result if it is a container type.
+
     class SettingsProxy
-      # Creates a new settings proxy instance
+      # Initializes a new SettingsProxy instance.
       #
-      # @param settings [Object] The parent settings object
-      # @param path [Array] The path to this setting in the hierarchy
-      # @param target [Object] The actual value being proxied
-      # @return [SettingsProxy] A new proxy instance
+      # @param settings [Object] The settings object being proxied.
+      # @param path [Array] The path to the current settings.
+      # @param target [Object] The target object being proxied.
       def initialize(settings, path, target)
         @settings = settings
         @path = path.dup
         @target = target
       end
 
-      # @return [Object] The underlying target object being proxied
-      # @return [Array] The path to this setting in the hierarchy
+      # Allow access to the target for debugging
+      #
+      # @return [Object] The target object.
       attr_reader :target, :path
 
       #
       # Standard Ruby methods
       #
 
-      # Checks if the proxied value is nil
+      # Checks if the target is nil.
       #
-      # @return [Boolean] true if the target is nil, false otherwise
-      # @example
-      #   settings.some_value.nil? #=> true/false
+      # @return [Boolean] True if the target is nil, false otherwise.
       def nil?
         @target.nil?
       end
 
-      # Helper method for implementing binary operators
+      # Helper method for binary operators to reduce repetition.
       #
-      # @param operator [Symbol] The operator method name
-      # @param other [Object] The other operand
-      # @return [Object] Result of the operation
-      # @api private
+      # @param operator [Symbol] The binary operator to apply.
+      # @param other [Object] The other operand.
+      # @return [Object] The result of the binary operation.
       def binary_op(operator, other)
         other_value = other.is_a?(SettingsProxy) ? other.target : other
         @target.send(operator, other_value)
       end
 
-      # Define comparison operators using metaprogramming to reduce repetition
-      # NB: not all operators apply to all objects (e.g. <, >, <=, >= on Arrays)
+      # Define comparison operators using metaprogramming to reduce repetition.
+      # NB: not all operators apply to all objects (e.g. <, >, <=, >= on Arrays).
+      #
+      # @return [Boolean] The result of the comparison.
       [:==, :!=, :eql?, :equal?, :<=>, :<, :<=, :>, :>=, :|, :&].each do |op|
         define_method(op) do |other|
           binary_op(op, other)
         end
       end
 
+      # Returns the hash code of the target.
+      #
+      # @return [Integer] The hash code of the target.
       def hash
         @target.hash
       end
 
+      # Returns a string representation of the target.
+      #
+      # @return [String] The string representation of the target.
       def to_s
         @target.to_s
       end
 
+      # Returns a string representation of the target for debugging.
+      #
+      # @return [String] The inspected string representation of the target.
       def inspect
         @target.inspect
       end
 
+      # Pretty prints the target.
+      #
+      # @param pp [Object] The pretty print object.
+      # @return [void]
       def pretty_print(pp)
         pp.pp(@target)
       end
@@ -75,18 +103,35 @@ module Lich
       # Type checking methods
       #
 
+      # Checks if the target is an instance of the given class.
+      #
+      # @param klass [Class] The class to check against.
+      # @return [Boolean] True if the target is an instance of the class, false otherwise.
       def is_a?(klass)
         @target.is_a?(klass)
       end
 
+      # Checks if the target is a kind of the given class.
+      #
+      # @param klass [Class] The class to check against.
+      # @return [Boolean] True if the target is a kind of the class, false otherwise.
       def kind_of?(klass)
         @target.kind_of?(klass)
       end
 
+      # Checks if the target is an instance of the given class.
+      #
+      # @param klass [Class] The class to check against.
+      # @return [Boolean] True if the target is an instance of the class, false otherwise.
       def instance_of?(klass)
         @target.instance_of?(klass)
       end
 
+      # Checks if the target responds to the given method.
+      #
+      # @param method [Symbol] The method name to check.
+      # @param include_private [Boolean] Whether to include private methods in the check.
+      # @return [Boolean] True if the target responds to the method, false otherwise.
       def respond_to?(method, include_private = false)
         super || @target.respond_to?(method, include_private)
       end
@@ -95,37 +140,41 @@ module Lich
       # Conversion methods
       #
 
-      # Converts the proxied value to a hash if possible
+      # Converts the target to a hash.
       #
-      # @return [Hash, nil] A copy of the target hash or nil if not a Hash
-      # @example
-      #   settings.hash_value.to_hash #=> {"key" => "value"}
+      # @return [Hash, nil] A duplicate of the target if it is a Hash, nil otherwise.
       def to_hash
         return nil unless @target.is_a?(Hash)
 
         @target.dup
       end
 
+      # Converts the target to a hash (alias for to_hash).
+      #
+      # @return [Hash, nil] A duplicate of the target if it is a Hash, nil otherwise.
       def to_h
         to_hash
       end
 
-      # Converts the proxied value to an array if possible
+      # Converts the target to an array.
       #
-      # @return [Array, nil] A copy of the target array or nil if not an Array
-      # @example
-      #   settings.array_value.to_ary #=> [1, 2, 3]
+      # @return [Array, nil] A duplicate of the target if it is an Array, nil otherwise.
       def to_ary
         return nil unless @target.is_a?(Array)
 
         @target.dup
       end
 
+      # Converts the target to an array (alias for to_ary).
+      #
+      # @return [Array, nil] A duplicate of the target if it is an Array, nil otherwise.
       def to_a
         to_ary
       end
 
-      # Define conversion methods using metaprogramming to reduce repetition
+      # Define conversion methods using metaprogramming to reduce repetition.
+      #
+      # @return [Object] The result of the conversion method.
       [:to_int, :to_i, :to_str, :to_sym, :to_proc].each do |method|
         define_method(method) do
           @target.send(method) if @target.respond_to?(method)
@@ -136,13 +185,10 @@ module Lich
       # Enumerable support
       #
 
-      # Implements enumerable functionality for container types
+      # Iterates over each item in the target.
       #
-      # @yield [Object] Each element in the container
-      # @return [Enumerator] If no block given
-      # @return [self] If block given
-      # @example
-      #   settings.array_value.each { |item| puts item }
+      # @yield [Object] The block to execute for each item.
+      # @return [self] The SettingsProxy instance.
       def each(&_block)
         return enum_for(:each) unless block_given?
 
@@ -159,9 +205,7 @@ module Lich
         self
       end
 
-      # List of methods that should not trigger settings persistence
-      #
-      # @return [Array<Symbol>] Method names that are considered non-destructive
+      # Non-destructive enumerable methods that should not save changes.
       NON_DESTRUCTIVE_METHODS = [
         :select, :map, :filter, :reject, :collect, :find, :detect,
         :find_all, :grep, :grep_v, :group_by, :partition, :min, :max,
@@ -178,13 +222,10 @@ module Lich
       # Container access
       #
 
-      # Accesses elements in container types
+      # Accesses a value in the target by key.
       #
-      # @param key [Object] The key/index to access
-      # @return [Object, SettingsProxy] The value or a proxy for nested containers
-      # @example
-      #   settings.hash_value["key"]
-      #   settings.array_value[0]
+      # @param key [Object] The key to access the value.
+      # @return [Object] The value associated with the key, or a new SettingsProxy if the value is a container.
       def [](key)
         value = @target[key]
 
@@ -199,13 +240,11 @@ module Lich
         end
       end
 
-      # Sets values in container types
+      # Sets a value in the target by key.
       #
-      # @param key [Object] The key/index to set
-      # @param value [Object] The value to set
-      # @return [Object] The set value
-      # @example
-      #   settings.hash_value["key"] = "new value"
+      # @param key [Object] The key to set the value.
+      # @param value [Object] The value to set.
+      # @return [Object] The value that was set.
       def []=(key, value)
         @target[key] = value
         @settings.save_proxy_changes(self)
@@ -216,13 +255,13 @@ module Lich
       # Method delegation
       #
 
-      # Handles method delegation to the target object
+      # Handles method calls that are not defined on the proxy.
       #
-      # @param method [Symbol] The method name
-      # @param args [Array] Method arguments
-      # @param block [Proc] Optional block
-      # @return [Object] Result of the method call
-      # @raise [NoMethodError] If method doesn't exist on target
+      # @param method [Symbol] The method name to call.
+      # @param args [Array] The arguments to pass to the method.
+      # @param block [Proc] The block to pass to the method.
+      # @return [Object] The result of the method call.
+      # @raise [NoMethodError] If the method is not defined on the target.
       def method_missing(method, *args, &block)
         if @target.respond_to?(method)
           # For non-destructive methods, operate on a duplicate to avoid modifying original
@@ -244,11 +283,10 @@ module Lich
         end
       end
 
-      # Handles results from non-destructive method calls
+      # Helper method to handle results of non-destructive methods.
       #
-      # @param result [Object] The result to process
-      # @return [Object, SettingsProxy] Processed result
-      # @api private
+      # @param result [Object] The result of the non-destructive method.
+      # @return [Object] The wrapped result in a new SettingsProxy if it's a container, or the result itself.
       def handle_non_destructive_result(result)
         # No need to capture path since we're using empty path
         @settings.reset_path_and_return(
@@ -262,11 +300,10 @@ module Lich
         )
       end
 
-      # Handles results from destructive method calls
+      # Helper method to handle results of destructive methods.
       #
-      # @param result [Object] The result to process
-      # @return [Object, SettingsProxy] Processed result
-      # @api private
+      # @param result [Object] The result of the destructive method.
+      # @return [Object] The wrapped result in a new SettingsProxy if it's a container, or the result itself.
       def handle_method_result(result)
         if result.equal?(@target)
           # If result is the original target, return self
@@ -280,11 +317,11 @@ module Lich
         end
       end
 
-      # Checks if a method can be handled by method_missing
+      # Checks if the target responds to the given method.
       #
-      # @param method [Symbol] Method name to check
-      # @param include_private [Boolean] Whether to include private methods
-      # @return [Boolean] true if method can be handled
+      # @param method [Symbol] The method name to check.
+      # @param include_private [Boolean] Whether to include private methods in the check.
+      # @return [Boolean] True if the target responds to the method, false otherwise.
       def respond_to_missing?(method, include_private = false)
         @target.respond_to?(method, include_private) || super
       end

@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Announces if a new version is available and displays new features.</p>
+<p>Announces the availability of a new version of Lich.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Downloads and installs Lich5 updates.</p>
+<p>Downloads and applies the update to Lich.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays help information about available commands.</p>
+<p>Displays help information for the update commands.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Prepares for beta testing of next Lich release.</p>
+<p>Prepares for beta testing by fetching the latest beta release information.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Prepares update information from GitHub releases.</p>
+<p>Prepares for the update by fetching the latest release information.</p>
 </div></span>
   
 </li>
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Processes update requests based on command line arguments.</p>
+<p>Handles the request for various update commands.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Reverts Lich5 to previously installed version.</p>
+<p>Reverts Lich to the previously installed version.</p>
 </div></span>
   
 </li>
@@ -284,7 +284,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates a snapshot backup of current Lich core files.</p>
+<p>Creates a snapshot of the current Lich core files.</p>
 </div></span>
   
 </li>
@@ -308,7 +308,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Updates core data files and scripts based on game type.</p>
+<p>Updates core data and scripts based on the current game type.</p>
 </div></span>
   
 </li>
@@ -332,7 +332,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Updates a specific file from the appropriate repository.</p>
+<p>Updates a specific file (script, library, or data) to the latest version.</p>
 </div></span>
   
 </li>
@@ -358,16 +358,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Only works with Lich version 5+</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Announces if a new version is available and displays new features</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Announces the availability of a new version of Lich.</p>
 
 
   </div>
@@ -378,7 +370,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_announce'>announce</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_announce'>announce</span></code></pre>
     
   </div>
 
@@ -389,6 +381,14 @@
       <pre class="lines">
 
 
+50
+51
+52
+53
+54
+55
+56
+57
 58
 59
 60
@@ -400,37 +400,29 @@
 66
 67
 68
-69
-70
-71
-72
-73
-74
-75
-76
-77</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_announce'>announce</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prep_update'>prep_update</span>
   <span class='kw'>if</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>if</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@current</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@update_to</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@new_features</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid__respond'>_respond</span> <span class='id identifier rubyid_monsterbold_start'>monsterbold_start</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*** NEW VERSION AVAILABLE ***</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_monsterbold_end'>monsterbold_end</span><span class='lparen'>(</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='ivar'>@new_features</span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>If you are interested in updating, run &#39;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>lich5-update --update&#39; now.</span><span class='tstring_end'>&quot;</span></span>
-        <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid__respond'><span class='object_link'><a href="../../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='id identifier rubyid_monsterbold_start'><span class='object_link'><a href="../../top-level-namespace.html#monsterbold_start-instance_method" title="#monsterbold_start (method)">monsterbold_start</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*** NEW VERSION AVAILABLE ***</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_monsterbold_end'><span class='object_link'><a href="../../top-level-namespace.html#monsterbold_end-instance_method" title="#monsterbold_end (method)">monsterbold_end</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='ivar'>@new_features</span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>If you are interested in updating, run &#39;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>lich5-update --update&#39; now.</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>end</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich version </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> is good.  Enjoy!</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich version </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> is good.  Enjoy!</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='comment'># lich version 4 - just say &#39;no&#39;
-</span>    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This script does not support Lich </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
+</span>    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This script does not support Lich </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -450,9 +442,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Downloads and installs Lich5 updates</p>
-
-<p>Creates a backup snapshot, downloads new version, and updates all components</p>
+<p>Downloads and applies the update to Lich.</p>
 
 
   </div>
@@ -463,10 +453,28 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_download_update'>download_update</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_download_update'>download_update</span></code></pre>
     
   </div>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If the update fails or if the version is not valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -474,6 +482,19 @@
       <pre class="lines">
 
 
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
 245
 246
 247
@@ -514,37 +535,24 @@
 282
 283
 284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298</pre>
+285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 245</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_download_update'>download_update</span>
   <span class='comment'>## This is the workhorse routine that does the file moves from an update
 </span>  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prep_update'>prep_update</span> <span class='kw'>if</span> <span class='ivar'>@update_to</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='ivar'>@update_to</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='kw'>if</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&lt;=</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@current</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich version </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> is good.  Enjoy!</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich version </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> is good.  Enjoy!</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Getting reaady to update.  First we will create a</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>snapshot in case there are problems with the update.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Getting reaady to update.  First we will create a</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>snapshot in case there are problems with the update.</span><span class='tstring_end'>&#39;</span></span>
 
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_snapshot'>snapshot</span>
 
     <span class='comment'># download the requested update (can be prod release, or beta)
-</span>    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Downloading Lich5 version </span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span>
+</span>    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Downloading Lich5 version </span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
     <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lich5-</span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>TEMP_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>.tar.gz</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
       <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@zipfile</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
@@ -561,11 +569,11 @@
     <span class='comment'># delete all existing lib files to not leave old ones behind
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Copying updated lich files to their locations.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Copying updated lich files to their locations.</span><span class='tstring_end'>&#39;</span></span>
 
     <span class='comment'>## We do not care about local edits from players in the Lich5 / lib location
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_copy_entry'>copy_entry</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>TEMP_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lib</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>All Lich lib files have been updated.</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>All Lich lib files have been updated.</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
 
     <span class='comment'>## Use new method so can be reused to do a blanket update of core data &amp; scripts
 </span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_core_data_and_scripts'>update_core_data_and_scripts</span><span class='lparen'>(</span><span class='ivar'>@update_to</span><span class='rparen'>)</span>
@@ -575,15 +583,15 @@
 </span>    <span class='comment'>## took the snapshot at the beginning.
 </span>    <span class='id identifier rubyid_lich_to_update'>lich_to_update</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LICH_DIR</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='gvar'>$PROGRAM_NAME</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_update_to_lich'>update_to_lich</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>TEMP_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lich.rbw</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_update_to_lich'>update_to_lich</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_lich_to_update'>lich_to_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_update_to_lich'>update_to_lich</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_lich_to_update'>lich_to_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
 
     <span class='comment'>## And we clen up after ourselves
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_remove_dir'>remove_dir</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>TEMP_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='comment'># we know these exist because
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm'>rm</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>TEMP_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>.tar.gz</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='comment'># we just processed them
 </span>
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich5 has been updated to Lich5 version </span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You should exit the game, then log back in.  This will start the game</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>with your updated Lich.  Enjoy!</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich5 has been updated to Lich5 version </span><span class='embexpr_beg'>#{</span><span class='ivar'>@update_to</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You should exit the game, then log back in.  This will start the game</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>with your updated Lich.  Enjoy!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -603,7 +611,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Displays help information about available commands</p>
+<p>Displays help information for the update commands.</p>
 
 
   </div>
@@ -614,7 +622,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span></code></pre>
     
   </div>
 
@@ -625,6 +633,14 @@
       <pre class="lines">
 
 
+76
+77
+78
+79
+80
+81
+82
+83
 84
 85
 86
@@ -642,21 +658,13 @@
 98
 99
 100
-101
-102
-103
-104
-105
-106
-107
-108
-109</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
     --help                   Display this message
     --announce               Get summary of changes for next version
     --update                 Update all changes for next version
@@ -698,7 +706,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Prepares for beta testing of next Lich release</p>
+<p>Prepares for beta testing by fetching the latest beta release information.</p>
 
 
   </div>
@@ -709,8 +717,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prep_betatest'>prep_betatest</span>
-<span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prep_betatest'>prep_betatest</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>script</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>map.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prep_betatest'>prep_betatest</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>script</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -729,7 +736,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Type of file to beta test (‘script’, ‘library’, ‘data’)</p>
+<p>The type of file to update (script, library, data).</p>
 </div>
       
     </li>
@@ -747,13 +754,31 @@
       
         &mdash;
         <div class='inline'>
-<p>Specific file to beta test</p>
+<p>The specific file to update.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If the user does not confirm participation in the beta test.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -761,6 +786,17 @@
       <pre class="lines">
 
 
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
 162
 163
 164
@@ -801,30 +837,19 @@
 199
 200
 201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213</pre>
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prep_betatest'>prep_betatest</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are electing to participate in the beta testing of the next Lich release.</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This beta test will include only Lich code, and does not include Ruby upates.</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>While we will do everything we can to ensure you have a smooth experience, </span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>it is a test, and untoward things can result.  Please confirm your choice:</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please confirm your participation:  </span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>send Y or </span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>send N</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have 10 seconds to confirm, otherwise will be cancelled.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are electing to participate in the beta testing of the next Lich release.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This beta test will include only Lich code, and does not include Ruby upates.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>While we will do everything we can to ensure you have a smooth experience, </span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>it is a test, and untoward things can result.  Please confirm your choice:</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please confirm your participation:  </span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>send Y or </span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>send N</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have 10 seconds to confirm, otherwise will be cancelled.</span><span class='tstring_end'>&quot;</span></span>
     <span class='comment'># we are only going to get the next client-input line, and if it does not confirm, we bail
 </span>    <span class='comment'># we are doing this to prevent hanging the client with various other inputs by the user
 </span>    <span class='id identifier rubyid_sync_thread'>sync_thread</span> <span class='op'>=</span> <span class='gvar'>$_CLIENT_</span> <span class='op'>||</span> <span class='gvar'>$_DETACHABLE_CLIENT_</span>
@@ -837,11 +862,11 @@
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>send Y|s Y</span><span class='regexp_end'>/i</span></span>
       <span class='ivar'>@beta_response</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>accepted</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Beta test installation accepted.  Thank you for considering!</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Beta test installation accepted.  Thank you for considering!</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>else</span>
       <span class='ivar'>@beta_response</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rejected</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Aborting beta test installation request.  Thank you for considering!</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Aborting beta test installation request.  Thank you for considering!</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='ivar'>@beta_response</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>accepted</span><span class='regexp_end'>/</span></span>
       <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.github.com/repos/elanthia-online/lich-5/releases</span><span class='tstring_end'>&quot;</span></span>
@@ -862,8 +887,8 @@
     <span class='kw'>elsif</span> <span class='ivar'>@beta_response</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>rejected</span><span class='regexp_end'>/</span></span>
       <span class='kw'>nil</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is not where I want to be on a beta test request.</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This is not where I want to be on a beta test request.</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>beta</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -886,7 +911,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Prepares update information from GitHub releases</p>
+<p>Prepares for the update by fetching the latest release information.</p>
 
 
   </div>
@@ -897,28 +922,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prep_update'>prep_update</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prep_update'>prep_update</span></code></pre>
     
   </div>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenURI::HTTPError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If GitHub API is unavailable</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -926,25 +933,25 @@
       <pre class="lines">
 
 
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
 221
 222
 223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236</pre>
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prep_update'>prep_update</span>
   <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.github.com/repos/elanthia-online/lich-5/releases/latest</span><span class='tstring_end'>&quot;</span></span>
@@ -979,7 +986,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Processes update requests based on command line arguments</p>
+<p>Handles the request for various update commands.</p>
 
 
   </div>
@@ -990,9 +997,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--announce</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> 
-<span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--update</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--script=map.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--update</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1011,13 +1016,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The type of update request (–announce, –update, etc)</p>
+<p>The command type to execute.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If the command type is unknown.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1025,6 +1048,13 @@
       <pre class="lines">
 
 
+22
+23
+24
+25
+26
+27
+28
 29
 30
 31
@@ -1039,17 +1069,10 @@
 40
 41
 42
-43
-44
-45
-46
-47
-48
-49
-50</pre>
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--announce</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
@@ -1062,7 +1085,7 @@
 </span>  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>--update|-u</span><span class='regexp_end'>/</span></span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_download_update'>download_update</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>--refresh</span><span class='regexp_end'>/</span></span>
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This command has been removed.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This command has been removed.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>--revert|-r</span><span class='regexp_end'>/</span></span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_revert'>revert</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>--(?:(script|library|data))=(.*)</span><span class='regexp_end'>/</span></span>
@@ -1070,7 +1093,7 @@
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>--snapshot|-s</span><span class='regexp_end'>/</span></span> <span class='comment'># this one needs to be after --script
 </span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_snapshot'>snapshot</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Command &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; unknown, illegitimate and ignored.  Exiting . . .</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Command &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; unknown, illegitimate and ignored.  Exiting . . .</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1090,9 +1113,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Reverts Lich5 to previously installed version</p>
-
-<p>Restores from most recent snapshot backup</p>
+<p>Reverts Lich to the previously installed version.</p>
 
 
   </div>
@@ -1103,10 +1124,28 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_revert'>revert</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_revert'>revert</span></code></pre>
     
   </div>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If no prior version is found.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1114,6 +1153,20 @@
       <pre class="lines">
 
 
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
 307
 308
 309
@@ -1143,35 +1196,21 @@
 333
 334
 335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350</pre>
+336</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 307</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 293</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_revert'>revert</span>
   <span class='comment'>## Since the request is to roll-back, we will do so destructively
 </span>  <span class='comment'>## without another snapshot and without worrying about saving files
 </span>  <span class='comment'>## that can be reinstalled with the lich5-update --update command
 </span>
-  <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Reverting Lich5 to previously installed version.</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Reverting Lich5 to previously installed version.</span><span class='tstring_end'>&#39;</span></span>
   <span class='id identifier rubyid_revert_array'>revert_array</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>BACKUP_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
   <span class='id identifier rubyid_restore_snapshot'>restore_snapshot</span> <span class='op'>=</span> <span class='id identifier rubyid_revert_array'>revert_array</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_restore_snapshot'>restore_snapshot</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>or</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>L5-snapshot</span><span class='regexp_end'>/</span></span> <span class='op'>!~</span> <span class='id identifier rubyid_restore_snapshot'>restore_snapshot</span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No prior Lich5 version found. Seek assistance.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No prior Lich5 version found. Seek assistance.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>else</span>
     <span class='comment'># delete all lib files
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1190,7 +1229,7 @@
     <span class='comment'># update lich.rbw in stream because it is active (we hope)
 </span>    <span class='id identifier rubyid_lich_to_update'>lich_to_update</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LICH_DIR</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='gvar'>$PROGRAM_NAME</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_update_to_lich'>update_to_lich</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_restore_snapshot'>restore_snapshot</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lich.rbw</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_update_to_lich'>update_to_lich</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_lich_to_update'>lich_to_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_update_to_lich'>update_to_lich</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_lich_to_update'>lich_to_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
 
     <span class='comment'># as a courtesy to the player, remind which version they were rev&#39;d back to
 </span>    <span class='id identifier rubyid_targetversion'>targetversion</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
@@ -1200,10 +1239,10 @@
         <span class='id identifier rubyid_targetversion'>targetversion</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>LICH_VERSION\s+?=\s+?</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_respond'>respond</span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich5 has been reverted to Lich5 version </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_targetversion'>targetversion</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You should exit the game, then log back in.  This will start the game</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>with your previous version of Lich.  Enjoy!</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich5 has been reverted to Lich5 version </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_targetversion'>targetversion</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You should exit the game, then log back in.  This will start the game</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>with your previous version of Lich.  Enjoy!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1223,9 +1262,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates a snapshot backup of current Lich core files</p>
-
-<p>Creates a timestamped backup directory containing core Lich files, libraries, and essential scripts.</p>
+<p>Creates a snapshot of the current Lich core files.</p>
 
 
   </div>
@@ -1236,7 +1273,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_snapshot'>snapshot</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_snapshot'>snapshot</span></code></pre>
     
   </div>
 
@@ -1247,6 +1284,17 @@
       <pre class="lines">
 
 
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
 119
 120
 121
@@ -1269,29 +1317,18 @@
 138
 139
 140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152</pre>
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_snapshot'>snapshot</span>
-  <span class='id identifier rubyid_respond'>respond</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Creating a snapshot of current Lich core files ONLY.</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You may also wish to copy your entire Lich5 folder to</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>another location for additional safety, after any</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>additional requested updates are completed.</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Creating a snapshot of current Lich core files ONLY.</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You may also wish to copy your entire Lich5 folder to</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>another location for additional safety, after any</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>additional requested updates are completed.</span><span class='tstring_end'>&#39;</span></span>
 
   <span class='comment'>## Let&#39;s make the snapshot folder
 </span>
@@ -1315,9 +1352,9 @@
     <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_snapshot_subdir'>snapshot_subdir</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scripts</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='rbrace'>}</span>
 
-  <span class='id identifier rubyid_respond'>respond</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Current Lich ecosystem files (only) backed up to:</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_snapshot_subdir'>snapshot_subdir</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Current Lich ecosystem files (only) backed up to:</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_snapshot_subdir'>snapshot_subdir</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1339,12 +1376,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Only works with GemStone and DragonRealms games</p>
+<p>This method handles local edits for specific data files more carefully.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Updates core data files and scripts based on game type</p>
+<p>Updates core data and scripts based on the current game type.</p>
 
 
   </div>
@@ -1355,7 +1392,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_core_data_and_scripts'>update_core_data_and_scripts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5.1.0</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_core_data_and_scripts'>update_core_data_and_scripts</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1374,7 +1411,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Version to update files to</p>
+<p>The version of Lich to use (default is LICH_VERSION).</p>
 </div>
       
     </li>
@@ -1393,7 +1430,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If game type is invalid</p>
+<p>If the game type is invalid.</p>
 </div>
       
     </li>
@@ -1406,6 +1443,19 @@
       <pre class="lines">
 
 
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
 420
 421
 422
@@ -1426,27 +1476,14 @@
 437
 438
 439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453</pre>
+440</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 420</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 407</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_core_data_and_scripts'>update_core_data_and_scripts</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS|^DR</span><span class='regexp_end'>/</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invalid game type, unsure what scripts to update via Update.update_core_scripts</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invalid game type, unsure what scripts to update via Update.update_core_scripts</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span>
   <span class='kw'>end</span>
 
@@ -1463,8 +1500,8 @@
     <span class='id identifier rubyid_transition_filename'>transition_filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.xml</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_newfilename'>newfilename</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_transition_filename'>transition_filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.xml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_newfilename'>newfilename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The prior version of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_content'> was renamed to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_newfilename'>newfilename</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_newfilename'>newfilename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_w'><span class='object_link'><a href="../../top-level-namespace.html#w-instance_method" title="#w (method)">w</a></span></span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The prior version of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_content'> was renamed to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_newfilename'>newfilename</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>data</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='rbrace'>}</span>
@@ -1476,7 +1513,7 @@
   <span class='id identifier rubyid_updatable_scripts'>updatable_scripts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dr</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_script'>script</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>script</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_script'>script</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^DR</span><span class='regexp_end'>/</span></span>
 
   <span class='comment'>## Update Lich.db value with last updated version
-</span>  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_core_updated_with_lich_version'>core_updated_with_lich_version</span> <span class='op'>=</span> <span class='id identifier rubyid_version'>version</span>
+</span>  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_core_updated_with_lich_version'><span class='object_link'><a href="../../Lich.html#core_updated_with_lich_version-class_method" title="Lich.core_updated_with_lich_version (method)">core_updated_with_lich_version</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_version'>version</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1494,8 +1531,16 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Updates a specific file from the appropriate repository</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method will delete the local file if it exists before downloading the new version.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p>
+<p>Updates a specific file (script, library, or data) to the latest version.</p>
 
 
   </div>
@@ -1506,8 +1551,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>script</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>map.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>library</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common.rb</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>beta</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util::Update (module)">Update</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>script</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1524,7 +1568,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Type of file (‘script’, ‘library’, ‘data’)</p>
+<p>The type of file to update (script, library, data).</p>
 </div>
       
     </li>
@@ -1540,7 +1584,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Name of file to update</p>
+<p>The name of the file to update.</p>
 </div>
       
     </li>
@@ -1558,7 +1602,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Version to update to (‘production’ or ‘beta’)</p>
+<p>The version type (‘production’ or ‘beta’).</p>
 </div>
       
     </li>
@@ -1571,13 +1615,13 @@
     <li>
       
       
-        <span class='type'>(<tt>RuntimeError</tt>)</span>
+        <span class='type'>(<tt>StandardError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>If file extension is invalid</p>
+<p>If the file cannot be updated or if the extension is invalid.</p>
 </div>
       
     </li>
@@ -1590,6 +1634,19 @@
       <pre class="lines">
 
 
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
 362
 363
 364
@@ -1624,23 +1681,10 @@
 393
 394
 395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406
-407
-408
-409</pre>
+396</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/update.rb', line 362</span>
+      <pre class="code"><span class="info file"># File 'lib/update.rb', line 349</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_file'>update_file</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_rf'>rf</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>production</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_requested_file'>requested_file</span> <span class='op'>=</span> <span class='id identifier rubyid_rf'>rf</span>
@@ -1673,21 +1717,21 @@
       <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
         <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_remote_repo'>remote_repo</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
       <span class='kw'>end</span>
-      <span class='id identifier rubyid_respond'>respond</span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> has been updated.</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> has been updated.</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>rescue</span>
       <span class='comment'># we created a garbage file (zero bytes filename) so let&#39;s clean it up and inform.
 </span>      <span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>1</span>
       <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_file'>requested_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_respond'>respond</span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The filename </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not available via lich5-update.</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Check the spelling of your requested file, or use &#39;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>jinx&#39; to</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>to download </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> from another respository.</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The filename </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not available via lich5-update.</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Check the spelling of your requested file, or use &#39;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$clean_lich_char</span><span class='embexpr_end'>}</span><span class='tstring_content'>jinx&#39; to</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>to download </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> from another respository.</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_respond'>respond</span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The requested file </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> has an incorrect extension.</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid extensions are &#39;.lic&#39; for scripts, &#39;.rb&#39; for library files,</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>and &#39;.xml&#39; or &#39;.ui&#39; for data files. Please correct and try again.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The requested file </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_requested_file'>requested_file</span><span class='embexpr_end'>}</span><span class='tstring_content'> has an incorrect extension.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid extensions are &#39;.lic&#39; for scripts, &#39;.rb&#39; for library files,</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>and &#39;.xml&#39; or &#39;.ui&#39; for data files. Please correct and try again.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1700,7 +1744,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:58 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

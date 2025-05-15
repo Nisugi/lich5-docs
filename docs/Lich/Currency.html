@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of blackscrip.</p>
+<p>Retrieves the current amount of blackscrip currency.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of bloodscrip.</p>
+<p>Retrieves the current amount of bloodscrip currency.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current number of elans.</p>
+<p>Retrieves the current amount of elans currency.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of ethereal scrip.</p>
+<p>Retrieves the current amount of ethereal scrip currency.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of gemstone dust.</p>
+<p>Retrieves the current amount of gemstone dust currency.</p>
 </div></span>
   
 </li>
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current number of gigas artifact fragments.</p>
+<p>Retrieves the current amount of gigas artifact fragments currency.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of raikhen.</p>
+<p>Retrieves the current amount of raikhen currency.</p>
 </div></span>
   
 </li>
@@ -284,7 +284,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of redsteel marks.</p>
+<p>Retrieves the current amount of redsteel marks currency.</p>
 </div></span>
   
 </li>
@@ -308,7 +308,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current amount of silver coins the character has.</p>
+<p>Retrieves the current amount of silver currency.</p>
 </div></span>
   
 </li>
@@ -317,7 +317,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#silver_container-class_method" title="silver_container (class method)">.<strong>silver_container</strong>  &#x21d2; String </a>
+      <a href="#silver_container-class_method" title="silver_container (class method)">.<strong>silver_container</strong>  &#x21d2; Integer </a>
     
 
     
@@ -332,7 +332,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the container where silver coins are stored.</p>
+<p>Retrieves the current amount of silver container currency.</p>
 </div></span>
   
 </li>
@@ -356,7 +356,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current number of soul shards.</p>
+<p>Retrieves the current amount of soul shards currency.</p>
 </div></span>
   
 </li>
@@ -380,7 +380,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current number of tickets.</p>
+<p>Retrieves the current amount of tickets currency.</p>
 </div></span>
   
 </li>
@@ -407,7 +407,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of blackscrip</p>
+<p>Retrieves the current amount of blackscrip currency.</p>
 
 
   </div>
@@ -418,8 +418,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_scrip'>scrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_blackscrip'>blackscrip</span>
-<span class='comment'>#=&gt; 500</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_blackscrip'>amount_of_blackscrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_blackscrip'>blackscrip</span></code></pre>
     
   </div>
 
@@ -435,7 +434,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of blackscrip</p>
+<p>the amount of blackscrip.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -448,12 +465,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blackscrip'>blackscrip</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.blackscrip</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -475,7 +492,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of bloodscrip</p>
+<p>Retrieves the current amount of bloodscrip currency.</p>
 
 
   </div>
@@ -486,8 +503,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_scrip'>scrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bloodscrip'>bloodscrip</span>
-<span class='comment'>#=&gt; 250</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_bloodscrip'>amount_of_bloodscrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bloodscrip'>bloodscrip</span></code></pre>
     
   </div>
 
@@ -503,7 +519,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of bloodscrip</p>
+<p>the amount of bloodscrip.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -516,12 +550,12 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bloodscrip'>bloodscrip</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.bloodscrip</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -543,7 +577,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current number of elans</p>
+<p>Retrieves the current amount of elans currency.</p>
 
 
   </div>
@@ -554,8 +588,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_elans'>elans</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_elans'>elans</span>
-<span class='comment'>#=&gt; 25</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_elans'>amount_of_elans</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_elans'>elans</span></code></pre>
     
   </div>
 
@@ -571,7 +604,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of elans</p>
+<p>the amount of elans.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -584,12 +635,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_elans'>elans</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.elans</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -611,7 +662,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of ethereal scrip</p>
+<p>Retrieves the current amount of ethereal scrip currency.</p>
 
 
   </div>
@@ -622,8 +673,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_scrip'>scrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ethereal_scrip'>ethereal_scrip</span>
-<span class='comment'>#=&gt; 100</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_ethereal_scrip'>amount_of_ethereal_scrip</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ethereal_scrip'>ethereal_scrip</span></code></pre>
     
   </div>
 
@@ -639,7 +689,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of ethereal scrip</p>
+<p>the amount of ethereal scrip.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -652,12 +720,12 @@
       <pre class="lines">
 
 
-73
-74
-75</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ethereal_scrip'>ethereal_scrip</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.ethereal_scrip</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -679,7 +747,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of gemstone dust</p>
+<p>Retrieves the current amount of gemstone dust currency.</p>
 
 
   </div>
@@ -690,8 +758,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_dust'>dust</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gemstone_dust'>gemstone_dust</span>
-<span class='comment'>#=&gt; 1000</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_gemstone_dust'>amount_of_gemstone_dust</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gemstone_dust'>gemstone_dust</span></code></pre>
     
   </div>
 
@@ -707,7 +774,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of gemstone dust</p>
+<p>the amount of gemstone dust.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -720,12 +805,12 @@
       <pre class="lines">
 
 
-123
-124
-125</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gemstone_dust'>gemstone_dust</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.gemstone_dust</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -747,7 +832,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current number of gigas artifact fragments</p>
+<p>Retrieves the current amount of gigas artifact fragments currency.</p>
 
 
   </div>
@@ -758,8 +843,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_fragments'>fragments</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gigas_artifact_fragments'>gigas_artifact_fragments</span>
-<span class='comment'>#=&gt; 5</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_gigas_artifact_fragments'>amount_of_gigas_artifact_fragments</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gigas_artifact_fragments'>gigas_artifact_fragments</span></code></pre>
     
   </div>
 
@@ -775,7 +859,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of gigas artifact fragments</p>
+<p>the amount of gigas artifact fragments.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -788,12 +890,12 @@
       <pre class="lines">
 
 
-113
-114
-115</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gigas_artifact_fragments'>gigas_artifact_fragments</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.gigas_artifact_fragments</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -815,7 +917,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of raikhen</p>
+<p>Retrieves the current amount of raikhen currency.</p>
 
 
   </div>
@@ -826,8 +928,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_raikhen'>raikhen</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_raikhen'>raikhen</span>
-<span class='comment'>#=&gt; 75</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_raikhen'>amount_of_raikhen</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_raikhen'>raikhen</span></code></pre>
     
   </div>
 
@@ -843,7 +944,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of raikhen</p>
+<p>the amount of raikhen.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -856,12 +975,12 @@
       <pre class="lines">
 
 
-83
-84
-85</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_raikhen'>raikhen</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.raikhen</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -883,7 +1002,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of redsteel marks</p>
+<p>Retrieves the current amount of redsteel marks currency.</p>
 
 
   </div>
@@ -894,8 +1013,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_marks'>marks</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_redsteel_marks'>redsteel_marks</span>
-<span class='comment'>#=&gt; 50</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_redsteel_marks'>amount_of_redsteel_marks</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_redsteel_marks'>redsteel_marks</span></code></pre>
     
   </div>
 
@@ -911,7 +1029,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of redsteel marks</p>
+<p>the amount of redsteel marks.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -924,12 +1060,12 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_redsteel_marks'>redsteel_marks</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.redsteel_marks</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -951,7 +1087,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current amount of silver coins the character has</p>
+<p>Retrieves the current amount of silver currency.</p>
 
 
   </div>
@@ -962,8 +1098,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_silver_amount'>silver_amount</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver'>silver</span>
-<span class='comment'>#=&gt; 1234</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_silver'>amount_of_silver</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver'>silver</span></code></pre>
     
   </div>
 
@@ -979,7 +1114,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of silver coins</p>
+<p>the amount of silver.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -992,12 +1145,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silver'>silver</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.silver</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1010,7 +1163,7 @@
       <div class="method_details ">
   <h3 class="signature " id="silver_container-class_method">
   
-    .<strong>silver_container</strong>  &#x21d2; <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>silver_container</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -1019,7 +1172,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the container where silver coins are stored</p>
+<p>Retrieves the current amount of silver container currency.</p>
 
 
   </div>
@@ -1030,8 +1183,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver_container'>silver_container</span>
-<span class='comment'>#=&gt; &quot;leather bag&quot;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_silver_container'>amount_of_silver_container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver_container'>silver_container</span></code></pre>
     
   </div>
 
@@ -1041,13 +1193,31 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The name of the container holding silver</p>
+<p>the amount of silver container.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -1060,12 +1230,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silver_container'>silver_container</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.silver_container</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1087,7 +1257,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current number of soul shards</p>
+<p>Retrieves the current amount of soul shards currency.</p>
 
 
   </div>
@@ -1098,8 +1268,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_shards'>shards</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_soul_shards'>soul_shards</span>
-<span class='comment'>#=&gt; 15</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_soul_shards'>amount_of_soul_shards</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_soul_shards'>soul_shards</span></code></pre>
     
   </div>
 
@@ -1115,7 +1284,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of soul shards</p>
+<p>the amount of soul shards.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -1128,12 +1315,12 @@
       <pre class="lines">
 
 
-103
-104
-105</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_soul_shards'>soul_shards</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.soul_shards</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1155,7 +1342,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current number of tickets</p>
+<p>Retrieves the current amount of tickets currency.</p>
 
 
   </div>
@@ -1166,8 +1353,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_tickets'>tickets</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_tickets'>tickets</span>
-<span class='comment'>#=&gt; 10</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_amount_of_tickets'>amount_of_tickets</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Currency (module)">Currency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_tickets'>tickets</span></code></pre>
     
   </div>
 
@@ -1183,7 +1369,25 @@
       
         &mdash;
         <div class='inline'>
-<p>The number of tickets</p>
+<p>the amount of tickets.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -1196,12 +1400,12 @@
       <pre class="lines">
 
 
-43
-44
-45</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/infomon/currency.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tickets'>tickets</span>
   <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Gemstone/Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Gemstone/Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.tickets</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1216,7 +1420,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:39 2025 by
+  Generated on Thu May 15 06:53:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

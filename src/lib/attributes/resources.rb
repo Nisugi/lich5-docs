@@ -1,72 +1,66 @@
-# A module for managing and checking various game resources in the Lich system
-# 
-# @author Lich5 Documentation Generator
 module Lich
   module Resources
-    # Gets the weekly resource value
+    # Retrieves the weekly resource information.
     #
-    # @return [Integer] The current weekly resource amount
+    # @return [String] the weekly resource information.
     # @example
-    #   Lich::Resources.weekly #=> 100
+    #   Lich::Resources.weekly
     def self.weekly
       Lich::Gemstone::Infomon.get('resources.weekly')
     end
 
-    # Gets the total resource value
+    # Retrieves the total resource information.
     #
-    # @return [Integer] The total accumulated resources
+    # @return [String] the total resource information.
     # @example
-    #   Lich::Resources.total #=> 500
+    #   Lich::Resources.total
     def self.total
       Lich::Gemstone::Infomon.get('resources.total')
     end
 
-    # Gets the suffused resource value
+    # Retrieves the suffused resource information.
     #
-    # @return [Integer] The current suffused resource amount
+    # @return [String] the suffused resource information.
     # @example
-    #   Lich::Resources.suffused #=> 50
+    #   Lich::Resources.suffused
     def self.suffused
       Lich::Gemstone::Infomon.get('resources.suffused')
     end
 
-    # Gets the resource type
+    # Retrieves the type of resources.
     #
-    # @return [String] The type of resource
+    # @return [String] the type of resources.
     # @example
-    #   Lich::Resources.type #=> "mana"
+    #   Lich::Resources.type
     def self.type
       Lich::Gemstone::Infomon.get('resources.type')
     end
 
-    # Gets the current Voln favor amount
+    # Retrieves the Voln favor resource information.
     #
-    # @return [Integer] The amount of Voln favor
+    # @return [String] the Voln favor resource information.
     # @example
-    #   Lich::Resources.voln_favor #=> 25
+    #   Lich::Resources.voln_favor
     def self.voln_favor
       Lich::Gemstone::Infomon.get('resources.voln_favor')
     end
 
-    # Gets the number of covert arts charges
+    # Retrieves the covert arts charges resource information.
     #
-    # @return [Integer] The number of covert arts charges available
+    # @return [String] the covert arts charges resource information.
     # @example
-    #   Lich::Resources.covert_arts_charges #=> 3
+    #   Lich::Resources.covert_arts_charges
     def self.covert_arts_charges
       Lich::Gemstone::Infomon.get('resources.covert_arts_charges')
     end
 
-    # Checks and updates all resource values by issuing a resource command
+    # Checks the current resources and returns an array of resource information.
     #
-    # @param quiet [Boolean] Whether to suppress output messages (default: false)
-    # @return [Array<Integer>] Array containing [weekly, total, suffused] resource values
+    # @param quiet [Boolean] whether to suppress output (default: false).
+    # @return [Array<String>] an array containing weekly, total, and suffused resource information.
+    # @raise [StandardError] if the command fails to execute properly.
     # @example
-    #   Lich::Resources.check #=> [100, 500, 50]
-    #   Lich::Resources.check(true) # Suppresses output
-    #
-    # @note This method issues a game command and parses the response to update resource values
-    # @note The command response includes health, mana, stamina and spirit values
+    #   Lich::Resources.check
     def self.check(quiet = false)
       Lich::Util.issue_command('resource', /^Health: \d+\/(?:<pushBold\/>)?\d+(?:<popBold\/>)?\s+Mana: \d+\/(?:<pushBold\/>)?\d+(?:<popBold\/>)?\s+Stamina: \d+\/(?:<pushBold\/>)?\d+(?:<popBold\/>)?\s+Spirit: \d+\/(?:<pushBold\/>)?\d+/, /<prompt/, silent: true, quiet: quiet)
       return [self.weekly, self.total, self.suffused]

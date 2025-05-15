@@ -102,29 +102,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Extensions to the Ruby Numeric class to add time-related functionality and formatting</p>
+<p>Carve out from lich.rbw extension to Numeric class 2024-06-13</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Lich5 Documentation Generator</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -159,7 +143,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Formats a numeric value representing seconds into a time string in the format “HH:MM:SS”.</p>
+<p>Converts the numeric value to a time string in the format “H:MM:SS”.</p>
 </div></span>
   
 </li>
@@ -185,7 +169,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the numeric value from days to seconds.</p>
+<p>Converts the numeric value to days.</p>
 </div></span>
   
 </li>
@@ -211,7 +195,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the numeric value from hours to seconds.</p>
+<p>Converts the numeric value to hours.</p>
 </div></span>
   
 </li>
@@ -237,7 +221,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the numeric value from minutes to seconds.</p>
+<p>Converts the numeric value to minutes.</p>
 </div></span>
   
 </li>
@@ -263,7 +247,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the numeric value interpreted as seconds.</p>
+<p>Returns the numeric value in seconds.</p>
 </div></span>
   
 </li>
@@ -287,7 +271,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Formats a number with comma separators for thousands.</p>
+<p>Formats the numeric value with commas as thousands separators.</p>
 </div></span>
   
 </li>
@@ -314,15 +298,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Handles fractional seconds by converting to minutes</p>
-</div>
-  </div>
-
-
-<p>Formats a numeric value representing seconds into a time string in the format “HH:MM:SS”</p>
+<p>Converts the numeric value to a time string in the format “H:MM:SS”.</p>
 
 
   </div>
@@ -333,8 +309,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='float'>125.5</span><span class='period'>.</span><span class='id identifier rubyid_as_time'>as_time</span> <span class='comment'>#=&gt; &quot;0:02:05&quot;
-</span><span class='int'>3600</span><span class='period'>.</span><span class='id identifier rubyid_as_time'>as_time</span> <span class='comment'>#=&gt; &quot;1:00:00&quot;</span></code></pre>
+      <pre class="example code"><code><span class='int'>3661</span><span class='period'>.</span><span class='id identifier rubyid_as_time'>as_time</span> <span class='comment'># =&gt; &quot;1:01:01&quot;</span></code></pre>
     
   </div>
 
@@ -350,7 +325,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A string in the format “hours:minutes:seconds”</p>
+<p>the time representation of the numeric value.</p>
 </div>
       
     </li>
@@ -363,12 +338,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_as_time'>as_time</span>
   <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%d:%02d:%02d</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lparen'>(</span><span class='kw'>self</span> <span class='op'>/</span> <span class='int'>60</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_truncate'>truncate</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_truncate'>truncate</span> <span class='op'>%</span> <span class='int'>60</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='kw'>self</span> <span class='op'>%</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='int'>60</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_truncate'>truncate</span><span class='rparen'>)</span>
@@ -394,15 +369,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Useful for specifying time durations in days</p>
-</div>
-  </div>
-
-
-<p>Converts the numeric value from days to seconds</p>
+<p>Converts the numeric value to days.</p>
 
 
   </div>
@@ -413,7 +380,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_days'>days</span> <span class='comment'>#=&gt; 172800</span></code></pre>
+      <pre class="example code"><code><span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_days'>days</span> <span class='comment'># =&gt; 86400</span></code></pre>
     
   </div>
 
@@ -429,7 +396,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The value multiplied by 86400 (seconds per day)</p>
+<p>the numeric value in seconds.</p>
 </div>
       
     </li>
@@ -442,12 +409,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_days'>days</span>
   <span class='kw'>return</span> <span class='kw'>self</span> <span class='op'>*</span> <span class='int'>86400</span>
@@ -473,15 +440,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Useful for specifying time durations in hours</p>
-</div>
-  </div>
-
-
-<p>Converts the numeric value from hours to seconds</p>
+<p>Converts the numeric value to hours.</p>
 
 
   </div>
@@ -492,7 +451,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span> <span class='comment'>#=&gt; 7200</span></code></pre>
+      <pre class="example code"><code><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span> <span class='comment'># =&gt; 7200</span></code></pre>
     
   </div>
 
@@ -508,7 +467,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The value multiplied by 3600 (seconds per hour)</p>
+<p>the numeric value in seconds.</p>
 </div>
       
     </li>
@@ -521,12 +480,12 @@
       <pre class="lines">
 
 
-70
-71
-72</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hours'>hours</span>
   <span class='kw'>return</span> <span class='kw'>self</span> <span class='op'>*</span> <span class='int'>3600</span>
@@ -552,15 +511,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Useful for specifying time durations in minutes</p>
-</div>
-  </div>
-
-
-<p>Converts the numeric value from minutes to seconds</p>
+<p>Converts the numeric value to minutes.</p>
 
 
   </div>
@@ -571,7 +522,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span> <span class='comment'>#=&gt; 120</span></code></pre>
+      <pre class="example code"><code><span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span> <span class='comment'># =&gt; 300</span></code></pre>
     
   </div>
 
@@ -587,7 +538,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The value multiplied by 60 (seconds per minute)</p>
+<p>the numeric value in seconds.</p>
 </div>
       
     </li>
@@ -600,12 +551,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_minutes'>minutes</span>
   <span class='kw'>return</span> <span class='kw'>self</span> <span class='op'>*</span> <span class='int'>60</span>
@@ -631,15 +582,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Provided for semantic sugar when specifying time durations</p>
-</div>
-  </div>
-
-
-<p>Returns the numeric value interpreted as seconds</p>
+<p>Returns the numeric value in seconds.</p>
 
 
   </div>
@@ -650,7 +593,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_seconds'>seconds</span> <span class='comment'>#=&gt; 5</span></code></pre>
+      <pre class="example code"><code><span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_seconds'>seconds</span> <span class='comment'># =&gt; 5</span></code></pre>
     
   </div>
 
@@ -666,7 +609,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The same numeric value</p>
+<p>the original numeric value.</p>
 </div>
       
     </li>
@@ -679,12 +622,12 @@
       <pre class="lines">
 
 
-36
-37
-38</pre>
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_seconds'>seconds</span>
   <span class='kw'>return</span> <span class='kw'>self</span>
@@ -706,15 +649,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Works with both integers and decimal numbers</p>
-</div>
-  </div>
-
-
-<p>Formats a number with comma separators for thousands</p>
+<p>Formats the numeric value with commas as thousands separators.</p>
 
 
   </div>
@@ -725,8 +660,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='int'>1234567</span><span class='period'>.</span><span class='id identifier rubyid_with_commas'>with_commas</span> <span class='comment'>#=&gt; &quot;1,234,567&quot;
-</span><span class='float'>1234.56</span><span class='period'>.</span><span class='id identifier rubyid_with_commas'>with_commas</span> <span class='comment'>#=&gt; &quot;1,234.56&quot;</span></code></pre>
+      <pre class="example code"><code><span class='int'>1000000</span><span class='period'>.</span><span class='id identifier rubyid_with_commas'>with_commas</span> <span class='comment'># =&gt; &quot;1,000,000&quot;</span></code></pre>
     
   </div>
 
@@ -742,7 +676,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The number formatted with commas as thousand separators</p>
+<p>the numeric value as a string with commas.</p>
 </div>
       
     </li>
@@ -755,12 +689,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/numeric.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_commas'>with_commas</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:\d*\.)?\d{1,3}-?</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
@@ -775,7 +709,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:41 2025 by
+  Generated on Thu May 15 06:53:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

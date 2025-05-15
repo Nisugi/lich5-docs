@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Lich::Gemstone::Bounty::Parser
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Gemstone::Bounty::Parser";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Bounty.html" title="Lich::Gemstone::Bounty (class)">Bounty</a></span></span>
+     &raquo; 
+    <span class="title">Parser</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Lich::Gemstone::Bounty::Parser
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Lich::Gemstone::Bounty::Parser</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/gemstone/bounty/parser.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The Parser class is responsible for parsing bounty descriptions and extracting relevant information.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="HMM_REGEX-constant" class="">HMM_REGEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:Hmm, I&#39;ve got a task here from .*?(?&lt;town&gt;[A-Z].*?)\..*?)?</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="LOCATION_REGEX-constant" class="">LOCATION_REGEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:on|in|near) (?:the\s+)?(?&lt;area&gt;[^.]+?)(?:\s+(?:near|between) (?&lt;town&gt;[^.]+))?</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="GUARD_REGEX-constant" class="">GUARD_REGEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>one of the guardsmen just inside the (?&lt;town&gt;Ta&#39;Illistim) City Gate</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>one of the guardsmen just inside the Sapphire Gate</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>one of the guardsmen just inside the gate</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>one of the (?&lt;town&gt;.*) (?:gate|tunnel) guards</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>one of the (?&lt;town&gt;Icemule Trace) gate guards or the halfing Belle at the Pinefar Trading Post</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Quin Telaren of (?&lt;town&gt;Wehnimer&#39;s Landing)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the dwarven militia sergeant near the (?&lt;town&gt;Kharam-Dzu) town gates</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the sentry just outside town</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the sentry just outside (?&lt;town&gt;Kraken&#39;s Fall)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the purser of (?&lt;town&gt;River&#39;s Rest)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the tavernkeeper at Rawknuckle&#39;s Common House</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+<span class='rparen'>)</span></pre></dd>
+      
+        <dt id="TASK_MATCHERS-constant" class="">TASK_MATCHERS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:none</span>                <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are not currently assigned a task</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:bandit_assignment</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>It appears they have a bandit problem they&#39;d like you to solve</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:creature_assignment</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>It appears they have a creature problem they&#39;d like you to solve</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:gem_assignment</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>The local gem dealer, (?&lt;npc_name&gt;[^,]+), has an order to fill and wants our help</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:heirloom_assignment</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>It appears they need your help in tracking down some kind of lost heirloom</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:herb_assignment</span>     <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>The local [^,]+?, (?&lt;npc_name&gt;[^,]+), has asked for our aid.  Head over there and see what you can do.  Be sure to ASK about BOUNTIES.</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:rescue_assignment</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>It appears that a local resident urgently needs our help in some matter</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:skin_assignment</span>     <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#HMM_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::HMM_REGEX (constant)">HMM_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>The local furrier (?&lt;npc_name&gt;.+) has an order to fill and wants our help</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:taskmaster</span>          <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have succeeded in your task and can return to the Adventurer&#39;s Guild</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:heirloom_found</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have located (?:an?|some) (?&lt;item&gt;.+) and should bring it back to </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#GUARD_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::GUARD_REGEX (constant)">GUARD_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:guard</span>               <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You succeeded in your task and should report back to </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#GUARD_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::GUARD_REGEX (constant)">GUARD_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:dangerous_spawned</span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to hunt down and kill a particularly dangerous (?&lt;creature&gt;[^.]+) that has established a territory </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  You have provoked (?:his|her|its) attention and now you must(?: return to where you left (?:him|her|it) and)? kill (?:him|her|it)!$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:rescue_spawned</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have made contact with the child you are to rescue and you must get (?:him|her) back alive to </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#GUARD_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::GUARD_REGEX (constant)">GUARD_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:bandit</span>              <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to(?: help (?&lt;assist&gt;\w+))? suppress (?&lt;creature&gt;bandit) activity </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  You need to kill (?&lt;number&gt;\d+) (?:more\s+)?of them to complete your task\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:dangerous</span>           <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to hunt down and kill a (?:particularly )?dangerous (?&lt;creature&gt;[^.]+) that has established a territory </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  You can get its attention by killing other creatures of the same type in its territory\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:escort</span>              <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:The taskmaster told you:  &quot;)?I&#39;ve got a special mission for you\.  A certain client has hired us to provide a protective escort on (?:his|her) upcoming journey\.  Go to (?&lt;start&gt;[^.]+) and WAIT for (?:him|her) to meet you there\.  You must guarantee (?:his|her) safety to (?&lt;destination&gt;[^.]+) as soon as you can, being ready for any dangers that the two of you may face\.  Good luck!&quot;?$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:gem</span>                 <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The gem dealer in (?&lt;town&gt;[^,]+), (?&lt;npc_name&gt;[^,]+), has received orders from multiple customers requesting (?:an?|some) (?&lt;gem&gt;[^.]+)\.  You have been tasked to retrieve (?&lt;number&gt;\d+) (?:more\s+)?of them\.  You can SELL them to the gem dealer as you find them\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:heirloom</span>            <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to recover (?:an?|some) (?&lt;item&gt;[^.]+) that an unfortunate citizen lost after being attacked by an? (?&lt;creature&gt;[^.]+?) </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  The heirloom can be identified by the initials \w+ engraved upon it\.  [^.]*?(?&lt;action&gt;LOOT|SEARCH)[^.]+\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:herb</span>                <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The .+? in (?&lt;town&gt;[^,]+?), (?&lt;npc_name&gt;[^,]+), is working on a concoction that requires (?:an?|some) (?&lt;herb&gt;[^.]+?) found [oi]n (?:the\s+)?(?&lt;area&gt;[^.]+?)(?:\s+(?:near|under|between) [^.]+)?\.  These samples must be in pristine condition\.  You have been tasked to retrieve (?&lt;number&gt;\d+) (?:more\s+)?samples?\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:rescue</span>              <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to rescue the young (?:runaway|kidnapped) (?:son|daughter) of a local citizen\.  A local divinist has had visions of the child fleeing from an? (?&lt;creature&gt;[^.]+?) </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  Find the area where the child was last seen and clear out the creatures that have been tormenting (?:him|her) in order to bring (?:him|her) out of hiding\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:skin</span>                <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to retrieve (?&lt;number&gt;\d+) (?&lt;skin&gt;[^.]+?)s? of at least (?&lt;quality&gt;[^.]+) quality for (?&lt;npc_name&gt;.+) in (?&lt;town&gt;[^.]+?)\.  You can SKIN them off the corpse of an? (?&lt;creature&gt;[^.]+) or purchase them from another adventurer\.  You can SELL the skins to the furrier as you collect them\.&quot;$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='symbol'>:cull</span>                <span class='op'>=&gt;</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to(?: help (?&lt;assist&gt;\w+))? suppress (?&lt;creature&gt;[^.]+) activity </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\.  You need to kill (?&lt;number&gt;\d+) (?:more\s+)?of them to complete your task\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to help (?&lt;assist&gt;\w+) rescue a missing child by suppressing (?&lt;creature&gt;[^.]+) activity </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> during the rescue attempt\.  You need to kill (?&lt;number&gt;\d+) (?:more\s+)?of them to complete your task\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to help (?&lt;assist&gt;\w+) retrieve an heirloom by suppressing (?&lt;creature&gt;[^.]+) activity </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> during the retrieval effort\.  You need to kill (?&lt;number&gt;\d+) (?:more\s+)?of them to complete your task\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have been tasked to help (?&lt;assist&gt;\w+) kill a dangerous creature by suppressing (?&lt;creature&gt;[^.]+) activity </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#LOCATION_REGEX-constant" title="Lich::Gemstone::Bounty::Parser::LOCATION_REGEX (constant)">LOCATION_REGEX</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> during the hunt\.  You need to kill (?&lt;number&gt;\d+) (?:more\s+)?of them to complete your task\.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span><span class='comma'>,</span>
+  <span class='symbol'>:failed</span>              <span class='op'>=&gt;</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have failed in your task</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The child you were tasked to rescue is gone and your task is failed.  Report this failure to the Adventurer&#39;s Guild.</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#description-instance_method" title="#description (instance method)">#<strong>description</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the description of the bounty.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(desc = checkbounty)  &#x21d2; Hash<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses a bounty description from a given string or a default value.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#determine_town-instance_method" title="#determine_town (instance method)">#<strong>determine_town</strong>(captured_town)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Determines the town based on the captured town name or specific patterns in the description.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(description)  &#x21d2; Parser </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initializes a new Parser instance with the given description.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalized_creature_name-instance_method" title="#normalized_creature_name (instance method)">#<strong>normalized_creature_name</strong>(raw_creature_name)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Normalizes the creature name based on specific patterns.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-instance_method" title="#parse (instance method)">#<strong>parse</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses the bounty description and returns a hash of extracted information.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_details_from-instance_method" title="#task_details_from (instance method)">#<strong>task_details_from</strong>(captures)  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Extracts task details from the named captures of a regex match.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(description)  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Gemstone::Bounty::Parser (class)">Parser</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initializes a new Parser instance with the given description.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>description</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the description of the bounty to be parsed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_description'>description</span><span class='rparen'>)</span>
+  <span class='ivar'>@description</span> <span class='op'>=</span> <span class='id identifier rubyid_description'>description</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="description-instance_method">
+  
+    #<strong>description</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the description of the bounty.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the bounty description</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
+  <span class='ivar'>@description</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="parse-class_method">
+  
+    .<strong>parse</strong>(desc = checkbounty)  &#x21d2; <tt>Hash</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses a bounty description from a given string or a default value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bounty.html" title="Lich::Gemstone::Bounty (class)">Bounty</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Bounty::Parser (class)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hmm, I&#39;ve got a task here from Icemule Trace. It appears they have a creature problem they&#39;d like you to solve.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { type: :creature_assignment, town: &quot;Icemule Trace&quot;, requirements: { ... } }</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>desc</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>checkbounty</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the description of the bounty to be parsed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a hash containing the task type and details, or nil if the description is empty</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_desc'>desc</span> <span class='op'>=</span> <span class='id identifier rubyid_checkbounty'><span class='object_link'><a href="../../../top-level-namespace.html#checkbounty-instance_method" title="#checkbounty (method)">checkbounty</a></span></span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_desc'>desc</span><span class='op'>&amp;.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='kw'>return</span>
+  <span class='kw'>else</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_desc'>desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="determine_town-instance_method">
+  
+    #<strong>determine_town</strong>(captured_town)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Determines the town based on the captured town name or specific patterns in the description.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>captured_town</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the captured town name from the regex</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the determined town name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_determine_town'>determine_town</span><span class='lparen'>(</span><span class='id identifier rubyid_captured_town'>captured_town</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the sentry just outside town\.$</span><span class='regexp_end'>/</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Kraken&#39;s Fall</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>the tavernkeeper at Rawknuckle&#39;s Common House\.$</span><span class='regexp_end'>/</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cold River</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_captured_town'>captured_town</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="normalized_creature_name-instance_method">
+  
+    #<strong>normalized_creature_name</strong>(raw_creature_name)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Normalizes the creature name based on specific patterns.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>raw_creature_name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the original creature name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the normalized creature name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalized_creature_name'>normalized_creature_name</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_creature_name'>raw_creature_name</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_raw_creature_name'>raw_creature_name</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\w+ being$</span><span class='regexp_end'>/</span></span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>being</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\w+ magna vereri$</span><span class='regexp_end'>/</span></span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>magna vereri</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raw_creature_name'>raw_creature_name</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse-instance_method">
+  
+    #<strong>parse</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses the bounty description and returns a hash of extracted information.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bounty.html" title="Lich::Gemstone::Bounty (class)">Bounty</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Bounty::Parser (class)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Bounty::Parser#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hmm, I&#39;ve got a task here from Wehnimer&#39;s Landing. It appears they have a bandit problem they&#39;d like you to solve.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span>
+<span class='comment'># =&gt; { type: :bandit_assignment, town: &quot;Wehnimer&#39;s Landing&quot;, requirements: { ... } }</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a hash containing the task type and any relevant details</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span>
+  <span class='const'><span class='object_link'><a href="#TASK_MATCHERS-constant" title="Lich::Gemstone::Bounty::Parser::TASK_MATCHERS (constant)">TASK_MATCHERS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='lparen'>(</span><span class='id identifier rubyid_task_type'>task_type</span><span class='comma'>,</span> <span class='id identifier rubyid_regex'>regex</span><span class='rparen'>)</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_md'>md</span> <span class='op'>=</span> <span class='id identifier rubyid_regex'>regex</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_description'>description</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='lparen'>(</span>
+        <span class='lbrace'>{</span>
+          <span class='label'>type:</span> <span class='id identifier rubyid_task_type'>task_type</span><span class='comma'>,</span>
+        <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span>
+          <span class='id identifier rubyid_task_details_from'>task_details_from</span><span class='lparen'>(</span><span class='id identifier rubyid_md'>md</span><span class='period'>.</span><span class='id identifier rubyid_named_captures'>named_captures</span><span class='rparen'>)</span>
+        <span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+      <span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_details_from-instance_method">
+  
+    #<strong>task_details_from</strong>(captures)  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Extracts task details from the named captures of a regex match.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>captures</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the named captures from the regex match</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a hash containing task details and requirements</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/bounty/parser.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_details_from'>task_details_from</span><span class='lparen'>(</span><span class='id identifier rubyid_captures'>captures</span><span class='rparen'>)</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>requirements:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task_details'>task_details</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_town'>town</span> <span class='op'>=</span> <span class='id identifier rubyid_determine_town'>determine_town</span><span class='lparen'>(</span><span class='id identifier rubyid_captures'>captures</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>town</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_task_details'>task_details</span><span class='lbracket'>[</span><span class='symbol'>:town</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_town'>town</span>
+      <span class='id identifier rubyid_task_details'>task_details</span><span class='lbracket'>[</span><span class='symbol'>:requirements</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:town</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_town'>town</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_captures'>captures</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_task_details'>task_details</span><span class='lbracket'>[</span><span class='symbol'>:requirements</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span>
+        <span class='kw'>case</span> <span class='id identifier rubyid_key'>key</span>
+        <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>town</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_town'>town</span>
+        <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>number</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+        <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>action</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+        <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>creature</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_normalized_creature_name'>normalized_creature_name</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_value'>value</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 15 06:53:06 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.4).
+</div>
+
+    </div>
+  </body>
+</html>

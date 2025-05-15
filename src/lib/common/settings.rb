@@ -8,37 +8,41 @@ module Lich
     require_relative 'settings/database_adapter'
     require_relative 'settings/path_navigator'
 
-    # A settings management system for Lich scripts that provides persistent storage and hierarchical access
-    # to configuration values. Supports proxy objects for nested access and automatic persistence.
-    #
-    # @author Lich5 Documentation Generator
     module Settings
-      # Raised when a circular reference is detected in the settings structure
+      # Exception raised when a circular reference is detected in settings.
       class CircularReferenceError < StandardError
+        # Initializes a new CircularReferenceError with a default message.
+        #
+        # @param msg [String] the error message (default: "Circular Reference Detected")
         def initialize(msg = "Circular Reference Detected")
           super(msg)
         end
       end
-      
+
       # Initialize database adapter and path navigator
       @db_adapter = DatabaseAdapter.new(DATA_DIR, :script_auto_settings)
       @path_navigator = PathNavigator.new(@db_adapter)
       @settings_cache = {}
 
-      # Checks if a value is a container type (Hash or Array)
+      # Checks if a value is a container (Hash or Array).
       #
-      # @param value [Object] The value to check
-      # @return [Boolean] true if value is a Hash or Array, false otherwise
+      # @param value [Object] the value to check
+      # @return [Boolean] true if the value is a container, false otherwise
       # @example
-      #   Settings.container?({}) #=> true
-      #   Settings.container?([]) #=> true
-      #   Settings.container?(42) #=> false
+      #   Settings.container?([]) # => true
       def self.container?(value)
         value.is_a?(Hash) || value.is_a?(Array)
       end
 
       # Recursively unwraps SettingsProxy instances within a data structure,
       # safeguarding against circular references.
+      #
+      # @param data [Object] the data structure to unwrap
+      # @param visited [Set] a set of visited object_ids to detect cycles (default: new Set)
+      # @return [Object] the unwrapped data structure
+      # @raise [CircularReferenceError] if a circular reference is detected
+      # @example
+      #   Settings.unwrap_proxies(some_data_structure)
       def self.unwrap_proxies(data, visited = Set.new)
         # Check if we have already visited this object_id to detect cycles
         raise CircularReferenceError.new() if visited.include?(data.object_id)
@@ -73,11 +77,12 @@ module Lich
       end
       private_class_method :unwrap_proxies
 
-      # Saves changes from a proxy object back to the database
+      # Save changes from a proxy back to the database.
       #
-      # @param proxy [SettingsProxy] The proxy object containing changes
+      # @param proxy [SettingsProxy] the proxy containing changes to save
       # @return [void]
-      # @note Internal method used to persist proxy modifications
+      # @example
+      #   Settings.save_proxy_changes(some_proxy)
       def self.save_proxy_changes(proxy)
         path = proxy.path
         return if path.empty?
@@ -106,12 +111,12 @@ module Lich
         save_to_database(current, scope)
       end
 
-      # Retrieves current settings for the executing script
+      # Retrieves the current script settings from the database or cache.
       #
-      # @param scope [String] The settings scope, defaults to ":"
-      # @return [Hash] The current settings hash
+      # @param scope [String] the scope of the settings (default: ":")
+      # @return [Hash] the current script settings
       # @example
-      #   Settings.current_script_settings #=> {"key" => "value"}
+      #   Settings.current_script_settings
       def self.current_script_settings(scope = ":")
         script_name = Script.current.name
         cache_key = "#{script_name}::#{scope}"
@@ -125,13 +130,13 @@ module Lich
         settings
       end
 
-      # Saves the current settings to the database
+      # Saves the current settings to the database.
       #
-      # @param current [Hash] The settings hash to save
-      # @param scope [String] The scope to save under, defaults to ":"
+      # @param current [Hash] the current settings to save
+      # @param scope [String] the scope of the settings (default: ":")
       # @return [void]
       # @example
-      #   Settings.save_to_database({"key" => "value"})
+      #   Settings.save_to_database(current_settings)
       def self.save_to_database(current, scope = ":")
         script_name = Script.current.name
         cache_key = "#{script_name}::#{scope}"
@@ -146,12 +151,12 @@ module Lich
         @settings_cache.delete(cache_key) if @settings_cache.has_key?(cache_key)
       end
 
-      # Refreshes settings data from the database
+      # Refreshes the settings data for the current script.
       #
-      # @param scope [String] The scope to refresh, defaults to ":"
-      # @return [Hash] The refreshed settings hash
+      # @param scope [String] the scope of the settings (default: ":")
+      # @return [Hash] the refreshed settings
       # @example
-      #   Settings.refresh_data #=> {"key" => "value"}
+      #   Settings.refresh_data
       def self.refresh_data(scope = ":")
         # Requests made directly to this method want a refreshed set of data.
         # Aliased to Settings.load for backwards compatibility.
@@ -162,11 +167,23 @@ module Lich
         current_script_settings(scope)
       end
 
-      # Path navigation helpers
+      # Resets the path navigator and returns the given value.
+      #
+      # @param value [Object] the value to return
+      # @return [Object] the original value
+      # @example
+      #   Settings.reset_path_and_return(some_value)
       def self.reset_path_and_return(value)
         @path_navigator.reset_path_and_return(value)
       end
 
+      # Navigates to a specified path in the settings.
+      #
+      # @param create_missing [Boolean] whether to create missing paths (default: true)
+      # @param scope [String] the scope of the settings (default: ":")
+      # @return [Array] an array containing the target and root settings
+      # @example
+      #   Settings.navigate_to_path
       def self.navigate_to_path(create_missing = true, scope = ":")
         script_name = Script.current.name
         cache_key = "#{script_name}::#{scope}"
@@ -199,14 +216,14 @@ module Lich
         end
       end
 
-      # Sets a value in the settings structure
+      # Sets a value in the script settings.
       #
-      # @param scope [String] The scope to use, defaults to ":"
-      # @param name [String, Symbol] The key name
-      # @param value [Object] The value to set
-      # @return [Object] The set value
+      # @param scope [String] the scope of the settings (default: ":")
+      # @param name [String] the name of the setting to set
+      # @param value [Object] the value to assign to the setting
+      # @return [Object] the original value/proxy as per convention
       # @example
-      #   Settings.set_script_settings("my_key", "my_value")
+      #   Settings.set_script_settings(":", "setting_name", "value")
       def self.set_script_settings(scope = ":", name, value)
         # Unwrap the value before assigning it to prevent proxies from entering the structure
         unwrapped_value = unwrap_proxies(value)
@@ -231,13 +248,12 @@ module Lich
         reset_path_and_return(value) # Return original value/proxy as per convention
       end
 
-      # Accesses a value in the settings structure
+      # Retrieves a value from the script settings.
       #
-      # @param name [String, Symbol] The key to access
-      # @return [Object, SettingsProxy] The value or a proxy for nested access
+      # @param name [String] the name of the setting to retrieve
+      # @return [Object, nil] the value of the setting or nil if not found
       # @example
-      #   Settings[:config][:nested_key] #=> "value"
-      #   Settings[:array][0] #=> "first_element"
+      #   Settings[:setting_name]
       def self.[](name)
         if @path_navigator.path.empty?
           # Top-level access
@@ -293,7 +309,13 @@ module Lich
         end
       end
 
-      # Helper method to get a value from a container
+      # Helper method to get a value from a container.
+      #
+      # @param container [Hash, Array] the container to retrieve the value from
+      # @param key [String, Integer] the key or index of the value to retrieve
+      # @return [Object, nil] the value if found, nil otherwise
+      # @example
+      #   Settings.get_value_from_container(some_hash, :key)
       def self.get_value_from_container(container, key)
         if container.is_a?(Hash) && container.key?(key)
           container[key]
@@ -304,7 +326,13 @@ module Lich
         end
       end
 
-      # Helper method to wrap a value in a proxy if it's a container
+      # Helper method to wrap a value in a proxy if it's a container.
+      #
+      # @param value [Object] the value to wrap
+      # @param path [Array] the path to the value
+      # @return [SettingsProxy, Object] the wrapped value if it's a container, otherwise the original value
+      # @example
+      #   Settings.wrap_value_if_container(some_value, some_path)
       def self.wrap_value_if_container(value, path)
         if container?(value)
           SettingsProxy.new(self, path, value)
@@ -313,17 +341,25 @@ module Lich
         end
       end
 
-      # Assigns a value to a settings key
+      # Sets a value in the script settings.
       #
-      # @param name [String, Symbol] The key name
-      # @param value [Object] The value to assign
-      # @return [Object] The assigned value
+      # @param name [String] the name of the setting to set
+      # @param value [Object] the value to assign to the setting
+      # @return [void]
       # @example
-      #   Settings[:my_key] = "my_value"
+      #   Settings[:setting_name] = "value"
       def self.[]=(name, value)
         set_script_settings(name, value)
       end
 
+      # Handles missing methods in the context of path navigation.
+      #
+      # @param method [Symbol] the name of the missing method
+      # @param args [Array] the arguments passed to the method
+      # @param block [Proc] an optional block
+      # @return [Object] the result of the method call or raises NoMethodError
+      # @example
+      #   Settings.some_missing_method
       def self.method_missing(method, *args, &block)
         # Only handle method_missing if we're in a path context
         return super if @path_navigator.path.empty?
@@ -356,7 +392,12 @@ module Lich
         end
       end
 
-      # Helper method to handle results of non-destructive methods
+      # Helper method to handle results of non-destructive methods.
+      #
+      # @param result [Object] the result of the method call
+      # @return [SettingsProxy, Object] wrapped result if it's a container, otherwise the original result
+      # @example
+      #   Settings.handle_non_destructive_result(some_result)
       def self.handle_non_destructive_result(result)
         # Reset path immediately
         @path_navigator.reset_path
@@ -369,7 +410,12 @@ module Lich
         end
       end
 
-      # Helper method to handle results of destructive methods
+      # Helper method to handle results of destructive methods.
+      #
+      # @param result [Object] the result of the method call
+      # @return [SettingsProxy, Object] wrapped result if it's a container, otherwise the original result
+      # @example
+      #   Settings.handle_method_result(some_result)
       def self.handle_method_result(result)
         path = @path_navigator.path.dup
         @path_navigator.reset_path
@@ -382,37 +428,54 @@ module Lich
         end
       end
 
+      # Checks if a method is missing and responds accordingly.
+      #
+      # @param method [Symbol] the name of the method
+      # @param include_private [Boolean] whether to include private methods (default: false)
+      # @return [Boolean] true if the method is handled, false otherwise
+      # @example
+      #   Settings.respond_to_missing?(:some_method)
       def self.respond_to_missing?(method, include_private = false)
         return true if !@path_navigator.path.empty?
 
         super
       end
 
-      # Converts settings to a plain Hash
+      # Returns the unwrapped hash of current script settings.
       #
-      # @param scope [String] The scope to convert, defaults to ":"
-      # @return [Hash] The settings as a plain Hash
+      # @return [Hash] the unwrapped settings
       # @example
-      #   Settings.to_hash #=> {"key" => "value"}
+      #   Settings.to_h
       def self.to_h
         # Return unwrapped hash
         unwrap_proxies(current_script_settings)
       end
 
+      # Returns the unwrapped hash of current script settings for a given scope.
+      #
+      # @param scope [String] the scope of the settings (default: ":")
+      # @return [Hash] the unwrapped settings
+      # @example
+      #   Settings.to_hash(":")
       def self.to_hash(scope = ":")
         # Return unwrapped hash
         unwrap_proxies(current_script_settings(scope))
       end
 
+      # No operation for saving settings.
+      #
+      # @return [void]
+      # @example
+      #   Settings.save
       def self.save
         # :noop
       end
 
-      # Checks if the current settings path is empty
+      # Checks if the settings are empty.
       #
-      # @return [Boolean] true if empty, false otherwise
+      # @return [Boolean] true if settings are empty, false otherwise
       # @example
-      #   Settings[:my_array].empty? #=> false
+      #   Settings.empty?
       def self.empty?
         return false if @path_navigator.path.empty?
 
@@ -422,12 +485,12 @@ module Lich
         reset_path_and_return(target.empty?)
       end
 
-      # Checks if an item exists in the current array context
+      # Checks if an item is included in the settings.
       #
-      # @param item [Object] The item to check for
-      # @return [Boolean] true if item exists, false otherwise
+      # @param item [Object] the item to check for inclusion
+      # @return [Boolean] true if the item is included, false otherwise
       # @example
-      #   Settings[:my_array].include?("value") #=> true
+      #   Settings.include?(some_item)
       def self.include?(item)
         return false if @path_navigator.path.empty?
 
@@ -439,43 +502,67 @@ module Lich
         reset_path_and_return(target.is_a?(Array) ? target.include?(unwrapped_item) : false)
       end
 
-      # Legacy method for loading settings
+      # Loads the settings, aliased to refresh_data for backwards compatibility.
       #
-      # @deprecated Use {#refresh_data} instead
-      # @return [Hash] The current settings
+      # @return [Hash] the refreshed settings
+      # @example
+      #   Settings.load
       def self.load # pulled from Deprecated calls to alias to refresh_data()
         refresh_data()
       end
 
-      # @deprecated Legacy method, no longer used
-      # @note Will be removed in future versions
+      # Deprecated calls
+      
+      # Marks the method as deprecated and logs a warning.
+      #
+      # @return [NilClass] always returns nil.
+      # @deprecated This method is no longer applicable.
+      # @example
+      #   Settings.save_all
       def Settings.save_all
         Lich.deprecated('Settings.save_all', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated Legacy method, no longer used
-      # @note Will be removed in future versions
+      # Marks the method as deprecated and logs a warning.
+      #
+      # @return [NilClass] always returns nil.
+      # @deprecated This method is no longer applicable.
+      # @example
+      #   Settings.clear
       def Settings.clear
         Lich.deprecated('Settings.clear', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated Legacy method, no longer used
-      # @note Will be removed in future versions
+      # Marks the method as deprecated and logs a warning.
+      #
+      # @param _val [Object] the value to set (not used).
+      # @return [NilClass] does not return a value.
+      # @deprecated This method is no longer applicable.
+      # @example
+      #   Settings.auto = true
       def Settings.auto=(_val)
         Lich.deprecated('Settings.auto=(val)', 'not using, not applicable,', caller[0], fe_log: true)
       end
 
-      # @deprecated Legacy method, no longer used
-      # @note Will be removed in future versions
+      # Marks the method as deprecated and logs a warning.
+      #
+      # @return [NilClass] always returns nil.
+      # @deprecated This method is no longer applicable.
+      # @example
+      #   Settings.auto
       def Settings.auto
         Lich.deprecated('Settings.auto', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated Legacy method, no longer used
-      # @note Will be removed in future versions
+      # Marks the method as deprecated and logs a warning.
+      #
+      # @return [NilClass] always returns nil.
+      # @deprecated This method is no longer applicable.
+      # @example
+      #   Settings.autoload
       def Settings.autoload
         Lich.deprecated('Settings.autoload', 'not using, not applicable,', caller[0], fe_log: true)
         nil

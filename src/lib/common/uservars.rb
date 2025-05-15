@@ -1,82 +1,98 @@
-# UserVars module provides functionality for managing user variables in the Lich system.
-# It acts as a wrapper around the Vars system for storing and retrieving user-specific data.
-#
-# @author Lich5 Documentation Generator
+# break out module UserVars
+# 2024-06-13
+
 module Lich
   module Common
     module UserVars
-      # Lists all user variables currently set
+      # Lists all user variables.
       #
-      # @return [Array<String>] Array of variable names that are currently set
+      # @return [Array] an array of user variables.
+      #
       # @example
-      #   UserVars.list #=> ["var1", "var2", "var3"]
+      #   UserVars.list
+      #   # => ["var1", "var2", "var3"]
       def UserVars.list
         Vars.list
       end
 
-      # Gets or sets a user variable value
+      # Handles missing methods for user variables.
       #
-      # @param arg1 [Symbol, String] Variable name to get/set
-      # @param arg2 [Object] Optional value to set (defaults to empty string)
-      # @return [Object] Value of the variable if getting, or the set value if setting
+      # @param arg1 [Symbol] the name of the method being called.
+      # @param arg2 [String] an optional argument for the method.
+      # @return [Object] the result of the Vars method call.
+      #
+      # @raise [NoMethodError] if the method does not exist in Vars.
+      #
       # @example
-      #   UserVars.myvar #=> Gets value of 'myvar'
-      #   UserVars.myvar = "new value" #=> Sets 'myvar' to "new value"
+      #   UserVars.some_missing_method
+      #   # => raises NoMethodError
       def UserVars.method_missing(arg1, arg2 = '')
         Vars.method_missing(arg1, arg2)
       end
 
-      # Changes the value of an existing user variable
+      # Changes the value of a user variable.
       #
-      # @param var_name [String, Symbol] Name of variable to change
-      # @param value [Object] New value to set
-      # @param _t [nil] Unused parameter kept for compatibility
-      # @return [Object] The new value that was set
+      # @param var_name [String] the name of the variable to change.
+      # @param value [Object] the new value to assign to the variable.
+      # @param _t [nil] an optional parameter (not used).
+      # @return [Object] the new value of the variable.
+      #
+      # @note This will overwrite the existing value of the variable.
+      #
       # @example
-      #   UserVars.change(:myvar, "new value")
+      #   UserVars.change("var1", "new_value")
+      #   # => "new_value"
       def UserVars.change(var_name, value, _t = nil)
         Vars[var_name] = value
       end
 
-      # Adds a value to an existing comma-separated list variable
+      # Adds a value to a user variable, appending it to the existing value.
       #
-      # @param var_name [String, Symbol] Name of list variable
-      # @param value [String] Value to append to list
-      # @param _t [nil] Unused parameter kept for compatibility
-      # @return [String] Updated comma-separated list
+      # @param var_name [String] the name of the variable to add to.
+      # @param value [Object] the value to append to the variable.
+      # @param _t [nil] an optional parameter (not used).
+      # @return [String] the updated value of the variable.
+      #
+      # @note This assumes the existing value is a comma-separated string.
+      #
       # @example
-      #   UserVars.add(:mylist, "new item")
+      #   UserVars.add("var1", "new_value")
+      #   # => "existing_value, new_value"
       def UserVars.add(var_name, value, _t = nil)
         Vars[var_name] = Vars[var_name].split(', ').push(value).join(', ')
       end
 
-      # Deletes a user variable
+      # Deletes a user variable by setting it to nil.
       #
-      # @param var_name [String, Symbol] Name of variable to delete
-      # @param _t [nil] Unused parameter kept for compatibility
-      # @return [nil]
+      # @param var_name [String] the name of the variable to delete.
+      # @param _t [nil] an optional parameter (not used).
+      # @return [nil] always returns nil.
+      #
       # @example
-      #   UserVars.delete(:myvar)
+      #   UserVars.delete("var1")
+      #   # => nil
       def UserVars.delete(var_name, _t = nil)
         Vars[var_name] = nil
       end
 
-      # Lists global variables (currently returns empty array)
+      # Lists all global user variables.
       #
-      # @return [Array] Empty array, as global vars not implemented
-      # @note This is a placeholder method that currently returns an empty array
+      # @return [Array] an empty array, as global variables are not implemented.
+      #
       # @example
-      #   UserVars.list_global #=> []
+      #   UserVars.list_global
+      #   # => []
       def UserVars.list_global
         Array.new
       end
 
-      # Lists character-specific variables
-      # Alias for UserVars.list
+      # Lists character-specific user variables.
       #
-      # @return [Array<String>] Array of variable names for current character
+      # @return [Array] an array of character-specific user variables.
+      #
       # @example
-      #   UserVars.list_char #=> ["var1", "var2"]
+      #   UserVars.list_char
+      #   # => ["char_var1", "char_var2"]
       def UserVars.list_char
         Vars.list
       end

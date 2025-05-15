@@ -1,76 +1,83 @@
-# Namespace module for the Lich application
 module Lich
-  # Namespace module for Gemstone-specific functionality
   module Gemstone
-    # Module containing information monitoring functionality
     module Infomon
-      # In-memory cache implementation with support for lazy loading values.
-      # Provides a simple key-value store with cache miss handling.
+      # in-memory cache with db read fallbacks
       #
-      # @author Lich5 Documentation Generator
+      # This class provides a simple in-memory cache that allows for storing,
+      # retrieving, and managing key-value pairs. It also supports fallback
+      # mechanisms for retrieving values when they are not present in the cache.
       class Cache
-        # Hash containing the cached key-value pairs
-        # @return [Hash] The internal cache storage
         attr_reader :records
 
-        # Initializes a new empty cache
+        # Initializes a new Cache instance.
         #
-        # @return [Cache] A new Cache instance with empty storage
-        # @example
-        #   cache = Cache.new
+        # @return [Cache] the newly created Cache instance.
         def initialize()
           @records = {}
         end
 
-        # Stores a value in the cache under the specified key
+        # Stores a value in the cache associated with a given key.
         #
-        # @param key [Object] The key to store the value under
-        # @param value [Object] The value to cache
-        # @return [Cache] Returns self for method chaining
+        # @param key [Object] the key to associate with the value.
+        # @param value [Object] the value to store in the cache.
+        # @return [Cache] the Cache instance for method chaining.
+        #
         # @example
-        #   cache.put(:key, "value")
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
         def put(key, value)
           @records[key] = value
           self
         end
 
-        # Checks if a key exists in the cache
+        # Checks if a key exists in the cache.
         #
-        # @param key [Object] The key to check for
-        # @return [Boolean] true if key exists, false otherwise
+        # @param key [Object] the key to check for existence.
+        # @return [Boolean] true if the key exists, false otherwise.
+        #
         # @example
-        #   cache.include?(:key) #=> true/false
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
+        #   cache.include?(:foo) # => true
         def include?(key)
           @records.include?(key)
         end
 
-        # Removes all entries from the cache
+        # Clears all records from the cache.
         #
         # @return [void]
+        #
         # @example
-        #   cache.flush!
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
+        #   cache.flush! # clears the cache
         def flush!
           @records.clear
         end
 
-        # Removes a specific key-value pair from the cache
+        # Deletes a key-value pair from the cache.
         #
-        # @param key [Object] The key to remove
-        # @return [Object, nil] The removed value, or nil if key didn't exist
+        # @param key [Object] the key to delete from the cache.
+        # @return [Object, nil] the value associated with the key, or nil if the key was not found.
+        #
         # @example
-        #   cache.delete(:key)
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
+        #   cache.delete(:foo) # => 'bar'
         def delete(key)
           @records.delete(key)
         end
 
-        # Retrieves a value from the cache, computing it if not present
+        # Retrieves a value from the cache, or computes it using a block if not present.
         #
-        # @param key [Object] The key to look up
-        # @yield [key] Block to compute value on cache miss
-        # @return [Object, nil] The cached or computed value
-        # @note Nil values are not cached
+        # @param key [Object] the key to retrieve from the cache.
+        # @return [Object, nil] the value associated with the key, or nil if not found and block returns nil.
+        #
+        # @yield [key] a block to compute the value if it is not present in the cache.
+        #
         # @example
-        #   cache.get(:key) { |k| compute_value(k) }
+        #   cache = Cache.new
+        #   value = cache.get(:foo) { 'default' } # => 'default'
         def get(key)
           return @records[key] if self.include?(key)
           miss = nil
@@ -80,40 +87,43 @@ module Lich
           @records[key] = miss
         end
 
-        # Merges another hash into the cache
+        # Merges another hash into the cache.
         #
-        # @param h [Hash] The hash to merge into the cache
-        # @return [Hash] The updated cache contents
+        # @param h [Hash] the hash to merge into the cache.
+        # @return [Hash] the updated records hash.
+        #
         # @example
-        #   cache.merge!({key: "value"})
+        #   cache = Cache.new
+        #   cache.merge!({foo: 'bar', baz: 'qux'}) # merges the hash into the cache
         def merge!(h)
           @records.merge!(h)
         end
 
-        # Converts the cache contents to an array of key-value pairs
+        # Converts the cache records to an array of key-value pairs.
         #
-        # @return [Array<Array>] Array of [key, value] pairs
+        # @return [Array] an array of key-value pairs.
+        #
         # @example
-        #   cache.to_a #=> [[:key1, "val1"], [:key2, "val2"]]
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
+        #   cache.to_a # => [[:foo, 'bar']]
         def to_a()
           @records.to_a
         end
 
-        # Returns the cache contents as a hash
+        # Converts the cache records to a hash.
         #
-        # @return [Hash] Hash containing all cached key-value pairs
+        # @return [Hash] the hash of records.
+        #
         # @example
-        #   cache.to_h #=> {key1: "val1", key2: "val2"}
+        #   cache = Cache.new
+        #   cache.put(:foo, 'bar')
+        #   cache.to_h # => {:foo => 'bar'}
         def to_h()
           @records
         end
 
-        # Alias for {#flush!}
-        # @see #flush!
         alias :clear :flush!
-
-        # Alias for {#include?}
-        # @see #include?
         alias :key? :include?
       end
     end

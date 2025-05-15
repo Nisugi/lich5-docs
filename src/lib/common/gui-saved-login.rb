@@ -1,10 +1,3 @@
-# Handles the saved login information display and management in the Lich5 GUI.
-# Provides a tabbed interface for managing multiple game accounts and characters.
-#
-# @author Lich5 Documentation Generator
-# @note This code is currently structured sequentially rather than in class/module form
-# @note Handles both tabbed and list view layouts for saved login information
-
 # Lich5 carveout for GUI window - saved game info in tabbed format
 #
 # quick game entry tab
@@ -22,11 +15,6 @@ if @entry_data.empty?
 else
   last_user_id = nil
 
-  # Handles the creation of account tabs when tab layout is enabled
-  #
-  # @param entry_data [Array<Hash>] Array of saved login entries containing account details
-  # @return [Gtk::Notebook] The notebook widget containing account tabs
-  # @note Creates a tab for each unique account with character entries
   if @tab_layout_state == true
 
     @account_book = Gtk::Notebook.new
@@ -55,10 +43,6 @@ else
         end
         last_game_name = login_info[:game_name]
 
-        # Realm name mapper
-        #
-        # @param game_code [String] Short game code (e.g. 'GS3', 'DR')
-        # @return [String] Full realm name
         realm = ''
 
         if login_info[:game_code] =~ /^GS3$/
@@ -121,11 +105,6 @@ else
         char_box.pack_start(@play_button, :expand => true, :fill => true, :padding => 0)
         account_box.pack_start(char_box, :expand => false, :fill => false, :padding => 0)
 
-        # Handles play button click events
-        #
-        # @param login_info [Hash] Character login information
-        # @return [Array<String>] Launch data array for game connection
-        # @raise [StandardError] If authentication fails
         @play_button.signal_connect('button-release-event') { |_owner, ev|
           if (ev.event_type == Gdk::EventType::BUTTON_RELEASE)
             if (ev.button == 1)
@@ -157,12 +136,6 @@ else
           end
         }
 
-        # Handles remove button click events
-        #
-        # @param login_info [Hash] Character login information to remove
-        # @param char_box [Gtk::Box] The character entry widget to hide
-        # @return [Boolean] True if entry was removed
-        # @note Supports shift-click for quick removal without confirmation
         @remove_button.signal_connect('button-release-event') { |_owner, ev|
           if (ev.event_type == Gdk::EventType::BUTTON_RELEASE) and (ev.button == 1)
             if (ev.state.inspect =~ /shift-mask/)
@@ -358,11 +331,8 @@ else
     }
   end
 =end
+  # Global settings stuff
 
-  # Creates the global settings interface
-  #
-  # @return [Gtk::Box] Box containing settings widgets
-  # @note Controls dark theme, tab layout, and auto-sort preferences
   @slider_box = Gtk::Box.new(:horizontal, 5)
   theme_select = Gtk::Switch.new
   tab_select = Gtk::Switch.new
@@ -392,11 +362,6 @@ else
     @slider_box.visible = @settings_option.active?
   }
 
-  # Theme toggle handler
-  #
-  # @param active [Boolean] New theme state
-  # @return [void]
-  # @note Switches between light and dark themes
   theme_select.signal_connect('notify::active') { |_s|
     if theme_select.active?
       Gtk::Settings.default.gtk_application_prefer_dark_theme = true
@@ -414,20 +379,10 @@ else
     end
   }
 
-  # Tab layout toggle handler
-  #
-  # @param active [Boolean] New tab layout state
-  # @return [void]
-  # @note Switches between tabbed and list views
   tab_select.signal_connect('notify::active') { |_s|
     Lich.track_layout_state = tab_select.active? ? true : false
   }
 
-  # Auto-sort toggle handler
-  #
-  # @param active [Boolean] New auto-sort state
-  # @return [void]
-  # @note Controls automatic sorting of entries
   sort_select.signal_connect('notify::active') { |_s|
     Lich.track_autosort_state = sort_select.active? ? true : false
   }

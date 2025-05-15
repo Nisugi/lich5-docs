@@ -16,15 +16,9 @@ require 'tmpdir'
 require 'logger'
 require_relative 'infomon/cache'
 
-# A core module for managing persistent character information and stats in the Gemstone game.
-# Provides a SQLite-backed key-value store with caching capabilities.
-#
-# @author elanthia-online
-# @since 2.0
 module Lich
   module Gemstone
     module Infomon
-      # @return [Boolean] Debug mode flag
       $infomon_debug = ENV["DEBUG"]
       # use temp dir in ci context
       @root = defined?(DATA_DIR) ? DATA_DIR : Dir.tmpdir
@@ -36,40 +30,37 @@ module Lich
       @sql_queue ||= Queue.new
       @sql_mutex ||= Mutex.new
 
-      # Returns the cache instance
+      # Returns the cache object used by Infomon.
       #
-      # @return [Infomon::Cache] The cache object used for storing key-value pairs
-      # @example
-      #   Infomon.cache.get("strength")
+      # @return [Infomon::Cache] the cache object
       def self.cache
         @cache
       end
 
-      # Returns the database file path
+      # Returns the file path for the database.
       #
-      # @return [String] Path to the SQLite database file
+      # @return [String] the file path for the database
       def self.file
         @file
       end
 
-      # Returns the Sequel database connection
+      # Returns the database connection.
       #
-      # @return [Sequel::Database] The SQLite database connection
+      # @return [Sequel::Database] the database connection
       def self.db
         @db
       end
 
-      # Returns the mutex used for thread synchronization
+      # Returns the mutex used for SQL operations.
       #
-      # @return [Mutex] The mutex object
+      # @return [Mutex] the mutex for SQL operations
       def self.mutex
         @sql_mutex
       end
 
-      # Acquires the mutex lock for thread-safe operations
+      # Locks the mutex for thread-safe operations.
       #
-      # @raise [StandardError] If mutex acquisition fails
-      # @note Logs errors to Lich's error log
+      # @raise [StandardError] if an error occurs while locking
       def self.mutex_lock
         begin
           self.mutex.lock unless self.mutex.owned?
@@ -79,10 +70,9 @@ module Lich
         end
       end
 
-      # Releases the mutex lock
+      # Unlocks the mutex for thread-safe operations.
       #
-      # @raise [StandardError] If mutex release fails
-      # @note Logs errors to Lich's error log
+      # @raise [StandardError] if an error occurs while unlocking
       def self.mutex_unlock
         begin
           self.mutex.unlock if self.mutex.owned?
@@ -92,35 +82,33 @@ module Lich
         end
       end
 
-      # Returns the SQL command queue
+      # Returns the SQL queue for pending operations.
       #
-      # @return [Queue] Queue containing pending SQL operations
+      # @return [Queue] the SQL queue
       def self.queue
         @sql_queue
       end
 
-      # Validates the current context requires XMLData.name to be present
+      # Ensures that the context is valid before accessing Infomon.
       #
-      # @raise [RuntimeError] If XMLData.name is empty or nil
-      # @note Essential for maintaining data integrity per character
+      # @raise [RuntimeError] if XMLData.name is not loaded
       def self.context!
         return unless XMLData.name.empty? or XMLData.name.nil?
         puts Exception.new.backtrace
         fail "cannot access Infomon before XMLData.name is loaded"
       end
 
-      # Generates the table name for the current character
+      # Returns the table name based on the game and XMLData name.
       #
-      # @return [Symbol] Table name in format "game_charactername"
-      # @raise [RuntimeError] If XMLData.name is not available
+      # @return [Symbol] the table name
       def self.table_name
         self.context!
         ("%s_%s" % [XMLData.game, XMLData.name]).to_sym
       end
 
-      # Resets the database table and cache for the current character
+      # Resets the Infomon state by dropping the table and clearing the cache.
       #
-      # @note This is a destructive operation that clears all stored data
+      # @return [void]
       def self.reset!
         self.mutex_lock
         Infomon.db.drop_table?(self.table_name)
@@ -129,13 +117,16 @@ module Lich
         Infomon.setup!
       end
 
-      # Returns or creates the database table for the current character
+      # Returns the table object for the Infomon database.
       #
-      # @return [Sequel::Dataset] The database table object
+      # @return [Sequel::Dataset] the table object
       def self.table
         @_table ||= self.setup!
       end
 
+      # Sets up the Infomon table in the database.
+      #
+      # @return [Sequel::Dataset] the created table object
       def self.setup!
         self.mutex_lock
         @db.create_table?(self.table_name) do
@@ -146,10 +137,10 @@ module Lich
         @_table = @db[self.table_name]
       end
 
-      # Loads the cache from the database
+      # Loads the cache from the database.
       #
-      # @note Waits for XMLData.name to be available
-      # @note Sets @cache_loaded flag when complete
+      # @return [void]
+      # @note This method will sleep for a short duration if XMLData.name is not loaded.
       def self.cache_load
         sleep(0.01) if XMLData.name.empty?
         dataset = Infomon.table
@@ -158,49 +149,45 @@ module Lich
         @cache_loaded = true
       end
 
-      # Normalizes keys for consistent storage
+      # Normalizes the key by converting it to a string and formatting it.
       #
-      # @param key [String, Symbol] The key to normalize
-      # @return [String] Normalized key with spaces/hyphens converted to underscores
-      # @example
-      #   Infomon._key("Max-Health") #=> "max_health"
+      # @param key [Object] the key to normalize
+      # @return [String] the normalized key
       def self._key(key)
         key = key.to_s.downcase
         key.tr!(' ', '_').gsub!('_-_', '_').tr!('-', '_') if /\s|-/.match?(key)
         return key
       end
 
-      # Normalizes values for storage
+      # Normalizes the value to a boolean or returns the original value.
       #
-      # @param val [Object] Value to normalize
-      # @return [Object] Normalized value with special handling for boolean strings
-      # @example
-      #   Infomon._value("true") #=> true
+      # @param val [Object] the value to normalize
+      # @return [Boolean, Object] the normalized value
       def self._value(val)
         return true if val.to_s == "true"
         return false if val.to_s == "false"
         return val
       end
 
-      # Validates value types for storage
-      #
-      # @param key [String] The key being stored
-      # @param value [Object] The value to validate
-      # @return [Object] The validated value
-      # @raise [RuntimeError] If value type is not allowed
-      # @note Allowed types are Integer, String, NilClass, FalseClass, TrueClass
       AllowedTypes = [Integer, String, NilClass, FalseClass, TrueClass]
+      # Validates the key and value types for insertion.
+      #
+      # @param key [String] the key to validate
+      # @param value [Object] the value to validate
+      # @return [Object] the validated value
+      # @raise [RuntimeError] if the value type is not allowed
       def self._validate!(key, value)
         return self._value(value) if AllowedTypes.include?(value.class)
         raise "infomon:insert(%s) was called with %s\nmust be %s\nvalue=%s" % [key, value.class, AllowedTypes.map(&:name).join("|"), value]
       end
 
-      # Retrieves a value from the cache/database
+      # Retrieves a value from the cache or database.
       #
-      # @param key [String, Symbol] The key to look up
-      # @return [Object, nil] The stored value or nil if not found
+      # @param key [Object] the key to retrieve
+      # @return [Boolean, Integer, String, NilClass] the retrieved value
+      # @raise [StandardError] if an error occurs during retrieval
       # @example
-      #   Infomon.get("strength") #=> 100
+      #   value = Infomon.get("some_key")
       def self.get(key)
         self.cache_load if !@cache_loaded
         key = self._key(key)
@@ -228,12 +215,12 @@ module Lich
         return self._value(val)
       end
 
-      # Retrieves a boolean value with type conversion
+      # Retrieves a boolean value from the cache or database.
       #
-      # @param key [String, Symbol] The key to look up
-      # @return [Boolean] The stored value converted to boolean
+      # @param key [Object] the key to retrieve
+      # @return [Boolean] the retrieved boolean value
       # @example
-      #   Infomon.get_bool("is_standing") #=> true
+      #   is_enabled = Infomon.get_bool("feature_enabled")
       def self.get_bool(key)
         value = Infomon.get(key)
         if value.is_a?(TrueClass) || value.is_a?(FalseClass)
@@ -245,20 +232,24 @@ module Lich
         end
       end
 
+      # Inserts or updates a record in the database.
+      #
+      # @param args [Array] the arguments for the insert operation
+      # @return [void]
       def self.upsert(*args)
         self.table
             .insert_conflict(:replace)
             .insert(*args)
       end
 
-      # Sets a key-value pair in the cache and queues database update
+      # Sets a key-value pair in the cache and database.
       #
-      # @param key [String, Symbol] The key to store
-      # @param value [Object] The value to store
-      # @return [Symbol] :noop if value unchanged, nil otherwise
-      # @raise [RuntimeError] If value type is invalid
+      # @param key [Object] the key to set
+      # @param value [Object] the value to set
+      # @return [Symbol] :noop if the value is unchanged, otherwise performs the operation
+      # @raise [RuntimeError] if the value type is not valid
       # @example
-      #   Infomon.set("strength", 100)
+      #   Infomon.set("some_key", "some_value")
       def self.set(key, value)
         key = self._key(key)
         value = self._validate!(key, value)
@@ -268,25 +259,25 @@ module Lich
       on conflict(`key`) do update set value = excluded.value;" % [self.db.literal(self.table_name), self.db.literal(key), self.db.literal(value)]
       end
 
-      # Deletes a key-value pair from cache and database
+      # Deletes a key from the cache and database.
       #
-      # @param key [String, Symbol] The key to delete
+      # @param key [Object] the key to delete
+      # @return [void]
       # @example
-      #   Infomon.delete!("temporary_stat")
+      #   Infomon.delete!("some_key")
       def self.delete!(key)
         key = self._key(key)
         self.cache.delete(key)
         self.queue << "DELETE FROM %s WHERE key = (%s);" % [self.db.literal(self.table_name), self.db.literal(key)]
       end
 
-      # Batch updates multiple key-value pairs
+      # Inserts or updates multiple records in the database.
       #
-      # @param blob [Array<Hash>] Array of key-value pair hashes to update
-      # @return [Symbol] :noop if no changes needed
-      # @raise [RuntimeError] If value types are invalid
-      # @note Only works with Integer and String values
+      # @param blob [Array] an array of key-value pairs to upsert
+      # @return [Symbol] :noop if no updates are made
+      # @raise [RuntimeError] if the value type is not valid
       # @example
-      #   Infomon.upsert_batch({strength: 100, dexterity: 90})
+      #   Infomon.upsert_batch([["key1", "value1"], ["key2", "value2"]])
       def self.upsert_batch(*blob)
         updated = (blob.first.map { |k, v| [self._key(k), self._validate!(k, v)] } - self.cache.to_a)
         return :noop if updated.empty?

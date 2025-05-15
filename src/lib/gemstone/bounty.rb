@@ -1,44 +1,42 @@
 require_relative "./bounty/parser"
 require_relative "./bounty/task"
 
-# A module for Lich game automation functionality
 module Lich
-  # Module containing Gemstone-specific functionality 
   module Gemstone
-    # Handles bounty task information and interactions in Gemstone
-    #
-    # @author Lich5 Documentation Generator
+    # Represents a Bounty task within the Lich Gemstone module.
     class Bounty
-      # List of recognized bounty task types
-      # @return [Array<Symbol>] List of valid task type symbols
+      # A list of known task matchers.
       KNOWN_TASKS = Parser::TASK_MATCHERS.keys
 
-      # Gets the current bounty task for the player
+      # Retrieves the current bounty task.
       #
-      # @return [Task] A Task object representing the current bounty
+      # @return [Task] the current bounty task instance.
+      #
       # @example
-      #   current_bounty = Lich::Gemstone::Bounty.current
+      #   current_task = Lich::Gemstone::Bounty.current
       def self.current
         Task.new(Parser.parse(checkbounty))
       end
 
-      # Alias for .current method to get current bounty task
+      # Retrieves the current bounty task.
       #
-      # @return [Task] A Task object representing the current bounty
+      # @return [Task] the current bounty task instance.
+      #
       # @example
       #   task = Lich::Gemstone::Bounty.task
       def self.task
         current
       end
 
-      # Retrieves bounty information for a player via LNet
+      # Retrieves bounty information for a specified person from LNet.
       #
-      # @param person [String] Character name to look up
-      # @return [Task, nil] Task object if found, nil if not found or error
+      # @param person [String] the name of the person to retrieve bounty information for.
+      # @return [Task, nil] a Task instance with the bounty information or nil if not found.
+      #
+      # @raise [StandardError] if there is an issue with the LNet data retrieval.
+      #
       # @example
-      #   other_bounty = Lich::Gemstone::Bounty.lnet("PlayerName")
-      #
-      # @note Will send warning messages on failure via Lich::Messaging
+      #   bounty_task = Lich::Gemstone::Bounty.lnet("John Doe")
       def self.lnet(person)
         if (target_info = LNet.get_data(person.dup, 'bounty'))
           Task.new(Parser.parse(target_info))

@@ -1,34 +1,22 @@
-# A module containing common Lich functionality
-# @author Lich5 Documentation Generator
+# Carve out class WatchFor
+# 2024-06-13
+# has rubocop Lint issues (return nil) - overriding until it can be further researched
+
 module Lich
-
-  # Common utilities and helper classes
   module Common
-
-    # Watches for specific text patterns in the game stream and executes callbacks when matched
-    # @author Lich5 Documentation Generator
+    # A class that watches for specific patterns in a script and executes a block of code when a match is found.
     class Watchfor
-      # Creates a new text pattern watcher that executes a callback when matched
+      # Initializes a new Watchfor instance.
       #
-      # @param line [String, Regexp] The text pattern to watch for - can be a string (exact match) or regexp
-      # @param theproc [Proc, nil] Optional proc to use as the callback
-      # @param block [Proc] Block to execute when pattern matches (alternative to theproc)
-      # @return [nil] Returns nil if initialization fails
-      # @raise [RuntimeError] When no valid callback (proc or block) is provided
-      # @raise [RuntimeError] When line parameter is neither String nor Regexp
-      #
-      # @example Watch for exact text match
-      #   Watchfor.new("You see a dragon") { |line| echo "Dragon spotted!" }
-      #
-      # @example Watch with regexp
-      #   Watchfor.new(/dragon/i) { |line| echo "Dragon mentioned!" }
-      #
-      # @example Using a proc
-      #   my_proc = Proc.new { |line| echo "Match found!" }
-      #   Watchfor.new("pattern", my_proc)
-      #
-      # @note Requires a current script context to function
-      # @note String patterns are automatically escaped and converted to Regexp
+      # @param line [String, Regexp] The string or regular expression to watch for.
+      # @param theproc [Proc, nil] An optional Proc to execute when the pattern is matched.
+      # @param block [Proc] A block of code to execute when the pattern is matched.
+      # @return [nil] Returns nil if the script is not current, if the line is not a string or regexp, or if no block or proc is provided.
+      # @raise [ArgumentError] Raises an error if the line is neither a String nor a Regexp.
+      # @example
+      #   watch = Watchfor.new("error") { puts "An error occurred!" }
+      #   watch = Watchfor.new(/warning/, some_proc) { puts "A warning occurred!" }
+      # @note This method disables a Rubocop linting rule regarding returning nil in a void context.
       # rubocop:disable Lint/ReturnInVoidContext
       def initialize(line, theproc = nil, &block)
         return nil unless (script = Script.current)
@@ -50,16 +38,15 @@ module Lich
         script.watchfor[line] = block
       end
 
+      # Enables the Rubocop linting rule regarding returning nil in a void context.
       # rubocop:enable Lint/ReturnInVoidContext
 
-      # Removes all registered watch patterns for the current script
+      # Clears all watchfor patterns from the current script.
       #
-      # @return [Hash] Returns empty hash representing cleared watchfor patterns
-      #
-      # @example Clear all watchers
+      # @return [nil] Returns nil after clearing the patterns.
+      # @example
       #   Watchfor.clear
-      #
-      # @note Only affects watchers for the current script context
+      # @note This method resets the watchfor hash to a new empty hash.
       def Watchfor.clear
         script.watchfor = Hash.new
       end

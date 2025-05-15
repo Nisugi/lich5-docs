@@ -1,34 +1,25 @@
-# A module namespace for the Lich game automation system
 module Lich
-  # Module containing Gemstone-specific functionality 
   module Gemstone
-    # Represents a disk container object in the game that can store items
-    # Used to manage and interact with personal storage disks
-    #
-    # @author Lich5 Documentation Generator
+    # Represents a disk item in the game.
     class Disk
-      # List of valid nouns that identify disk containers in the game
-      # @return [Array<String>] Array of valid disk container noun identifiers
       NOUNS = %w{cassone chest coffer coffin coffret disk hamper saucer sphere trunk tureen}
 
-      # Determines if a given game object is a valid disk container
+      # Checks if the given object is a disk based on its name.
       #
-      # @param thing [GameObj] The game object to check
-      # @return [Boolean] true if the object is a valid disk container, false otherwise
+      # @param thing [Object] The object to check.
+      # @return [Boolean] Returns true if the object is a disk, false otherwise.
       # @example
-      #   Disk.is_disk?(some_game_obj) #=> true/false
-      #
-      # @note Checks if the object name matches pattern "[Name] [valid_noun]"
+      #   Disk.is_disk?(some_object)
       def self.is_disk?(thing)
         thing.name =~ /\b([A-Z][a-z]+) #{Regexp.union(NOUNS)}\b/
       end
 
-      # Finds a disk container by a specific name
+      # Finds a disk by its name.
       #
-      # @param name [String] The name to search for in disk containers
-      # @return [Disk, nil] Returns a new Disk instance if found, nil if not found
+      # @param name [String] The name of the disk to find.
+      # @return [Disk, nil] Returns a Disk object if found, nil otherwise.
       # @example
-      #   disk = Disk.find_by_name("Bob") #=> #<Disk:0x...> or nil
+      #   Disk.find_by_name("golden disk")
       def self.find_by_name(name)
         disk = GameObj.loot.find do |item|
           is_disk?(item) && item.name.include?(name)
@@ -37,20 +28,20 @@ module Lich
         Disk.new(disk)
       end
 
-      # Finds the disk container belonging to the current character
+      # Mines a disk based on the character's name.
       #
-      # @return [Disk, nil] Returns the character's disk if found, nil otherwise
+      # @return [Disk, nil] Returns a Disk object if found, nil otherwise.
       # @example
-      #   my_disk = Disk.mine #=> #<Disk:0x...>
+      #   Disk.mine
       def self.mine
         find_by_name(Char.name)
       end
 
-      # Returns all disk containers currently visible
+      # Retrieves all disk objects from the loot.
       #
-      # @return [Array<Disk>] Array of all visible disk containers
+      # @return [Array<Disk>] An array of Disk objects.
       # @example
-      #   all_disks = Disk.all #=> [#<Disk:0x...>, #<Disk:0x...>]
+      #   Disk.all
       def self.all()
         (GameObj.loot || []).select do |item|
           is_disk?(item)
@@ -59,19 +50,14 @@ module Lich
         end
       end
 
-      # @return [String] The unique identifier of the disk
-      attr_reader :id
-      # @return [String] The name of the disk owner
-      attr_reader :name
+      attr_reader :id, :name
 
-      # Creates a new Disk instance
+      # Initializes a new Disk object.
       #
-      # @param obj [GameObj] The game object representing the disk
-      # @return [Disk] A new disk instance
+      # @param obj [Object] The object representing the disk.
+      # @return [Disk] A new Disk instance.
       # @example
-      #   disk = Disk.new(game_obj)
-      #
-      # @note Extracts the owner's name from the disk's full name
+      #   disk = Disk.new(some_game_object)
       def initialize(obj)
         @id   = obj.id
         @name = obj.name.split(" ").find do |word|
@@ -79,45 +65,43 @@ module Lich
         end
       end
 
-      # Compares this disk with another for equality
+      # Compares this Disk object with another for equality.
       #
-      # @param other [Object] The object to compare with
-      # @return [Boolean] true if the objects are the same disk, false otherwise
+      # @param other [Object] The object to compare with.
+      # @return [Boolean] Returns true if the objects are equal, false otherwise.
       # @example
-      #   disk1 == disk2 #=> true/false
+      #   disk1 == disk2
       def ==(other)
         other.is_a?(Disk) && other.id == self.id
       end
 
-      # Hash equality comparison
+      # Checks if this Disk object is equal to another.
       #
-      # @param other [Object] The object to compare with
-      # @return [Boolean] true if the objects are the same disk, false otherwise
+      # @param other [Object] The object to compare with.
+      # @return [Boolean] Returns true if the objects are equal, false otherwise.
       # @example
-      #   disk1.eql?(disk2) #=> true/false
+      #   disk1.eql?(disk2)
       def eql?(other)
         self == other
       end
 
-      # Forwards unknown method calls to the underlying game object
+      # Handles missing methods by delegating to the GameObj.
       #
-      # @param method [Symbol] The method name to call
-      # @param args [Array] Arguments to pass to the method
-      # @return [Object] Result of the forwarded method call
+      # @param method [Symbol] The method name that was called.
+      # @param args [Array] The arguments passed to the method.
+      # @return [Object] The result of the method call on GameObj.
       # @example
-      #   disk.some_game_obj_method
+      #   disk.some_missing_method
       def method_missing(method, *args)
         GameObj[@id].send(method, *args)
       end
 
-      # Converts the disk to a Container object if available
+      # Converts the Disk object to a container.
       #
-      # @return [Container, GameObj] Returns a Container instance if the Container class exists,
-      #   otherwise returns the raw GameObj
+      # @return [Container, Object] Returns a Container object if defined, otherwise the GameObj.
+      # @note This method depends on the existence of the Container class.
       # @example
-      #   disk.to_container #=> #<Container:0x...> or GameObj
-      #
-      # @note Provides compatibility with the Container system when available
+      #   disk.to_container
       def to_container
         if defined?(Container)
           Container.new(@id)

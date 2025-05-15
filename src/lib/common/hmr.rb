@@ -1,16 +1,10 @@
-# Provides hot module reloading functionality for the Lich framework
-# Allows dynamic reloading of Ruby files during runtime
-#
-# @author Lich5 Documentation Generator
+## hot module reloading
 module Lich
   module Common
-    # Implements Hot Module Reloading (HMR) functionality
-    # Provides methods to reload Ruby files dynamically during runtime
     module HMR
-      # Clears the Ruby Gem paths cache
-      # This ensures newly added gems are discoverable after reloading
+      # Clears the gem cache by calling `Gem.clear_paths`.
       #
-      # @return [void]
+      # @return [void] This method does not return a value.
       #
       # @example
       #   Lich::Common::HMR.clear_cache
@@ -18,47 +12,44 @@ module Lich
         Gem.clear_paths
       end
 
-      # Outputs a message through the appropriate channel
-      # Attempts to use _respond for HTML-formatted messages,
-      # falls back to respond, then puts
+      # Sends a message to the appropriate output method.
       #
-      # @param message [String] The message to output
-      # @return [void]
+      # If `_respond` is defined and the message contains "<b>", it will call `_respond`.
+      # If `respond` is defined, it will call `respond`. Otherwise, it will print the message.
+      #
+      # @param message [String] The message to be sent or printed.
+      # @return [void] This method does not return a value.
       #
       # @example
-      #   Lich::Common::HMR.msg("Regular message")
-      #   Lich::Common::HMR.msg("<b>Bold message</b>")
+      #   Lich::Common::HMR.msg("Hello, World!")
       def self.msg(message)
         return _respond message if defined?(:_respond) && message.include?("<b>")
         return respond message if defined?(:respond)
         puts message
       end
 
-      # Returns an array of loaded Ruby files
+      # Retrieves a list of loaded Ruby files.
       #
-      # @return [Array<String>] Array of paths to loaded .rb files
+      # @return [Array<String>] An array of paths to loaded Ruby files.
       #
       # @example
       #   loaded_files = Lich::Common::HMR.loaded
-      #   # => ["/path/to/file1.rb", "/path/to/file2.rb"]
       def self.loaded
         $LOADED_FEATURES.select { |path| path.end_with?(".rb") }
       end
 
-      # Reloads Ruby files matching the given pattern
-      # First clears the gem cache, then attempts to reload each matching file
+      # Reloads files that match the given pattern.
       #
-      # @param pattern [Regexp] Regular expression pattern to match files for reloading
-      # @return [void]
-      # @raise [StandardError] If there's an error loading any of the files
+      # This method clears the cache, finds files matching the pattern, and attempts to load them.
+      # If loading fails, it captures and reports the exception.
+      #
+      # @param pattern [Regexp] The pattern to match file paths against.
+      # @return [void] This method does not return a value.
+      #
+      # @raise [LoadError] If the file cannot be loaded.
       #
       # @example
-      #   # Reload all files containing 'script'
-      #   Lich::Common::HMR.reload(/script/)
-      #
-      # @note This will attempt to reload ALL matching files in $LOADED_FEATURES
-      #       Failed reloads will output the exception and stack trace
-      #       If no files match the pattern, a message will be displayed
+      #   Lich::Common::HMR.reload(/my_file/)
       def self.reload(pattern)
         self.clear_cache
         loaded_paths = self.loaded.grep(pattern)

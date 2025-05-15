@@ -1,36 +1,30 @@
-# Extensions to Ruby's built-in MatchData class to provide additional conversion methods
-#
-# @author Lich5 Documentation Generator
-class MatchData
+# extension to class MatchData 2025-03-14
 
-  # Converts the MatchData object into an OpenStruct instance where named captures
-  # become method-accessible attributes
+class MatchData
+  # Converts the MatchData object to an OpenStruct.
   #
-  # @return [OpenStruct] An OpenStruct containing the named captures as attributes
+  # @return [OpenStruct] an OpenStruct representation of the MatchData.
+  #
   # @example
-  #   regex = /(?<first>\w+)\s(?<last>\w+)/
-  #   match = "John Smith".match(regex)
-  #   struct = match.to_struct
-  #   struct.first #=> "John"
-  #   struct.last  #=> "Smith"
-  #
-  # @note All capture values are stripped of leading/trailing whitespace
+  #   match_data = /(\w+)/.match("hello")
+  #   struct = match_data.to_struct
+  #   puts struct[0] # => "hello"
   def to_struct
     OpenStruct.new to_hash
   end
 
-  # Converts the MatchData object into a Hash where named captures become key-value pairs
+  # Converts the MatchData object to a hash.
   #
-  # @return [Hash] A hash mapping named capture names to their values
+  # @return [Hash] a hash where keys are the names of the captures and values are the corresponding captures.
+  #
+  # @note This method strips whitespace from each capture and converts numeric captures to integers.
+  #
   # @example
-  #   regex = /(?<first>\w+)\s(?<last>\w+)/
-  #   match = "John Smith".match(regex)
-  #   match.to_hash #=> {"first" => "John", "last" => "Smith"}
+  #   match_data = /(\d+)/.match("123")
+  #   hash = match_data.to_hash
+  #   puts hash # => {"0"=>"123"}
   #
-  # @note The following transformations are applied to capture values:
-  #   - All values are stripped of leading/trailing whitespace
-  #   - Values that represent integers are automatically converted to Integer objects
-  #   - Non-integer values remain as String objects
+  # @raise [TypeError] if names or captures are not enumerable.
   def to_hash
     Hash[self.names.zip(self.captures.map(&:strip).map do |capture|
       if capture.is_i? then capture.to_i else capture end

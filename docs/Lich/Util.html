@@ -83,25 +83,14 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/magic-info.rb<span class="defines">,<br />
-  lib/update.rb,<br /> lib/util/util.rb</span>
+    <dd>lib/update.rb<span class="defines">,<br />
+  lib/util/util.rb,<br /> lib/magic-info.rb</span>
 </dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Utility functions for the Lich system</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><h2>Defined Under Namespace</h2>
+<h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -144,7 +133,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Generates a unique anonymous hook name.</p>
+<p>Generates an anonymous hook name based on the current time and a random number.</p>
 </div></span>
   
 </li>
@@ -168,7 +157,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Installs required Ruby gems and optionally requires them.</p>
+<p>Installs the specified gems and requires them if specified.</p>
 </div></span>
   
 </li>
@@ -192,7 +181,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Issues a command and captures output between start and end patterns.</p>
+<p>Issues a command and captures the output between start and end patterns.</p>
 </div></span>
   
 </li>
@@ -216,7 +205,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Validates if a given value exists in an effects lookup table.</p>
+<p>Normalizes the lookup for effects based on the provided value.</p>
 </div></span>
   
 </li>
@@ -240,7 +229,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Normalizes a name string by converting spaces/hyphens to underscores and removing special characters.</p>
+<p>Normalizes a name by converting it to a standard format.</p>
 </div></span>
   
 </li>
@@ -264,7 +253,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Executes a command silently without XML processing.</p>
+<p>Issues a quiet command and captures the output.</p>
 </div></span>
   
 </li>
@@ -288,7 +277,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Executes a command silently with XML processing.</p>
+<p>Issues a quiet command and captures the output in XML format.</p>
 </div></span>
   
 </li>
@@ -312,7 +301,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current silver count from character info.</p>
+<p>Counts the amount of silver and returns it as an integer.</p>
 </div></span>
   
 </li>
@@ -340,7 +329,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Generates a unique anonymous hook name</p>
+<p>Generates an anonymous hook name based on the current time and a random number.</p>
 
 
   </div>
@@ -351,7 +340,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_anon_hook'>anon_hook</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MyHook</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;Util::MyHook-2023-07-14-1234&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_anon_hook'>anon_hook</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -370,7 +359,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Optional prefix for the hook name</p>
+<p>An optional prefix for the hook name.</p>
 </div>
       
     </li>
@@ -389,7 +378,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unique hook identifier</p>
+<p>The generated anonymous hook name.</p>
 </div>
       
     </li>
@@ -402,13 +391,13 @@
       <pre class="lines">
 
 
-89
-90
-91
-92</pre>
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_anon_hook'>anon_hook</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
@@ -431,15 +420,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Installs gems for user only, without documentation</p>
-</div>
-  </div>
-
-
-<p>Installs required Ruby gems and optionally requires them</p>
+<p>Installs the specified gems and requires them if specified.</p>
 
 
   </div>
@@ -450,10 +431,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_install_gem_requirements'>install_gem_requirements</span><span class='lparen'>(</span><span class='lbrace'>{</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nokogiri</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
-<span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_install_gem_requirements'>install_gem_requirements</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>some_gem</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -464,13 +442,13 @@
         <span class='name'>gems_to_install</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span>{<span class='object_link'><a href="../String.html" title="String (class)">String</a></span> =&gt; Boolean}</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Gem names and whether to require them</p>
+<p>A hash where keys are gem names and values are booleans indicating whether to require them.</p>
 </div>
       
     </li>
@@ -489,7 +467,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If parameter is not a hash of strings to booleans</p>
+<p>If the input is not a hash or if the hash does not contain valid key-value pairs.</p>
 </div>
       
     </li>
@@ -497,13 +475,13 @@
     <li>
       
       
-        <span class='type'>(<tt>StandardError</tt>)</span>
+        <span class='type'>(<tt>RuntimeError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>If gem installation fails</p>
+<p>If any gem installation fails.</p>
 </div>
       
     </li>
@@ -516,6 +494,11 @@
       <pre class="lines">
 
 
+263
+264
+265
+266
+267
 268
 269
 270
@@ -541,18 +524,13 @@
 290
 291
 292
-293
-294
-295
-296
-297
-298</pre>
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 268</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 263</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_install_gem_requirements'>install_gem_requirements</span><span class='lparen'>(</span><span class='id identifier rubyid_gems_to_install'>gems_to_install</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>install_gem_requirements must be passed a Hash</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_gems_to_install'>gems_to_install</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>install_gem_requirements must be passed a Hash</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_gems_to_install'>gems_to_install</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rubygems</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rubygems/dependency_installer</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_installer'>installer</span> <span class='op'>=</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>DependencyInstaller</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:user_install</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:document</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -565,16 +543,16 @@
     <span class='kw'>end</span>
     <span class='kw'>begin</span>
       <span class='kw'>unless</span> <span class='id identifier rubyid_installed_gems'>installed_gems</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_respond'>respond</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: Installing missing ruby gem &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; now, please wait!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: Installing missing ruby gem &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; now, please wait!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
         <span class='id identifier rubyid_installer'>installer</span><span class='period'>.</span><span class='id identifier rubyid_install'>install</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_respond'>respond</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: Done installing &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; gem!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: Done installing &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; gem!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='kw'>end</span>
       <span class='id identifier rubyid_require'>require</span> <span class='id identifier rubyid_gem_name'>gem_name</span> <span class='kw'>if</span> <span class='id identifier rubyid_should_require'>should_require</span>
     <span class='kw'>rescue</span> <span class='const'>StandardError</span>
-      <span class='id identifier rubyid_respond'>respond</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Failed to install Ruby gem: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_respond'>respond</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to install Ruby gem: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Failed to install Ruby gem: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to install Ruby gem: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_failed_gems'>failed_gems</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_gem_name'>gem_name</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -599,7 +577,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Issues a command and captures output between start and end patterns</p>
+<p>Issues a command and captures the output between start and end patterns.</p>
 
 
   </div>
@@ -610,7 +588,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'>issue_command</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You see</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'>issue_command</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You see</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -627,7 +605,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to execute</p>
+<p>The command to execute.</p>
 </div>
       
     </li>
@@ -643,7 +621,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating start of capture</p>
+<p>The pattern indicating the start of the output to capture.</p>
 </div>
       
     </li>
@@ -661,7 +639,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating end of capture</p>
+<p>The pattern indicating the end of the output to capture (default: /&lt;prompt/).</p>
 </div>
       
     </li>
@@ -679,7 +657,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to include matching end line</p>
+<p>Whether to include the end line in the result (default: true).</p>
 </div>
       
     </li>
@@ -697,7 +675,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Seconds to wait before timeout</p>
+<p>The maximum time to wait for the command to complete (default: 5).</p>
 </div>
       
     </li>
@@ -707,7 +685,7 @@
         <span class='name'>silent</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt>Boolean</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -715,7 +693,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to suppress output</p>
+<p>Whether to suppress output (default: nil).</p>
 </div>
       
     </li>
@@ -733,7 +711,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to use XML mode</p>
+<p>Whether to use XML output (default: true).</p>
 </div>
       
     </li>
@@ -751,7 +729,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to filter captured lines</p>
+<p>Whether to suppress output during capture (default: false).</p>
 </div>
       
     </li>
@@ -769,7 +747,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to use fput vs put</p>
+<p>Whether to use fput for command execution (default: true).</p>
 </div>
       
     </li>
@@ -788,7 +766,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Captured lines of output</p>
+<p>The captured output lines.</p>
 </div>
       
     </li>
@@ -800,13 +778,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Interrupt</tt>)</span>
+        <span class='type'>(<tt>Timeout::Error</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>If timeout occurs</p>
+<p>If the command times out.</p>
 </div>
       
     </li>
@@ -819,6 +797,9 @@
       <pre class="lines">
 
 
+106
+107
+108
 109
 110
 111
@@ -879,13 +860,10 @@
 166
 167
 168
-169
-170
-171
-172</pre>
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_issue_command'>issue_command</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>use_fput:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -930,11 +908,11 @@
           <span class='id identifier rubyid_line'>line</span>
         <span class='kw'>end</span>
       <span class='rbrace'>}</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_use_fput'>use_fput</span> <span class='op'>?</span> <span class='id identifier rubyid_fput'>fput</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_use_fput'>use_fput</span> <span class='op'>?</span> <span class='id identifier rubyid_fput'><span class='object_link'><a href="../top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_put'><span class='object_link'><a href="../top-level-namespace.html#put-instance_method" title="#put (method)">put</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
 
-      <span class='kw'>until</span> <span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get'>get</span><span class='rparen'>)</span> <span class='op'>=~</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+      <span class='kw'>until</span> <span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get'><span class='object_link'><a href="../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span><span class='rparen'>)</span> <span class='op'>=~</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='semicolon'>;</span> <span class='kw'>end</span>
       <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_rstrip'>rstrip</span>
-      <span class='kw'>until</span> <span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get'>get</span><span class='rparen'>)</span> <span class='op'>=~</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span>
+      <span class='kw'>until</span> <span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get'><span class='object_link'><a href="../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span><span class='rparen'>)</span> <span class='op'>=~</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span>
         <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_rstrip'>rstrip</span>
       <span class='kw'>end</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_include_end'>include_end</span>
@@ -968,15 +946,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Evaluates against Effects::effect namespace</p>
-</div>
-  </div>
-
-
-<p>Validates if a given value exists in an effects lookup table</p>
+<p>Normalizes the lookup for effects based on the provided value.</p>
 
 
   </div>
@@ -987,8 +957,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'>normalize_lookup</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Spells</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'>normalize_lookup</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Buffs</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1001</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'>normalize_lookup</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>some_effect</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>some_value</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1005,7 +974,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The effect category to check</p>
+<p>The effect type to look up.</p>
 </div>
       
     </li>
@@ -1021,7 +990,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The value to look up</p>
+<p>The value to normalize and check.</p>
 </div>
       
     </li>
@@ -1040,7 +1009,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if value exists in lookup, false otherwise</p>
+<p>True if the normalized value exists, false otherwise.</p>
 </div>
       
     </li>
@@ -1058,7 +1027,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If val is not a String, Integer or Symbol</p>
+<p>If an invalid lookup case is provided.</p>
 </div>
       
     </li>
@@ -1071,23 +1040,23 @@
       <pre class="lines">
 
 
+40
+41
+42
+43
+44
+45
+46
 47
 48
 49
 50
 51
 52
-53
-54
-55
-56
-57
-58
-59
-60</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'>normalize_lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_effect'>effect</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_caller_type'>caller_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Effects::</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_effect'>effect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1120,7 +1089,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Normalizes a name string by converting spaces/hyphens to underscores and removing special characters</p>
+<p>Normalizes a name by converting it to a standard format.</p>
 
 
   </div>
@@ -1131,8 +1100,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'>normalize_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Predator&#39;s Eye</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;predators_eye&quot;
-</span><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'>normalize_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vault-kick</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;vault_kick&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'>normalize_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vault-kick</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;vault_kick&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1149,7 +1118,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name to normalize</p>
+<p>The name to normalize.</p>
 </div>
       
     </li>
@@ -1168,7 +1137,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Normalized name in lowercase with underscores</p>
+<p>The normalized name.</p>
 </div>
       
     </li>
@@ -1181,21 +1150,21 @@
       <pre class="lines">
 
 
+63
+64
+65
+66
+67
+68
+69
 70
 71
 72
 73
-74
-75
-76
-77
-78
-79
-80
-81</pre>
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'>normalize_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='comment'># there are five cases to normalize
@@ -1226,7 +1195,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Executes a command silently without XML processing</p>
+<p>Issues a quiet command and captures the output.</p>
 
 
   </div>
@@ -1237,7 +1206,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_quiet_command'>quiet_command</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>health</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_quiet_command'>quiet_command</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You see</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1254,7 +1223,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to execute</p>
+<p>The command to execute.</p>
 </div>
       
     </li>
@@ -1270,7 +1239,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating start of capture</p>
+<p>The pattern indicating the start of the output to capture.</p>
 </div>
       
     </li>
@@ -1286,7 +1255,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating end of capture</p>
+<p>The pattern indicating the end of the output to capture.</p>
 </div>
       
     </li>
@@ -1304,7 +1273,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to include matching end line</p>
+<p>Whether to include the end line in the result (default: true).</p>
 </div>
       
     </li>
@@ -1322,7 +1291,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Seconds to wait before timeout</p>
+<p>The maximum time to wait for the command to complete (default: 5).</p>
 </div>
       
     </li>
@@ -1340,7 +1309,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to suppress output</p>
+<p>Whether to suppress output (default: true).</p>
 </div>
       
     </li>
@@ -1359,7 +1328,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Captured lines of output</p>
+<p>The captured output lines.</p>
 </div>
       
     </li>
@@ -1372,12 +1341,12 @@
       <pre class="lines">
 
 
+199
 200
-201
-202</pre>
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_quiet_command'>quiet_command</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_include_end'>include_end</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_silent'>silent</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_issue_command'>issue_command</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span><span class='comma'>,</span> <span class='label'>include_end:</span> <span class='id identifier rubyid_include_end'>include_end</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1399,7 +1368,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Executes a command silently with XML processing</p>
+<p>Issues a quiet command and captures the output in XML format.</p>
 
 
   </div>
@@ -1410,7 +1379,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_quiet_command_xml'>quiet_command_xml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>inventory</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_quiet_command_xml'>quiet_command_xml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You see</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1427,7 +1396,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to execute</p>
+<p>The command to execute.</p>
 </div>
       
     </li>
@@ -1443,7 +1412,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating start of capture</p>
+<p>The pattern indicating the start of the output to capture.</p>
 </div>
       
     </li>
@@ -1461,7 +1430,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Pattern indicating end of capture</p>
+<p>The pattern indicating the end of the output to capture (default: /&lt;prompt/).</p>
 </div>
       
     </li>
@@ -1479,7 +1448,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to include matching end line</p>
+<p>Whether to include the end line in the result (default: true).</p>
 </div>
       
     </li>
@@ -1497,7 +1466,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Seconds to wait before timeout</p>
+<p>The maximum time to wait for the command to complete (default: 5).</p>
 </div>
       
     </li>
@@ -1515,7 +1484,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to suppress output</p>
+<p>Whether to suppress output (default: true).</p>
 </div>
       
     </li>
@@ -1534,7 +1503,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Captured lines of output</p>
+<p>The captured output lines.</p>
 </div>
       
     </li>
@@ -1547,12 +1516,12 @@
       <pre class="lines">
 
 
-185
-186
-187</pre>
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_quiet_command_xml'>quiet_command_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='id identifier rubyid_include_end'>include_end</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_silent'>silent</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_issue_command'>issue_command</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span><span class='comma'>,</span> <span class='label'>include_end:</span> <span class='id identifier rubyid_include_end'>include_end</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1574,15 +1543,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Temporarily silences output while checking</p>
-</div>
-  </div>
-
-
-<p>Gets the current silver count from character info</p>
+<p>Counts the amount of silver and returns it as an integer.</p>
 
 
   </div>
@@ -1593,7 +1554,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_silver'>silver</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver_count'>silver_count</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_silver_amount'>silver_amount</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silver_count'>silver_count</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1612,7 +1573,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Seconds to wait before timeout</p>
+<p>The maximum time to wait for the count (default: 3).</p>
 </div>
       
     </li>
@@ -1631,7 +1592,25 @@
       
         &mdash;
         <div class='inline'>
-<p>Amount of silver</p>
+<p>The amount of silver counted.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>RuntimeError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If the counting process fails.</p>
 </div>
       
     </li>
@@ -1644,6 +1623,7 @@
       <pre class="lines">
 
 
+211
 212
 213
 214
@@ -1685,14 +1665,13 @@
 250
 251
 252
-253
-254</pre>
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'lib/util/util.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silver_count'>silver_count</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>3</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_silence_me'>silence_me</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_undo_silence'>undo_silence</span> <span class='op'>=</span> <span class='id identifier rubyid_silence_me'>silence_me</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_silence_me'><span class='object_link'><a href="../top-level-namespace.html#silence_me-instance_method" title="#silence_me (method)">silence_me</a></span></span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_undo_silence'>undo_silence</span> <span class='op'>=</span> <span class='id identifier rubyid_silence_me'><span class='object_link'><a href="../top-level-namespace.html#silence_me-instance_method" title="#silence_me (method)">silence_me</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_anon_hook'>anon_hook</span>
   <span class='id identifier rubyid_filter'>filter</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1719,18 +1698,18 @@
       <span class='kw'>end</span>
     <span class='rbrace'>}</span><span class='rparen'>)</span>
     <span class='comment'># script thread
-</span>    <span class='id identifier rubyid_fput'>fput</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span>
+</span>    <span class='id identifier rubyid_fput'><span class='object_link'><a href="../top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_loop'>loop</span> <span class='lbrace'>{</span>
       <span class='comment'># non-blocking check, this allows us to
 </span>      <span class='comment'># check the time even when the buffer is empty
-</span>      <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get?'>get?</span>
+</span>      <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get?'><span class='object_link'><a href="../top-level-namespace.html#get%3F-instance_method" title="#get? (method)">get?</a></span></span>
       <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='id identifier rubyid_end_pattern'>end_pattern</span>
       <span class='kw'>break</span> <span class='kw'>if</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_ttl'>ttl</span>
       <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.01</span><span class='rparen'>)</span> <span class='comment'># prevent a tight-loop
 </span>    <span class='rbrace'>}</span>
   <span class='kw'>ensure</span>
     <span class='const'>DownstreamHook</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_silence_me'>silence_me</span> <span class='kw'>if</span> <span class='id identifier rubyid_undo_silence'>undo_silence</span>
+    <span class='id identifier rubyid_silence_me'><span class='object_link'><a href="../top-level-namespace.html#silence_me-instance_method" title="#silence_me (method)">silence_me</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_undo_silence'>undo_silence</span>
   <span class='kw'>end</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
 <span class='kw'>end</span></pre>
@@ -1744,7 +1723,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:58 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

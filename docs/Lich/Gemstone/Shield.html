@@ -93,7 +93,51 @@
     <dl class="constants">
       
         <dt id="shield_techniques-classvariable" class="">@@shield_techniques =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This data is unmodified from version 5.6.2.</p>
+</div>
+  </div>
+
+
+<p>Retrieves the shield techniques and their properties.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash where the keys are the names of the shield techniques and the values are hashes containing:</p>
+<ul><li>
+<p>:cost [Integer] The cost of the technique.</p>
+</li><li>
+<p>:regex [Regexp] The regular expression used to match the technique’s activation message.</p>
+</li><li>
+<p>:usage [String, nil] The command used to activate the technique, or nil if it does not have a command.</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>adamantine_bulwark</span><span class='tstring_end'>&quot;</span></span>    <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
@@ -303,7 +347,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the rank/level of a specified shield technique.</p>
+<p>Retrieves the shield technique based on its name.</p>
 </div></span>
   
 </li>
@@ -327,7 +371,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if a shield technique can be afforded based on stamina cost.</p>
+<p>Checks if a shield technique is affordable for the user.</p>
 </div></span>
   
 </li>
@@ -375,7 +419,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if a shield technique is known at or above a minimum rank.</p>
+<p>Checks if a shield technique is known by the user.</p>
 </div></span>
   
 </li>
@@ -399,7 +443,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the regex pattern that matches successful use of a technique.</p>
+<p>Retrieves the regular expression associated with a shield technique.</p>
 </div></span>
   
 </li>
@@ -423,7 +467,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns an array of shield technique definitions with their names and costs.</p>
+<p>Retrieves a list of shield techniques with their long names, short names, and costs.</p>
 </div></span>
   
 </li>
@@ -447,7 +491,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Attempts to use a shield technique.</p>
+<p>Uses a shield technique against a target.</p>
 </div></span>
   
 </li>
@@ -474,13 +518,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the rank/level of a specified shield technique</p>
+<p>Retrieves the shield technique based on its name.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield_bash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -494,7 +546,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>The name of the shield technique.</p>
 </div>
       
     </li>
@@ -513,7 +565,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The rank/level of the technique</p>
+<p>The cost of the shield technique.</p>
 </div>
       
     </li>
@@ -526,12 +578,12 @@
       <pre class="lines">
 
 
-229
-230
-231</pre>
+243
+244
+245</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 243</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PSMS.html" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'><span class='object_link'><a href="PSMS.html#assess-class_method" title="Lich::Gemstone::PSMS.assess (method)">assess</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -553,13 +605,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if a shield technique can be afforded based on stamina cost</p>
+<p>Checks if a shield technique is affordable for the user.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield_bash</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -573,7 +633,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>The name of the shield technique.</p>
 </div>
       
     </li>
@@ -592,7 +652,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if technique’s stamina cost can be paid</p>
+<p>True if the technique can be afforded, false otherwise.</p>
 </div>
       
     </li>
@@ -605,12 +665,12 @@
       <pre class="lines">
 
 
-247
-248
-249</pre>
+269
+270
+271</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 247</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 269</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PSMS.html" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'><span class='object_link'><a href="PSMS.html#assess-class_method" title="Lich::Gemstone::PSMS.assess (method)">assess</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -632,13 +692,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if a shield technique is available for use</p>
+<p>Checks if a shield technique is available for use.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield_bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>min_rank:</span> <span class='int'>1</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -652,7 +720,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>The name of the shield technique.</p>
 </div>
       
     </li>
@@ -670,7 +738,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Minimum rank required (defaults to 1)</p>
+<p>The minimum rank required to consider the technique available (default is 1).</p>
 </div>
       
     </li>
@@ -689,7 +757,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if technique is known, affordable, and not on cooldown</p>
+<p>True if the technique is known, affordable, and not on cooldown or debuffed, false otherwise.</p>
 </div>
       
     </li>
@@ -702,12 +770,12 @@
       <pre class="lines">
 
 
-256
-257
-258</pre>
+282
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 256</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 282</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>min_rank:</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'><span class='object_link'><a href="#known%3F-class_method" title="Lich::Gemstone::Shield.known? (method)">known?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>min_rank:</span> <span class='id identifier rubyid_min_rank'>min_rank</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'><span class='object_link'><a href="#affordable%3F-class_method" title="Lich::Gemstone::Shield.affordable? (method)">affordable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'><span class='object_link'><a href="../Util.html#normalize_lookup-class_method" title="Lich::Util.normalize_lookup (method)">normalize_lookup</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cooldowns</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'><span class='object_link'><a href="../Util.html#normalize_lookup-class_method" title="Lich::Util.normalize_lookup (method)">normalize_lookup</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Debuffs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Overexerted</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -729,13 +797,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if a shield technique is known at or above a minimum rank</p>
+<p>Checks if a shield technique is known by the user.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield_bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>min_rank:</span> <span class='int'>2</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -749,7 +825,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>The name of the shield technique.</p>
 </div>
       
     </li>
@@ -767,7 +843,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Minimum rank required (defaults to 1)</p>
+<p>The minimum rank required to consider the technique known (default is 1).</p>
 </div>
       
     </li>
@@ -786,7 +862,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if technique is known at specified rank</p>
+<p>True if the technique is known at or above the minimum rank, false otherwise.</p>
 </div>
       
     </li>
@@ -799,13 +875,13 @@
       <pre class="lines">
 
 
-238
-239
-240
-241</pre>
+256
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 256</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>min_rank:</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_min_rank'>min_rank</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>unless</span> <span class='id identifier rubyid_min_rank'>min_rank</span> <span class='op'>&gt;=</span> <span class='int'>1</span> <span class='comment'># in case a 0 or below is passed
@@ -828,13 +904,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the regex pattern that matches successful use of a technique</p>
+<p>Retrieves the regular expression associated with a shield technique.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fire Shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -848,7 +932,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>the name of the shield technique</p>
 </div>
       
     </li>
@@ -867,7 +951,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Regular expression pattern matching successful technique use</p>
+<p>the regular expression for the specified shield technique</p>
 </div>
       
     </li>
@@ -885,7 +969,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If technique name is not found</p>
+<p>if the shield technique is not found in the shield techniques</p>
 </div>
       
     </li>
@@ -898,12 +982,12 @@
       <pre class="lines">
 
 
-310
-311
-312</pre>
+342
+343
+344</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 310</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 342</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='cvar'>@@shield_techniques</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PSMS.html" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name_normal'><span class='object_link'><a href="PSMS.html#name_normal-class_method" title="Lich::Gemstone::PSMS.name_normal (method)">name_normal</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:regex</span><span class='rbracket'>]</span>
@@ -916,7 +1000,7 @@
       <div class="method_details ">
   <h3 class="signature " id="shield_lookups-class_method">
   
-    .<strong>shield_lookups</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt> 
+    .<strong>shield_lookups</strong>  &#x21d2; <tt>Array&lt;Hash&gt;</tt> 
   
 
   
@@ -925,7 +1009,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns an array of shield technique definitions with their names and costs</p>
+<p>Retrieves a list of shield techniques with their long names, short names, and costs.</p>
 
 
   </div>
@@ -936,8 +1020,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shield_lookups'>shield_lookups</span>
-<span class='comment'># =&gt; [{long_name: &#39;adamantine_bulwark&#39;, short_name: &#39;bulwark&#39;, cost: 0}, ...]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shield_lookups'>shield_lookups</span></code></pre>
     
   </div>
 
@@ -947,13 +1030,20 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of hashes containing :long_name, :short_name, and :cost for each technique</p>
+<p>An array of hashes, each containing:</p>
+<ul><li>
+<p>:long_name [String] The full name of the shield technique.</p>
+</li><li>
+<p>:short_name [String] The abbreviated name of the shield technique.</p>
+</li><li>
+<p>:cost [Integer] The cost associated with the shield technique.</p>
+</li></ul>
 </div>
       
     </li>
@@ -966,8 +1056,6 @@
       <pre class="lines">
 
 
-14
-15
 16
 17
 18
@@ -1002,10 +1090,12 @@
 47
 48
 49
-50</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_shield_lookups'>shield_lookups</span>
   <span class='comment'># rubocop:disable Layout/ExtraSpacing
@@ -1061,13 +1151,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Attempts to use a shield technique</p>
+<p>Uses a shield technique against a target.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield_bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>goblin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1081,7 +1179,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the shield technique</p>
+<p>The name of the shield technique to use.</p>
 </div>
       
     </li>
@@ -1099,7 +1197,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The target of the technique (optional)</p>
+<p>The target of the technique (optional).</p>
 </div>
       
     </li>
@@ -1109,7 +1207,7 @@
         <span class='name'>results_of_interest</span>
       
       
-        <span class='type'>(<tt>Regexp</tt>)</span>
+        <span class='type'>(<tt>Regexp</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1117,7 +1215,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Additional regex pattern to match in results (optional)</p>
+<p>Additional regex to match results of interest (optional).</p>
 </div>
       
     </li>
@@ -1136,7 +1234,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The result of the technique attempt or nil if unavailable</p>
+<p>The result of using the technique, or nil if the technique is not available.</p>
 </div>
       
     </li>
@@ -1149,36 +1247,6 @@
       <pre class="lines">
 
 
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
 296
 297
 298
@@ -1186,10 +1254,40 @@
 300
 301
 302
-303</pre>
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 266</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/shield.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>results_of_interest:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Shield (module)">Shield</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'><span class='object_link'><a href="#available%3F-class_method" title="Lich::Gemstone::Shield.available? (method)">available?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1220,12 +1318,12 @@
   <span class='kw'>elsif</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_usage_cmd'>usage_cmd</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_waitrt?'>waitrt?</span>
-  <span class='id identifier rubyid_waitcastrt?'>waitcastrt?</span>
-  <span class='id identifier rubyid_usage_result'>usage_result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'>dothistimeout</span> <span class='id identifier rubyid_usage_cmd'>usage_cmd</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_results_regex'>results_regex</span>
+  <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
+  <span class='id identifier rubyid_waitcastrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitcastrt%3F-instance_method" title="#waitcastrt? (method)">waitcastrt?</a></span></span>
+  <span class='id identifier rubyid_usage_result'>usage_result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="../../top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='id identifier rubyid_usage_cmd'>usage_cmd</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_results_regex'>results_regex</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_usage_result'>usage_result</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You don&#39;t seem to be able to move to do that.</span><span class='tstring_end'>&quot;</span></span>
-    <span class='int'>100</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_clear'>clear</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You regain control of your senses!$</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span><span class='semicolon'>;</span> <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.1</span> <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_usage_result'>usage_result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'>dothistimeout</span> <span class='id identifier rubyid_usage_cmd'>usage_cmd</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_results_regex'>results_regex</span>
+    <span class='int'>100</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You regain control of your senses!$</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span><span class='semicolon'>;</span> <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.1</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_usage_result'>usage_result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="../../top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='id identifier rubyid_usage_cmd'>usage_cmd</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_results_regex'>results_regex</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_usage_result'>usage_result</span>
 <span class='kw'>end</span></pre>
@@ -1239,7 +1337,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:38 2025 by
+  Generated on Thu May 15 06:53:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

@@ -96,39 +96,13 @@
           <div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>These are used to detect when PSMS abilities fail to activate</p>
-</div>
-  </div>
-
-
-<p>Common failure messages that can occur when using any PSMS ability</p>
+<p>Common failure messages potentially used across all PSMs.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A union of regular expressions matching various failure messages</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -163,7 +137,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#assess-class_method" title="assess (class method)">.<strong>assess</strong>(name, type, costcheck = false)  &#x21d2; Boolean, Integer </a>
+      <a href="#assess-class_method" title="assess (class method)">.<strong>assess</strong>(name, type, costcheck = false)  &#x21d2; Boolean, Object </a>
     
 
     
@@ -178,7 +152,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Assesses if a PSMS ability can be used or checks its training level.</p>
+<p>Assesses the validity and cost of a specified name and type.</p>
 </div></span>
   
 </li>
@@ -202,7 +176,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds a PSMS ability by name within a specific category.</p>
+<p>Finds a name of a specified type in the PSMS.</p>
 </div></span>
   
 </li>
@@ -226,7 +200,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Normalizes a skill name using the Lich utility function.</p>
+<p>Normalizes the given name using the Lich::Util module.</p>
 </div></span>
   
 </li>
@@ -244,7 +218,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="assess-class_method">
   
-    .<strong>assess</strong>(name, type, costcheck = false)  &#x21d2; <tt>Boolean</tt>, <tt>Integer</tt> 
+    .<strong>assess</strong>(name, type, costcheck = false)  &#x21d2; <tt>Boolean</tt>, <tt>Object</tt> 
   
 
   
@@ -253,15 +227,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Requires valid XMLData.stamina for cost checks</p>
-</div>
-  </div>
-
-
-<p>Assesses if a PSMS ability can be used or checks its training level</p>
+<p>Assesses the validity and cost of a specified name and type.</p>
 
 
   </div>
@@ -272,11 +238,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='comment'># Check if can use ability
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='comment'>#=&gt; true
-</span>
-<span class='comment'># Check training level
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 34</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_valid'>valid</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some Name</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Armor</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -293,7 +255,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the ability to assess</p>
+<p>the name to assess</p>
 </div>
       
     </li>
@@ -309,7 +271,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The category type (Armor, CMan, Feat, Shield, Weapon, Warcry, Ascension)</p>
+<p>the type of the name (e.g., Armor, CMan, etc.)</p>
 </div>
       
     </li>
@@ -327,7 +289,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If true, checks if player has enough stamina to use ability</p>
+<p>whether to check the cost (default: false)</p>
 </div>
       
     </li>
@@ -340,13 +302,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Boolean</tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Boolean</tt>, <tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Boolean for cost checks, Integer for training level checks</p>
+<p>true if cost is valid, otherwise returns Infomon data</p>
 </div>
       
     </li>
@@ -364,7 +326,7 @@
       
         &mdash;
         <div class='inline'>
-<p>When the specified ability name or type is invalid</p>
+<p>if the referenced skill is invalid</p>
 </div>
       
     </li>
@@ -377,32 +339,32 @@
       <pre class="lines">
 
 
+50
+51
+52
+53
+54
+55
+56
+57
+58
 59
 60
 61
 62
 63
 64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_costcheck'>costcheck</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name_normal'>name_normal</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_seek_psm'>seek_psm</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_name'>find_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='comment'># this logs then raises an exception to stop (kill) the offending script
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_seek_psm'>seek_psm</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: PSMS request: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: PSMS request: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>StandardError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Aborting script - The referenced </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> skill </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is invalid.\r\nCheck your PSM category (Armor, CMan, Feat, Shield, Warcry, Weapon) and your spelling of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='comment'># otherwise process request
@@ -421,7 +383,7 @@
       <div class="method_details ">
   <h3 class="signature " id="find_name-class_method">
   
-    .<strong>find_name</strong>(name, type)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
+    .<strong>find_name</strong>(name, type)  &#x21d2; <tt>Hash</tt><sup>?</sup> 
   
 
   
@@ -430,7 +392,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds a PSMS ability by name within a specific category</p>
+<p>Finds a name of a specified type in the PSMS.</p>
 
 
   </div>
@@ -441,8 +403,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_name'>find_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield bash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
-<span class='comment'>#=&gt; {long_name: &quot;shield bash&quot;, short_name: &quot;bash&quot;, cost: 10}</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_found_name'>found_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_name'>find_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some Name</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Armor</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -459,7 +420,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The normalized name of the ability to find</p>
+<p>the name to find</p>
 </div>
       
     </li>
@@ -475,7 +436,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The category type (Armor, CMan, Feat, Shield, Weapon, Warcry, Ascension)</p>
+<p>the type of the name (e.g., Armor, CMan, etc.)</p>
 </div>
       
     </li>
@@ -488,13 +449,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Hash containing ability details if found, nil if not found</p>
+<p>the found name hash or nil if not found</p>
 </div>
       
     </li>
@@ -507,13 +468,13 @@
       <pre class="lines">
 
 
-39
-40
-41
-42</pre>
+34
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_name'>find_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lich::Gemstone::</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>_lookups</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
@@ -536,15 +497,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Uses Lich::Util.normalize_name internally</p>
-</div>
-  </div>
-
-
-<p>Normalizes a skill name using the Lich utility function</p>
+<p>Normalizes the given name using the Lich::Util module.</p>
 
 
   </div>
@@ -555,7 +508,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name_normal'>name_normal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shield bash</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;shield bash&quot;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_normalized_name'>normalized_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name_normal'>name_normal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some Name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -572,7 +525,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The raw skill name to normalize</p>
+<p>the name to normalize</p>
 </div>
       
     </li>
@@ -591,7 +544,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The normalized skill name</p>
+<p>the normalized name</p>
 </div>
       
     </li>
@@ -604,12 +557,12 @@
       <pre class="lines">
 
 
-27
-28
-29</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name_normal'>name_normal</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -624,7 +577,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

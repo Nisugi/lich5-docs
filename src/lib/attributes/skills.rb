@@ -1,33 +1,17 @@
 require "ostruct"
 
-# Provides skill-related functionality for the Lich game system
-# @author Lich5 Documentation Generator
 module Lich
-
-  # Contains Gemstone-specific game mechanics and systems 
   module Gemstone
-
-    # Handles character skills and skill bonus calculations for Gemstone
-    # This module provides methods to access skill ranks and calculate skill bonuses
     module Skills
-
-      # Converts skill ranks to bonus points using Gemstone's progression system
+      # Converts ranks into a bonus value based on predefined thresholds.
       #
-      # @param ranks [Integer, String, Symbol] Either the number of ranks or the skill name
-      # @return [Integer] The calculated bonus points for the given ranks
-      # @raise [RuntimeError] When an invalid parameter type is provided
-      # @example Calculate bonus from rank number
-      #   Skills.to_bonus(25) #=> 85
-      # @example Get bonus for a skill by name
-      #   Skills.to_bonus(:combat_maneuvers)
-      #   Skills.to_bonus('combat_maneuvers')
-      #
-      # @note Bonus calculation follows Gemstone's tier system:
-      #   - Ranks 1-10: 5 points per rank
-      #   - Ranks 11-20: 4 points per rank
-      #   - Ranks 21-30: 3 points per rank
-      #   - Ranks 31-40: 2 points per rank
-      #   - Ranks 41+: 1 point per rank
+      # @param ranks [Integer, Symbol, String] The ranks to convert into a bonus.
+      #   - If Integer, it calculates the bonus based on the rank value.
+      #   - If Symbol or String, it retrieves the bonus from the Infomon database.
+      # @return [Integer] The calculated bonus for the given ranks.
+      # @raise [StandardError] If the input is neither an Integer, Symbol, nor String.
+      # @example
+      #   Skills.to_bonus(Skills.combatmaneuvers) # => returns the bonus for combat maneuvers
       def self.to_bonus(ranks)
         case ranks
         when Integer
@@ -58,23 +42,18 @@ module Lich
         end
       end
 
-      # List of all available skills in the game
-      # @return [Array<Symbol>] Array of skill names as symbols
       @@skills = %i(two_weapon_combat armor_use shield_use combat_maneuvers edged_weapons blunt_weapons two_handed_weapons ranged_weapons thrown_weapons polearm_weapons brawling ambush multi_opponent_combat physical_fitness dodging arcane_symbols magic_item_use spell_aiming harness_power elemental_mana_control mental_mana_control spirit_mana_control elemental_lore_air elemental_lore_earth elemental_lore_fire elemental_lore_water spiritual_lore_blessings spiritual_lore_religion spiritual_lore_summoning sorcerous_lore_demonology sorcerous_lore_necromancy mental_lore_divination mental_lore_manipulation mental_lore_telepathy mental_lore_transference mental_lore_transformation survival disarming_traps picking_locks stalking_and_hiding perception climbing swimming first_aid trading pickpocketing)
-
-      # Dynamically creates methods for each standard skill
-      # @note Each method returns the current rank for that skill
+      # todo: lich up through 5.6.2 returns rank as integer - should we extend to include bonus?
       @@skills.each do |skill|
         self.define_singleton_method(skill) do
           Infomon.get("skill.%s" % skill).to_i
         end
       end
 
-      # Provides backward compatibility for shortened skill names
-      # Maps legacy shorthand names to full skill names
-      # @example
-      #   Skills.twoweaponcombat #=> Same as Skills.two_weapon_combat
-      #   Skills.emc #=> Same as Skills.elemental_mana_control
+      # Defines shorthand methods for skills to maintain backward compatibility.
+      #
+      # These methods will call the corresponding long-hand skill methods.
+      # @note This is for backward compatibility; if the method is extended, it should return only rank.
       %i(twoweaponcombat armoruse shielduse combatmaneuvers edgedweapons bluntweapons twohandedweapons rangedweapons thrownweapons polearmweapons multiopponentcombat physicalfitness arcanesymbols magicitemuse spellaiming harnesspower disarmingtraps pickinglocks stalkingandhiding firstaid emc mmc smc elair elearth elfire elwater slblessings slreligion slsummoning sldemonology slnecromancy mldivination mlmanipulation mltelepathy mltransference mltransformation).each do |shorthand|
         long_hand = @@skills.find { |method|
           method.to_s.gsub(/_/, '')
@@ -92,11 +71,11 @@ module Lich
         end
       end
 
-      # Returns an array of all skill ranks in a specific order
-      # @return [Array<Integer>] Array containing all skill ranks in standard order
-      # @note Used for serialization and data storage purposes
+      # Serializes the current skills into an array.
+      #
+      # @return [Array<Integer>] An array of the current skill ranks.
       # @example
-      #   Skills.serialize #=> [10, 15, 20, ...] # Array of all skill ranks
+      #   Skills.serialize # => returns an array of skill ranks
       def self.serialize
         [self.two_weapon_combat, self.armor_use, self.shield_use, self.combat_maneuvers,
          self.edged_weapons, self.blunt_weapons, self.two_handed_weapons, self.ranged_weapons,

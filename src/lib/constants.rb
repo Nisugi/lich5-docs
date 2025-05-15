@@ -1,91 +1,31 @@
-# Core directory and path constants for the Lich5 system
-#
-# This file defines the fundamental directory structure and path constants
-# used throughout the Lich5 application, as well as mapping constants for
-# direction handling and status icons.
-#
-# @author Lich5 Documentation Generator
-
-# @!attribute [r] LICH_DIR
-# The root directory of the Lich5 installation
-# @return [String] Absolute path to Lich5 root directory
+# Directory constants for the application
 LICH_DIR    ||= File.dirname(File.expand_path($PROGRAM_NAME))
-
-# @!attribute [r] TEMP_DIR
-# Directory for temporary files
-# @return [String] Path to temp directory, frozen
 TEMP_DIR    ||= File.join(LICH_DIR, "temp").freeze
-
-# @!attribute [r] DATA_DIR
-# Directory for persistent data storage
-# @return [String] Path to data directory, frozen
 DATA_DIR    ||= File.join(LICH_DIR, "data").freeze
-
-# @!attribute [r] SCRIPT_DIR
-# Directory containing user scripts
-# @return [String] Path to scripts directory, frozen
 SCRIPT_DIR  ||= File.join(LICH_DIR, "scripts").freeze
-
-# @!attribute [r] LIB_DIR
-# Directory containing library files
-# @return [String] Path to lib directory, frozen
 LIB_DIR     ||= File.join(LICH_DIR, "lib").freeze
-
-# @!attribute [r] MAP_DIR
-# Directory containing map files
-# @return [String] Path to maps directory, frozen
 MAP_DIR     ||= File.join(LICH_DIR, "maps").freeze
-
-# @!attribute [r] LOG_DIR
-# Directory for log files
-# @return [String] Path to logs directory, frozen
 LOG_DIR     ||= File.join(LICH_DIR, "logs").freeze
-
-# @!attribute [r] BACKUP_DIR
-# Directory for backup files
-# @return [String] Path to backup directory, frozen
 BACKUP_DIR  ||= File.join(LICH_DIR, "backup").freeze
 
-# @!attribute [r] TESTING
-# Flag indicating if system is in testing mode
-# @return [Boolean] false by default
+# Indicates whether the application is in testing mode
 TESTING = false
 
-# add this so that require statements can take the form 'lib/file'
+# Adds the LICH_DIR to the load path for require statements
 $LOAD_PATH << "#{LICH_DIR}"
 
-# @deprecated Use LICH_DIR instead
-# @!attribute [r] $lich_dir
-# Legacy directory constant with trailing slash
-# @return [String] Path with trailing slash
+# Deprecated global variables for directory paths
+# @deprecated Use the constants defined above instead
+# @note These variables will be removed in future versions
 $lich_dir = "#{LICH_DIR}/"
-
-# @deprecated Use TEMP_DIR instead
-# @!attribute [r] $temp_dir
-# Legacy temp directory constant with trailing slash
-# @return [String] Path with trailing slash
 $temp_dir = "#{TEMP_DIR}/"
-
-# @deprecated Use SCRIPT_DIR instead
-# @!attribute [r] $script_dir
-# Legacy script directory constant with trailing slash
-# @return [String] Path with trailing slash
 $script_dir = "#{SCRIPT_DIR}/"
-
-# @deprecated Use DATA_DIR instead
-# @!attribute [r] $data_dir
-# Legacy data directory constant with trailing slash
-# @return [String] Path with trailing slash
 $data_dir = "#{DATA_DIR}/"
 
-# transcoding migrated 2024-06-13
-
-# @!attribute [r] DIRMAP
-# Maps abbreviated directions to single-character codes
-# @return [Hash<String, String>] Direction mapping hash
+# Mapping of direction abbreviations to their corresponding codes
+# @return [Hash] A hash mapping direction strings to their codes
 # @example
-#   DIRMAP['ne'] #=> 'B'
-#   DIRMAP['down'] #=> 'J'
+#   DIRMAP['out'] # => 'K'
 DIRMAP = {
   'out'  => 'K',
   'ne'   => 'B',
@@ -100,12 +40,10 @@ DIRMAP = {
   'w'    => 'G',
 }
 
-# @!attribute [r] SHORTDIR
-# Maps full direction names to abbreviated forms
-# @return [Hash<String, String>] Direction abbreviation mapping
+# Mapping of full direction names to their abbreviations
+# @return [Hash] A hash mapping full direction names to their short forms
 # @example
-#   SHORTDIR['northeast'] #=> 'ne'
-#   SHORTDIR['south'] #=> 's'
+#   SHORTDIR['northeast'] # => 'ne'
 SHORTDIR = {
   'out'       => 'out',
   'northeast' => 'ne',
@@ -120,12 +58,10 @@ SHORTDIR = {
   'west'      => 'w',
 }
 
-# @!attribute [r] LONGDIR
-# Maps abbreviated directions to full direction names
-# @return [Hash<String, String>] Full direction name mapping
+# Mapping of direction abbreviations to their full names
+# @return [Hash] A hash mapping direction abbreviations to their full names
 # @example
-#   LONGDIR['n'] #=> 'north'
-#   LONGDIR['se'] #=> 'southeast'
+#   LONGDIR['n'] # => 'north'
 LONGDIR = {
   'out'  => 'out',
   'ne'   => 'northeast',
@@ -140,12 +76,10 @@ LONGDIR = {
   'w'    => 'west',
 }
 
-# @!attribute [r] MINDMAP
-# Maps mind states to single-character codes
-# @return [Hash<String, String>] Mind state mapping
+# Mapping of mental state descriptions to their corresponding codes
+# @return [Hash] A hash mapping mental state descriptions to their codes
 # @example
-#   MINDMAP['clear'] #=> 'C'
-#   MINDMAP['must rest'] #=> 'G'
+#   MINDMAP['clear as a bell'] # => 'A'
 MINDMAP = {
   'clear as a bell' => 'A',
   'fresh and clear' => 'B',
@@ -157,12 +91,10 @@ MINDMAP = {
   'saturated'       => 'H',
 }
 
-# @!attribute [r] ICONMAP
-# Maps status icon names to their corresponding codes
-# @return [Hash<String, String>] Status icon mapping
+# Mapping of icon names to their corresponding codes
+# @return [Hash] A hash mapping icon names to their codes
 # @example
-#   ICONMAP['IconSTANDING'] #=> 'T'
-#   ICONMAP['IconHIDDEN'] #=> 'N'
+#   ICONMAP['IconKNEELING'] # => 'GH'
 ICONMAP = {
   'IconKNEELING'  => 'GH',
   'IconPRONE'     => 'G',

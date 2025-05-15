@@ -24,26 +24,19 @@ Entries added here should always be accessible from Lich::Util.feature namespace
 
 =end
 
-# Core utilities module that extends Lich capabilities with helper methods
-# for game interaction and data manipulation.
-#
-# @author Elanthia-Online
-# @version 1.3.1
 module Lich
   module Util
     include Enumerable
 
-    # Validates if a given value exists in an effects lookup table
+    # Normalizes the lookup for effects based on the provided value.
     #
-    # @param effect [String] The effect category to check
-    # @param val [String, Integer, Symbol] The value to look up
-    # @return [Boolean] True if value exists in lookup, false otherwise
-    # @raise [RuntimeError] If val is not a String, Integer or Symbol
+    # @param effect [String] The effect type to look up.
+    # @param val [String, Integer, Symbol] The value to normalize and check.
+    # @return [Boolean] True if the normalized value exists, false otherwise.
+    # @raise [RuntimeError] If an invalid lookup case is provided.
+    #
     # @example
-    #   Lich::Util.normalize_lookup("Spells", "Shield")
-    #   Lich::Util.normalize_lookup("Buffs", 1001)
-    #
-    # @note Evaluates against Effects::{effect} namespace
+    #   Lich::Util.normalize_lookup('some_effect', 'some_value')
     def self.normalize_lookup(effect, val)
       caller_type = "Effects::#{effect}"
       case val
@@ -59,14 +52,14 @@ module Lich
       end
     end
 
-    # Normalizes a name string by converting spaces/hyphens to underscores
-    # and removing special characters
+    # Normalizes a name by converting it to a standard format.
     #
-    # @param name [String, Symbol] The name to normalize
-    # @return [String] Normalized name in lowercase with underscores
+    # @param name [String, Symbol] The name to normalize.
+    # @return [String] The normalized name.
+    #
     # @example
-    #   Lich::Util.normalize_name("Predator's Eye") #=> "predators_eye"
-    #   Lich::Util.normalize_name("vault-kick") #=> "vault_kick"
+    #   Lich::Util.normalize_name("vault-kick")
+    #   # => "vault_kick"
     def self.normalize_name(name)
       # there are five cases to normalize
       # "vault_kick", "vault kick", "vault-kick", :vault_kick, :vaultkick
@@ -80,32 +73,36 @@ module Lich
       normal_name
     end
 
-    # Generates a unique anonymous hook name
+    ## Lifted from LR foreach.lic
+
+    # Generates an anonymous hook name based on the current time and a random number.
     #
-    # @param prefix [String] Optional prefix for the hook name
-    # @return [String] Unique hook identifier
+    # @param prefix [String] An optional prefix for the hook name.
+    # @return [String] The generated anonymous hook name.
+    #
     # @example
-    #   Lich::Util.anon_hook("MyHook") #=> "Util::MyHook-2023-07-14-1234"
+    #   Lich::Util.anon_hook("test")
     def self.anon_hook(prefix = '')
       now = Time.now
       "Util::#{prefix}-#{now}-#{Random.rand(10000)}"
     end
 
-    # Issues a command and captures output between start and end patterns
+    # Issues a command and captures the output between start and end patterns.
     #
-    # @param command [String] The command to execute
-    # @param start_pattern [Regexp] Pattern indicating start of capture
-    # @param end_pattern [Regexp] Pattern indicating end of capture
-    # @param include_end [Boolean] Whether to include matching end line
-    # @param timeout [Integer] Seconds to wait before timeout
-    # @param silent [Boolean] Whether to suppress output
-    # @param usexml [Boolean] Whether to use XML mode
-    # @param quiet [Boolean] Whether to filter captured lines
-    # @param use_fput [Boolean] Whether to use fput vs put
-    # @return [Array<String>] Captured lines of output
-    # @raise [Interrupt] If timeout occurs
+    # @param command [String] The command to execute.
+    # @param start_pattern [Regexp] The pattern indicating the start of the output to capture.
+    # @param end_pattern [Regexp] The pattern indicating the end of the output to capture (default: /<prompt/).
+    # @param include_end [Boolean] Whether to include the end line in the result (default: true).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
+    # @param silent [Boolean, nil] Whether to suppress output (default: nil).
+    # @param usexml [Boolean] Whether to use XML output (default: true).
+    # @param quiet [Boolean] Whether to suppress output during capture (default: false).
+    # @param use_fput [Boolean] Whether to use fput for command execution (default: true).
+    # @return [Array<String>] The captured output lines.
+    # @raise [Timeout::Error] If the command times out.
+    #
     # @example
-    #   Lich::Util.issue_command("look", /^You see/, /^\>/)
+    #   output = Lich::Util.issue_command("look", /You see/, /<prompt/)
     def self.issue_command(command, start_pattern, end_pattern = /<prompt/, include_end: true, timeout: 5, silent: nil, usexml: true, quiet: false, use_fput: true)
       result = []
       name = self.anon_hook
@@ -171,44 +168,46 @@ module Lich
       return result
     end
 
-    # Executes a command silently with XML processing
+    # Issues a quiet command and captures the output in XML format.
     #
-    # @param command [String] The command to execute
-    # @param start_pattern [Regexp] Pattern indicating start of capture
-    # @param end_pattern [Regexp] Pattern indicating end of capture
-    # @param include_end [Boolean] Whether to include matching end line
-    # @param timeout [Integer] Seconds to wait before timeout
-    # @param silent [Boolean] Whether to suppress output
-    # @return [Array<String>] Captured lines of output
+    # @param command [String] The command to execute.
+    # @param start_pattern [Regexp] The pattern indicating the start of the output to capture.
+    # @param end_pattern [Regexp] The pattern indicating the end of the output to capture (default: /<prompt/).
+    # @param include_end [Boolean] Whether to include the end line in the result (default: true).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
+    # @param silent [Boolean] Whether to suppress output (default: true).
+    # @return [Array<String>] The captured output lines.
+    #
     # @example
-    #   Lich::Util.quiet_command_xml("inventory", /^You are/, /^\>/)
+    #   output = Lich::Util.quiet_command_xml("look", /You see/, /<prompt/)
     def self.quiet_command_xml(command, start_pattern, end_pattern = /<prompt/, include_end = true, timeout = 5, silent = true)
       return issue_command(command, start_pattern, end_pattern, include_end: include_end, timeout: timeout, silent: silent, usexml: true, quiet: true)
     end
 
-    # Executes a command silently without XML processing
+    # Issues a quiet command and captures the output.
     #
-    # @param command [String] The command to execute
-    # @param start_pattern [Regexp] Pattern indicating start of capture
-    # @param end_pattern [Regexp] Pattern indicating end of capture
-    # @param include_end [Boolean] Whether to include matching end line
-    # @param timeout [Integer] Seconds to wait before timeout
-    # @param silent [Boolean] Whether to suppress output
-    # @return [Array<String>] Captured lines of output
+    # @param command [String] The command to execute.
+    # @param start_pattern [Regexp] The pattern indicating the start of the output to capture.
+    # @param end_pattern [Regexp] The pattern indicating the end of the output to capture.
+    # @param include_end [Boolean] Whether to include the end line in the result (default: true).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
+    # @param silent [Boolean] Whether to suppress output (default: true).
+    # @return [Array<String>] The captured output lines.
+    #
     # @example
-    #   Lich::Util.quiet_command("health", /^You have/, /^\>/)
+    #   output = Lich::Util.quiet_command("look", /You see/, /<prompt/)
     def self.quiet_command(command, start_pattern, end_pattern, include_end = true, timeout = 5, silent = true)
       return issue_command(command, start_pattern, end_pattern, include_end: include_end, timeout: timeout, silent: silent, usexml: false, quiet: true)
     end
 
-    # Gets the current silver count from character info
+    # Counts the amount of silver and returns it as an integer.
     #
-    # @param timeout [Integer] Seconds to wait before timeout
-    # @return [Integer] Amount of silver
+    # @param timeout [Integer] The maximum time to wait for the count (default: 3).
+    # @return [Integer] The amount of silver counted.
+    # @raise [RuntimeError] If the counting process fails.
+    #
     # @example
-    #   silver = Lich::Util.silver_count
-    #
-    # @note Temporarily silences output while checking
+    #   silver_amount = Lich::Util.silver_count
     def self.silver_count(timeout = 3)
       silence_me unless (undo_silence = silence_me)
       result = ''
@@ -253,18 +252,14 @@ module Lich
       return result.gsub(',', '').to_i
     end
 
-    # Installs required Ruby gems and optionally requires them
+    # Installs the specified gems and requires them if specified.
     #
-    # @param gems_to_install [Hash{String => Boolean}] Gem names and whether to require them
-    # @raise [ArgumentError] If parameter is not a hash of strings to booleans
-    # @raise [StandardError] If gem installation fails
+    # @param gems_to_install [Hash] A hash where keys are gem names and values are booleans indicating whether to require them.
+    # @raise [ArgumentError] If the input is not a hash or if the hash does not contain valid key-value pairs.
+    # @raise [RuntimeError] If any gem installation fails.
+    #
     # @example
-    #   Lich::Util.install_gem_requirements({
-    #     "json" => true,
-    #     "nokogiri" => false
-    #   })
-    #
-    # @note Installs gems for user only, without documentation
+    #   Lich::Util.install_gem_requirements({"some_gem" => true})
     def self.install_gem_requirements(gems_to_install)
       raise ArgumentError, "install_gem_requirements must be passed a Hash" unless gems_to_install.is_a?(Hash)
       require "rubygems"

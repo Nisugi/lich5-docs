@@ -1,24 +1,23 @@
-# A thread-safe shared buffer implementation that allows multiple threads to read from
-# and write to a common buffer with automatic size management.
-#
-# @author Lich5 Documentation Generator
+# Carve out class SharedBuffer
+# 2024-06-13
+# has rubocop Lint/HashCompareByIdentity errors that require research - temporarily disabled
+
 module Lich
   module Common
-    # Implements a thread-safe circular buffer with per-thread read positions
-    # and automatic size management.
+    # A thread-safe buffer that allows multiple threads to read and write data.
     #
-    # @attr_accessor max_size [Integer] Maximum number of lines the buffer can hold
+    # @!attribute [rw] max_size
+    #   @return [Integer] the maximum size of the buffer.
     class SharedBuffer
       attr_accessor :max_size
 
-      # Initializes a new shared buffer.
+      # Initializes a new SharedBuffer instance.
       #
-      # @param args [Hash] Configuration options
-      # @option args [Integer] :max_size (500) Maximum number of lines to store in buffer
-      # @return [SharedBuffer] New buffer instance
-      #
+      # @param args [Hash] options for initialization.
+      # @option args [Integer] :max_size (500) the maximum size of the buffer.
+      # @return [SharedBuffer] the instance of SharedBuffer.
       # @example
-      #   buffer = SharedBuffer.new(max_size: 1000)
+      #   buffer = Lich::Common::SharedBuffer.new(max_size: 1000)
       def initialize(args = {})
         @buffer = Array.new
         @buffer_offset = 0
@@ -28,15 +27,12 @@ module Lich
         # return self # rubocop does not like this - Lint/ReturnInVoidContext
       end
 
-      # Reads the next line from the buffer for the current thread.
-      # Blocks if no data is available.
+      # Retrieves the next line from the buffer, blocking if necessary.
       #
-      # @return [String, nil] The next line in the buffer or nil if empty
-      # @note Blocks until data becomes available
-      #
+      # @return [String, nil] the next line from the buffer or nil if no line is available.
+      # @note This method will block until a line is available.
       # @example
       #   line = buffer.gets
-      #   puts line if line
       def gets
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -56,14 +52,11 @@ module Lich
         return line
       end
 
-      # Non-blocking version of gets that returns nil if no data is available.
+      # Retrieves the next line from the buffer without blocking.
       #
-      # @return [String, nil] The next line in the buffer or nil if no data
-      #
+      # @return [String, nil] the next line from the buffer or nil if no line is available.
       # @example
-      #   if line = buffer.gets?
-      #     process_line(line)
-      #   end
+      #   line = buffer.gets?
       def gets?
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -84,13 +77,11 @@ module Lich
         return line
       end
 
-      # Retrieves and removes all unread lines for the current thread.
+      # Clears the lines that have been read by the current thread.
       #
-      # @return [Array<String>] Array of unread lines
-      #
+      # @return [Array<String>] an array of lines that were cleared.
       # @example
-      #   unread_lines = buffer.clear
-      #   unread_lines.each { |line| process_line(line) }
+      #   cleared_lines = buffer.clear
       def clear
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -112,27 +103,23 @@ module Lich
         return lines
       end
 
-      # Resets the read position to the beginning of the buffer for the current thread.
+      # Resets the current thread's read index to the beginning of the buffer.
       #
-      # @return [SharedBuffer] self for method chaining
-      #
+      # @return [SharedBuffer] the instance of SharedBuffer.
       # @example
-      #   buffer.rewind.gets
-      # rubocop:disable Lint/HashCompareByIdentity
+      #   buffer.rewind
+      #   line = buffer.gets
       def rewind
         @buffer_index[Thread.current.object_id] = @buffer_offset
         return self
       end
 
-      # Adds a new line to the buffer.
-      # Automatically removes oldest entries if buffer exceeds max_size.
+      # Updates the buffer with a new line, ensuring the buffer does not exceed max_size.
       #
-      # @param line [String] Line to add to the buffer
-      # @return [SharedBuffer] self for method chaining
-      #
+      # @param line [String] the line to be added to the buffer.
+      # @return [SharedBuffer] the instance of SharedBuffer.
       # @example
       #   buffer.update("New line of text")
-      # rubocop:enable Lint/HashCompareByIdentity
       def update(line)
         @buffer_mutex.synchronize {
           fline = line.dup
@@ -146,14 +133,11 @@ module Lich
         return self
       end
 
-      # Removes thread entries from the buffer index for threads that no longer exist.
+      # Cleans up the buffer by removing entries for threads that no longer exist.
       #
-      # @return [SharedBuffer] self for method chaining
-      #
+      # @return [SharedBuffer] the instance of SharedBuffer.
       # @example
       #   buffer.cleanup_threads
-      #
-      # @note Should be called periodically to prevent memory leaks from dead threads
       def cleanup_threads
         @buffer_index.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }
         return self

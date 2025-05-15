@@ -1,8 +1,3 @@
-# Manual game entry and login screen for the Lich5 GUI interface.
-# Provides user authentication, game selection, and client launch configuration.
-#
-# @author Lich5 Documentation Generator
-
 # Lich5 carveout - manual login screen for GUI
 
 #
@@ -10,8 +5,6 @@
 # this file is intended to load as part of the loginGUI Gtk queue block method
 # it is a sequential stream presently, so do not (yet) modify to class / module
 
-# @!attribute [rw] launch_data
-#   @return [Array<String>] Contains launch configuration parameters after successful authentication
 @launch_data = nil
 user_id_entry = Gtk::Entry.new
 
@@ -68,23 +61,15 @@ end
 # frontend_box.pack_start(suks_option, false, false, 0)
 
 custom_launch_option = Gtk::CheckButton.new('Custom launch command')
-
-# @!attribute [rw] custom_launch_entry
-#   @return [Gtk::ComboBoxText] Entry field for custom launch commands
 @custom_launch_entry = Gtk::ComboBoxText.new(:entry => true)
 @custom_launch_entry.child.set_placeholder_text("(enter custom launch command)")
 @custom_launch_entry.append_text("Wizard.Exe /GGS /H127.0.0.1 /P%port% /K%key%")
 @custom_launch_entry.append_text("Stormfront.exe /GGS/Hlocalhost/P%port%/K%key%")
-
-# @!attribute [rw] custom_launch_dir
-#   @return [Gtk::ComboBoxText] Entry field for custom launch directory
 @custom_launch_dir = Gtk::ComboBoxText.new(:entry => true)
 @custom_launch_dir.child.set_placeholder_text("(enter working directory for command)")
 @custom_launch_dir.append_text("../wizard")
 @custom_launch_dir.append_text("../StormFront")
 
-# @!attribute [rw] make_quick_option
-#   @return [Gtk::CheckButton] Checkbox for saving login information
 @make_quick_option = Gtk::CheckButton.new('Save this info for quick game entry')
 
 play_button = Gtk::Button.new(:label => ' Play ')
@@ -93,8 +78,6 @@ play_button.sensitive = false
 play_button_box = Gtk::Box.new(:horizontal)
 play_button_box.pack_end(play_button, :expand => false, :fill => false, :padding => 5)
 
-# @!attribute [rw] game_entry_tab
-#   @return [Gtk::Box] Main container for the game entry interface
 @game_entry_tab = Gtk::Box.new(:vertical)
 @game_entry_tab.border_width = 5
 @game_entry_tab.pack_start(login_table, :expand => false, :fill => false, :padding => 0)
@@ -107,17 +90,15 @@ play_button_box.pack_end(play_button, :expand => false, :fill => false, :padding
 @game_entry_tab.pack_start(@make_quick_option, :expand => false, :fill => false, :padding => 3)
 @game_entry_tab.pack_start(play_button_box, :expand => false, :fill => false, :padding => 3)
 
-# Signal handler for custom launch option toggle
-#
-# @note Shows/hides custom launch configuration fields
+# Connects the toggle event for the custom launch option
+# @note This will show/hide the custom launch entry fields based on the state of the checkbox.
 custom_launch_option.signal_connect('toggled') {
   @custom_launch_entry.visible = custom_launch_option.active?
   @custom_launch_dir.visible = custom_launch_option.active?
 }
 
-# Signal handler for Avalon client option
-#
-# @note Manages custom launch option sensitivity when Avalon is selected
+# Connects the toggle event for the Avalon option
+# @note This will disable the custom launch option if Avalon is selected.
 avalon_option.signal_connect('toggled') {
   if avalon_option.active?
     custom_launch_option.active = false
@@ -127,10 +108,9 @@ avalon_option.signal_connect('toggled') {
   end
 }
 
-# Signal handler for the Connect button click
-#
-# @note Authenticates user credentials and populates game list
-# @raise [RuntimeError] When authentication fails
+# Connects the click event for the connect button
+# @return [void]
+# @example connect_button.clicked
 connect_button.signal_connect('clicked') {
   connect_button.sensitive = false
   user_id_entry.sensitive = false
@@ -152,6 +132,7 @@ connect_button.signal_connect('clicked') {
       user_id_entry.sensitive = true
       pass_entry.sensitive = true
     else
+
       liststore.clear
       login_info.each do |row|
         iter = liststore.append
@@ -166,16 +147,16 @@ connect_button.signal_connect('clicked') {
   }
 }
 
-# Signal handler for treeview selection
-#
-# @note Enables play button when game is selected
+# Connects the cursor changed event for the treeview
+# @return [void]
+# @example treeview.signal_connect('cursor-changed')
 treeview.signal_connect('cursor-changed') {
   play_button.sensitive = true
 }
 
-# Signal handler for disconnect button
-#
-# @note Clears game list and resets login form
+# Connects the click event for the disconnect button
+# @return [void]
+# @example disconnect_button.clicked
 disconnect_button.signal_connect('clicked') {
   disconnect_button.sensitive = false
   play_button.sensitive = false
@@ -185,9 +166,9 @@ disconnect_button.signal_connect('clicked') {
   pass_entry.sensitive = true
 }
 
-# Signal handler for the Play button click
-#
-# @note Launches selected game with configured parameters
+# Connects the click event for the play button
+# @return [void]
+# @example play_button.clicked
 play_button.signal_connect('clicked') {
   play_button.sensitive = false
   game_code = treeview.selection.selected[0]
@@ -254,13 +235,16 @@ play_button.signal_connect('clicked') {
   end
 }
 
-# Signal handlers for login form submission
-#
-# @note Handles Enter key press in username/password fields
+# Connects the activate event for the user ID entry
+# @return [void]
+# @example user_id_entry.signal_connect('activate')
 user_id_entry.signal_connect('activate') {
   pass_entry.grab_focus
 }
 
+# Connects the activate event for the password entry
+# @return [void]
+# @example pass_entry.signal_connect('activate')
 pass_entry.signal_connect('activate') {
   connect_button.clicked
 }

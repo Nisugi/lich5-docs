@@ -1,18 +1,15 @@
-# Module namespace for the Lich game automation system
+## breakout for Warcries
+
 module Lich
-  # Module namespace for Gemstone-specific functionality 
   module Gemstone
-    # Handles warcry abilities for warrior characters in Gemstone
-    # Provides functionality to check, manage and use warcry combat abilities
-    #
-    # @author Lich5 Documentation Generator
+    # Represents a Warcry in the game.
     class Warcry
-      # Returns an array of warcry definitions with their names and costs
+      # Provides a list of warcry lookups with their long names, short names, and costs.
       #
-      # @return [Array<Hash>] Array of hashes containing warcry definitions with :long_name, :short_name, and :cost keys
+      # @return [Array<Hash>] An array of hashes containing warcry details.
       # @example
       #   Warcry.warcry_lookups
-      #   # => [{long_name: 'bertrandts_bellow', short_name: 'bellow', cost: 20}, ...]
+      #   # => [{ long_name: 'bertrandts_bellow', short_name: 'bellow', cost: 20 }, ...]
       def self.warcry_lookups
         [{ long_name: 'bertrandts_bellow',        short_name: 'bellow',         cost: 20 }, # @todo only 10 for single
          { long_name: 'carns_cry',                short_name: 'cry',            cost: 20 },
@@ -46,70 +43,76 @@ module Lich
         },
       }
 
-      # Gets the rank/level of a specified warcry ability
+      # Retrieves the warcry associated with the given name.
       #
-      # @param name [String] The name of the warcry ability
-      # @return [Integer] The rank/level of the warcry ability
+      # @param name [String] The short name of the warcry.
+      # @return [Object] The warcry object or nil if not found.
       # @example
-      #   Warcry['bellow'] # => 3
+      #   Warcry['bellow']
+      #   # => <Warcry object>
       def Warcry.[](name)
         return PSMS.assess(name, 'Warcry')
       end
 
-      # Checks if a warcry ability is known at or above a minimum rank
+      # Checks if the specified warcry is known with a minimum rank.
       #
-      # @param name [String] The name of the warcry ability
-      # @param min_rank [Integer] The minimum rank required (defaults to 1)
-      # @return [Boolean] True if the ability is known at sufficient rank
+      # @param name [String] The short name of the warcry.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the warcry is known and meets the rank requirement, false otherwise.
       # @example
-      #   Warcry.known?('bellow', min_rank: 2) # => true
+      #   Warcry.known?('bellow', min_rank: 1)
+      #   # => true
       def Warcry.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Warcry[name] >= min_rank
       end
 
-      # Checks if character has enough resources to use the warcry
+      # Checks if the specified warcry is affordable.
       #
-      # @param name [String] The name of the warcry ability
-      # @return [Boolean] True if the ability can be afforded
+      # @param name [String] The short name of the warcry.
+      # @return [Boolean] True if the warcry is affordable, false otherwise.
       # @example
-      #   Warcry.affordable?('bellow') # => true
+      #   Warcry.affordable?('bellow')
+      #   # => true
       def Warcry.affordable?(name)
         return PSMS.assess(name, 'Warcry', true)
       end
 
-      # Checks if a warcry ability can be used (known, affordable, not on cooldown)
+      # Checks if the specified warcry is available for use.
       #
-      # @param name [String] The name of the warcry ability
-      # @param min_rank [Integer] The minimum rank required (defaults to 1)
-      # @return [Boolean] True if the ability is available for use
+      # @param name [String] The short name of the warcry.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the warcry is known, affordable, and not on cooldown or debuffed, false otherwise.
       # @example
-      #   Warcry.available?('bellow') # => true
+      #   Warcry.available?('bellow', min_rank: 1)
+      #   # => true
       def Warcry.available?(name, min_rank: 1)
         Warcry.known?(name, min_rank: min_rank) and Warcry.affordable?(name) and !Lich::Util.normalize_lookup('Cooldowns', name) and !Lich::Util.normalize_lookup('Debuffs', 'Overexerted')
       end
 
-      # Checks if a warcry's buff effect is currently active
+      # Checks if the specified warcry's buff is currently active.
       #
-      # @param name [String] The name of the warcry ability
-      # @return [Boolean] True if the buff is active
+      # @param name [String] The short name of the warcry.
+      # @return [Boolean] True if the buff is active, false otherwise.
       # @example
-      #   Warcry.buffActive?('shout') # => true
+      #   Warcry.buffActive?('yowlp')
+      #   # => false
       def Warcry.buffActive?(name)
         buff = @@warcries.fetch(PSMS.name_normal(name))[:buff]
         return false if buff.nil?
         Lich::Util.normalize_lookup('Buffs', buff)
       end
 
-      # Attempts to use a warcry ability
+      # Uses the specified warcry on a target.
       #
-      # @param name [String] The name of the warcry ability
-      # @param target [String, GameObj, Integer] The target of the warcry (optional)
-      # @param results_of_interest [Regexp] Additional regex pattern to match in results (optional)
-      # @return [String, nil] The result message of the warcry attempt or nil if unsuccessful
+      # @param name [String] The short name of the warcry.
+      # @param target [String, Integer, GameObj] The target of the warcry (optional).
+      # @param results_of_interest [Regexp, nil] Additional regex to match results (optional).
+      # @return [String, nil] The result of the warcry usage or nil if not used.
+      # @note This method will wait for roundtime and casting roundtime before executing.
       # @example
-      #   Warcry.use('bellow', monster)
-      #   Warcry.use('shout')
+      #   Warcry.use('bellow', 'target_name')
+      #   # => "You let out a nerve-shattering bellow!"
       def Warcry.use(name, target = "", results_of_interest: nil)
         return unless Warcry.available?(name)
         return if Warcry.buffActive?(name)
@@ -150,24 +153,17 @@ module Lich
         usage_result
       end
 
-      # Gets the regex pattern that matches the warcry's success message
+      # Retrieves the regex pattern associated with the specified warcry.
       #
-      # @param name [String] The name of the warcry ability
-      # @return [Regexp] The regex pattern for the warcry's success message
+      # @param name [String] The short name of the warcry.
+      # @return [Regexp] The regex pattern for the warcry.
       # @example
-      #   Warcry.regexp('bellow') # => /You glare at .+ and let out a nerve-shattering bellow!/
+      #   Warcry.regexp('bellow')
+      #   # => /You glare at .+ and let out a nerve-shattering bellow!/
       def Warcry.regexp(name)
         @@warcries.fetch(PSMS.name_normal(name))[:regex]
       end
 
-      # Dynamically generated convenience methods for each warcry
-      # Creates methods named after both long and short names that return the warcry's rank
-      #
-      # @example
-      #   Warcry.bellow # => 3
-      #   Warcry.bertrandts_bellow # => 3
-      #
-      # @note These methods are automatically generated for each warcry defined in warcry_lookups
       Warcry.warcry_lookups.each { |warcry|
         self.define_singleton_method(warcry[:short_name]) do
           Warcry[warcry[:short_name]]

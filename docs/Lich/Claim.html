@@ -83,7 +83,18 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>module Gemstone # test this?</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
   
     <h2>
       Constant Summary
@@ -102,40 +113,6 @@
 
 
 
-
-  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#Lock-instance_method" title="#Lock (instance method)">#<strong>Lock</strong>  &#x21d2; Mutex </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-      <span class="note title readonly">readonly</span>
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Mutex for thread-safe operations.</p>
-</div></span>
-  
-</li>
-
-    
-  </ul>
 
 
 
@@ -166,7 +143,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Verifies if a specific room has been checked.</p>
+<p>Checks if the specified room has been checked.</p>
 </div></span>
   
 </li>
@@ -190,7 +167,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Claims a room for the current character.</p>
+<p>Claims a room by its ID.</p>
 </div></span>
   
 </li>
@@ -214,7 +191,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the currently claimed room ID.</p>
+<p>Returns the ID of the currently claimed room.</p>
 </div></span>
   
 </li>
@@ -223,7 +200,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#clustered-class_method" title="clustered (class method)">.<strong>clustered</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#clustered-class_method" title="clustered (class method)">.<strong>clustered</strong>  &#x21d2; Array </a>
     
 
     
@@ -238,7 +215,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets list of clustered characters.</p>
+<p>Returns the connected clusters if defined.</p>
 </div></span>
   
 </li>
@@ -262,7 +239,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the current room is claimed by this character.</p>
+<p>Checks if the current instance is the owner of the claimed room.</p>
 </div></span>
   
 </li>
@@ -286,7 +263,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays detailed claim information in a formatted table.</p>
+<p>Provides information about the current claim status and related data.</p>
 </div></span>
   
 </li>
@@ -310,7 +287,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the last checked room ID.</p>
+<p>Returns the ID of the last room checked.</p>
 </div></span>
   
 </li>
@@ -334,7 +311,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Acquires the claim lock.</p>
+<p>Locks the mutex for the Claim module.</p>
 </div></span>
   
 </li>
@@ -343,7 +320,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Array </a>
     
 
     
@@ -358,7 +335,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets list of group members.</p>
+<p>Returns the members of the group if checked.</p>
 </div></span>
   
 </li>
@@ -382,7 +359,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Alias for current?.</p>
+<p>Checks if the current instance is the owner of the claimed room.</p>
 </div></span>
   
 </li>
@@ -391,7 +368,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#others-class_method" title="others (class method)">.<strong>others</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#others-class_method" title="others (class method)">.<strong>others</strong>  &#x21d2; Array </a>
     
 
     
@@ -406,7 +383,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets list of other characters in the room.</p>
+<p>Returns the list of other characters in the room.</p>
 </div></span>
   
 </li>
@@ -430,7 +407,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Handles room parsing and claim updates.</p>
+<p>Handles the claim parsing for a given room and characters.</p>
 </div></span>
   
 </li>
@@ -454,7 +431,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Releases the claim lock.</p>
+<p>Unlocks the mutex for the Claim module.</p>
 </div></span>
   
 </li>
@@ -463,68 +440,6 @@
     </ul>
   
 
-
-  <div id="instance_attr_details" class="attr_details">
-    <h2>Instance Attribute Details</h2>
-    
-      
-      <span id=""></span>
-      <div class="method_details first">
-  <h3 class="signature first" id="Lock-instance_method">
-  
-    #<strong>Lock</strong>  &#x21d2; <tt>Mutex</tt>  <span class="extras">(readonly)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Mutex for thread-safe operations.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Mutex</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Mutex for thread-safe operations</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-8</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 8</span>
-
-<span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span>            <span class='op'>=</span> <span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -543,7 +458,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Verifies if a specific room has been checked</p>
+<p>Checks if the specified room has been checked.</p>
 
 
   </div>
@@ -554,9 +469,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span><span class='lparen'>(</span><span class='int'>1234</span><span class='rparen'>)</span>
-  <span class='comment'># Room has been checked
-</span><span class='kw'>end</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_has_checked'>has_checked</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -575,7 +488,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Room ID to check (defaults to last room)</p>
+<p>The room ID to check. Defaults to the last room if nil.</p>
 </div>
       
     </li>
@@ -594,7 +507,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if the room matches XMLData.room_id</p>
+<p>True if the room has been checked, false otherwise.</p>
 </div>
       
     </li>
@@ -607,12 +520,12 @@
       <pre class="lines">
 
 
-106
-107
-108</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span><span class='lparen'>(</span><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_id'>room_id</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_room'>room</span> <span class='op'>||</span> <span class='ivar'>@last_room</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -633,16 +546,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Logs the claim if logging is enabled</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Claims a room for the current character</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Claims a room by its ID.</p>
 
 
   </div>
@@ -653,7 +558,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_claim_room'>claim_room</span><span class='lparen'>(</span><span class='int'>1234</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_claim_room'>claim_room</span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -670,13 +575,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The room ID to claim</p>
+<p>The ID of the room to claim.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If there is an issue with claiming the room.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -684,15 +607,15 @@
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47</pre>
+19
+20
+21
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_claim_room'>claim_room</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='ivar'>@claimed_room</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -717,7 +640,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the currently claimed room ID</p>
+<p>Returns the ID of the currently claimed room.</p>
 
 
   </div>
@@ -728,7 +651,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_room_id'>room_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_claimed_room'>claimed_room</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_claimed_id'>claimed_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_claimed_room'>claimed_room</span></code></pre>
     
   </div>
 
@@ -744,7 +667,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The ID of the claimed room</p>
+<p>The ID of the claimed room or nil if none.</p>
 </div>
       
     </li>
@@ -757,12 +680,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_claimed_room'>claimed_room</span>
   <span class='ivar'>@claimed_room</span>
@@ -775,7 +698,7 @@
       <div class="method_details ">
   <h3 class="signature " id="clustered-class_method">
   
-    .<strong>clustered</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>clustered</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -784,15 +707,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Returns empty array if Cluster is not defined</p>
-</div>
-  </div>
-
-
-<p>Gets list of clustered characters</p>
+<p>Returns the connected clusters if defined.</p>
 
 
   </div>
@@ -803,7 +718,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_clustered'>clustered</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clustered'>clustered</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_connected_clusters'>connected_clusters</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clustered'>clustered</span></code></pre>
     
   </div>
 
@@ -813,13 +728,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of clustered character names</p>
+<p>An array of connected clusters or an empty array if not defined.</p>
 </div>
       
     </li>
@@ -832,17 +747,17 @@
       <pre class="lines">
 
 
-174
-175
-176
-177
-178
-179
-180
-181</pre>
+143
+144
+145
+146
+147
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clustered'>clustered</span>
   <span class='kw'>begin</span>
@@ -869,7 +784,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the current room is claimed by this character</p>
+<p>Checks if the current instance is the owner of the claimed room.</p>
 
 
   </div>
@@ -880,9 +795,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span>
-  <span class='comment'># Room is claimed by us
-</span><span class='kw'>end</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_mine'>is_mine</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span></code></pre>
     
   </div>
 
@@ -898,7 +811,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if room is claimed by this character</p>
+<p>True if this instance is the owner, false otherwise.</p>
 </div>
       
     </li>
@@ -911,12 +824,12 @@
       <pre class="lines">
 
 
-94
-95
-96</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@mine</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -938,7 +851,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Displays detailed claim information in a formatted table</p>
+<p>Provides information about the current claim status and related data.</p>
 
 
   </div>
@@ -949,7 +862,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span></code></pre>
     
   </div>
 
@@ -960,21 +873,21 @@
       <pre class="lines">
 
 
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126</pre>
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
   <span class='id identifier rubyid_rows'>rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>XMLData.room_id</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_id'>room_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Current room according to the XMLData</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -1005,7 +918,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the last checked room ID</p>
+<p>Returns the ID of the last room checked.</p>
 
 
   </div>
@@ -1016,7 +929,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_last_room'>last_room</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_last_room'>last_room</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_last_id'>last_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_last_room'>last_room</span></code></pre>
     
   </div>
 
@@ -1032,7 +945,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The ID of the last room checked</p>
+<p>The ID of the last room or nil if none.</p>
 </div>
       
     </li>
@@ -1045,12 +958,12 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_room'>last_room</span>
   <span class='ivar'>@last_room</span>
@@ -1075,12 +988,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Only locks if not already owned</p>
+<p>This method will only lock if the mutex is not already owned.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Acquires the claim lock</p>
+<p>Locks the mutex for the Claim module.</p>
 
 
   </div>
@@ -1091,7 +1004,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span></code></pre>
     
   </div>
 
@@ -1102,12 +1015,12 @@
       <pre class="lines">
 
 
-73
-74
-75</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='kw'>if</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span>
@@ -1120,7 +1033,7 @@
       <div class="method_details ">
   <h3 class="signature " id="members-class_method">
   
-    .<strong>members</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>members</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1129,15 +1042,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Returns empty array if Group is not defined</p>
-</div>
-  </div>
-
-
-<p>Gets list of group members</p>
+<p>Returns the members of the group if checked.</p>
 
 
   </div>
@@ -1148,7 +1053,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_members'>members</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_group_members'>group_members</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span></code></pre>
     
   </div>
 
@@ -1158,13 +1063,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of group member names</p>
+<p>An array of group members’ nouns or an empty array if not checked.</p>
 </div>
       
     </li>
@@ -1177,22 +1082,22 @@
       <pre class="lines">
 
 
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166</pre>
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='kw'>defined?</span> <span class='const'>Group</span>
@@ -1224,7 +1129,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Alias for current?</p>
+<p>Checks if the current instance is the owner of the claimed room.</p>
 
 
   </div>
@@ -1235,9 +1140,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mine?'>mine?</span>
-  <span class='comment'># Room is claimed by us
-</span><span class='kw'>end</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_mine'>is_mine</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mine?'>mine?</span></code></pre>
     
   </div>
 
@@ -1253,7 +1156,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if room is claimed by this character</p>
+<p>True if this instance is the owner, false otherwise.</p>
 </div>
       
     </li>
@@ -1266,12 +1169,12 @@
       <pre class="lines">
 
 
-135
-136
-137</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mine?'>mine?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span>
@@ -1284,7 +1187,7 @@
       <div class="method_details ">
   <h3 class="signature " id="others-class_method">
   
-    .<strong>others</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>others</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1293,7 +1196,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets list of other characters in the room</p>
+<p>Returns the list of other characters in the room.</p>
 
 
   </div>
@@ -1304,7 +1207,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_others'>others</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_others'>others</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_other_characters'>other_characters</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_others'>others</span></code></pre>
     
   </div>
 
@@ -1314,13 +1217,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of character names</p>
+<p>An array of other characters.</p>
 </div>
       
     </li>
@@ -1333,12 +1236,12 @@
       <pre class="lines">
 
 
-144
-145
-146</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_others'>others</span>
   <span class='ivar'>@others</span>
@@ -1359,16 +1262,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Updates room claim status based on presence of other characters</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Handles room parsing and claim updates</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Handles the claim parsing for a given room and characters.</p>
 
 
   </div>
@@ -1379,7 +1274,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parser_handle'>parser_handle</span><span class='lparen'>(</span><span class='int'>1234</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character2</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parser_handle'>parser_handle</span><span class='lparen'>(</span><span class='int'>123</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Alice</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bob</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1396,7 +1291,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Room ID from navigation</p>
+<p>The room ID being navigated to.</p>
 </div>
       
     </li>
@@ -1406,13 +1301,13 @@
         <span class='name'>pcs</span>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>List of characters in room</p>
+<p>The list of characters present in the room.</p>
 </div>
       
     </li>
@@ -1431,7 +1326,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If parsing fails</p>
+<p>If there is an error during parsing.</p>
 </div>
       
     </li>
@@ -1444,33 +1339,33 @@
       <pre class="lines">
 
 
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213</pre>
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser_handle'>parser_handle</span><span class='lparen'>(</span><span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='comma'>,</span> <span class='id identifier rubyid_pcs'>pcs</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_echo'>echo</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Claim handled </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='embexpr_end'>}</span><span class='tstring_content'> with xmlparser</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$claim_debug</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Claim handled </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='embexpr_end'>}</span><span class='tstring_content'> with xmlparser</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$claim_debug</span>
   <span class='kw'>begin</span>
     <span class='ivar'>@others</span> <span class='op'>=</span> <span class='id identifier rubyid_pcs'>pcs</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clustered'>clustered</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span>
     <span class='ivar'>@last_room</span> <span class='op'>=</span> <span class='id identifier rubyid_nav_rm'>nav_rm</span>
@@ -1480,11 +1375,11 @@
     <span class='kw'>end</span>
     <span class='ivar'>@mine</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_claim_room'>claim_room</span> <span class='id identifier rubyid_nav_rm'>nav_rm</span> <span class='kw'>unless</span> <span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
     <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Log</span><span class='rparen'>)</span>
-      <span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_out'>out</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
+      <span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_out'>out</span><span class='lparen'>(</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='rparen'>)</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_respond'>respond</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Claim Parser Error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Claim Parser Error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>ensure</span>
     <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock'><span class='object_link'><a href="#unlock-class_method" title="Lich::Claim.unlock (method)">unlock</a></span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span>
@@ -1510,12 +1405,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Only unlocks if owned by current thread</p>
+<p>This method will only unlock if the mutex is owned.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Releases the claim lock</p>
+<p>Unlocks the mutex for the Claim module.</p>
 
 
   </div>
@@ -1526,7 +1421,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span></code></pre>
     
   </div>
 
@@ -1537,12 +1432,12 @@
       <pre class="lines">
 
 
-83
-84
-85</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/claim.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span>
@@ -1557,7 +1452,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

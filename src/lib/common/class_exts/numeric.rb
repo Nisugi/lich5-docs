@@ -1,96 +1,62 @@
-# Extensions to the Ruby Numeric class to add time-related functionality and formatting
-#
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# extension to Numeric class 2024-06-13
+
 class Numeric
-  # Formats a numeric value representing seconds into a time string in the format "HH:MM:SS"
+  # Converts the numeric value to a time string in the format "H:MM:SS".
   #
-  # @return [String] A string in the format "hours:minutes:seconds" 
+  # @return [String] the time representation of the numeric value.
   # @example
-  #   125.5.as_time #=> "0:02:05"
-  #   3600.as_time #=> "1:00:00"
-  #
-  # @note Handles fractional seconds by converting to minutes
+  #   3661.as_time # => "1:01:01"
   def as_time
     sprintf("%d:%02d:%02d", (self / 60).truncate, self.truncate % 60, ((self % 1) * 60).truncate)
   end
 
-  # Formats a number with comma separators for thousands
+  # Formats the numeric value with commas as thousands separators.
   #
-  # @return [String] The number formatted with commas as thousand separators
+  # @return [String] the numeric value as a string with commas.
   # @example
-  #   1234567.with_commas #=> "1,234,567"
-  #   1234.56.with_commas #=> "1,234.56"
-  #
-  # @note Works with both integers and decimal numbers
+  #   1000000.with_commas # => "1,000,000"
   def with_commas
     self.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse
   end
 
-  # Returns the numeric value interpreted as seconds
+  # Returns the numeric value in seconds.
   #
-  # @return [Numeric] The same numeric value
+  # @return [Numeric] the original numeric value.
   # @example
-  #   5.seconds #=> 5
-  #
-  # @note Provided for semantic sugar when specifying time durations
+  #   5.seconds # => 5
   def seconds
     return self
   end
-  
-  # Alias for #seconds
-  #
-  # @see #seconds
-  # @return [Numeric]
   alias :second :seconds
 
-  # Converts the numeric value from minutes to seconds
+  # Converts the numeric value to minutes.
   #
-  # @return [Numeric] The value multiplied by 60 (seconds per minute)
+  # @return [Numeric] the numeric value in seconds.
   # @example
-  #   2.minutes #=> 120
-  #
-  # @note Useful for specifying time durations in minutes
+  #   5.minutes # => 300
   def minutes
     return self * 60
   end
-  
-  # Alias for #minutes
-  #
-  # @see #minutes
-  # @return [Numeric]
   alias :minute :minutes
 
-  # Converts the numeric value from hours to seconds
+  # Converts the numeric value to hours.
   #
-  # @return [Numeric] The value multiplied by 3600 (seconds per hour)
+  # @return [Numeric] the numeric value in seconds.
   # @example
-  #   2.hours #=> 7200
-  #
-  # @note Useful for specifying time durations in hours
+  #   2.hours # => 7200
   def hours
     return self * 3600
   end
-  
-  # Alias for #hours
-  #
-  # @see #hours
-  # @return [Numeric]
   alias :hour :hours
 
-  # Converts the numeric value from days to seconds
+  # Converts the numeric value to days.
   #
-  # @return [Numeric] The value multiplied by 86400 (seconds per day)
+  # @return [Numeric] the numeric value in seconds.
   # @example
-  #   2.days #=> 172800
-  #
-  # @note Useful for specifying time durations in days
+  #   1.days # => 86400
   def days
     return self * 86400
   end
-  
-  # Alias for #days
-  #
-  # @see #days
-  # @return [Numeric]
   alias :day :days
 end

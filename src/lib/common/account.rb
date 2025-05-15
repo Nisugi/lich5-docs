@@ -1,7 +1,3 @@
-# Account management module for Lich that handles user account details, subscription status,
-# game information and character data.
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Common
     module Account
@@ -11,58 +7,52 @@ module Lich
       @@members ||= {}
       @@character ||= nil
 
-      # Gets the account holder's name
+      # Returns the name of the account.
       #
-      # @return [String, nil] The account holder's name or nil if not set
-      # @example
-      #   Lich::Common::Account.name #=> "PlayerName"
+      # @return [String, nil] the name of the account or nil if not set.
       def self.name
         @@name
       end
 
-      # Sets the account holder's name
+      # Sets the name of the account.
       #
-      # @param value [String] The name to set for the account
-      # @return [String] The newly set name
+      # @param value [String] the name to set for the account.
+      # @return [String] the name that was set.
       # @example
-      #   Lich::Common::Account.name = "PlayerName"
+      #   Lich::Common::Account.name = "Player1"
       def self.name=(value)
         @@name = value
       end
 
-      # Gets the current character name
+      # Returns the character associated with the account.
       #
-      # @return [String, nil] The current character name or nil if not set
-      # @example
-      #   Lich::Common::Account.character #=> "CharacterName"
+      # @return [Object, nil] the character object or nil if not set.
       def self.character
         @@character
       end
 
-      # Sets the current character name
+      # Sets the character associated with the account.
       #
-      # @param value [String] The character name to set
-      # @return [String] The newly set character name
+      # @param value [Object] the character to set for the account.
+      # @return [Object] the character that was set.
       # @example
-      #   Lich::Common::Account.character = "CharacterName"
+      #   Lich::Common::Account.character = my_character
       def self.character=(value)
         @@character = value
       end
 
-      # Gets the account subscription type
+      # Returns the subscription type of the account.
       #
-      # @return [String, nil] One of: "NORMAL", "PREMIUM", "TRIAL", "INTERNAL", "FREE" or nil if not set
-      # @example
-      #   Lich::Common::Account.subscription #=> "PREMIUM"
+      # @return [String, nil] the subscription type or nil if not set.
       def self.subscription
         @@subscription
       end
 
-      # Sets the account subscription type
+      # Sets the subscription type of the account.
       #
-      # @param value [String] The subscription type to set
-      # @return [String, nil] The validated subscription type or nil if invalid
-      # @note Only accepts: "NORMAL", "PREMIUM", "TRIAL", "INTERNAL", "FREE"
+      # @param value [String] the subscription type to set.
+      # @return [String] the subscription type that was set.
+      # @raise [ArgumentError] if the value does not match the expected types.
       # @example
       #   Lich::Common::Account.subscription = "PREMIUM"
       def self.subscription=(value)
@@ -71,40 +61,37 @@ module Lich
         end
       end
 
-      # Gets the game code identifier
+      # Returns the game code associated with the account.
       #
-      # @return [String, nil] The game code or nil if not set
-      # @example
-      #   Lich::Common::Account.game_code #=> "DR"
+      # @return [String, nil] the game code or nil if not set.
       def self.game_code
         @@game_code
       end
 
-      # Sets the game code identifier
+      # Sets the game code associated with the account.
       #
-      # @param value [String] The game code to set
-      # @return [String] The newly set game code
+      # @param value [String] the game code to set.
+      # @return [String] the game code that was set.
       # @example
-      #   Lich::Common::Account.game_code = "DR"
+      #   Lich::Common::Account.game_code = "GAME123"
       def self.game_code=(value)
         @@game_code = value
       end
 
-      # Gets the hash of character codes mapped to character names
+      # Returns the members associated with the account.
       #
-      # @return [Hash{String => String}] Hash with character codes as keys and names as values
-      # @example
-      #   Lich::Common::Account.members #=> {"ABC123" => "CharacterOne", "XYZ789" => "CharacterTwo"}
+      # @return [Hash] a hash of member character codes and names.
       def self.members
         @@members
       end
 
-      # Parses and sets character membership data
+      # Sets the members associated with the account.
       #
-      # @param value [String] Tab-delimited character data string to parse
-      # @return [Hash{String => String}] Processed hash of character codes to names
+      # @param value [String] a string containing member character codes and names.
+      # @return [Hash] the members that were set.
+      # @note This method processes the input string to extract character codes and names.
       # @example
-      #   Lich::Common::Account.members = "C\t1\t2\t3\t4\tABC123\tCharacterOne\tXYZ789\tCharacterTwo"
+      #   Lich::Common::Account.members = "C\t1\t2\t3\t4\t\nA\tCharacter1\nB\tCharacter2"
       def self.members=(value)
         potential_members = {}
         for code_name in value.sub(/^C\t[0-9]+\t[0-9]+\t[0-9]+\t[0-9]+[\t\n]/, '').scan(/[^\t]+\t[^\t^\n]+/)
@@ -114,11 +101,9 @@ module Lich
         @@members = potential_members
       end
 
-      # Gets an array of all character names
+      # Returns the names of the characters associated with the account.
       #
-      # @return [Array<String>] Array containing all character names
-      # @example
-      #   Lich::Common::Account.characters #=> ["CharacterOne", "CharacterTwo"]
+      # @return [Array<String>] an array of character names.
       def self.characters
         @@members.values
       end

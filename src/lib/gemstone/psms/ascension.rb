@@ -1,17 +1,18 @@
-# Module for handling Ascension-related functionality in the Gemstone game
-# Contains methods for checking ascension abilities, costs, and availability
-#
-# @author Lich5 Documentation Generator
+## breakout for Ascension
+
 module Lich
   module Gemstone
     module Ascension
-      # Returns an array of hashes containing ascension ability definitions
-      # Each hash contains long_name, short_name, and cost for an ability
+      # Returns a list of ascension lookups with their long names, short names, and costs.
       #
-      # @return [Array<Hash>] Array of ascension ability definitions
+      # @return [Array<Hash>] An array of hashes, each containing:
+      #   - :long_name [String] The full name of the ascension ability.
+      #   - :short_name [String] The abbreviated name of the ascension ability.
+      #   - :cost [Integer] The cost associated with the ascension ability.
+      #
       # @example
       #   Lich::Gemstone::Ascension.ascension_lookups
-      #   # => [{long_name: 'acid_resistance', short_name: 'resistacid', cost: 0}, ...]
+      #   # => [{ long_name: 'acid_resistance', short_name: 'resistacid', cost: 0 }, ...]
       def self.ascension_lookups
         [{ long_name: 'acid_resistance',           short_name: 'resistacid',      cost: 0 },
          { long_name: 'agility',                   short_name: 'agility',         cost: 0 },
@@ -91,60 +92,56 @@ module Lich
          { long_name: 'transcend_destiny',         short_name: 'trandest',        cost: 0 }]
       end
 
-      # Gets the current value/level of an ascension ability
+      # Retrieves the assessment of an ascension ability by its name.
       #
-      # @param name [String] The name of the ascension ability (can be long or short form)
-      # @return [Integer] Current value/level of the ability
+      # @param name [String] The name of the ascension ability to assess.
+      # @return [Integer] The assessment value of the ascension ability.
+      #
       # @example
-      #   Ascension['acid_resistance'] 
-      #   # => 3
+      #   Lich::Gemstone::Ascension['agility']
+      #   # => 0
       def Ascension.[](name)
         return PSMS.assess(name, 'Ascension')
       end
 
-      # Checks if an ascension ability is known/learned
+      # Checks if an ascension ability is known.
       #
-      # @param name [String] The name of the ascension ability
-      # @return [Boolean] true if ability value > 0, false otherwise
+      # @param name [String] The name of the ascension ability to check.
+      # @return [Boolean] True if the ability is known, false otherwise.
+      #
       # @example
-      #   Ascension.known?('acid_resistance')
+      #   Lich::Gemstone::Ascension.known?('agility')
       #   # => true
       def Ascension.known?(name)
         Ascension[name] > 0
       end
 
-      # Checks if an ascension ability can be afforded (has sufficient resources)
+      # Checks if an ascension ability is affordable.
       #
-      # @param name [String] The name of the ascension ability
-      # @return [Boolean] true if ability can be afforded, false otherwise
+      # @param name [String] The name of the ascension ability to check.
+      # @return [Boolean] True if the ability is affordable, false otherwise.
+      #
       # @example
-      #   Ascension.affordable?('acid_resistance')
+      #   Lich::Gemstone::Ascension.affordable?('agility')
       #   # => true
       def Ascension.affordable?(name)
         return PSMS.assess(name, 'Ascension', true)
       end
 
-      # Checks if an ascension ability is currently available for use
-      # Considers if it's known, affordable, not on cooldown, and not blocked by debuffs
+      # Checks if an ascension ability is available for use.
       #
-      # @param name [String] The name of the ascension ability
-      # @return [Boolean] true if ability is available for use, false otherwise
+      # @param name [String] The name of the ascension ability to check.
+      # @return [Boolean] True if the ability is available, false otherwise.
+      #
+      # @note This method checks if the ability is known, affordable, and not affected by cooldowns or debuffs.
+      #
       # @example
-      #   Ascension.available?('acid_resistance')
+      #   Lich::Gemstone::Ascension.available?('agility')
       #   # => true
       def Ascension.available?(name)
         Ascension.known?(name) and Ascension.affordable?(name) and !Lich::Util.normalize_lookup('Cooldowns', name) and !Lich::Util.normalize_lookup('Debuffs', 'Overexerted')
       end
 
-      # Dynamically generated methods for each ascension ability
-      # Creates both long_name and short_name versions that return the ability value
-      #
-      # @note These methods are automatically generated for each ability in ascension_lookups
-      # @example
-      #   Ascension.acid_resistance
-      #   # => 3
-      #   Ascension.resistacid
-      #   # => 3
       Ascension.ascension_lookups.each { |ascension|
         self.define_singleton_method(ascension[:short_name]) do
           Ascension[ascension[:short_name]]

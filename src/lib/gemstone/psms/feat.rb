@@ -1,19 +1,19 @@
 ## breakout for Feat released with PSM3
 ## updated for Ruby 3.2.1 and new Infomon module
 
-# Module for handling character feats and abilities in the Gemstone game
-# Provides functionality to check, manage and use character feats
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Gemstone
     module Feat
-      # Returns an array of feat definitions containing long names, short names and costs
+      # Returns a list of available feats with their long names, short names, and costs.
       #
-      # @return [Array<Hash>] Array of feat definition hashes with :long_name, :short_name, and :cost keys
+      # @return [Array<Hash>] An array of hashes, each containing:
+      #   - :long_name [String] The full name of the feat.
+      #   - :short_name [String] The abbreviated name of the feat.
+      #   - :cost [Integer] The cost of the feat.
+      #
       # @example
-      #   Feat.feat_lookups
-      #   #=> [{long_name: 'absorb_magic', short_name: 'absorbmagic', cost: 0}, ...]
+      #   feats = Feat.feat_lookups
+      #   puts feats.first[:long_name] # => "absorb_magic"
       def self.feat_lookups
         [{ long_name: 'absorb_magic',              short_name: 'absorbmagic',        cost:  0 },
          { long_name: 'chain_armor_proficiency',   short_name: 'chainarmor',         cost:  0 },
@@ -222,62 +222,67 @@ module Lich
         },
       }
 
-      # Retrieves the rank/level of a specified feat
+      # Retrieves the rank of a feat by its name.
       #
-      # @param name [String] The name of the feat to check
-      # @return [Integer] The rank/level of the feat
+      # @param name [String] The name of the feat to look up.
+      # @return [Integer] The rank of the feat.
+      #
       # @example
-      #   Feat['absorbmagic'] 
-      #   #=> 1
+      #   rank = Feat['absorb_magic']
+      #   puts rank # => 0
       def Feat.[](name)
         return PSMS.assess(name, 'Feat')
       end
 
-      # Checks if a feat is known at or above a minimum rank
+      # Checks if a feat is known by the user, given a minimum rank.
       #
-      # @param name [String] The name of the feat to check
-      # @param min_rank [Integer] Minimum rank required (defaults to 1)
-      # @return [Boolean] True if feat is known at specified rank or higher
+      # @param name [String] The name of the feat to check.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the feat is known at or above the minimum rank, false otherwise.
+      #
       # @example
-      #   Feat.known?('absorbmagic', min_rank: 2)
-      #   #=> true
+      #   known = Feat.known?('absorb_magic', min_rank: 1)
+      #   puts known # => true
       def Feat.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Feat[name] >= min_rank
       end
 
-      # Checks if character has enough resources to use a feat
+      # Checks if a feat is affordable based on the user's resources.
       #
-      # @param name [String] The name of the feat to check
-      # @return [Boolean] True if feat can be afforded
+      # @param name [String] The name of the feat to check.
+      # @return [Boolean] True if the feat is affordable, false otherwise.
+      #
       # @example
-      #   Feat.affordable?('mysticstrike')
-      #   #=> true
+      #   affordable = Feat.affordable?('absorb_magic')
+      #   puts affordable # => true
       def Feat.affordable?(name)
         return PSMS.assess(name, 'Feat', true)
       end
 
-      # Checks if a feat is both known and currently available for use
+      # Checks if a feat is available for use, considering known status, affordability, and cooldowns.
       #
-      # @param name [String] The name of the feat to check
-      # @param min_rank [Integer] Minimum rank required (defaults to 1)
-      # @return [Boolean] True if feat is known, affordable and not on cooldown
+      # @param name [String] The name of the feat to check.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the feat is available, false otherwise.
+      #
       # @example
-      #   Feat.available?('vanish')
-      #   #=> true
+      #   available = Feat.available?('absorb_magic', min_rank: 1)
+      #   puts available # => true
       def Feat.available?(name, min_rank: 1)
         Feat.known?(name, min_rank: min_rank) and Feat.affordable?(name) and !Lich::Util.normalize_lookup('Cooldowns', name) and !Lich::Util.normalize_lookup('Debuffs', 'Overexerted')
       end
 
-      # Attempts to use a specified feat
+      # Uses a feat on a target and returns the result of the action.
       #
-      # @param name [String] The name of the feat to use
-      # @param target [String, GameObj, Integer] Optional target for the feat
-      # @param results_of_interest [Regexp] Optional regex pattern to match additional results
-      # @return [String, nil] The result of using the feat or nil if feat cannot be used
+      # @param name [String] The name of the feat to use.
+      # @param target [String, GameObj, Integer] The target of the feat (optional).
+      # @param results_of_interest [Regexp, nil] Additional regex to match results of interest (optional).
+      # @return [String, nil] The result of the feat usage or nil if not available.
+      #
       # @example
-      #   Feat.use('mysticstrike')
-      #   Feat.use('guard', GameObj.pcs.first)
+      #   result = Feat.use('absorb_magic', 'target_name')
+      #   puts result # => "You absorb magic!"
       def Feat.use(name, target = "", results_of_interest: nil)
         return unless Feat.available?(name)
         name_normalized = PSMS.name_normal(name)
@@ -317,26 +322,18 @@ module Lich
         usage_result
       end
 
-      # Gets the regex pattern used to match feat activation messages
+      # Returns the regex pattern associated with a feat by name.
       #
-      # @param name [String] The name of the feat
-      # @return [Regexp] The regex pattern for the feat
-      # @raise [KeyError] If feat name is not found
+      # @param name [String] the name of the feat
+      # @return [Regexp] the regex pattern for the feat
+      # @raise [KeyError] if the feat name is not found in the feats hash
       # @example
-      #   Feat.regexp('absorbmagic')
-      #   #=> /You open yourself to the ravenous void.../
+      #   Feat.regexp("Fireball")
+      #   # => /Fireball/i
       def Feat.regexp(name)
         @@feats.fetch(PSMS.name_normal(name))[:regex]
       end
 
-      # Dynamic methods are created for each feat in feat_lookups
-      # Both long and short names are created as methods that return the feat rank
-      #
-      # @example
-      #   Feat.absorbmagic
-      #   #=> 1
-      #   Feat.absorb_magic
-      #   #=> 1
       Feat.feat_lookups.each { |feat|
         self.define_singleton_method(feat[:short_name]) do
           Feat[feat[:short_name]]

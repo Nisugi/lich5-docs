@@ -1,95 +1,113 @@
 # Carve out from Lich5 for module CharSettings
 # 2024-06-13
 
-# Module for managing character-specific settings in Lich5.
-# Provides methods to store and retrieve settings specific to a character/game combination.
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Common
     module CharSettings
-      # Retrieves a character-specific setting value by name
+      
+      # Retrieves the value associated with the given setting name.
       #
-      # @param name [Symbol, String] The name of the setting to retrieve
-      # @return [Object] The value of the requested setting
+      # @param name [String] the name of the setting to retrieve
+      # @return [Object] the value of the setting, or nil if not found
       # @example
-      #   CharSettings[:my_setting] # Returns value for current character/game
+      #   value = CharSettings[:some_setting]
       def CharSettings.[](name)
         Settings.to_hash("#{XMLData.game}:#{XMLData.name}")[name]
       end
 
-      # Sets a character-specific setting value
+      # Sets the value for the given setting name.
       #
-      # @param name [Symbol, String] The name of the setting to set
-      # @param value [Object] The value to store
-      # @return [Object] The value that was set
+      # @param name [String] the name of the setting to set
+      # @param value [Object] the value to assign to the setting
+      # @return [Object] the value that was set
       # @example
-      #   CharSettings[:my_setting] = "new value"
+      #   CharSettings[:some_setting] = 'new_value'
       def CharSettings.[]=(name, value)
         Settings.set_script_settings("#{XMLData.game}:#{XMLData.name}", name, value)
       end
 
-      # Returns all character-specific settings as a hash
+      # Converts the character settings to a hash.
       #
-      # @return [Hash] All settings for the current character/game combination
+      # @return [Hash] a hash representation of the character settings
       # @example
-      #   settings = CharSettings.to_hash
+      #   settings_hash = CharSettings.to_hash
       def CharSettings.to_hash
         Settings.to_hash("#{XMLData.game}:#{XMLData.name}")
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Loads character settings (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   CharSettings.load
       def CharSettings.load
         Lich.deprecated('CharSettings.load', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Saves character settings (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   CharSettings.save
       def CharSettings.save
         Lich.deprecated('CharSettings.save', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Saves all character settings (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   CharSettings.save_all
       def CharSettings.save_all
         Lich.deprecated('CharSettings.save_all', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Clears character settings (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   CharSettings.clear
       def CharSettings.clear
         Lich.deprecated('CharSettings.clear', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @param val [Object] Ignored parameter
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Sets the auto setting (deprecated).
+      #
+      # @param _val [Object] the value to set (not used)
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   CharSettings.auto = true
       def CharSettings.auto=(_val)
         Lich.deprecated('CharSettings.auto=(val)', 'not using, not applicable,', caller[0], fe_log: true)
         return nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Retrieves the auto setting (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   value = CharSettings.auto
       def CharSettings.auto
         Lich.deprecated('CharSettings.auto', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # @deprecated No longer applicable in current version
-      # @note This method is deprecated and will be removed in a future version
-      # @return [nil]
+      # Retrieves the autoload setting (deprecated).
+      #
+      # @return [nil] always returns nil
+      # @deprecated This method is deprecated and not applicable.
+      # @example
+      #   value = CharSettings.autoload
       def CharSettings.autoload
         Lich.deprecated('CharSettings.autoload', 'not using, not applicable,', caller[0], fe_log: true)
         nil

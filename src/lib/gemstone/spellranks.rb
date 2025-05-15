@@ -1,56 +1,25 @@
-# Module namespace for the Lich game automation system
+# Carve out class SpellRanks
+# 2024-06-13
+
 module Lich
-
-  # Module namespace for Gemstone-specific functionality 
   module Gemstone
-
-    # Manages and tracks spell ranks/training for different magical circles and abilities
-    #
-    # @author Lich5 Documentation Generator
+    # Represents the ranks of spells available in the game.
+    # 
+    # This class handles loading and saving spell rank data, as well as providing access to
+    # individual spell ranks and their properties.
     class SpellRanks
       @@list      ||= Array.new
       @@timestamp ||= 0
       @@loaded    ||= false
-
-      # @return [String] The character name associated with these spell ranks
       attr_reader :name
+      attr_accessor :minorspiritual, :majorspiritual, :cleric, :minorelemental, :majorelemental, :minormental, :ranger, :sorcerer, :wizard, :bard, :empath, :paladin, :arcanesymbols, :magicitemuse, :monk
 
-      # @return [Integer] Rank in Minor Spiritual circle
-      attr_accessor :minorspiritual
-      # @return [Integer] Rank in Major Spiritual circle  
-      attr_accessor :majorspiritual
-      # @return [Integer] Rank in Cleric circle
-      attr_accessor :cleric
-      # @return [Integer] Rank in Minor Elemental circle
-      attr_accessor :minorelemental
-      # @return [Integer] Rank in Major Elemental circle
-      attr_accessor :majorelemental
-      # @return [Integer] Rank in Minor Mental circle
-      attr_accessor :minormental
-      # @return [Integer] Rank in Ranger circle
-      attr_accessor :ranger
-      # @return [Integer] Rank in Sorcerer circle
-      attr_accessor :sorcerer
-      # @return [Integer] Rank in Wizard circle
-      attr_accessor :wizard
-      # @return [Integer] Rank in Bard circle
-      attr_accessor :bard
-      # @return [Integer] Rank in Empath circle
-      attr_accessor :empath
-      # @return [Integer] Rank in Paladin circle
-      attr_accessor :paladin
-      # @return [Integer] Rank in Arcane Symbols
-      attr_accessor :arcanesymbols
-      # @return [Integer] Rank in Magic Item Use
-      attr_accessor :magicitemuse
-      # @return [Integer] Rank in Monk abilities
-      attr_accessor :monk
-
-      # Loads spell rank data from disk
+      # Loads the spell ranks from a data file.
       #
       # @return [void]
-      # @raise [StandardError] If there are issues reading or parsing the data file
-      # @note Creates an empty list if the data file doesn't exist or has errors
+      # @raise [StandardError] if there is an error reading the file.
+      # @example
+      #   SpellRanks.load
       def SpellRanks.load
         if File.exist?(File.join(DATA_DIR, "#{XMLData.game}", "spell-ranks.dat"))
           begin
@@ -74,10 +43,10 @@ module Lich
         end
       end
 
-      # Saves current spell rank data to disk
+      # Saves the current spell ranks to a data file.
       #
       # @return [void]
-      # @raise [StandardError] If there are issues writing to the data file
+      # @raise [StandardError] if there is an error writing to the file.
       # @example
       #   SpellRanks.save
       def SpellRanks.save
@@ -91,20 +60,22 @@ module Lich
         end
       end
 
-      # Gets the timestamp of the last spell ranks update
+      # Retrieves the timestamp of the last load operation.
       #
-      # @return [Integer] Unix timestamp of last update
+      # @return [Integer] the timestamp of the last load operation.
+      # @note This method will load the spell ranks if they have not been loaded yet.
       # @example
-      #   last_update = SpellRanks.timestamp
+      #   timestamp = SpellRanks.timestamp
       def SpellRanks.timestamp
         SpellRanks.load unless @@loaded
         @@timestamp
       end
 
-      # Sets the timestamp for spell ranks data
+      # Sets the timestamp for the last load operation.
       #
-      # @param val [Integer] Unix timestamp to set
-      # @return [Integer] The new timestamp value
+      # @param [Integer] val the new timestamp value.
+      # @return [void]
+      # @note This method will load the spell ranks if they have not been loaded yet.
       # @example
       #   SpellRanks.timestamp = Time.now.to_i
       def SpellRanks.timestamp=(val)
@@ -112,44 +83,47 @@ module Lich
         @@timestamp = val
       end
 
-      # Retrieves spell rank information for a specific character
+      # Finds a spell rank by its name.
       #
-      # @param name [String] Character name to look up
-      # @return [SpellRanks, nil] SpellRanks object for the character or nil if not found
+      # @param [String] name the name of the spell rank to find.
+      # @return [SpellRanks, nil] the spell rank object if found, otherwise nil.
+      # @note This method will load the spell ranks if they have not been loaded yet.
       # @example
-      #   ranks = SpellRanks["MyCharacter"]
+      #   rank = SpellRanks["Fireball"]
       def SpellRanks.[](name)
         SpellRanks.load unless @@loaded
         @@list.find { |n| n.name == name }
       end
 
-      # Gets the list of all spell rank records
+      # Retrieves the list of all spell ranks.
       #
-      # @return [Array<SpellRanks>] Array of all spell rank objects
+      # @return [Array<SpellRanks>] the list of all spell ranks.
+      # @note This method will load the spell ranks if they have not been loaded yet.
       # @example
-      #   all_ranks = SpellRanks.list
+      #   ranks = SpellRanks.list
       def SpellRanks.list
         SpellRanks.load unless @@loaded
         @@list
       end
 
-      # Handles undefined method calls with an error message
+      # Handles calls to undefined methods for the SpellRanks class.
       #
-      # @param arg [Symbol] The called method name
+      # @param [Symbol, String] arg the name of the method that was called.
       # @return [void]
-      # @note Outputs error message to game client
+      # @example
+      #   SpellRanks.some_undefined_method
       def SpellRanks.method_missing(arg = nil)
         echo "error: unknown method #{arg} for class SpellRanks"
         respond caller[0..1]
       end
 
-      # Creates a new spell ranks record for a character
+      # Initializes a new instance of the SpellRanks class.
       #
-      # @param name [String] Character name to create ranks for
-      # @return [SpellRanks] New SpellRanks instance
+      # @param [String] name the name of the spell rank.
+      # @return [void]
+      # @note This method will load the spell ranks if they have not been loaded yet.
       # @example
-      #   new_ranks = SpellRanks.new("MyCharacter")
-      # @note Initializes all ranks to 0 and adds to internal list
+      #   spell_rank = SpellRanks.new("Fireball")
       def initialize(name)
         SpellRanks.load unless @@loaded
         @name = name

@@ -1,69 +1,54 @@
-# A module containing core Lich functionality
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# class LimitedArray 2024-06-13
+
 module Lich
-
-  # Common utilities and classes used throughout Lich
   module Common
-
-    # An Array subclass that automatically limits its size by removing oldest elements
-    # when maximum size is reached
-    #
-    # @author Lich5 Documentation Generator
+    # A class that extends the functionality of an Array to limit its size.
+    # When the maximum size is reached, the oldest elements are removed.
     class LimitedArray < Array
-      # Maximum number of elements allowed in the array
-      # @return [Integer] The maximum size limit
       attr_accessor :max_size
 
-      # Creates a new LimitedArray with specified size and default object
+      # Initializes a new LimitedArray with a specified maximum size.
       #
-      # @param size [Integer] Initial size of the array (default: 0)
-      # @param obj [Object] Default object to fill array with (default: nil)
-      # @return [LimitedArray] A new limited array instance
+      # @param size [Integer] the initial size of the array (default is 0)
+      # @param obj [Object] the object to initialize the array with (default is nil)
+      # @return [LimitedArray] a new instance of LimitedArray
+      # @raise [ArgumentError] if size is negative
       # @example
-      #   arr = LimitedArray.new(5)
-      #   arr = LimitedArray.new(3, "default")
-      #
-      # @note Always sets max_size to 200 regardless of initial size parameter
+      #   limited_array = Lich::Common::LimitedArray.new(5)
       def initialize(size = 0, obj = nil)
         @max_size = 200
         super
       end
 
-      # Adds an element to the end of the array, removing oldest elements if max_size reached
+      # Adds an element to the end of the array, removing the oldest elements
+      # if the maximum size is exceeded.
       #
-      # @param line [Object] The element to add to the array
-      # @return [LimitedArray] The array with the new element added
+      # @param line [Object] the element to be added to the array
+      # @return [Object] the element that was added
+      # @note This method modifies the array in place.
       # @example
-      #   arr = LimitedArray.new
-      #   arr.push("new element") 
-      #
-      # @note Will remove elements from the beginning of the array if max_size would be exceeded
+      #   limited_array.push("new item")
       def push(line)
         self.shift while self.length >= @max_size
         super
       end
 
-      # Alias for push - adds an element while maintaining size limit
+      # An alias for the push method.
       #
-      # @param line [Object] The element to add to the array
-      # @return [LimitedArray] The array with the new element added
+      # @param line [Object] the element to be added to the array
+      # @return [Object] the element that was added
       # @example
-      #   arr = LimitedArray.new
-      #   arr.shove("new element")
-      #
-      # @note Functionally identical to push method
+      #   limited_array.shove("another item")
       def shove(line)
         push(line)
       end
 
-      # Returns an empty array (placeholder method)
+      # Returns an empty array representing the history of elements.
       #
-      # @return [Array] An empty array
+      # @return [Array] an empty array
       # @example
-      #   arr = LimitedArray.new
-      #   arr.history #=> []
-      #
-      # @note This appears to be a placeholder method that always returns an empty array
+      #   history = limited_array.history
       def history
         Array.new
       end

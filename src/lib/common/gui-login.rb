@@ -1,37 +1,14 @@
-# Module for core Lich functionality
-#
-# @author Lich5 Documentation Generator
+# Lich5 Carve out - GTK3 lich-login code stuff
+
 module Lich
-  # Common functionality shared across Lich components
   module Common
-    # Displays a GTK3-based login window allowing users to either load saved game entries
-    # or manually enter login credentials. The window contains two tabs:
-    # 1. Saved Entry - For selecting previously saved login configurations
-    # 2. Manual Entry - For entering new login credentials
+    # Handles the GUI login process, including loading entry data,
+    # setting up the main window, and managing user interactions.
     #
-    # This method handles:
-    # - Loading and sorting saved entry data
-    # - Creating and displaying the GTK window and notebook tabs
-    # - Saving entry data when modified
-    # - Launching the game with selected credentials
-    #
-    # @return [void]
-    # @raise [IOError] If there are issues reading from or writing to entry.dat
-    # @raise [TypeError] If the saved entry data is corrupted or in wrong format
-    #
+    # @return [void] This method does not return a value.
+    # @raise [Errno::ENOENT] If the entry data file does not exist.
     # @example
     #   Lich::Common.gui_login
-    #
-    # @note This method blocks until the user either selects a login option or closes the window.
-    #       If closed without selection, the application exits.
-    #       The method depends on several instance variables being set:
-    #       - @autosort_state: Controls entry list sorting behavior
-    #       - @tab_layout_state: Controls tab layout preferences
-    #       - @theme_state: Controls dark/light theme
-    #       - @launch_data: Stores the selected login configuration
-    #
-    # @see gui-saved-login.rb
-    # @see gui-manual-login.rb
     def gui_login
       @autosort_state = Lich.track_autosort_state
       @tab_layout_state = Lich.track_layout_state
@@ -65,11 +42,6 @@ module Lich
         @window = nil
         install_tab_loaded = false
 
-        # Displays an error message dialog
-        #
-        # @param msg [String] The error message to display
-        # @return [void]
-        # @note This is a private proc stored in @msgbox used internally by the GUI
         @msgbox = proc { |msg|
           dialog = Gtk::MessageDialog.new(:parent => @window, :flags => Gtk::DialogFlags::DESTROY_WITH_PARENT, :type => Gtk::MessageType::ERROR, :buttons => Gtk::ButtonsType::CLOSE, :message => msg)
           #			dialog.set_icon(default_icon)

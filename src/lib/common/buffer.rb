@@ -1,29 +1,16 @@
-# A thread-safe buffer implementation for managing game text streams
-# Provides functionality to read, write and manage different types of text streams
-# with thread isolation.
-#
-# @author Lich5 Documentation Generator
+# Carve out module Buffer
+# 2024-06-13
+# has rubocop error Lint/HashCompareByIdentity - cop disabled until reviewed
+
 module Lich
   module Common
     module Buffer
-      # Stream type for stripped downstream text
       DOWNSTREAM_STRIPPED = 1
-
-      # Stream type for raw downstream text  
       DOWNSTREAM_RAW      = 2
-
-      # Stream type for modified downstream text
       DOWNSTREAM_MOD      = 4
-
-      # Stream type for upstream text
       UPSTREAM            = 8
-
-      # Stream type for modified upstream text
       UPSTREAM_MOD        = 16
-
-      # Stream type for script output
       SCRIPT_OUTPUT       = 32
-
       @@index             = Hash.new
       @@streams           = Hash.new
       @@mutex             = Mutex.new
@@ -31,15 +18,12 @@ module Lich
       @@buffer            = Array.new
       @@max_size          = 3000
 
-      # Reads and returns the next line from the buffer for the current thread.
-      # Blocks until a line is available if buffer is empty.
+      # Retrieves the next line from the buffer, blocking until a line is available.
       #
-      # @return [String] The next line matching the thread's stream filter
+      # @return [Object] the next line from the buffer
+      # @note This method will block if no line is available until one becomes available.
       # @example
       #   line = Buffer.gets
-      #   puts line
-      #
-      # @note This method will block/sleep if no matching data is available
       def Buffer.gets
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -65,13 +49,11 @@ module Lich
         return line
       end
 
-      # Non-blocking version of gets that returns nil if no data is available
+      # Retrieves the next line from the buffer if available, otherwise returns nil.
       #
-      # @return [String, nil] The next matching line or nil if no data available
+      # @return [Object, nil] the next line from the buffer or nil if no line is available
       # @example
-      #   if line = Buffer.gets?
-      #     process_line(line)
-      #   end
+      #   line = Buffer.gets?
       def Buffer.gets?
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -98,9 +80,9 @@ module Lich
         return line
       end
 
-      # Rewinds the buffer position to the start for the current thread
+      # Resets the index for the current thread to the beginning of the buffer.
       #
-      # @return [Buffer] Returns self for method chaining
+      # @return [self] the Buffer instance
       # @example
       #   Buffer.rewind
       def Buffer.rewind
@@ -110,12 +92,11 @@ module Lich
         return self
       end
 
-      # Clears and returns all available lines for the current thread
+      # Clears the buffer for the current thread and returns all lines that match the current stream.
       #
-      # @return [Array<String>] Array of all available matching lines
+      # @return [Array<Object>] an array of lines that match the current stream
       # @example
       #   lines = Buffer.clear
-      #   lines.each { |line| process_line(line) }
       def Buffer.clear
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -143,13 +124,13 @@ module Lich
         return lines
       end
 
-      # Updates the buffer with a new line and optional stream type
+      # Updates the buffer with a new line and an optional stream identifier.
       #
-      # @param line [String] The line to add to the buffer
-      # @param stream [Integer, nil] Optional stream type identifier
-      # @return [Buffer] Returns self for method chaining
+      # @param line [Object] the line to be added to the buffer
+      # @param stream [Integer, nil] the stream identifier for the line (default: nil)
+      # @return [self] the Buffer instance
       # @example
-      #   Buffer.update("New game text", Buffer::DOWNSTREAM_STRIPPED)
+      #   Buffer.update(new_line, stream_id)
       def Buffer.update(line, stream = nil)
         @@mutex.synchronize {
           frozen_line = line.dup
@@ -166,25 +147,23 @@ module Lich
         return self
       end
 
-      # rubocop:disable Lint/HashCompareByIdentity
-      # Gets the current thread's stream filter value
+      # Retrieves the current stream identifier for the calling thread.
       #
-      # @return [Integer] The current thread's stream filter bitmask
+      # @return [Integer] the current stream identifier
       # @example
-      #   current_streams = Buffer.streams
+      #   current_stream = Buffer.streams
+      # @note This method is subject to rubocop error Lint/HashCompareByIdentity.
       def Buffer.streams
         @@streams[Thread.current.object_id]
       end
 
-      # Sets the stream filter for the current thread
+      # Sets the stream identifier for the calling thread.
       #
-      # @param val [Integer] Bitmask of desired stream types
-      # @return [Integer, nil] The new stream value or nil if invalid
-      # @raise [RuntimeError] If invalid stream value provided
+      # @param val [Integer] the new stream identifier
+      # @return [nil] if the value is invalid
+      # @raise [StandardError] if the value is not an Integer or if it does not represent a valid stream
       # @example
-      #   Buffer.streams = Buffer::DOWNSTREAM_STRIPPED | Buffer::SCRIPT_OUTPUT
-      #
-      # @note Value must be between 1-63 and represent valid stream combination
+      #   Buffer.streams = new_stream_id
       def Buffer.streams=(val)
         if (val.class != Integer) or ((val & 63) == 0)
           respond "--- Lich: error: invalid streams value\n\t#{$!.caller[0..2].join("\n\t")}"
@@ -193,15 +172,12 @@ module Lich
         @@streams[Thread.current.object_id] = val
       end
 
-      # rubocop:enable Lint/HashCompareByIdentity
-
-      # Removes buffer tracking for dead threads
+      # Cleans up the index and streams for threads that are no longer active.
       #
-      # @return [Buffer] Returns self for method chaining
+      # @return [self] the Buffer instance
       # @example
       #   Buffer.cleanup
-      #
-      # @note Should be called periodically to prevent memory leaks
+      # @note This method will remove entries for threads that are no longer running.
       def Buffer.cleanup
         @@index.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }
         @@streams.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }

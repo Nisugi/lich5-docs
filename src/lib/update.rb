@@ -1,11 +1,5 @@
 ## Let's have fun updating Lich5!
 
-# Provides functionality for updating the Lich5 system and its components
-#
-# This module handles version checking, downloading updates, creating snapshots,
-# and managing individual file updates for the Lich5 ecosystem.
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Util
     module Update
@@ -18,14 +12,13 @@ module Lich
       @snapshot_core_script = ["alias.lic", "autostart.lic", "dependency.lic", "ewaggle.lic", "foreach.lic", "go2.lic", "infomon.lic",
                                "jinx.lic", "lnet.lic", "log.lic", "logxml.lic", "map.lic", "repository.lic", "vars.lic", "version.lic"]
 
-      # Processes update requests based on command line arguments
+      # Handles the request for various update commands.
       #
-      # @param type [String] The type of update request (--announce, --update, etc)
+      # @param type [String] The command type to execute.
       # @return [void]
+      # @raise [StandardError] If the command type is unknown.
       # @example
-      #   Update.request('--announce') 
-      #   Update.request('--update')
-      #   Update.request('--script=map.lic')
+      #   Lich::Util::Update.request('--update')
       def self.request(type = '--announce')
         case type
         when /--announce|-a/
@@ -49,12 +42,11 @@ module Lich
         end
       end
 
-      # Announces if a new version is available and displays new features
+      # Announces the availability of a new version of Lich.
       #
-      # @return [void] 
-      # @note Only works with Lich version 5+
+      # @return [void]
       # @example
-      #   Update.announce
+      #   Lich::Util::Update.announce
       def self.announce
         self.prep_update
         if "#{LICH_VERSION}".chr == '5'
@@ -76,11 +68,11 @@ module Lich
         end
       end
 
-      # Displays help information about available commands
+      # Displays help information for the update commands.
       #
       # @return [void]
       # @example
-      #   Update.help
+      #   Lich::Util::Update.help
       def self.help
         respond "
     --help                   Display this message
@@ -108,14 +100,11 @@ module Lich
     "
       end
 
-      # Creates a snapshot backup of current Lich core files
-      #
-      # Creates a timestamped backup directory containing core Lich files,
-      # libraries, and essential scripts.
+      # Creates a snapshot of the current Lich core files.
       #
       # @return [void]
       # @example
-      #   Update.snapshot
+      #   Lich::Util::Update.snapshot
       def self.snapshot
         respond
         respond 'Creating a snapshot of current Lich core files ONLY.'
@@ -151,14 +140,14 @@ module Lich
         respond "    #{snapshot_subdir}"
       end
 
-      # Prepares for beta testing of next Lich release
+      # Prepares for beta testing by fetching the latest beta release information.
       #
-      # @param type [String, nil] Type of file to beta test ('script', 'library', 'data')
-      # @param requested_file [String, nil] Specific file to beta test
+      # @param type [String, nil] The type of file to update (script, library, data).
+      # @param requested_file [String, nil] The specific file to update.
       # @return [void]
+      # @raise [StandardError] If the user does not confirm participation in the beta test.
       # @example
-      #   Update.prep_betatest
-      #   Update.prep_betatest('script', 'map.lic')
+      #   Lich::Util::Update.prep_betatest('script', 'example.lic')
       def self.prep_betatest(type = nil, requested_file = nil)
         if type.nil?
           respond 'You are electing to participate in the beta testing of the next Lich release.'
@@ -212,12 +201,11 @@ module Lich
         end
       end
 
-      # Prepares update information from GitHub releases
+      # Prepares for the update by fetching the latest release information.
       #
       # @return [void]
-      # @raise [OpenURI::HTTPError] If GitHub API is unavailable
       # @example
-      #   Update.prep_update
+      #   Lich::Util::Update.prep_update
       def self.prep_update
         filename = "https://api.github.com/repos/elanthia-online/lich-5/releases/latest"
         update_info = URI.parse(filename).open.read
@@ -235,13 +223,12 @@ module Lich
         @zipfile = release_asset.fetch('browser_download_url')
       end
 
-      # Downloads and installs Lich5 updates
-      #
-      # Creates a backup snapshot, downloads new version, and updates all components
+      # Downloads and applies the update to Lich.
       #
       # @return [void]
+      # @raise [StandardError] If the update fails or if the version is not valid.
       # @example
-      #   Update.download_update
+      #   Lich::Util::Update.download_update
       def self.download_update
         ## This is the workhorse routine that does the file moves from an update
         self.prep_update if @update_to.nil? or @update_to.empty?
@@ -297,13 +284,12 @@ module Lich
         end
       end
 
-      # Reverts Lich5 to previously installed version
-      #
-      # Restores from most recent snapshot backup
+      # Reverts Lich to the previously installed version.
       #
       # @return [void]
+      # @raise [StandardError] If no prior version is found.
       # @example
-      #   Update.revert
+      #   Lich::Util::Update.revert
       def self.revert
         ## Since the request is to roll-back, we will do so destructively
         ## without another snapshot and without worrying about saving files
@@ -349,16 +335,17 @@ module Lich
         end
       end
 
-      # Updates a specific file from the appropriate repository
+      # Updates a specific file (script, library, or data) to the latest version.
       #
-      # @param type [String] Type of file ('script', 'library', 'data')
-      # @param rf [String] Name of file to update
-      # @param version [String] Version to update to ('production' or 'beta')
+      # @param type [String] The type of file to update (script, library, data).
+      # @param rf [String] The name of the file to update.
+      # @param version [String] The version type ('production' or 'beta').
       # @return [void]
-      # @raise [RuntimeError] If file extension is invalid
+      # @raise [StandardError] If the file cannot be updated or if the extension is invalid.
       # @example
-      #   Update.update_file('script', 'map.lic')
-      #   Update.update_file('library', 'common.rb', 'beta')
+      #   Lich::Util::Update.update_file('script', 'example.lic')
+      #
+      # @note This method will delete the local file if it exists before downloading the new version.
       def self.update_file(type, rf, version = 'production')
         requested_file = rf
         case type
@@ -408,15 +395,15 @@ module Lich
         end
       end
 
-      # Updates core data files and scripts based on game type
+      # Updates core data and scripts based on the current game type.
       #
-      # @param version [String] Version to update files to
+      # @param version [String] The version of Lich to use (default is LICH_VERSION).
       # @return [void]
-      # @raise [RuntimeError] If game type is invalid
+      # @raise [RuntimeError] If the game type is invalid.
       # @example
-      #   Update.update_core_data_and_scripts('5.1.0')
+      #   Lich::Util::Update.update_core_data_and_scripts
       #
-      # @note Only works with GemStone and DragonRealms games
+      # @note This method handles local edits for specific data files more carefully.
       def self.update_core_data_and_scripts(version = LICH_VERSION)
         if XMLData.game !~ /^GS|^DR/
           respond "invalid game type, unsure what scripts to update via Update.update_core_scripts"

@@ -1,51 +1,44 @@
-# A module containing common functionality for the Lich system
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# extension to SynchronizedSocket class 2024-06-13
+
 module Lich
-
-  # Common utilities and classes used throughout Lich
   module Common
-
-    # A thread-safe wrapper around a socket that synchronizes write operations
-    # This class decorates an existing socket with mutex-based synchronization
-    #
-    # @author Lich5 Documentation Generator
+    # A thread-safe wrapper around a socket that synchronizes access
+    # to the underlying socket object using a mutex.
     class SynchronizedSocket
-
-      # Creates a new synchronized socket wrapper around an existing socket
+      # Initializes a new instance of SynchronizedSocket.
       #
-      # @param o [Object] The socket object to wrap with synchronization
-      # @return [SynchronizedSocket] A new synchronized socket instance
+      # @param o [Object] the socket object to be synchronized.
+      # @return [SynchronizedSocket] the new instance of SynchronizedSocket.
+      # @raise [ArgumentError] if the provided object is not a valid socket.
       # @example
-      #   socket = TCPSocket.new(host, port)
-      #   sync_socket = SynchronizedSocket.new(socket)
+      #   socket = SynchronizedSocket.new(TCPSocket.new('localhost', 8080))
       def initialize(o)
         @delegate = o
         @mutex = Mutex.new
         # self # removed by robocop, needs broad testing
       end
 
-      # Writes one or more strings to the socket with a newline appended, in a thread-safe manner
+      # Writes a line to the socket, ensuring thread safety.
       #
-      # @param args [Array<String>] The strings to write to the socket
-      # @param block [Proc] Optional block that can modify the output
-      # @return [nil]
+      # @param args [Array] the arguments to be written to the socket.
+      # @yield [Block] an optional block to be executed.
+      # @return [nil] returns nil after writing to the socket.
       # @example
-      #   sync_socket.puts "Hello world"
-      #   sync_socket.puts "Line 1", "Line 2"
+      #   synchronized_socket.puts("Hello, World!")
       def puts(*args, &block)
         @mutex.synchronize {
           @delegate.puts(*args, &block)
         }
       end
 
-      # Conditionally writes strings to the socket if a condition is met
+      # Conditionally writes to the socket based on the result of a block.
       #
-      # @param args [Array<String>] The strings to potentially write
-      # @yield Block that determines if writing should occur
-      # @yieldreturn [Boolean] True if the strings should be written, false otherwise
-      # @return [Boolean] True if strings were written, false if condition was not met
+      # @param args [Array] the arguments to be written to the socket if the block returns true.
+      # @yield [Block] a block that determines whether to write to the socket.
+      # @return [Boolean] returns true if the block returns true and the write occurs, false otherwise.
       # @example
-      #   sync_socket.puts_if("Ready!") { game.ready? }
+      #   synchronized_socket.puts_if("Hello, World!") { true }
       def puts_if(*args)
         @mutex.synchronize {
           if yield
@@ -57,26 +50,27 @@ module Lich
         }
       end
 
-      # Writes data to the socket in a thread-safe manner
+      # Writes data to the socket, ensuring thread safety.
       #
-      # @param args [Array<String>] The data to write to the socket
-      # @param block [Proc] Optional block that can modify the output
-      # @return [Integer] Number of bytes written
+      # @param args [Array] the arguments to be written to the socket.
+      # @yield [Block] an optional block to be executed.
+      # @return [nil] returns nil after writing to the socket.
       # @example
-      #   sync_socket.write "Raw data"
+      #   synchronized_socket.write("Data to send")
       def write(*args, &block)
         @mutex.synchronize {
           @delegate.write(*args, &block)
         }
       end
 
-      # Delegates any unknown methods to the underlying socket object
+      # Delegates method calls to the underlying socket object.
       #
-      # @param method [Symbol] The method name to delegate
-      # @param args [Array] Arguments to pass to the delegated method
-      # @param block [Proc] Optional block to pass to the delegated method
-      # @return [Object] The return value from the delegated method call
-      # @note This allows the synchronized socket to act as a transparent wrapper
+      # @param method [Symbol] the method name to be called on the delegate.
+      # @param args [Array] the arguments to be passed to the method.
+      # @yield [Block] an optional block to be executed.
+      # @return [Object] the result of the method call on the delegate.
+      # @example
+      #   synchronized_socket.some_method(arg1, arg2)
       def method_missing(method, *args, &block)
         @delegate.__send__ method, *args, &block
       end

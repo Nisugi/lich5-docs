@@ -1,35 +1,20 @@
-# Module containing core Lich functionality
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# class DownstreamHook 2024-06-13
+
 module Lich
-
-  # Common functionality shared across Lich systems
   module Common
-
-    # Manages downstream hooks that can modify server output before it reaches the client
-    # Hooks are stored as Proc objects that can transform text streams
-    #
-    # @author Lich5 Documentation Generator
+    # A class that manages downstream hooks for processing strings.
     class DownstreamHook
-      # @!attribute [r] downstream_hooks
-      #   @return [Hash] internal storage of hook name to Proc mappings
-      #   @api private
       @@downstream_hooks ||= Hash.new
-
-      # @!attribute [r] downstream_hook_sources
-      #   @return [Hash] internal storage of hook name to source script mappings
-      #   @api private
       @@downstream_hook_sources ||= Hash.new
 
-      # Adds a new downstream hook to process server output
+      # Adds a new downstream hook with a given name and action.
       #
-      # @param name [Symbol, String] unique identifier for this hook
-      # @param action [Proc] the code block that will process the server string
-      # @return [Boolean] false if action is not a Proc, true if hook was added successfully
-      # @raise [TypeError] if action is not a Proc
+      # @param name [String] the name of the hook
+      # @param action [Proc] the action to be executed when the hook is triggered
+      # @return [Boolean] returns false if the action is not a Proc, otherwise returns nil
       # @example
-      #   DownstreamHook.add(:my_hook, proc { |server_string| server_string.upcase })
-      #
-      # @note The hook source is automatically tracked using the current script name
+      #   DownstreamHook.add("example_hook", Proc.new { |str| str.upcase })
       def DownstreamHook.add(name, action)
         unless action.class == Proc
           echo "DownstreamHook: not a Proc (#{action})"
@@ -39,15 +24,13 @@ module Lich
         @@downstream_hooks[name] = action
       end
 
-      # Processes server output through all registered hooks
+      # Runs all registered downstream hooks on the provided server string.
       #
-      # @param server_string [String] the original text from the server
-      # @return [String, nil] the processed string after running through all hooks, or nil if input becomes nil
-      # @raise [StandardError] if any hook raises an error (hook will be removed)
+      # @param server_string [String] the string to be processed by the hooks
+      # @return [String, nil] the processed string or nil if the input is nil
+      # @raise [StandardError] if an error occurs during the execution of a hook
       # @example
-      #   result = DownstreamHook.run("You see a goblin.")
-      #
-      # @note Hooks are processed in order. If any hook returns nil, processing stops
+      #   processed_string = DownstreamHook.run("example string")
       def DownstreamHook.run(server_string)
         for key in @@downstream_hooks.keys
           return nil if server_string.nil?
@@ -62,34 +45,31 @@ module Lich
         return server_string
       end
 
-      # Removes a hook from the system
+      # Removes a downstream hook by its name.
       #
-      # @param name [Symbol, String] identifier of the hook to remove
-      # @return [void]
+      # @param name [String] the name of the hook to be removed
+      # @return [nil] returns nil
       # @example
-      #   DownstreamHook.remove(:my_hook)
+      #   DownstreamHook.remove("example_hook")
       def DownstreamHook.remove(name)
         @@downstream_hook_sources.delete(name)
         @@downstream_hooks.delete(name)
       end
 
-      # Lists all registered hook names
+      # Lists all registered downstream hooks.
       #
-      # @return [Array<Symbol, String>] array of hook identifiers
+      # @return [Array<String>] an array of hook names
       # @example
       #   hooks = DownstreamHook.list
-      #   puts "Active hooks: #{hooks.join(', ')}"
       def DownstreamHook.list
         @@downstream_hooks.keys.dup
       end
 
-      # Displays a formatted table of hooks and their sources
+      # Displays the sources of all registered downstream hooks in a table format.
       #
-      # @return [void]
+      # @return [String] a formatted string representation of the hook sources
       # @example
       #   DownstreamHook.sources
-      #
-      # @note Requires the terminal-table gem for formatting
       def DownstreamHook.sources
         info_table = Terminal::Table.new :headings => ['Hook', 'Source'],
                                          :rows     => @@downstream_hook_sources.to_a,
@@ -97,12 +77,11 @@ module Lich
         Lich::Messaging.mono(info_table.to_s)
       end
 
-      # Returns the raw mapping of hooks to their source scripts
+      # Retrieves the sources of all registered downstream hooks.
       #
-      # @return [Hash] mapping of hook names to source script names
+      # @return [Hash] a hash mapping hook names to their sources
       # @example
       #   sources = DownstreamHook.hook_sources
-      #   puts "My hook came from: #{sources[:my_hook]}"
       def DownstreamHook.hook_sources
         @@downstream_hook_sources
       end

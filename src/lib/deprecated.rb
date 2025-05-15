@@ -1,54 +1,37 @@
-# Global constants and deprecated functions from the Lich5 system
-#
-# @author Lich5 Documentation Generator
+# Carve out deprecated (?) functions
+# 2024-06-13
 
-# Current version of Lich
-# @return [String] Version number
 $version = LICH_VERSION
-
-# Counter for tracking room count
-# @return [Integer] Number of rooms
 $room_count = 0
-
-# Flag indicating if PSINet is enabled
-# @return [Boolean] PSINet status
 $psinet = false
-
-# Flag indicating if StormFront is enabled
-# @return [Boolean] StormFront status
 $stormfront = true
 
-# Deprecated method to check poison survival chances
+# Checks if the character can survive poison.
 #
-# @return [Boolean] Always returns true
-# @note This method is deprecated and only echoes a warning message
+# @return [Boolean] always returns true, as there is no XML for poison rate.
 # @example
-#   survivepoison? #=> true
+#   survivepoison? # => true
 def survivepoison?
   echo 'survivepoison? called, but there is no XML for poison rate'
   return true
 end
 
-# Deprecated method to check disease survival chances
+# Checks if the character can survive disease.
 #
-# @return [Boolean] Always returns true
-# @note This method is deprecated and only echoes a warning message
+# @return [Boolean] always returns true, as there is no XML for disease rate.
 # @example
-#   survivedisease? #=> true
+#   survivedisease? # => true
 def survivedisease?
   echo 'survivepoison? called, but there is no XML for disease rate'
   return true
 end
 
-# Automatically collects and stores loot items in a specified container
+# Fetches loot from the game object and places it into the user's bag.
 #
-# @param userbagchoice [String] The container to store loot in (defaults to UserVars.lootsack)
-# @return [Boolean] Returns false if no loot is present, true otherwise
+# @param userbagchoice [String] the name of the bag to store the loot in (default is UserVars.lootsack).
+# @return [Boolean] returns false if there is no loot to fetch, otherwise returns true.
 # @example
-#   fetchloot("backpack")
-#   fetchloot # Uses default UserVars.lootsack
-#
-# @note Will temporarily store held items if hands are full
+#   fetchloot # fetches loot into the default lootsack
 def fetchloot(userbagchoice = UserVars.lootsack)
   if GameObj.loot.empty?
     return false
@@ -76,15 +59,12 @@ def fetchloot(userbagchoice = UserVars.lootsack)
   end
 end
 
-# Takes specified items and stores them in the default container
+# Takes items and places them into the user's bag.
 #
-# @param items [Array<String>] List of items to take and store
+# @param items [Array<String>] the items to take, can be a list of items or a nested array.
 # @return [void]
 # @example
-#   take("gem", "coin")
-#   take(["gem", "coin"])
-#
-# @note Temporarily stores held items if hands are full
+#   take('sword', 'shield') # takes the sword and shield and puts them in the lootsack
 def take(*items)
   items.flatten!
   if (righthand? && lefthand?)
@@ -101,33 +81,36 @@ def take(*items)
   if unsh then fput("take my #{weap} from my #{UserVars.lootsack}") end
 end
 
-# Extensions to the String class for Lich5 compatibility
+# class StringProc
+#  def StringProc._load(string)
+#    StringProc.new(string)
+#  end
+# end
+
 class String
-  # Converts string to single-element array for Ruby 1.8 compatibility
+  # Converts the string to an array for compatibility with Ruby 1.8.
   #
-  # @return [Array<String>] Single-element array containing the string
+  # @return [Array<String>] an array containing the string.
   # @example
-  #   "test".to_a #=> ["test"]
+  #   "hello".to_a # => ["hello"]
   def to_a # for compatibility with Ruby 1.8
     [self]
   end
 
-  # Indicates if string should be processed silently
+  # Returns false, indicating that the string is not silent.
   #
-  # @return [Boolean] Always returns false
+  # @return [Boolean] always returns false.
   # @example
-  #   "test".silent #=> false
+  #   "test".silent # => false
   def silent
     false
   end
 
-  # Parses a list-formatted string into an array of items
+  # Splits the string into a list based on specific patterns.
   #
-  # @return [Array<String>] Array of parsed items
+  # @return [Array<String>] an array of trimmed strings after splitting.
   # @example
-  #   "You see a gem and a coin.".split_as_list #=> ["a gem", "a coin"]
-  #
-  # @note Handles various list formats including "You see", "You notice", and "In the ... you see"
+  #   "You notice a sword and a shield.".split_as_list # => ["sword", "shield"]
   def split_as_list
     string = self
     string.sub!(/^You (?:also see|notice) |^In the .+ you see /, ',')

@@ -1,100 +1,77 @@
-# The Lich module serves as the main namespace for the Lich game scripting system
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# extension to StringProc class 2024-06-13
+
 module Lich
-
-  # Common module containing shared functionality
   module Common
-
-    # StringProc provides a way to store and evaluate Ruby code stored as strings.
-    # It mimics the behavior of Proc objects while allowing serialization of the code.
-    #
-    # @author Lich5 Documentation Generator
+    # A class that processes strings as Ruby code.
     class StringProc
-
-      # Creates a new StringProc instance that wraps the given Ruby code string
+      # Initializes a new StringProc instance with the given string.
       #
-      # @param string [String] Ruby code to be stored and evaluated later
-      # @return [StringProc] New StringProc instance
-      # @example
-      #   proc = StringProc.new("2 + 2")
+      # @param string [String] the string to be processed as Ruby code
       def initialize(string)
         @string = string
       end
 
-      # Checks if this StringProc is a kind of the specified type
-      # Always delegates to Proc's kind_of? to maintain compatibility
+      # Checks if the current object is of the specified type.
       #
-      # @param type [Class] The type to check against
-      # @return [Boolean] true if compatible with the type
-      # @example
-      #   proc = StringProc.new("puts 'hello'")
-      #   proc.kind_of?(Proc) #=> true
+      # @param type [Class] the class to check against
+      # @return [Boolean] true if the object is of the specified type, false otherwise
       def kind_of?(type)
         Proc.new {}.kind_of? type
       end
 
-      # Returns the class of this object
-      # Always returns Proc to maintain compatibility
+      # Returns the class of the current object.
       #
-      # @return [Class] Returns Proc
-      # @example
-      #   proc = StringProc.new("puts 'hello'")
-      #   proc.class #=> Proc
+      # @return [Class] the class of the object, which is Proc
       def class
         Proc
       end
 
-      # Evaluates the stored Ruby code string
+      # Calls the stored string as Ruby code.
       #
-      # @param _a [Array] Ignored arguments for compatibility with Proc#call
-      # @return [Object] Result of evaluating the stored code
-      # @raise [StandardError] If the stored code raises an error during evaluation
+      # @param _a [Array] optional arguments (not used)
+      # @return [Object] the result of evaluating the string
+      # @raise [SyntaxError] if the string contains invalid Ruby code
       # @example
-      #   proc = StringProc.new("2 + 2")
-      #   proc.call #=> 4
+      #   sp = StringProc.new("1 + 1")
+      #   sp.call # => 2
       def call(*_a)
         proc { eval(@string) }.call
       end
 
-      # Serializes the StringProc by returning the stored code string
+      # Dumps the string representation of the object.
       #
-      # @param _d [Object] Ignored parameter for Marshal compatibility
-      # @return [String] The stored Ruby code string
-      # @example
-      #   proc = StringProc.new("puts 'hello'")
-      #   proc._dump #=> "puts 'hello'"
+      # @param _d [nil] optional parameter (not used)
+      # @return [String] the string representation of the object
       def _dump(_d = nil)
         @string
       end
 
-      # Returns a string representation of the StringProc
+      # Returns a string representation of the StringProc object.
       #
-      # @return [String] String showing the StringProc construction
-      # @example
-      #   proc = StringProc.new("2 + 2")
-      #   proc.inspect #=> "StringProc.new(\"2 + 2\")"
+      # @return [String] a string describing the StringProc instance
       def inspect
         "StringProc.new(#{@string.inspect})"
       end
 
-      # Converts the StringProc to JSON format
-      # Prepends ";e " to the stored code for compatibility
+      # Converts the StringProc object to JSON format.
       #
-      # @param args [Array] Arguments passed to to_json
-      # @return [String] JSON representation
+      # @param args [Array] optional arguments for JSON conversion
+      # @return [String] the JSON representation of the object
       # @example
-      #   proc = StringProc.new("2 + 2")
-      #   proc.to_json #=> "\";e 2 + 2\""
+      #   sp = StringProc.new("1 + 1")
+      #   sp.to_json # => ";e \"1 + 1\""
       def to_json(*args)
         ";e #{_dump}".to_json(args)
       end
 
-      # Deserializes a StringProc from a string
+      # Loads a StringProc object from a string.
       #
-      # @param string [String] Previously dumped Ruby code string
-      # @return [StringProc] New StringProc instance with the loaded code
+      # @param string [String] the string to load
+      # @return [StringProc] a new StringProc instance initialized with the string
       # @example
-      #   proc = StringProc._load("puts 'hello'")
+      #   sp = StringProc._load("1 + 1")
+      #   sp.call # => 2
       def StringProc._load(string)
         StringProc.new(string)
       end

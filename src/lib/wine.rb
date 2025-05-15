@@ -24,28 +24,23 @@ unless $wine_bin.nil?
   end
 
   if $wine_bin and File.exist?($wine_bin) and File.file?($wine_bin) and $wine_prefix and File.exist?($wine_prefix) and File.directory?($wine_prefix)
-    # Provides WINE (Wine Is Not an Emulator) integration functionality for running Windows applications on Unix-like systems.
-    # This module handles WINE registry operations and configuration management.
+    # Module for handling Wine registry operations
     #
-    # @author Lich5 Documentation Generator
+    # @note This module requires a valid Wine binary and prefix to function correctly.
     module Wine
-      # The path to the WINE binary executable
-      # @return [String] Full path to wine executable
+      # The path to the Wine binary
       BIN = $wine_bin
-
-      # The WINE prefix directory path containing the virtual Windows environment
-      # @return [String] Path to WINE prefix directory  
+      
+      # The path to the Wine prefix
       PREFIX = $wine_prefix
-
-      # Retrieves a value from the WINE registry
+      
+      # Retrieves a value from the Wine registry.
       #
-      # @param key [String] The full registry key path in format "HKEY_LOCAL_MACHINE\path\to\key" or "HKEY_CURRENT_USER\path\to\key"
-      # @return [String, false] The registry value if found, false if not found or on error
-      # @example Reading a registry value
-      #   Wine.registry_gets("HKEY_LOCAL_MACHINE\\Software\\MyApp\\Version")
-      #
-      # @note Only supports HKEY_LOCAL_MACHINE registry hive currently
-      # @note Reads from the system.reg file in the WINE prefix directory
+      # @param key [String] The registry key to retrieve the value from.
+      # @return [String, nil] The value associated with the key, or nil if not found.
+      # @raise [StandardError] If there is an issue reading the registry file.
+      # @example
+      #   value = Wine.registry_gets('HKEY_CURRENT_USER\\Software\\MyApp\\Setting')
       def Wine.registry_gets(key)
         hkey, subkey, thingie = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key).captures # fixme: stupid highlights ]/
         if File.exist?(PREFIX + '/system.reg')
@@ -76,18 +71,14 @@ unless $wine_bin.nil?
         end
       end
 
-      # Writes a value to the WINE registry
+      # Writes a value to the Wine registry.
       #
-      # @param key [String] The full registry key path in format "HKEY_LOCAL_MACHINE\path\to\key" or "HKEY_CURRENT_USER\path\to\key" 
-      # @param value [String] The value to write to the registry key
-      # @return [Boolean] true if successful, false if failed
-      # @raise [SystemCallError] If unable to write temporary registry file or execute regedit
-      # @example Writing a registry value
-      #   Wine.registry_puts("HKEY_LOCAL_MACHINE\\Software\\MyApp\\Version", "1.0.0")
-      #
-      # @note Creates a temporary .reg file and uses wine regedit to import it
-      # @note Automatically escapes backslashes and quotes in the value
-      # @note Waits 0.2 seconds after registry write to allow for completion
+      # @param key [String] The registry key to write the value to.
+      # @param value [String] The value to be written to the registry.
+      # @return [Boolean] True if the operation was successful, false otherwise.
+      # @raise [StandardError] If there is an issue writing to the registry.
+      # @example
+      #   success = Wine.registry_puts('HKEY_CURRENT_USER\\Software\\MyApp\\Setting', 'MyValue')
       def Wine.registry_puts(key, value)
         hkey, subkey, thingie = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key).captures # fixme ]/
         if File.exist?(PREFIX)

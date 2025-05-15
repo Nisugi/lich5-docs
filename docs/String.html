@@ -104,29 +104,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Extensions to the Ruby String class for Lich5 functionality</p>
+<p>Carve out from lich.rbw extension to String class</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Lich5 Documentation Generator</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -161,7 +145,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Indicates if string should be processed silently.</p>
+<p>Returns false, indicating that the string is not silent.</p>
 </div></span>
   
 </li>
@@ -185,7 +169,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parses a list-formatted string into an array of items.</p>
+<p>Splits the string into a list based on specific patterns.</p>
 </div></span>
   
 </li>
@@ -209,7 +193,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the stream associated with this string.</p>
+<p>Returns the current stream value.</p>
 </div></span>
   
 </li>
@@ -233,7 +217,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the stream associated with this string.</p>
+<p>Sets the stream value if it is not already set.</p>
 </div></span>
   
 </li>
@@ -257,7 +241,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts string to single-element array for Ruby 1.8 compatibility.</p>
+<p>Converts the string to an array for compatibility with Ruby 1.8.</p>
 </div></span>
   
 </li>
@@ -308,7 +292,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Indicates if string should be processed silently</p>
+<p>Returns false, indicating that the string is not silent.</p>
 
 
   </div>
@@ -319,7 +303,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_silent'>silent</span> <span class='comment'>#=&gt; false</span></code></pre>
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_silent'>silent</span> <span class='comment'># =&gt; false</span></code></pre>
     
   </div>
 
@@ -335,7 +319,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Always returns false</p>
+<p>always returns false.</p>
 </div>
       
     </li>
@@ -348,12 +332,12 @@
       <pre class="lines">
 
 
-120
-121
-122</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_silent'>silent</span>
   <span class='kw'>false</span>
@@ -375,15 +359,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Handles various list formats including “You see”, “You notice”, and “In the … you see”</p>
-</div>
-  </div>
-
-
-<p>Parses a list-formatted string into an array of items</p>
+<p>Splits the string into a list based on specific patterns.</p>
 
 
   </div>
@@ -394,7 +370,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You see a gem and a coin.</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_split_as_list'>split_as_list</span> <span class='comment'>#=&gt; [&quot;a gem&quot;, &quot;a coin&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You notice a sword and a shield.</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_split_as_list'>split_as_list</span> <span class='comment'># =&gt; [&quot;sword&quot;, &quot;shield&quot;]</span></code></pre>
     
   </div>
 
@@ -410,7 +386,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of parsed items</p>
+<p>an array of trimmed strings after splitting.</p>
 </div>
       
     </li>
@@ -423,14 +399,14 @@
       <pre class="lines">
 
 
-131
-132
-133
-134
-135</pre>
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_split_as_list'>split_as_list</span>
   <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='kw'>self</span>
@@ -454,15 +430,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Used internally by Lich5 for stream handling</p>
-</div>
-  </div>
-
-
-<p>Gets the stream associated with this string</p>
+<p>Returns the current stream value.</p>
 
 
   </div>
@@ -473,8 +441,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_stream'>stream</span> <span class='comment'>#=&gt; nil</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>example</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_stream'>stream</span> <span class='comment'># =&gt; nil</span></code></pre>
     
   </div>
 
@@ -490,7 +458,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The stream object associated with this string or nil if not set</p>
+<p>the current stream value or nil if not set.</p>
 </div>
       
     </li>
@@ -503,12 +471,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stream'>stream</span>
   <span class='ivar'>@stream</span>
@@ -533,19 +501,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Will only set the stream if it hasn’t been set before (uses ||=)</p>
-</div>
-  </div>
-
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Used internally by Lich5 for stream handling</p>
+<p>This method will only set the stream if it is currently nil.</p>
 </div>
   </div>
 
 
-<p>Sets the stream associated with this string</p>
+<p>Sets the stream value if it is not already set.</p>
 
 
   </div>
@@ -556,8 +517,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span> 
-<span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_stream'>stream</span> <span class='op'>=</span> <span class='id identifier rubyid_some_stream_obj'>some_stream_obj</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>example</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_stream'>stream</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new_stream</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># =&gt; &quot;new_stream&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -574,7 +535,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The stream object to associate with this string</p>
+<p>the value to set as the stream.</p>
 </div>
       
     </li>
@@ -593,7 +554,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The stream that was set</p>
+<p>the value that was set as the stream.</p>
 </div>
       
     </li>
@@ -606,12 +567,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stream='>stream=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='ivar'>@stream</span> <span class='op'>||=</span> <span class='id identifier rubyid_val'>val</span>
@@ -633,7 +594,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Converts string to single-element array for Ruby 1.8 compatibility</p>
+<p>Converts the string to an array for compatibility with Ruby 1.8.</p>
 
 
   </div>
@@ -644,7 +605,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span> <span class='comment'>#=&gt; [&quot;test&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span> <span class='comment'># =&gt; [&quot;hello&quot;]</span></code></pre>
     
   </div>
 
@@ -660,7 +621,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Single-element array containing the string</p>
+<p>an array containing the string.</p>
 </div>
       
     </li>
@@ -673,12 +634,12 @@
       <pre class="lines">
 
 
-111
-112
-113</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/deprecated.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_a'>to_a</span> <span class='comment'># for compatibility with Ruby 1.8
 </span>  <span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span>
@@ -700,15 +661,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This overrides the default to_s method to ensure a new string copy is returned</p>
-</div>
-  </div>
-
-
-<p>Returns a duplicate of the string</p>
+<p>Returns a duplicate of the string.</p>
 
 
   </div>
@@ -719,8 +672,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_copy'>copy</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='comment'>#=&gt; &quot;test&quot;</span></code></pre>
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='comment'># =&gt; &quot;hello&quot;</span></code></pre>
     
   </div>
 
@@ -736,7 +688,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A new copy of the string object</p>
+<p>a duplicate of the original string.</p>
 </div>
       
     </li>
@@ -749,12 +701,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/string.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -769,7 +721,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:40 2025 by
+  Generated on Thu May 15 06:53:01 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

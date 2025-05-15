@@ -102,29 +102,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Represents a disk container object in the game that can store items Used to manage and interact with personal storage disks</p>
+<p>Represents a disk item in the game.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Lich5 Documentation Generator</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
   
@@ -136,36 +120,7 @@
     <dl class="constants">
       
         <dt id="NOUNS-constant" class="">NOUNS =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>List of valid nouns that identify disk containers in the game</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Array of valid disk container noun identifiers</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='qwords_beg'>%w{</span><span class='tstring_content'>cassone</span><span class='words_sep'> </span><span class='tstring_content'>chest</span><span class='words_sep'> </span><span class='tstring_content'>coffer</span><span class='words_sep'> </span><span class='tstring_content'>coffin</span><span class='words_sep'> </span><span class='tstring_content'>coffret</span><span class='words_sep'> </span><span class='tstring_content'>disk</span><span class='words_sep'> </span><span class='tstring_content'>hamper</span><span class='words_sep'> </span><span class='tstring_content'>saucer</span><span class='words_sep'> </span><span class='tstring_content'>sphere</span><span class='words_sep'> </span><span class='tstring_content'>trunk</span><span class='words_sep'> </span><span class='tstring_content'>tureen</span><span class='tstring_end'>}</span></span></pre></dd>
       
@@ -181,7 +136,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; String </a>
+      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; Object </a>
     
 
     
@@ -201,7 +156,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The unique identifier of the disk.</p>
+<p>Returns the value of attribute id.</p>
 </div></span>
   
 </li>
@@ -210,7 +165,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; String </a>
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
     
 
     
@@ -230,7 +185,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The name of the disk owner.</p>
+<p>Returns the value of attribute name.</p>
 </div></span>
   
 </li>
@@ -267,7 +222,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns all disk containers currently visible.</p>
+<p>Retrieves all disk objects from the loot.</p>
 </div></span>
   
 </li>
@@ -291,7 +246,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds a disk container by a specific name.</p>
+<p>Finds a disk by its name.</p>
 </div></span>
   
 </li>
@@ -315,7 +270,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Determines if a given game object is a valid disk container.</p>
+<p>Checks if the given object is a disk based on its name.</p>
 </div></span>
   
 </li>
@@ -339,7 +294,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds the disk container belonging to the current character.</p>
+<p>Mines a disk based on the character’s name.</p>
 </div></span>
   
 </li>
@@ -372,7 +327,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Compares this disk with another for equality.</p>
+<p>Compares this Disk object with another for equality.</p>
 </div></span>
   
 </li>
@@ -396,7 +351,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Hash equality comparison.</p>
+<p>Checks if this Disk object is equal to another.</p>
 </div></span>
   
 </li>
@@ -422,7 +377,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates a new Disk instance.</p>
+<p>Initializes a new Disk object.</p>
 </div></span>
   
 </li>
@@ -446,7 +401,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Forwards unknown method calls to the underlying game object.</p>
+<p>Handles missing methods by delegating to the GameObj.</p>
 </div></span>
   
 </li>
@@ -455,7 +410,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_container-instance_method" title="#to_container (instance method)">#<strong>to_container</strong>  &#x21d2; Container, GameObj </a>
+      <a href="#to_container-instance_method" title="#to_container (instance method)">#<strong>to_container</strong>  &#x21d2; Container, Object </a>
     
 
     
@@ -470,7 +425,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the disk to a Container object if available.</p>
+<p>Converts the Disk object to a container.</p>
 </div></span>
   
 </li>
@@ -494,15 +449,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Extracts the owner’s name from the disk’s full name</p>
-</div>
-  </div>
-
-
-<p>Creates a new Disk instance</p>
+<p>Initializes a new Disk object.</p>
 
 
   </div>
@@ -513,7 +460,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_game_obj'>game_obj</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_some_game_object'>some_game_object</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -524,13 +471,13 @@
         <span class='name'>obj</span>
       
       
-        <span class='type'>(<tt>GameObj</tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The game object representing the disk</p>
+<p>The object representing the disk.</p>
 </div>
       
     </li>
@@ -544,15 +491,15 @@
       <pre class="lines">
 
 
-75
-76
-77
-78
-79
-80</pre>
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='ivar'>@id</span>   <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
@@ -585,7 +532,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Forwards unknown method calls to the underlying game object</p>
+<p>Handles missing methods by delegating to the GameObj.</p>
 
 
   </div>
@@ -596,7 +543,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span><span class='period'>.</span><span class='id identifier rubyid_some_game_obj_method'>some_game_obj_method</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span><span class='period'>.</span><span class='id identifier rubyid_some_missing_method'>some_missing_method</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -613,7 +560,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The method name to call</p>
+<p>The method name that was called.</p>
 </div>
       
     </li>
@@ -629,7 +576,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Arguments to pass to the method</p>
+<p>The arguments passed to the method.</p>
 </div>
       
     </li>
@@ -648,7 +595,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Result of the forwarded method call</p>
+<p>The result of the method call on GameObj.</p>
 </div>
       
     </li>
@@ -661,12 +608,12 @@
       <pre class="lines">
 
 
-109
-110
-111</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='ivar'>@id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -686,7 +633,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="id-instance_method">
   
-    #<strong>id</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(readonly)</span>
+    #<strong>id</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -695,31 +642,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns The unique identifier of the disk.</p>
+<p>Returns the value of attribute id.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The unique identifier of the disk</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -727,12 +656,12 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -747,7 +676,7 @@
       <div class="method_details ">
   <h3 class="signature " id="name-instance_method">
   
-    #<strong>name</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(readonly)</span>
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -756,31 +685,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns The name of the disk owner.</p>
+<p>Returns the value of attribute name.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The name of the disk owner</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -788,12 +699,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -822,7 +733,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns all disk containers currently visible</p>
+<p>Retrieves all disk objects from the loot.</p>
 
 
   </div>
@@ -833,7 +744,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_all_disks'>all_disks</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span> <span class='comment'>#=&gt; [#&lt;Disk:0x...&gt;, #&lt;Disk:0x...&gt;]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span></code></pre>
     
   </div>
 
@@ -849,7 +760,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of all visible disk containers</p>
+<p>An array of Disk objects.</p>
 </div>
       
     </li>
@@ -862,16 +773,16 @@
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60</pre>
+45
+46
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='lparen'>(</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_loot'>loot</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -897,7 +808,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds a disk container by a specific name</p>
+<p>Finds a disk by its name.</p>
 
 
   </div>
@@ -908,7 +819,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by_name'>find_by_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bob</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; #&lt;Disk:0x...&gt; or nil</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by_name'>find_by_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>golden disk</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -925,7 +836,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name to search for in disk containers</p>
+<p>The name of the disk to find.</p>
 </div>
       
     </li>
@@ -944,7 +855,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns a new Disk instance if found, nil if not found</p>
+<p>Returns a Disk object if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -957,16 +868,16 @@
       <pre class="lines">
 
 
-32
-33
-34
-35
-36
-37
-38</pre>
+23
+24
+25
+26
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_by_name'>find_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_disk'>disk</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_loot'>loot</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -992,15 +903,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Checks if the object name matches pattern “[Name] [valid_noun]”</p>
-</div>
-  </div>
-
-
-<p>Determines if a given game object is a valid disk container</p>
+<p>Checks if the given object is a disk based on its name.</p>
 
 
   </div>
@@ -1011,7 +914,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_disk?'>is_disk?</span><span class='lparen'>(</span><span class='id identifier rubyid_some_game_obj'>some_game_obj</span><span class='rparen'>)</span> <span class='comment'>#=&gt; true/false</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_disk?'>is_disk?</span><span class='lparen'>(</span><span class='id identifier rubyid_some_object'>some_object</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1022,13 +925,13 @@
         <span class='name'>thing</span>
       
       
-        <span class='type'>(<tt>GameObj</tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The game object to check</p>
+<p>The object to check.</p>
 </div>
       
     </li>
@@ -1047,7 +950,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if the object is a valid disk container, false otherwise</p>
+<p>Returns true if the object is a disk, false otherwise.</p>
 </div>
       
     </li>
@@ -1060,12 +963,12 @@
       <pre class="lines">
 
 
-22
-23
-24</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_disk?'>is_disk?</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\b([A-Z][a-z]+) </span><span class='embexpr_beg'>#{</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#NOUNS-constant" title="Lich::Gemstone::Disk::NOUNS (constant)">NOUNS</a></span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\b</span><span class='regexp_end'>/</span></span>
@@ -1087,7 +990,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds the disk container belonging to the current character</p>
+<p>Mines a disk based on the character’s name.</p>
 
 
   </div>
@@ -1098,7 +1001,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_my_disk'>my_disk</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mine'>mine</span> <span class='comment'>#=&gt; #&lt;Disk:0x...&gt;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mine'>mine</span></code></pre>
     
   </div>
 
@@ -1114,7 +1017,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns the character’s disk if found, nil otherwise</p>
+<p>Returns a Disk object if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -1127,12 +1030,12 @@
       <pre class="lines">
 
 
-45
-46
-47</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mine'>mine</span>
   <span class='id identifier rubyid_find_by_name'>find_by_name</span><span class='lparen'>(</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1160,7 +1063,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Compares this disk with another for equality</p>
+<p>Compares this Disk object with another for equality.</p>
 
 
   </div>
@@ -1171,7 +1074,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk1'>disk1</span> <span class='op'>==</span> <span class='id identifier rubyid_disk2'>disk2</span> <span class='comment'>#=&gt; true/false</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_disk1'>disk1</span> <span class='op'>==</span> <span class='id identifier rubyid_disk2'>disk2</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1188,7 +1091,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The object to compare with</p>
+<p>The object to compare with.</p>
 </div>
       
     </li>
@@ -1207,7 +1110,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if the objects are the same disk, false otherwise</p>
+<p>Returns true if the objects are equal, false otherwise.</p>
 </div>
       
     </li>
@@ -1220,12 +1123,12 @@
       <pre class="lines">
 
 
-88
-89
-90</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='op'>==</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>==</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
@@ -1247,7 +1150,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Hash equality comparison</p>
+<p>Checks if this Disk object is equal to another.</p>
 
 
   </div>
@@ -1258,7 +1161,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk1'>disk1</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_disk2'>disk2</span><span class='rparen'>)</span> <span class='comment'>#=&gt; true/false</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_disk1'>disk1</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_disk2'>disk2</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1275,7 +1178,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The object to compare with</p>
+<p>The object to compare with.</p>
 </div>
       
     </li>
@@ -1294,7 +1197,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if the objects are the same disk, false otherwise</p>
+<p>Returns true if the objects are equal, false otherwise.</p>
 </div>
       
     </li>
@@ -1307,12 +1210,12 @@
       <pre class="lines">
 
 
-98
-99
-100</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
   <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_other'>other</span>
@@ -1325,7 +1228,7 @@
       <div class="method_details ">
   <h3 class="signature " id="to_container-instance_method">
   
-    #<strong>to_container</strong>  &#x21d2; <tt>Container</tt>, <tt>GameObj</tt> 
+    #<strong>to_container</strong>  &#x21d2; <tt>Container</tt>, <tt>Object</tt> 
   
 
   
@@ -1337,12 +1240,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Provides compatibility with the Container system when available</p>
+<p>This method depends on the existence of the Container class.</p>
 </div>
   </div>
 
 
-<p>Converts the disk to a Container object if available</p>
+<p>Converts the Disk object to a container.</p>
 
 
   </div>
@@ -1353,7 +1256,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span><span class='period'>.</span><span class='id identifier rubyid_to_container'>to_container</span> <span class='comment'>#=&gt; #&lt;Container:0x...&gt; or GameObj</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_disk'>disk</span><span class='period'>.</span><span class='id identifier rubyid_to_container'>to_container</span></code></pre>
     
   </div>
 
@@ -1363,13 +1266,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Container</tt>, <tt>GameObj</tt>)</span>
+        <span class='type'>(<tt>Container</tt>, <tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Returns a Container instance if the Container class exists, otherwise returns the raw GameObj</p>
+<p>Returns a Container object if defined, otherwise the GameObj.</p>
 </div>
       
     </li>
@@ -1382,16 +1285,16 @@
       <pre class="lines">
 
 
-121
-122
-123
-124
-125
-126
-127</pre>
+105
+106
+107
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/disk.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_container'>to_container</span>
   <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Container</span><span class='rparen'>)</span>
@@ -1410,7 +1313,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:40 2025 by
+  Generated on Thu May 15 06:53:02 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates a clickable command link.</p>
+<p>Creates a command link message.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays text in monospace font.</p>
+<p>Sends a message in a monospaced format.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Formats text in monster bold styling.</p>
+<p>Formats a message to be displayed as monster bold.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays a formatted message based on type.</p>
+<p>Sends a message to the user with a specific type and optional encoding.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Formats a message with predefined styling based on message type.</p>
+<p>Formats a message with specific color and style based on its type.</p>
 </div></span>
   
 </li>
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays a message in a specific stream window.</p>
+<p>Sends a message to a specific stream window.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Encodes a message for XML compatibility, with special handling for wizard/avalon frontends.</p>
+<p>Encodes a message in XML format.</p>
 </div></span>
   
 </li>
@@ -287,7 +287,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Creates a clickable command link</p>
+<p>Creates a command link message.</p>
 
 
   </div>
@@ -298,7 +298,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_cmd_link'>make_cmd_link</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cast</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cast spell</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_cmd_link'>make_cmd_link</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Click me</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>do_something</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;&lt;d cmd=&#39;do_something&#39;&gt;Click me&lt;/d&gt;&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -315,7 +315,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The visible text for the link</p>
+<p>the text to display for the link</p>
 </div>
       
     </li>
@@ -331,7 +331,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to execute when clicked</p>
+<p>the action to perform when the link is clicked</p>
 </div>
       
     </li>
@@ -349,7 +349,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the text (default: true)</p>
+<p>whether to encode the message (default: true)</p>
 </div>
       
     </li>
@@ -368,7 +368,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Formatted command link</p>
+<p>the formatted command link message</p>
 </div>
       
     </li>
@@ -381,12 +381,12 @@
       <pre class="lines">
 
 
-181
-182
-183</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_cmd_link'>make_cmd_link</span><span class='lparen'>(</span><span class='id identifier rubyid_link_text'>link_text</span><span class='comma'>,</span> <span class='id identifier rubyid_link_action'>link_action</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cmd</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_link_text'>link_text</span><span class='comma'>,</span> <span class='label'>cmd_link:</span> <span class='id identifier rubyid_link_action'>link_action</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='id identifier rubyid_encode'>encode</span><span class='rparen'>)</span>
@@ -411,12 +411,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Only works with StormFront, Wrayth, and Genie frontends</p>
+<p>This method only works with String parameters.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Displays text in monospace font</p>
+<p>Sends a message in a monospaced format.</p>
 
 
   </div>
@@ -427,7 +427,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mono'>mono</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fixed width text</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mono'>mono</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is a monospaced message.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -444,7 +444,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to display in monospace</p>
+<p>the message to send</p>
 </div>
       
     </li>
@@ -462,7 +462,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the message (default: false)</p>
+<p>whether to encode the message (default: false)</p>
 </div>
       
     </li>
@@ -481,7 +481,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If msg parameter is not a String</p>
+<p>if msg is not a String</p>
 </div>
       
     </li>
@@ -494,26 +494,26 @@
       <pre class="lines">
 
 
+191
+192
+193
 194
 195
 196
 197
 198
-199
-200
-201
-202</pre>
+199</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 194</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mono'>mono</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>StandardError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Lich::Messaging.mono only works with String parameters!</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_encode'>encode</span>
   <span class='kw'>if</span> <span class='gvar'>$frontend</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:stormfront|wrayth|genie)$</span><span class='regexp_end'>/i</span></span>
-    <span class='id identifier rubyid__respond'>_respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;output class=\&quot;mono\&quot;/&gt;\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n&lt;output class=\&quot;\&quot;/&gt;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid__respond'><span class='object_link'><a href="../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;output class=\&quot;mono\&quot;/&gt;\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n&lt;output class=\&quot;\&quot;/&gt;</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid__respond'>_respond</span> <span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid__respond'><span class='object_link'><a href="../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -533,7 +533,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Formats text in monster bold styling</p>
+<p>Formats a message to be displayed as monster bold.</p>
 
 
   </div>
@@ -544,7 +544,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'>monsterbold</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dragon!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;&lt;pushBold/&gt;Dragon!&lt;popBold/&gt;&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'>monsterbold</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A fierce monster appears!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;&lt;monster&gt;A fierce monster appears!&lt;/monster&gt;&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -561,7 +561,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to format</p>
+<p>the message to format</p>
 </div>
       
     </li>
@@ -579,7 +579,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the message (default: true)</p>
+<p>whether to encode the message (default: true)</p>
 </div>
       
     </li>
@@ -598,7 +598,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Formatted message with monster bold styling</p>
+<p>the formatted message</p>
 </div>
       
     </li>
@@ -611,13 +611,13 @@
       <pre class="lines">
 
 
+29
 30
 31
-32
-33</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'>monsterbold</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='comment'># return monsterbold_start + self.xml_encode(msg) + monsterbold_end
@@ -639,16 +639,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Debug messages are only shown if Lich.debug_messaging is enabled</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Displays a formatted message based on type</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Sends a message to the user with a specific type and optional encoding.</p>
 
 
   </div>
@@ -659,7 +651,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warn</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Caution!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is an informational message.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -678,7 +670,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message type (error, warn, info, green, link, cmd, etc)</p>
+<p>the type of message (default: “info”)</p>
 </div>
       
     </li>
@@ -696,7 +688,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to display</p>
+<p>the message to send</p>
 </div>
       
     </li>
@@ -714,7 +706,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the message (default: true)</p>
+<p>whether to encode the message (default: true)</p>
 </div>
       
     </li>
@@ -728,17 +720,17 @@
       <pre class="lines">
 
 
-168
-169
-170
-171</pre>
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_msg'>msg</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>true</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug_messaging'>debug_messaging</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug_messaging'>debug_messaging</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>false</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid__respond'>_respond</span> <span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='id identifier rubyid_encode'>encode</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug_messaging'><span class='object_link'><a href="../Lich.html#debug_messaging-class_method" title="Lich.debug_messaging (method)">debug_messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug_messaging'><span class='object_link'><a href="../Lich.html#debug_messaging-class_method" title="Lich.debug_messaging (method)">debug_messaging</a></span></span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>false</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid__respond'><span class='object_link'><a href="../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='id identifier rubyid_encode'>encode</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -757,7 +749,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Formats a message with predefined styling based on message type</p>
+<p>Formats a message with specific color and style based on its type.</p>
 
 
   </div>
@@ -768,7 +760,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;&lt;pushBold/&gt;Failed!&lt;/popBold/&gt;&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>An error occurred!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;&lt;error&gt;An error occurred!&lt;/error&gt;&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -787,7 +779,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message type (error, warn, info, green, link, cmd, etc)</p>
+<p>the type of message (default: “info”)</p>
 </div>
       
     </li>
@@ -805,7 +797,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to format</p>
+<p>the message to format</p>
 </div>
       
     </li>
@@ -823,7 +815,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Command to execute when clicked (for cmd type)</p>
+<p>optional command link for formatting (default: nil)</p>
 </div>
       
     </li>
@@ -841,7 +833,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the message (default: true)</p>
+<p>whether to encode the message (default: true)</p>
 </div>
       
     </li>
@@ -860,7 +852,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Formatted message with appropriate styling</p>
+<p>the formatted message</p>
 </div>
       
     </li>
@@ -873,6 +865,8 @@
       <pre class="lines">
 
 
+80
+81
 82
 83
 84
@@ -946,12 +940,10 @@
 152
 153
 154
-155
-156
-157</pre>
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_msg_format'>msg_format</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>cmd_link:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_encode'>encode</span>
@@ -965,8 +957,8 @@
   <span class='kw'>if</span> <span class='gvar'>$frontend</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:stormfront|frostbite|profanity|wrayth)$</span><span class='regexp_end'>/</span></span>
     <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yellow</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>monster</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>creature</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'>monsterbold_start</span>
-      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_end'>monsterbold_end</span>
+      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_start-instance_method" title="#monsterbold_start (method)">monsterbold_start</a></span></span>
+      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_end'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_end-instance_method" title="#monsterbold_end (method)">monsterbold_end</a></span></span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warn</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orange</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thought</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;preset id=&#39;thought&#39;&gt;</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/preset&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -986,8 +978,8 @@
   <span class='kw'>elsif</span> <span class='gvar'>$frontend</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:wizard|avalon)$</span><span class='regexp_end'>/</span></span>
     <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yellow</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>monster</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>creature</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'>monsterbold_start</span>
-      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_monsterbold_end'>monsterbold_end</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_start-instance_method" title="#monsterbold_start (method)">monsterbold_start</a></span></span>
+      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_monsterbold_end'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_end-instance_method" title="#monsterbold_end (method)">monsterbold_end</a></span></span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warn</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orange</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thought</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_wizard_color'>wizard_color</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gold</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span><span class='period'>.</span><span class='id identifier rubyid_force_encoding'>force_encoding</span><span class='lparen'>(</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>ASCII_8BIT</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\240</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_force_encoding'>force_encoding</span><span class='lparen'>(</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>ASCII_8BIT</span><span class='rparen'>)</span>
@@ -1007,8 +999,8 @@
   <span class='kw'>else</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yellow</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>monster</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>creature</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'>monsterbold_start</span>
-      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_end'>monsterbold_end</span>
+      <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_start'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_start-instance_method" title="#monsterbold_start (method)">monsterbold_start</a></span></span>
+      <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='id identifier rubyid_monsterbold_end'><span class='object_link'><a href="../top-level-namespace.html#monsterbold_end-instance_method" title="#monsterbold_end (method)">monsterbold_end</a></span></span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warn</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orange</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gold</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>thought</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_preset_color_before'>preset_color_before</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>!! </span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_preset_color_after'>preset_color_after</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -1045,16 +1037,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Supported windows vary by game (GS: familiar, speech, thoughts, loot, voln; DR: familiar, speech, thoughts, combat)</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Displays a message in a specific stream window</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Sends a message to a specific stream window.</p>
 
 
   </div>
@@ -1065,7 +1049,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stream_window'>stream_window</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>familiar</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stream_window'>stream_window</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello, familiar!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>familiar</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> </code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1082,7 +1066,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to display</p>
+<p>the message to send</p>
 </div>
       
     </li>
@@ -1100,7 +1084,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The target window name (default: “familiar”)</p>
+<p>the name of the stream window (default: “familiar”)</p>
 </div>
       
     </li>
@@ -1118,7 +1102,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Whether to XML encode the message (default: true)</p>
+<p>whether to encode the message (default: true)</p>
 </div>
       
     </li>
@@ -1132,6 +1116,8 @@
       <pre class="lines">
 
 
+42
+43
 44
 45
 46
@@ -1157,12 +1143,10 @@
 66
 67
 68
-69
-70
-71</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stream_window'>stream_window</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='id identifier rubyid_window'>window</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>familiar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>encode:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_encode'>encode</span>
@@ -1190,7 +1174,7 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid__respond'>_respond</span> <span class='id identifier rubyid_stream_window_before_txt'>stream_window_before_txt</span> <span class='op'>+</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+</span> <span class='id identifier rubyid_stream_window_after_txt'>stream_window_after_txt</span>
+  <span class='id identifier rubyid__respond'><span class='object_link'><a href="../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='id identifier rubyid_stream_window_before_txt'>stream_window_before_txt</span> <span class='op'>+</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+</span> <span class='id identifier rubyid_stream_window_after_txt'>stream_window_after_txt</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1209,15 +1193,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Handles special cases for wizard/avalon frontends differently</p>
-</div>
-  </div>
-
-
-<p>Encodes a message for XML compatibility, with special handling for wizard/avalon frontends</p>
+<p>Encodes a message in XML format.</p>
 
 
   </div>
@@ -1228,7 +1204,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello &amp; goodbye</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;Hello &amp;amp; goodbye&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello &amp; World</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;Hello &amp;amp; World&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1245,7 +1221,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The message to encode</p>
+<p>the message to be encoded</p>
 </div>
       
     </li>
@@ -1264,7 +1240,7 @@
       
         &mdash;
         <div class='inline'>
-<p>XML-encoded message</p>
+<p>the XML-encoded message</p>
 </div>
       
     </li>
@@ -1277,20 +1253,20 @@
       <pre class="lines">
 
 
+14
 15
 16
 17
 18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/messaging.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_xml_encode'>xml_encode</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='gvar'>$frontend</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(wizard|avalon)$</span><span class='regexp_end'>/i</span></span>
-    <span class='id identifier rubyid_sf_to_wiz'>sf_to_wiz</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='symbol'>:xml</span> <span class='op'>=&gt;</span> <span class='symbol'>:text</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_sf_to_wiz'><span class='object_link'><a href="../top-level-namespace.html#sf_to_wiz-instance_method" title="#sf_to_wiz (method)">sf_to_wiz</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='symbol'>:xml</span> <span class='op'>=&gt;</span> <span class='symbol'>:text</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_msg'>msg</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='symbol'>:xml</span> <span class='op'>=&gt;</span> <span class='symbol'>:text</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -1305,7 +1281,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:58 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

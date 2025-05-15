@@ -1,76 +1,73 @@
-# Provides functionality for interacting with society-related game information in Gemstone
-# 
-# @author Lich5 Documentation Generator
+# carveout for infomon rewrite
 module Lich
-
-  # Contains Gemstone-specific functionality and data structures
   module Gemstone
-
-    # Manages and provides access to character society information
-    #
-    # This class provides methods to check society status, rank, tasks and other
-    # society-related information for a character in Gemstone.
+    # Represents the Society within the Gemstone module.
     class Society
-      # Gets the current society status/membership of the character
+      # Retrieves the current status of the society.
       #
-      # @return [String] The name of the society the character belongs to
+      # @return [String] the current status of the society.
+      # @raise [StandardError] if there is an issue retrieving the status.
       # @example
-      #   Society.status #=> "Voln"
+      #   status = Lich::Gemstone::Society.status
       def self.status
         Infomon.get("society.status")
       end
 
-      # Gets the character's current rank/step in their society
+      # Retrieves the current rank of the society.
       #
-      # @return [Integer] The numeric rank in the society
+      # @return [String] the current rank of the society.
+      # @raise [StandardError] if there is an issue retrieving the rank.
       # @example
-      #   Society.rank #=> 26
+      #   rank = Lich::Gemstone::Society.rank
       def self.rank
         Infomon.get("society.rank")
       end
 
-      # Alias for rank - gets the character's current society step
+      # Retrieves the current step of the society, which is equivalent to its rank.
       #
-      # @return [Integer] The numeric rank/step in the society
-      # @see #rank
+      # @return [String] the current step of the society.
+      # @note This method is an alias for the rank method.
       # @example
-      #   Society.step #=> 26
+      #   step = Lich::Gemstone::Society.step
       def self.step
         self.rank
       end
 
-      # Gets a copy of the character's society membership status
+      # Duplicates the current status of the society.
       #
-      # @return [String] A duplicate of the society status string
+      # @return [String] a duplicate of the current status of the society.
+      # @note The returned status is a copy, modifications to it will not affect the original.
       # @example
-      #   Society.member #=> "Voln"
+      #   member_status = Lich::Gemstone::Society.member
       def self.member
         self.status.dup
       end
 
-      # Gets the character's current society task
+      # Retrieves the current task of the society from XML data.
       #
-      # @return [String, nil] The current task description or nil if no active task
+      # @return [String] the current task of the society.
+      # @raise [StandardError] if there is an issue retrieving the task.
       # @example
-      #   Society.task #=> "Help the wounded in the Temple"
+      #   task = Lich::Gemstone::Society.task
       def self.task
         XMLData.society_task
       end
 
-      # Gets the character's current favor points in the Society of Voln
+      # Retrieves the current favor of the society.
       #
-      # @return [Integer] The amount of favor points
+      # @return [Integer] the current favor of the society.
+      # @raise [StandardError] if there is an issue retrieving the favor.
       # @example
-      #   Society.favor #=> 100
+      #   favor = Lich::Gemstone::Society.favor
       def self.favor
         Infomon.get('resources.voln_favor')
       end
 
-      # Creates an array containing the character's society status and rank
+      # Serializes the current status and rank of the society into an array.
       #
-      # @return [Array<String,Integer>] Array containing [status, rank]
+      # @return [Array<String>] an array containing the current status and rank of the society.
       # @example
-      #   Society.serialize #=> ["Voln", 26]
+      #   serialized_data = Lich::Gemstone::Society.serialize
       def self.serialize
         [self.status, self.rank]
       end

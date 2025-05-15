@@ -1,18 +1,14 @@
-# Module namespace for the Lich game automation system
 module Lich
-  # Module containing Gemstone-specific functionality 
   module Gemstone
-    # Handles bard spell song calculations and management including durations, costs, and bonuses
-    #
-    # @author Lich5 Documentation Generator
+    # Represents a spellsong for a bard character.
     class Spellsong
       @@renewed ||= 0.to_f
       @@song_duration ||= 120.to_f
       @@duration_calcs ||= []
 
-      # Synchronizes the song timer with an active bard spell
+      # Synchronizes the spellsong duration based on active bard spells.
       #
-      # @return [String, nil] Error message if no active bard spells found
+      # @return [String] message indicating the status of active bard spells.
       # @example
       #   Spellsong.sync
       def self.sync
@@ -21,59 +17,58 @@ module Lich
         @@renewed = Time.at(Time.now.to_f - self.timeleft.to_f + (Effects::Spells.time_left(timed_spell) * 60.to_f)) # duration
       end
 
-      # Marks songs as renewed at the current time
+      # Updates the time when the spellsong was last renewed.
       #
-      # @return [Time] The current time
+      # @return [Time] the current time when the spellsong was renewed.
       # @example
       #   Spellsong.renewed
       def self.renewed
         @@renewed = Time.now
       end
 
-      # Sets the renewal timestamp
+      # Sets the renewed time for the spellsong.
       #
-      # @param val [Time] The timestamp to set
-      # @return [Time] The set timestamp
+      # @param [Time] val the time to set as the renewed time.
       # @example
       #   Spellsong.renewed = Time.now
       def self.renewed=(val)
         @@renewed = val
       end
 
-      # Gets the last renewal timestamp
+      # Retrieves the last renewed time of the spellsong.
       #
-      # @return [Time] When songs were last renewed
+      # @return [Time] the last renewed time.
       # @example
-      #   last_renewed = Spellsong.renewed_at
+      #   Spellsong.renewed_at
       def self.renewed_at
         @@renewed
       end
 
-      # Calculates remaining song duration in minutes
+      # Calculates the remaining time left for the spellsong.
       #
-      # @return [Float] Minutes remaining on current songs
-      # @note Returns 0.0 if character is not a Bard
+      # @return [Float] the time left in minutes.
+      # @note Returns 0.0 if the character is not a Bard.
       # @example
-      #   mins_left = Spellsong.timeleft
+      #   Spellsong.timeleft
       def self.timeleft
         return 0.0 if Stats.prof != 'Bard'
         (self.duration - ((Time.now.to_f - @@renewed.to_f) % self.duration)) / 60.to_f
       end
 
-      # Serializes the spell song state
+      # Serializes the current time left for the spellsong.
       #
-      # @return [Float] The current timeleft value
+      # @return [Float] the time left in minutes.
       # @example
-      #   state = Spellsong.serialize
+      #   Spellsong.serialize
       def self.serialize
         self.timeleft
       end
 
-      # Calculates total song duration based on level and skills
+      # Calculates the duration of the spellsong based on various stats.
       #
-      # @return [Float] Total duration in seconds
+      # @return [Float] the duration of the spellsong.
       # @example
-      #   duration = Spellsong.duration
+      #   Spellsong.duration
       def self.duration
         return @@song_duration if @@duration_calcs == [Stats.level, Stats.log[1], Stats.inf[1], Skills.mltelepathy]
         return @@song_duration if [Stats.level, Stats.log[1], Stats.inf[1], Skills.mltelepathy].include?(nil)
@@ -82,12 +77,12 @@ module Lich
         return (@@song_duration = total + Stats.log[1] + (Stats.inf[1] * 3) + (Skills.mltelepathy * 2))
       end
 
-      # Calculates base song duration for a given level
+      # Calculates the base duration of the spellsong based on the bard's level.
       #
-      # @param level [Integer] Character level (defaults to current level)
-      # @return [Integer] Base duration in seconds
+      # @param [Integer] level the level of the bard (default is the current level).
+      # @return [Integer] the base duration of the spellsong.
       # @example
-      #   base_duration = Spellsong.duration_base_level(25)
+      #   Spellsong.duration_base_level(30)
       def self.duration_base_level(level = Stats.level)
         total = 120
         case level
@@ -105,12 +100,11 @@ module Lich
         return total
       end
 
-      # Calculates total mana cost to renew active songs
+      # Calculates the total cost to renew active spells.
       #
-      # @return [Integer] Total mana cost
-      # @note Considers songs 1003,1006,1009,1010,1012,1014,1018,1019,1025
+      # @return [Integer] the total renewal cost for active spells.
       # @example
-      #   cost = Spellsong.renew_cost
+      #   Spellsong.renew_cost
       def self.renew_cost
         # fixme: multi-spell penalty?
         total = num_active = 0
@@ -127,45 +121,47 @@ module Lich
         return total
       end
 
-      # Calculates sonic armor durability
+      # Calculates the durability of the sonic armor.
       #
-      # @return [Integer] Durability value
+      # @return [Integer] the durability of the sonic armor.
       # @example
-      #   durability = Spellsong.sonicarmordurability
+      #   Spellsong.sonicarmordurability
       def self.sonicarmordurability
         210 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
       end
 
-      # Calculates sonic blade durability
+      # Calculates the durability of the sonic blade.
       #
-      # @return [Integer] Durability value
+      # @return [Integer] the durability of the sonic blade.
       # @example
-      #   durability = Spellsong.sonicbladedurability
+      #   Spellsong.sonicbladedurability
       def self.sonicbladedurability
         160 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
       end
 
-      # Alias for sonicbladedurability
+      # Calculates the durability of the sonic weapon.
       #
-      # @return [Integer] Durability value
+      # @return [Integer] the durability of the sonic weapon.
+      # @example
+      #   Spellsong.sonicweapondurability
       def self.sonicweapondurability
         self.sonicbladedurability
       end
 
-      # Calculates sonic shield durability
+      # Calculates the durability of the sonic shield.
       #
-      # @return [Integer] Durability value
+      # @return [Integer] the durability of the sonic shield.
       # @example
-      #   durability = Spellsong.sonicshielddurability
+      #   Spellsong.sonicshielddurability
       def self.sonicshielddurability
         125 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
       end
 
-      # Calculates Tonis's Haste bonus
+      # Calculates the bonus for the tonis spell.
       #
-      # @return [Integer] Speed bonus (negative value)
+      # @return [Integer] the tonis haste bonus.
       # @example
-      #   bonus = Spellsong.tonishastebonus
+      #   Spellsong.tonishastebonus
       def self.tonishastebonus
         bonus = -1
         thresholds = [30, 75]
@@ -173,20 +169,20 @@ module Lich
         bonus
       end
 
-      # Calculates depression push down value
+      # Calculates the push down bonus for the depression spell.
       #
-      # @return [Integer] Push down value
+      # @return [Integer] the depression push down bonus.
       # @example
-      #   pushdown = Spellsong.depressionpushdown
+      #   Spellsong.depressionpushdown
       def self.depressionpushdown
         20 + Skills.mltelepathy
       end
 
-      # Calculates depression slow effect
+      # Calculates the slow bonus for the depression spell.
       #
-      # @return [Integer] Slow effect value (negative)
+      # @return [Integer] the depression slow bonus.
       # @example
-      #   slow = Spellsong.depressionslow
+      #   Spellsong.depressionslow
       def self.depressionslow
         thresholds = [10, 25, 45, 70, 100]
         bonus = -2
@@ -194,27 +190,29 @@ module Lich
         bonus
       end
 
-      # Calculates number of holding spell targets
+      # Calculates the number of targets that can be held by the bard.
       #
-      # @return [Integer] Number of targets
+      # @return [Integer] the number of holding targets.
       # @example
-      #   targets = Spellsong.holdingtargets
+      #   Spellsong.holdingtargets
       def self.holdingtargets
         1 + ((Spells.bard - 1) / 7).truncate
       end
 
-      # Alias for renew_cost
+      # Calculates the cost of the spellsong.
       #
-      # @return [Integer] Total mana cost
+      # @return [Integer] the cost of the spellsong.
+      # @example
+      #   Spellsong.cost
       def self.cost
         self.renew_cost
       end
 
-      # Calculates Tonis's dodge bonus
+      # Calculates the dodge bonus for the tonis spell.
       #
-      # @return [Integer] Dodge bonus value
+      # @return [Integer] the tonis dodge bonus.
       # @example
-      #   bonus = Spellsong.tonisdodgebonus
+      #   Spellsong.tonisdodgebonus
       def self.tonisdodgebonus
         thresholds = [1, 2, 3, 5, 8, 10, 14, 17, 21, 26, 31, 36, 42, 49, 55, 63, 70, 78, 87, 96]
         bonus = 20
@@ -222,132 +220,146 @@ module Lich
         bonus
       end
 
-      # Calculates mirrors dodge bonus
+      # Calculates the dodge bonus for the mirrors spell.
       #
-      # @return [Integer] Dodge bonus value
+      # @return [Integer] the mirrors dodge bonus.
       # @example
-      #   bonus = Spellsong.mirrorsdodgebonus
+      #   Spellsong.mirrorsdodgebonus
       def self.mirrorsdodgebonus
         20 + ((Spells.bard - 19) / 2).round
       end
 
-      # Calculates mirrors spell costs
+      # Calculates the cost for the mirrors spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the mirrors spell.
       # @example
-      #   costs = Spellsong.mirrorscost
+      #   Spellsong.mirrorscost
       def self.mirrorscost
         [19 + ((Spells.bard - 19) / 5).truncate, 8 + ((Spells.bard - 19) / 10).truncate]
       end
 
-      # Calculates base sonic bonus
+      # Calculates the sonic bonus based on the bard's spells.
       #
-      # @return [Integer] Sonic bonus value
+      # @return [Integer] the sonic bonus.
       # @example
-      #   bonus = Spellsong.sonicbonus
+      #   Spellsong.sonicbonus
       def self.sonicbonus
         (Spells.bard / 2).round
       end
 
-      # Calculates sonic armor bonus
+      # Calculates the sonic armor bonus.
       #
-      # @return [Integer] Armor bonus value
+      # @return [Integer] the sonic armor bonus.
       # @example
-      #   bonus = Spellsong.sonicarmorbonus
+      #   Spellsong.sonicarmorbonus
       def self.sonicarmorbonus
         self.sonicbonus + 15
       end
 
-      # Calculates sonic blade bonus
+      # Calculates the sonic blade bonus.
       #
-      # @return [Integer] Blade bonus value
+      # @return [Integer] the sonic blade bonus.
       # @example
-      #   bonus = Spellsong.sonicbladebonus
+      #   Spellsong.sonicbladebonus
       def self.sonicbladebonus
         self.sonicbonus + 10
       end
 
-      # Alias for sonicbladebonus
+      # Calculates the sonic weapon bonus.
       #
-      # @return [Integer] Weapon bonus value
+      # @return [Integer] the sonic weapon bonus.
+      # @example
+      #   Spellsong.sonicweaponbonus
       def self.sonicweaponbonus
         self.sonicbladebonus
       end
 
-      # Calculates sonic shield bonus
+      # Calculates the sonic shield bonus.
       #
-      # @return [Integer] Shield bonus value
+      # @return [Integer] the sonic shield bonus.
       # @example
-      #   bonus = Spellsong.sonicshieldbonus
+      #   Spellsong.sonicshieldbonus
       def self.sonicshieldbonus
         self.sonicbonus + 10
       end
 
-      # Calculates valor song bonus
+      # Calculates the valor bonus based on the bard's level and spells.
       #
-      # @return [Integer] Valor bonus value
+      # @return [Integer] the valor bonus.
       # @example
-      #   bonus = Spellsong.valorbonus
+      #   Spellsong.valorbonus
       def self.valorbonus
         10 + (([Spells.bard, Stats.level].min - 10) / 2).round
       end
 
-      # Calculates valor spell costs
+      # Calculates the cost for the valor spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the valor spell.
       # @example
-      #   costs = Spellsong.valorcost
+      #   Spellsong.valorcost
       def self.valorcost
         [10 + (self.valorbonus / 2), 3 + (self.valorbonus / 5)]
       end
 
-      # Calculates luck spell costs
+      # Calculates the cost for the luck spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the luck spell.
       # @example
-      #   costs = Spellsong.luckcost
+      #   Spellsong.luckcost
       def self.luckcost
         [6 + ((Spells.bard - 6) / 4), (6 + ((Spells.bard - 6) / 4) / 2).round]
       end
 
-      # Returns mana spell costs
+      # Calculates the mana cost for spells.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the mana cost for spells.
+      # @example
+      #   Spellsong.manacost
       def self.manacost
         [18, 15]
       end
 
-      # Returns fortitude spell costs
+      # Calculates the cost for the fort spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the fort spell.
+      # @example
+      #   Spellsong.fortcost
       def self.fortcost
         [3, 1]
       end
 
-      # Returns shield spell costs
+      # Calculates the cost for the shield spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the shield spell.
+      # @example
+      #   Spellsong.shieldcost
       def self.shieldcost
         [9, 4]
       end
 
-      # Returns weapon spell costs
+      # Calculates the cost for the weapon spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the weapon spell.
+      # @example
+      #   Spellsong.weaponcost
       def self.weaponcost
         [12, 4]
       end
 
-      # Returns armor spell costs
+      # Calculates the cost for the armor spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the armor spell.
+      # @example
+      #   Spellsong.armorcost
       def self.armorcost
         [14, 5]
       end
 
-      # Returns sword spell costs
+      # Calculates the cost for the sword spell.
       #
-      # @return [Array<Integer>] [Base cost, Maintenance cost]
+      # @return [Array<Integer>] the cost of the sword spell.
+      # @example
+      #   Spellsong.swordcost
       def self.swordcost
         [25, 15]
       end

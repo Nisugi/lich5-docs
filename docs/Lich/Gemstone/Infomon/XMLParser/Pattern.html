@@ -78,23 +78,12 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/common/xmlparser.rb</dd>
+    <dd>lib/gemstone/infomon/xmlparser.rb</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Collection of regular expression patterns used for matching game text</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -104,104 +93,17 @@
     <dl class="constants">
       
         <dt id="Group_Short-constant" class="">Group_Short =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching group/following related messages</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for group messages</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:group|following you|IconJOINED)|^You are leading|(?:&#39;s&lt;\/a&gt;|your) hand(?: tenderly)?\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="Also_Here_Arrival-constant" class="">Also_Here_Arrival =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching “Also here:” arrival messages</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for arrival messages</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Also here: </span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="NpcDeathPrefix-constant" class="">NpcDeathPrefix =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching NPC death message prefixes</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for NPC death prefixes</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
   <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>The fire in the</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
@@ -214,36 +116,7 @@
 <span class='rparen'>)</span></pre></dd>
       
         <dt id="NpcDeathPostfix-constant" class="">NpcDeathPostfix =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching NPC death message postfixes</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for NPC death postfixes</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
   <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>body as it rises, disappearing into the heavens</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
@@ -308,36 +181,7 @@
 <span class='rparen'>)</span></pre></dd>
       
         <dt id="NpcDeathMessage-constant" class="">NpcDeathMessage =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching complete NPC death messages</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for full NPC death messages with capture groups</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;pushBold\/&gt;)?</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#NpcDeathPrefix-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::NpcDeathPrefix (constant)">NpcDeathPrefix</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> (?:&lt;pushBold\/&gt;)?&lt;a.*?exist=[&quot;&#39;](?&lt;npc_id&gt;\-?[0-9]+)[&quot;&#39;].*?&gt;.*?&lt;\/a&gt;(?:&lt;popBold\/&gt;)?(?:&#39;s)? </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#NpcDeathPostfix-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::NpcDeathPostfix (constant)">NpcDeathPostfix</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>[\.!]\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
@@ -345,135 +189,30 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Pattern for matching stow list output header</p>
+<p>The following are for parsing STOW LIST and setting of STOW containers.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for stow list start</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have the following containers set as stow targets:\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="StowListContainer-constant" class="">StowListContainer =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching stow list container entries</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for stow container lines</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^  (?:an?|some) &lt;a exist=&quot;(?&lt;id&gt;\d+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^\(]+)?\((?&lt;type&gt;box|gem|herb|skin|wand|scroll|potion|trinket|reagent|lockpick|treasure|forageable|collectible|default)\)\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="StowSetContainer1-constant" class="">StowSetContainer1 =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching stow container set messages (format 1)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for stow container set messages</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Set &quot;a &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&quot;]+)?&quot; to be your STOW (?&lt;type&gt;BOX|GEM|HERB|SKIN|WAND|SCROLL|POTION|TRINKET|REAGENT|LOCKPICK|TREASURE|FORAGEABLE|COLLECTIBLE) container\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="StowSetContainer2-constant" class="">StowSetContainer2 =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching stow container set messages (format 2)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for default stow container set messages</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Set &quot;a &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&quot;]+)?&quot; to be your (?&lt;type&gt;default) STOW container\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
@@ -481,237 +220,45 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Pattern for matching ready list output header</p>
+<p>The following are for parsing READY LIST and setting of READY items.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for ready list start</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your current settings are:\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyListNormal-constant" class="">ReadyListNormal =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching normal ready list entries</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for standard ready item lines</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^  (?&lt;type&gt;shield|(?:secondary |ranged )?weapon|ammo bundle): &lt;d cmd=&quot;store (?:SHIELD|2?WEAPON|RANGED|AMMO) clear&quot;&gt;(?:an?|some) &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&lt;]+)?&lt;\/d&gt; \(&lt;d cmd=&#39;store set&#39;&gt;(?:worn if possible, stowed otherwise|stowed|put in (?:secondary )?sheath)&lt;\/d&gt;\)\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyListAmmo2-constant" class="">ReadyListAmmo2 =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching secondary ammo ready list entries</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for secondary ammo ready lines</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^  (?&lt;type&gt;ammo2 bundle): &lt;d cmd=&quot;store AMMO2 clear&quot;&gt;(?:an?|some) &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&lt;]+)?&lt;\/d&gt;\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyListSheathsSet-constant" class="">ReadyListSheathsSet =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching sheath ready list entries</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for sheath ready lines</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^  (?&lt;type&gt;(?:secondary )?sheath): &lt;d cmd=&quot;store 2?SHEATH clear&quot;&gt;(?:an?|some) &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&lt;]+)?&lt;\/d&gt;\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyListFinished-constant" class="">ReadyListFinished =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching ready list footer</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for ready list completion message</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>To change your default item for a category that is already set, clear the category first by clicking on the item in the list above.  Click &lt;d cmd=&quot;ready list&quot;&gt;here&lt;\/d&gt; to update the list\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyItemClear-constant" class="">ReadyItemClear =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching ready item clear messages</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for ready item clear confirmations</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Cleared your default (?&lt;type&gt;shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath)\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="ReadyItemSet-constant" class="">ReadyItemSet =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Pattern for matching ready item set messages</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Pattern for ready item set confirmations</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Setting (?:an?|some) &lt;a exist=&quot;(?&lt;id&gt;[^&quot;]+)&quot; noun=&quot;(?&lt;noun&gt;[^&quot;]+)&quot;&gt;(?&lt;name&gt;[^&lt;]+)&lt;\/a&gt;(?&lt;after&gt; [^&lt;]+)? to be your default (?&lt;type&gt;shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath)\.\r?\n?$</span><span class='regexp_end'>/</span></span></pre></dd>
       
@@ -719,31 +266,13 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Union of all patterns for efficient initial matching</p>
+<p>A union of all patterns for parsing game lines.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Regexp</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Combined pattern of all recognized formats</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -764,7 +293,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:38 2025 by
+  Generated on Thu May 15 06:53:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

@@ -1,7 +1,3 @@
-# Module for handling and tracking active spells and their durations in the Gemstone game
-# Provides functionality to monitor, update and display spell durations
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Gemstone
     module ActiveSpell
@@ -12,32 +8,29 @@ module Lich
       # Simu's time calculations
       #
 
-      # @!attribute [r] current_durations
-      #   @return [Hash] Hash storing current spell durations
       @current_durations ||= Hash.new
-
-      # @!attribute [r] durations_first_pass_complete  
-      #   @return [Boolean] Flag indicating if first pass of duration checking is complete
       @durations_first_pass_complete ||= false
 
-      # Checks if spell durations should be shown to the user
+      #
+      # Checks if spell durations should be shown based on user settings.
       #
       # @return [Boolean] true if durations should be shown, false otherwise
-      # @example
-      #   ActiveSpell.show_durations? #=> true
+      #
       def self.show_durations?
         Infomon.get_bool("infomon.show_durations")
       end
 
-      # Processes and normalizes spell information from the game
       #
-      # @param spell_check [Hash] Hash of active spells and their data (defaults to XMLData.active_spells)
-      # @return [Array<Array, Hash>] Returns two-element array containing:
-      #   - Array of normalized spell names
-      #   - Hash of spell names mapped to their duration data
+      # Retrieves spell information and updates the spell durations based on the provided spell data.
+      #
+      # @param spell_check [Hash] a hash of active spells to check against (default is XMLData.active_spells)
+      # @return [Array] an array containing two elements: 
+      #   - an array of spell names
+      #   - a hash of updated spell durations
+      #
       # @example
-      #   names, durations = ActiveSpell.get_spell_info
-      # @note Handles special cases like "Mage Armor", "Cloak of Shadows" etc.
+      #   spell_info = ActiveSpell.get_spell_info
+      #
       def self.get_spell_info(spell_check = XMLData.active_spells)
         respond "spell update requested\r\n" if $infomon_debug
         spell_update_durations = spell_check
@@ -108,12 +101,13 @@ module Lich
         [spell_update_names, spell_update_durations]
       end
 
-      # Displays changes in spell durations to the user
+      #
+      # Shows the current duration changes for active spells and updates the current durations.
       #
       # @return [void]
-      # @note Only shows duration changes after first pass is complete
-      # @example
-      #   ActiveSpell.show_duration_change
+      #
+      # @note This method modifies the @current_durations hash and may affect subsequent calls to duration-related methods.
+      #
       def self.show_duration_change
         active_durations = Array.new
         group_effects = [307, 310, 1605, 1609, 1618, 1608]
@@ -145,13 +139,16 @@ module Lich
         @durations_first_pass_complete = true
       end
 
-      # Updates the duration information for all active spells
+      #
+      # Updates the spell durations based on the current active spells and their respective end times.
       #
       # @return [void]
-      # @raise [StandardError] If there's an error processing spell durations
-      # @note Ignores certain spells like "Berserk", "Council Task" etc.
+      #
+      # @raise [StandardError] if an error occurs during the update process
+      #
       # @example
       #   ActiveSpell.update_spell_durations
+      #
       def self.update_spell_durations
         begin
           respond "[infomon] updating spell durations..." if $infomon_debug
@@ -196,42 +193,40 @@ module Lich
         end
       end
 
-      # Requests an update to spell durations by adding current time to the queue
+      #
+      # Requests an update for spell durations by adding the current time to the queue.
       #
       # @return [void]
-      # @example
-      #   ActiveSpell.request_update
+      #
       def self.request_update
         queue << Time.now
       end
 
-      # Returns the queue used for spell update requests
       #
-      # @return [Queue] The queue object handling spell update requests
-      # @example
-      #   queue = ActiveSpell.queue
+      # Retrieves the queue for updates.
+      #
+      # @return [Queue] the queue containing update requests
+      #
       def self.queue
         @queue ||= Queue.new
       end
 
-      # Blocks execution until a spell update is requested
       #
-      # @return [Time] The timestamp of the update request
-      # @example
-      #   event_time = ActiveSpell.block_until_update_requested
+      # Blocks until an update is requested, then clears the queue and returns the event.
+      #
+      # @return [Time] the time when the update was requested
+      #
       def self.block_until_update_requested
         event = queue.pop
         queue.clear
         event
       end
 
-      # Starts a monitoring thread that watches for spell updates
       #
-      # @return [Thread] The monitoring thread
-      # @raise [StandardError] If there's an error in the monitoring thread
-      # @example
-      #   ActiveSpell.watch!
-      # @note Creates a persistent thread that continuously monitors for spell updates
+      # Starts a thread that continuously checks for update requests and processes them.
+      #
+      # @return [void]
+      #
       def self.watch!
         @thread ||= Thread.new do
           loop do

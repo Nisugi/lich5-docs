@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Handles character statistics and attributes for Gemstone characters Provides access to basic character info, stats, and experience</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -104,60 +93,7 @@
     <dl class="constants">
       
         <dt id="stats-classvariable" class="">@@stats =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Dynamically generated stat methods (strength, constitution, etc.) Each stat method returns detailed information about base and enhanced values</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_stat'>stat</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span>
-<span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='comment'>#=&gt; 70
-</span><span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span> <span class='comment'>#=&gt; 3
-</span><span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='comment'>#=&gt; 75
-</span><span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span> <span class='comment'>#=&gt; 4</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Contains:</p>
-<ul><li>
-<p>value: [Integer] Base stat value</p>
-</li><li>
-<p>bonus: [Integer] Base stat bonus</p>
-</li><li>
-<p>enhanced: [OpenStruct] Enhanced stat information</p>
-<ul><li>
-<p>value: [Integer] Enhanced stat value</p>
-</li><li>
-<p>bonus: [Integer] Enhanced stat bonus</p>
-</li></ul>
-</li></ul>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='qsymbols_beg'>%i(</span><span class='tstring_content'>strength</span><span class='words_sep'> </span><span class='tstring_content'>constitution</span><span class='words_sep'> </span><span class='tstring_content'>dexterity</span><span class='words_sep'> </span><span class='tstring_content'>agility</span><span class='words_sep'> </span><span class='tstring_content'>discipline</span><span class='words_sep'> </span><span class='tstring_content'>aura</span><span class='words_sep'> </span><span class='tstring_content'>logic</span><span class='words_sep'> </span><span class='tstring_content'>intuition</span><span class='words_sep'> </span><span class='tstring_content'>wisdom</span><span class='words_sep'> </span><span class='tstring_content'>influence</span><span class='tstring_end'>)</span></span></pre></dd>
       
@@ -196,7 +132,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the character’s age.</p>
+<p>Retrieves the age of the character.</p>
 </div></span>
   
 </li>
@@ -220,7 +156,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Calculates the character’s current experience points.</p>
+<p>Calculates the experience points needed to reach the next level.</p>
 </div></span>
   
 </li>
@@ -244,7 +180,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the character’s gender.</p>
+<p>Retrieves the gender of the character.</p>
 </div></span>
   
 </li>
@@ -268,7 +204,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the character’s current level.</p>
+<p>Retrieves the level of the character.</p>
 </div></span>
   
 </li>
@@ -292,7 +228,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Alias for profession method.</p>
+<p>Retrieves the profession of the character (alias for profession).</p>
 </div></span>
   
 </li>
@@ -316,7 +252,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the character’s profession/class.</p>
+<p>Retrieves the profession of the character.</p>
 </div></span>
   
 </li>
@@ -340,7 +276,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the character’s race.</p>
+<p>Retrieves the race of the character.</p>
 </div></span>
   
 </li>
@@ -364,40 +300,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates a serialized array of all character stats and information.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Instance Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#shorthand-instance_method" title="#shorthand (instance method)">#<strong>shorthand</strong>  &#x21d2; Array&lt;Integer&gt; </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Shorthand stat methods (str, con, dex, etc.) and their enhanced versions Provided for backwards compatibility.</p>
+<p>Serializes the character’s stats into an array.</p>
 </div></span>
   
 </li>
@@ -424,7 +327,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the character’s age</p>
+<p>Retrieves the age of the character.</p>
 
 
   </div>
@@ -435,7 +338,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_age'>age</span> <span class='comment'>#=&gt; 25</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_age'>age</span></code></pre>
     
   </div>
 
@@ -451,7 +354,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s age in years</p>
+<p>the age of the character.</p>
 </div>
       
     </li>
@@ -464,12 +367,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_age'>age</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stat.age</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -491,15 +394,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Uses level thresholds to calculate current experience when “until next level” is shown</p>
-</div>
-  </div>
-
-
-<p>Calculates the character’s current experience points</p>
+<p>Calculates the experience points needed to reach the next level.</p>
 
 
   </div>
@@ -510,7 +405,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span> <span class='comment'>#=&gt; 125000</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span></code></pre>
     
   </div>
 
@@ -526,7 +421,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Current experience points</p>
+<p>the experience points needed to reach the next level.</p>
 </div>
       
     </li>
@@ -539,17 +434,17 @@
       <pre class="lines">
 
 
-114
-115
-116
-117
-118
-119
 120
-121</pre>
+121
+122
+123
+124
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_next_level_text'>next_level_text</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>until next level</span><span class='regexp_end'>/</span></span>
@@ -576,7 +471,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the character’s gender</p>
+<p>Retrieves the gender of the character.</p>
 
 
   </div>
@@ -587,7 +482,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span> <span class='comment'>#=&gt; &quot;Male&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span></code></pre>
     
   </div>
 
@@ -603,7 +498,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s gender</p>
+<p>the gender of the character.</p>
 </div>
       
     </li>
@@ -616,12 +511,12 @@
       <pre class="lines">
 
 
-41
 42
-43</pre>
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stat.gender</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -643,7 +538,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the character’s current level</p>
+<p>Retrieves the level of the character.</p>
 
 
   </div>
@@ -654,7 +549,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='comment'>#=&gt; 15</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span></code></pre>
     
   </div>
 
@@ -670,7 +565,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s level</p>
+<p>the level of the character.</p>
 </div>
       
     </li>
@@ -683,12 +578,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
@@ -710,13 +605,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Alias for profession method</p>
+<p>Retrieves the profession of the character (alias for profession).</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prof'>prof</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -729,19 +632,12 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s profession</p>
+<p>the profession of the character.</p>
 </div>
       
     </li>
   
 </ul>
-
-  <p class="tag_title">See Also:</p>
-  <ul class="see">
-    
-      <li>#profession</li>
-    
-  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -749,12 +645,12 @@
       <pre class="lines">
 
 
+32
 33
-34
-35</pre>
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prof'>prof</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span>
@@ -776,7 +672,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the character’s profession/class</p>
+<p>Retrieves the profession of the character.</p>
 
 
   </div>
@@ -787,7 +683,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span> <span class='comment'>#=&gt; &quot;Warrior&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span></code></pre>
     
   </div>
 
@@ -803,7 +699,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s full profession name</p>
+<p>the profession of the character.</p>
 </div>
       
     </li>
@@ -816,12 +712,12 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stat.profession</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -843,7 +739,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the character’s race</p>
+<p>Retrieves the race of the character.</p>
 
 
   </div>
@@ -854,7 +750,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span> <span class='comment'>#=&gt; &quot;Human&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span></code></pre>
     
   </div>
 
@@ -870,7 +766,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The character’s race (e.g., “Human”, “Elf”, etc.)</p>
+<p>the race of the character.</p>
 </div>
       
     </li>
@@ -883,12 +779,12 @@
       <pre class="lines">
 
 
-18
-19
-20</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stat.race</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -910,7 +806,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Creates a serialized array of all character stats and information</p>
+<p>Serializes the character’s stats into an array.</p>
 
 
   </div>
@@ -921,8 +817,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_stats'>stats</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
-<span class='comment'># Returns array with all character information</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
     
   </div>
 
@@ -938,7 +833,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array containing [race, profession, gender, age, exp, level, and all base and enhanced stat values/bonuses]</p>
+<p>an array containing the serialized stats of the character.</p>
 </div>
       
     </li>
@@ -951,20 +846,20 @@
       <pre class="lines">
 
 
-129
-130
-131
-132
-133
-134
 135
 136
 137
 138
-139</pre>
+139
+140
+141
+142
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_prof'>prof</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span><span class='comma'>,</span>
@@ -984,100 +879,10 @@
     
   </div>
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="shorthand-instance_method">
-  
-    #<strong>shorthand</strong>  &#x21d2; <tt>Array&lt;Integer&gt;</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Shorthand stat methods (str, con, dex, etc.) and their enhanced versions Provided for backwards compatibility</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_str'>str</span> <span class='comment'>#=&gt; [70, 3]
-</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhanced_str'>enhanced_str</span> <span class='comment'>#=&gt; [75, 4]</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Two-element array containing [base_value, base_bonus]</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/attributes/stats.rb', line 97</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='words_sep'> </span><span class='tstring_content'>inf</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='cvar'>@@stats</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_method'>method</span><span class='op'>|</span> <span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_stat'>stat</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span>
-    <span class='lbracket'>[</span><span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span><span class='rbracket'>]</span>
-  <span class='kw'>end</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhanced_%s</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_stat'>stat</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Stats (module)">Stats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span>
-    <span class='lbracket'>[</span><span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_stat'>stat</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span><span class='rbracket'>]</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
-
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:38 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

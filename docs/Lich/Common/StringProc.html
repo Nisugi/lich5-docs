@@ -102,29 +102,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>StringProc provides a way to store and evaluate Ruby code stored as strings. It mimics the behavior of Proc objects while allowing serialization of the code.</p>
+<p>A class that processes strings as Ruby code.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Lich5 Documentation Generator</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -159,7 +143,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Deserializes a StringProc from a string.</p>
+<p>Loads a StringProc object from a string.</p>
 </div></span>
   
 </li>
@@ -192,7 +176,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Serializes the StringProc by returning the stored code string.</p>
+<p>Dumps the string representation of the object.</p>
 </div></span>
   
 </li>
@@ -216,7 +200,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Evaluates the stored Ruby code string.</p>
+<p>Calls the stored string as Ruby code.</p>
 </div></span>
   
 </li>
@@ -240,7 +224,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the class of this object Always returns Proc to maintain compatibility.</p>
+<p>Returns the class of the current object.</p>
 </div></span>
   
 </li>
@@ -266,7 +250,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates a new StringProc instance that wraps the given Ruby code string.</p>
+<p>Initializes a new StringProc instance with the given string.</p>
 </div></span>
   
 </li>
@@ -290,7 +274,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns a string representation of the StringProc.</p>
+<p>Returns a string representation of the StringProc object.</p>
 </div></span>
   
 </li>
@@ -314,7 +298,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if this StringProc is a kind of the specified type Always delegates to Proc’s kind_of? to maintain compatibility.</p>
+<p>Checks if the current object is of the specified type.</p>
 </div></span>
   
 </li>
@@ -338,7 +322,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the StringProc to JSON format Prepends “;e ” to the stored code for compatibility.</p>
+<p>Converts the StringProc object to JSON format.</p>
 </div></span>
   
 </li>
@@ -362,21 +346,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Creates a new StringProc instance that wraps the given Ruby code string</p>
+<p>Initializes a new StringProc instance with the given string.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2 + 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -390,7 +366,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Ruby code to be stored and evaluated later</p>
+<p>the string to be processed as Ruby code</p>
 </div>
       
     </li>
@@ -404,12 +380,12 @@
       <pre class="lines">
 
 
-20
-21
-22</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_string'>string</span>
@@ -438,7 +414,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deserializes a StringProc from a string</p>
+<p>Loads a StringProc object from a string.</p>
 
 
   </div>
@@ -449,7 +425,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puts &#39;hello&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 + 1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='comment'># =&gt; 2</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -466,7 +443,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Previously dumped Ruby code string</p>
+<p>the string to load</p>
 </div>
       
     </li>
@@ -485,7 +462,7 @@
       
         &mdash;
         <div class='inline'>
-<p>New StringProc instance with the loaded code</p>
+<p>a new StringProc instance initialized with the string</p>
 </div>
       
     </li>
@@ -498,12 +475,12 @@
       <pre class="lines">
 
 
-98
-99
-100</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
@@ -531,22 +508,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Serializes the StringProc by returning the stored code string</p>
+<p>Dumps the string representation of the object.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puts &#39;hello&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span> <span class='comment'>#=&gt; &quot;puts &#39;hello&#39;&quot;</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -554,7 +522,7 @@
         <span class='name'>_d</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -562,7 +530,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Ignored parameter for Marshal compatibility</p>
+<p>optional parameter (not used)</p>
 </div>
       
     </li>
@@ -581,7 +549,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The stored Ruby code string</p>
+<p>the string representation of the object</p>
 </div>
       
     </li>
@@ -594,12 +562,12 @@
       <pre class="lines">
 
 
-66
-67
-68</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__dump'>_dump</span><span class='lparen'>(</span><span class='id identifier rubyid__d'>_d</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@string</span>
@@ -621,7 +589,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Evaluates the stored Ruby code string</p>
+<p>Calls the stored string as Ruby code.</p>
 
 
   </div>
@@ -632,8 +600,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2 + 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='comment'>#=&gt; 4</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 + 1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='comment'># =&gt; 2</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -650,7 +618,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Ignored arguments for compatibility with Proc#call</p>
+<p>optional arguments (not used)</p>
 </div>
       
     </li>
@@ -669,7 +637,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Result of evaluating the stored code</p>
+<p>the result of evaluating the string</p>
 </div>
       
     </li>
@@ -681,13 +649,13 @@
     <li>
       
       
-        <span class='type'>(<tt>StandardError</tt>)</span>
+        <span class='type'>(<tt>SyntaxError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>If the stored code raises an error during evaluation</p>
+<p>if the string contains invalid Ruby code</p>
 </div>
       
     </li>
@@ -700,12 +668,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__a'>_a</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_eval'>eval</span><span class='lparen'>(</span><span class='ivar'>@string</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
@@ -727,22 +695,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the class of this object Always returns Proc to maintain compatibility</p>
+<p>Returns the class of the current object.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puts &#39;hello&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='comment'>#=&gt; Proc</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -755,7 +714,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns Proc</p>
+<p>the class of the object, which is Proc</p>
 </div>
       
     </li>
@@ -768,12 +727,12 @@
       <pre class="lines">
 
 
-43
-44
-45</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='kw'>class</span>
   <span class='const'>Proc</span>
@@ -795,22 +754,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a string representation of the StringProc</p>
+<p>Returns a string representation of the StringProc object.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2 + 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='comment'>#=&gt; &quot;StringProc.new(\&quot;2 + 2\&quot;)&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -823,7 +773,7 @@
       
         &mdash;
         <div class='inline'>
-<p>String showing the StringProc construction</p>
+<p>a string describing the StringProc instance</p>
 </div>
       
     </li>
@@ -836,12 +786,12 @@
       <pre class="lines">
 
 
-76
-77
-78</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>StringProc.new(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@string</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
@@ -863,22 +813,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if this StringProc is a kind of the specified type Always delegates to Proc’s kind_of? to maintain compatibility</p>
+<p>Checks if the current object is of the specified type.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puts &#39;hello&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Proc</span><span class='rparen'>)</span> <span class='comment'>#=&gt; true</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -892,7 +833,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The type to check against</p>
+<p>the class to check against</p>
 </div>
       
     </li>
@@ -911,7 +852,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if compatible with the type</p>
+<p>true if the object is of the specified type, false otherwise</p>
 </div>
       
     </li>
@@ -924,12 +865,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='id identifier rubyid_type'>type</span>
@@ -951,7 +892,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Converts the StringProc to JSON format Prepends “;e ” to the stored code for compatibility</p>
+<p>Converts the StringProc object to JSON format.</p>
 
 
   </div>
@@ -962,8 +903,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_proc'>proc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2 + 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span> <span class='comment'>#=&gt; &quot;\&quot;;e 2 + 2\&quot;&quot;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 + 1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span> <span class='comment'># =&gt; &quot;;e \&quot;1 + 1\&quot;&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -980,7 +921,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Arguments passed to to_json</p>
+<p>optional arguments for JSON conversion</p>
 </div>
       
     </li>
@@ -999,7 +940,7 @@
       
         &mdash;
         <div class='inline'>
-<p>JSON representation</p>
+<p>the JSON representation of the object</p>
 </div>
       
     </li>
@@ -1012,12 +953,12 @@
       <pre class="lines">
 
 
-88
-89
-90</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/common/class_exts/stringproc.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>;e </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__dump'>_dump</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1032,7 +973,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:42 2025 by
+  Generated on Thu May 15 06:53:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

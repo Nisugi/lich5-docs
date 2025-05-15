@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current value/level of an ascension ability.</p>
+<p>Retrieves the assessment of an ascension ability by its name.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if an ascension ability can be afforded (has sufficient resources).</p>
+<p>Checks if an ascension ability is affordable.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns an array of hashes containing ascension ability definitions Each hash contains long_name, short_name, and cost for an ability.</p>
+<p>Returns a list of ascension lookups with their long names, short names, and costs.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if an ascension ability is currently available for use Considers if it’s known, affordable, not on cooldown, and not blocked by debuffs.</p>
+<p>Checks if an ascension ability is available for use.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if an ascension ability is known/learned.</p>
+<p>Checks if an ascension ability is known.</p>
 </div></span>
   
 </li>
@@ -239,7 +239,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current value/level of an ascension ability</p>
+<p>Retrieves the assessment of an ascension ability by its name.</p>
 
 
   </div>
@@ -250,8 +250,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>acid_resistance</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> 
-<span class='comment'># =&gt; 3</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>agility</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='comment'># =&gt; 0</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -268,7 +268,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the ascension ability (can be long or short form)</p>
+<p>The name of the ascension ability to assess.</p>
 </div>
       
     </li>
@@ -287,7 +287,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Current value/level of the ability</p>
+<p>The assessment value of the ascension ability.</p>
 </div>
       
     </li>
@@ -300,12 +300,12 @@
       <pre class="lines">
 
 
-101
-102
-103</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PSMS.html" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'><span class='object_link'><a href="PSMS.html#assess-class_method" title="Lich::Gemstone::PSMS.assess (method)">assess</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ascension</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -327,7 +327,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if an ascension ability can be afforded (has sufficient resources)</p>
+<p>Checks if an ascension ability is affordable.</p>
 
 
   </div>
@@ -338,7 +338,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>acid_resistance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>agility</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='comment'># =&gt; true</span></code></pre>
     
   </div>
@@ -356,7 +356,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the ascension ability</p>
+<p>The name of the ascension ability to check.</p>
 </div>
       
     </li>
@@ -375,7 +375,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if ability can be afforded, false otherwise</p>
+<p>True if the ability is affordable, false otherwise.</p>
 </div>
       
     </li>
@@ -388,12 +388,12 @@
       <pre class="lines">
 
 
-123
-124
-125</pre>
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PSMS.html" title="Lich::Gemstone::PSMS (module)">PSMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_assess'><span class='object_link'><a href="PSMS.html#assess-class_method" title="Lich::Gemstone::PSMS.assess (method)">assess</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ascension</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -406,7 +406,7 @@
       <div class="method_details ">
   <h3 class="signature " id="ascension_lookups-class_method">
   
-    .<strong>ascension_lookups</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt> 
+    .<strong>ascension_lookups</strong>  &#x21d2; <tt>Array&lt;Hash&gt;</tt> 
   
 
   
@@ -415,7 +415,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns an array of hashes containing ascension ability definitions Each hash contains long_name, short_name, and cost for an ability</p>
+<p>Returns a list of ascension lookups with their long names, short names, and costs.</p>
 
 
   </div>
@@ -427,7 +427,7 @@
     
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ascension_lookups'>ascension_lookups</span>
-<span class='comment'># =&gt; [{long_name: &#39;acid_resistance&#39;, short_name: &#39;resistacid&#39;, cost: 0}, ...]</span></code></pre>
+<span class='comment'># =&gt; [{ long_name: &#39;acid_resistance&#39;, short_name: &#39;resistacid&#39;, cost: 0 }, ...]</span></code></pre>
     
   </div>
 
@@ -437,13 +437,20 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of ascension ability definitions</p>
+<p>An array of hashes, each containing:</p>
+<ul><li>
+<p>:long_name [String] The full name of the ascension ability.</p>
+</li><li>
+<p>:short_name [String] The abbreviated name of the ascension ability.</p>
+</li><li>
+<p>:cost [Integer] The cost associated with the ascension ability.</p>
+</li></ul>
 </div>
       
     </li>
@@ -456,7 +463,6 @@
       <pre class="lines">
 
 
-15
 16
 17
 18
@@ -533,10 +539,11 @@
 89
 90
 91
-92</pre>
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ascension_lookups'>ascension_lookups</span>
   <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>long_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>acid_resistance</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>           <span class='label'>short_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resistacid</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>      <span class='label'>cost:</span> <span class='int'>0</span> <span class='rbrace'>}</span><span class='comma'>,</span>
@@ -633,7 +640,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if an ascension ability is currently available for use Considers if it’s known, affordable, not on cooldown, and not blocked by debuffs</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method checks if the ability is known, affordable, and not affected by cooldowns or debuffs.</p>
+</div>
+  </div>
+
+
+<p>Checks if an ascension ability is available for use.</p>
 
 
   </div>
@@ -644,7 +659,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>acid_resistance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>agility</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='comment'># =&gt; true</span></code></pre>
     
   </div>
@@ -662,7 +677,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the ascension ability</p>
+<p>The name of the ascension ability to check.</p>
 </div>
       
     </li>
@@ -681,7 +696,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if ability is available for use, false otherwise</p>
+<p>True if the ability is available, false otherwise.</p>
 </div>
       
     </li>
@@ -694,12 +709,12 @@
       <pre class="lines">
 
 
-135
-136
-137</pre>
+141
+142
+143</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'><span class='object_link'><a href="#known%3F-class_method" title="Lich::Gemstone::Ascension.known? (method)">known?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'><span class='object_link'><a href="#affordable%3F-class_method" title="Lich::Gemstone::Ascension.affordable? (method)">affordable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'><span class='object_link'><a href="../Util.html#normalize_lookup-class_method" title="Lich::Util.normalize_lookup (method)">normalize_lookup</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cooldowns</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_lookup'><span class='object_link'><a href="../Util.html#normalize_lookup-class_method" title="Lich::Util.normalize_lookup (method)">normalize_lookup</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Debuffs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Overexerted</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -721,7 +736,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if an ascension ability is known/learned</p>
+<p>Checks if an ascension ability is known.</p>
 
 
   </div>
@@ -732,7 +747,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>acid_resistance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>agility</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='comment'># =&gt; true</span></code></pre>
     
   </div>
@@ -750,7 +765,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the ascension ability</p>
+<p>The name of the ascension ability to check.</p>
 </div>
       
     </li>
@@ -769,7 +784,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if ability value &gt; 0, false otherwise</p>
+<p>True if the ability is known, false otherwise.</p>
 </div>
       
     </li>
@@ -782,12 +797,12 @@
       <pre class="lines">
 
 
-112
-113
-114</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/psms/ascension.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Ascension (module)">Ascension</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -802,7 +817,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:39 2025 by
+  Generated on Thu May 15 06:53:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

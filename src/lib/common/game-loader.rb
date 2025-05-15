@@ -1,16 +1,11 @@
-# Handles loading of game-specific modules and dependencies for different game types.
-# This module is responsible for initializing the appropriate game environment
-# based on whether the user is playing Gemstone or DragonRealms.
-#
-# @author Lich5 Documentation Generator
+# handles instances of modules that are game dependent
+
 module Lich
   module Common
     module GameLoader
-      # Loads common dependencies required by all game types.
-      # Initializes core functionality like logging, spells, and utilities.
+      # Loads common dependencies required before loading game-specific modules.
       #
-      # @return [void]
-      # @note Must be called before loading game-specific modules
+      # @return [void] This method does not return a value.
       #
       # @example
       #   Lich::Common::GameLoader.common_before
@@ -21,12 +16,9 @@ module Lich
         require File.join(LIB_DIR, 'common', 'hmr.rb')
       end
 
-      # Loads all Gemstone-specific game modules and dependencies.
-      # Initializes features like skills, spells, character attributes,
-      # inventory management, and game status monitoring.
+      # Loads all necessary modules and dependencies for the Gemstone game.
       #
-      # @return [void]
-      # @note Calls common_before internally to ensure base dependencies are loaded
+      # @return [void] This method does not return a value.
       #
       # @example
       #   Lich::Common::GameLoader.gemstone
@@ -62,12 +54,9 @@ module Lich
         self.common_after
       end
 
-      # Loads all DragonRealms-specific game modules and dependencies.
-      # Initializes the DR-specific map system, character attributes,
-      # and information monitoring.
+      # Loads all necessary modules and dependencies for the Dragon Realms game.
       #
-      # @return [void]
-      # @note Calls common_before internally to ensure base dependencies are loaded
+      # @return [void] This method does not return a value.
       #
       # @example
       #   Lich::Common::GameLoader.dragon_realms
@@ -80,25 +69,20 @@ module Lich
         self.common_after
       end
 
-      # Performs any necessary cleanup or final initialization after
-      # game-specific modules are loaded.
+      # Placeholder for any actions that need to be taken after loading common dependencies.
       #
-      # @return [void]
-      # @note Currently a no-op placeholder for future functionality
+      # @return [void] This method does not return a value.
       #
-      # @example
-      #   Lich::Common::GameLoader.common_after
+      # @note This method is currently a no-op.
       def self.common_after
         # nil
       end
 
-      # Main entry point for game-specific module loading.
-      # Automatically detects the game type from XMLData and loads appropriate modules.
+      # Loads the appropriate game-specific modules based on the current game setting.
       #
-      # @return [void]
-      # @raise [RuntimeError] If game type cannot be determined or is unsupported
-      # @note Waits for XMLData.game to be populated before proceeding
-      # @note Supports 'DR' (DragonRealms) and 'GS' (Gemstone) game types
+      # @return [void] This method does not return a value.
+      #
+      # @raise [RuntimeError] If the game cannot be loaded due to an unknown game type.
       #
       # @example
       #   Lich::Common::GameLoader.load!

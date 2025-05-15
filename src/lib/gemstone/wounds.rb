@@ -1,21 +1,13 @@
 # frozen_string_literal: true
 
-# Module namespace for the Lich application
 module Lich
-
-  # Module namespace for Gemstone-specific functionality 
   module Gemstone
-
-    # Tracks and manages character wound states across different body parts
-    # Inherits from Gemstone::CharacterStatus
-    #
-    # @author Lich5 Documentation Generator
+    # Wounds class for tracking character wounds
     class Wounds < Gemstone::CharacterStatus # GameBase::CharacterStatus
       class << self
-        # Hash mapping body part names to their shorthand aliases
-        # The keys are the official XML names from Simutronics, values are arrays of aliases
-        #
-        # @return [Hash<Symbol, Array<String>>] Mapping of body parts to aliases
+        # Body part accessor methods
+        # XML from Simutronics drives the structure of the wound naming (eg. leftEye)
+        # The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby
         BODY_PARTS = {
           leftEye: ['leye'],
           rightEye: ['reye'],
@@ -36,6 +28,11 @@ module Lich
         }.freeze
 
         # Define methods for each body part and its aliases
+        # Retrieves the wound for the body part.
+        # @return [String, nil] the wound level for the body part or nil if not present
+        # @raise [StandardError] if there is an issue accessing XMLData
+        # @example
+        #   Wounds.leftEye
         BODY_PARTS.each do |part, aliases|
           # Define the primary method
           define_method(part) do
@@ -50,51 +47,24 @@ module Lich
           end
         end
 
-        # Gets the wound level for the left eye
-        # @return [Integer] Wound level from 0-3
+        # Alias snake_case methods for overachievers
         def left_eye; leftEye; end
-
-        # Gets the wound level for the right eye
-        # @return [Integer] Wound level from 0-3
         def right_eye; rightEye; end
-
-        # Gets the wound level for the left arm
-        # @return [Integer] Wound level from 0-3
         def left_arm; leftArm; end
-
-        # Gets the wound level for the right arm
-        # @return [Integer] Wound level from 0-3
         def right_arm; rightArm; end
-
-        # Gets the wound level for the left hand
-        # @return [Integer] Wound level from 0-3
         def left_hand; leftHand; end
-
-        # Gets the wound level for the right hand
-        # @return [Integer] Wound level from 0-3
         def right_hand; rightHand; end
-
-        # Gets the wound level for the left leg
-        # @return [Integer] Wound level from 0-3
         def left_leg; leftLeg; end
-
-        # Gets the wound level for the right leg
-        # @return [Integer] Wound level from 0-3
         def right_leg; rightLeg; end
-
-        # Gets the wound level for the left foot
-        # @return [Integer] Wound level from 0-3
         def left_foot; leftFoot; end
-
-        # Gets the wound level for the right foot
-        # @return [Integer] Wound level from 0-3
         def right_foot; rightFoot; end
 
-        # Gets the combined wound level for both arms and hands
-        #
-        # @return [Integer] Maximum wound level among all arm parts
+        # Composite wound methods
+        # Retrieves the maximum wound level for both arms and hands.
+        # @return [String, nil] the maximum wound level for arms or nil if not present
+        # @raise [StandardError] if there is an issue accessing XMLData
         # @example
-        #   Wounds.arms #=> 3
+        #   Wounds.arms
         def arms
           fix_injury_mode('both')
           [
@@ -105,11 +75,11 @@ module Lich
           ].max
         end
 
-        # Gets the combined wound level for all limbs (arms, hands, legs)
-        #
-        # @return [Integer] Maximum wound level among all limb parts
+        # Retrieves the maximum wound level for all limbs.
+        # @return [String, nil] the maximum wound level for limbs or nil if not present
+        # @raise [StandardError] if there is an issue accessing XMLData
         # @example
-        #   Wounds.limbs #=> 2
+        #   Wounds.limbs
         def limbs
           fix_injury_mode('both')
           [
@@ -122,11 +92,11 @@ module Lich
           ].max
         end
 
-        # Gets the combined wound level for torso area (eyes, chest, abdomen, back)
-        #
-        # @return [Integer] Maximum wound level among all torso parts
+        # Retrieves the maximum wound level for the torso.
+        # @return [String, nil] the maximum wound level for the torso or nil if not present
+        # @raise [StandardError] if there is an issue accessing XMLData
         # @example
-        #   Wounds.torso #=> 1
+        #   Wounds.torso
         def torso
           fix_injury_mode('both')
           [
@@ -138,40 +108,27 @@ module Lich
           ].max
         end
 
-        # Gets the wound level for any specified body part
-        #
-        # @param part [String, Symbol] The body part name
-        # @return [Integer, nil] Wound level from 0-3, or nil if invalid part
+        # Helper method to get wound level for any body part
+        # @param part [Symbol] the body part to check
+        # @return [String, nil] the wound level for the specified body part or nil if not present
+        # @raise [StandardError] if there is an issue accessing XMLData
         # @example
-        #   Wounds.wound_level('head') #=> 2
-        #   Wounds.wound_level(:leftArm) #=> 1
+        #   Wounds.wound_level(:leftArm)
         def wound_level(part)
           fix_injury_mode('both')
           XMLData.injuries[part.to_s] && XMLData.injuries[part.to_s]['wound']
         end
 
-        # Gets a hash of all body parts and their current wound levels
-        #
-        # @return [Hash<String, Integer>] Mapping of body part names to wound levels
+        # Helper method to get all wound levels
+        # @return [Hash] a hash of all body parts and their corresponding wound levels
+        # @raise [StandardError] if there is an issue accessing XMLData
         # @example
-        #   Wounds.all_wounds #=> {'head' => 0, 'neck' => 1, ...}
+        #   Wounds.all_wounds
         def all_wounds
           fix_injury_mode('both')
           XMLData.injuries.transform_values { |v| v['wound'] }
         end
       end
-
-      # @note All wound level methods return integers 0-3 representing:
-      #   0 = No wounds
-      #   1 = Light wounds
-      #   2 = Moderate wounds
-      #   3 = Severe wounds
-      #
-      # @note All methods rely on XMLData.injuries being properly populated
-      #   from the game's XML data stream
-      #
-      # @note The fix_injury_mode('both') call ensures proper data mode
-      #   is set before accessing wound data
     end
   end
 end

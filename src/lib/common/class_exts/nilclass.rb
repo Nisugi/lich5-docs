@@ -1,88 +1,76 @@
-# Extensions to Ruby's NilClass to provide safe handling of nil values
-# and prevent nil-related errors in the Lich5 system.
-#
-# @author Lich5 Documentation Generator
-class NilClass
+# Carve out from lich.rbw
+# extension to class Nilclass 2024-06-13
 
-  # Creates a duplicate of nil, returning nil
+class NilClass
+  # Duplicates the nil object.
   #
-  # @return [nil] Always returns nil
+  # @return [NilClass] always returns nil.
+  #
   # @example
-  #   nil.dup #=> nil
-  #
-  # @note This maintains consistency with Object#dup while being a no-op for nil
+  #   nil.dup # => nil
   def dup
     nil
   end
 
-  # Catches any method calls to nil and returns nil instead of raising NoMethodError
+  # Handles calls to methods that do not exist on the nil object.
   #
-  # @param args [Array] Splat of any arguments passed to the missing method
-  # @return [nil] Always returns nil
+  # @param _args [Array] arguments passed to the missing method.
+  # @return [NilClass] always returns nil.
+  #
   # @example
-  #   nil.some_undefined_method #=> nil
-  #   nil.another_method(1,2,3) #=> nil
-  #
-  # @note Provides null object pattern behavior
+  #   nil.some_non_existent_method # => nil
   def method_missing(*_args)
     nil
   end
 
-  # Splits nil as if it were an empty string
+  # Splits the nil object into an array.
   #
-  # @param val [Array] Splat of split arguments (ignored)
-  # @return [Array] Returns an empty array
+  # @param _val [Array] optional parameters for splitting.
+  # @return [Array] returns an empty array.
+  #
   # @example
-  #   nil.split #=> []
-  #   nil.split(',') #=> []
-  #
-  # @note Mimics String#split behavior for nil
+  #   nil.split # => []
   def split(*_val)
     Array.new
   end
 
-  # Converts nil to an empty string
+  # Converts the nil object to a string.
   #
-  # @return [String] Returns an empty string
+  # @return [String] returns an empty string.
+  #
   # @example
-  #   nil.to_s #=> ""
-  #
-  # @note Provides string conversion compatibility
+  #   nil.to_s # => ""
   def to_s
     ""
   end
 
-  # Returns an empty string as if stripping whitespace
+  # Removes whitespace from the nil object.
   #
-  # @return [String] Returns an empty string
+  # @return [String] returns an empty string.
+  #
   # @example
-  #   nil.strip #=> ""
-  #
-  # @note Mimics String#strip behavior for nil
+  #   nil.strip # => ""
   def strip
     ""
   end
 
-  # Adds nil to another value by returning the other value unchanged
+  # Adds a value to the nil object.
   #
-  # @param val [Object] The value to add to nil
-  # @return [Object] Returns the passed value unchanged
+  # @param [Object] val the value to add.
+  # @return [Object] returns the value passed in.
+  #
   # @example
-  #   nil + 5 #=> 5
-  #   nil + "test" #=> "test"
-  #
-  # @note Treats nil as zero/empty for addition
+  #   nil + 5 # => 5
   def +(val)
     val
   end
 
-  # Checks if nil is "closed"
+  # Checks if the nil object is closed.
   #
-  # @return [Boolean] Always returns true
+  # @return [Boolean] always returns true.
+  #
   # @example
-  #   nil.closed? #=> true
-  #
-  # @note Used for IO-like interface compatibility
+  #   nil.closed? # => true
   def closed?
     true
   end

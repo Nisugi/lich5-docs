@@ -101,7 +101,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#character-class_method" title="character (class method)">.<strong>character</strong>  &#x21d2; String<sup>?</sup> </a>
+      <a href="#character-class_method" title="character (class method)">.<strong>character</strong>  &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the current character name.</p>
+<p>Returns the character associated with the account.</p>
 </div></span>
   
 </li>
@@ -125,7 +125,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#character=-class_method" title="character= (class method)">.<strong>character=</strong>(value)  &#x21d2; String </a>
+      <a href="#character=-class_method" title="character= (class method)">.<strong>character=</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the current character name.</p>
+<p>Sets the character associated with the account.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets an array of all character names.</p>
+<p>Returns the names of the characters associated with the account.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the game code identifier.</p>
+<p>Returns the game code associated with the account.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the game code identifier.</p>
+<p>Sets the game code associated with the account.</p>
 </div></span>
   
 </li>
@@ -221,7 +221,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Hash{String =&gt; String} </a>
+      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Hash </a>
     
 
     
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the hash of character codes mapped to character names.</p>
+<p>Returns the members associated with the account.</p>
 </div></span>
   
 </li>
@@ -245,7 +245,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#members=-class_method" title="members= (class method)">.<strong>members=</strong>(value)  &#x21d2; Hash{String =&gt; String} </a>
+      <a href="#members=-class_method" title="members= (class method)">.<strong>members=</strong>(value)  &#x21d2; Hash </a>
     
 
     
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parses and sets character membership data.</p>
+<p>Sets the members associated with the account.</p>
 </div></span>
   
 </li>
@@ -284,7 +284,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the account holder’s name.</p>
+<p>Returns the name of the account.</p>
 </div></span>
   
 </li>
@@ -308,7 +308,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the account holder’s name.</p>
+<p>Sets the name of the account.</p>
 </div></span>
   
 </li>
@@ -332,7 +332,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the account subscription type.</p>
+<p>Returns the subscription type of the account.</p>
 </div></span>
   
 </li>
@@ -341,7 +341,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#subscription=-class_method" title="subscription= (class method)">.<strong>subscription=</strong>(value)  &#x21d2; String<sup>?</sup> </a>
+      <a href="#subscription=-class_method" title="subscription= (class method)">.<strong>subscription=</strong>(value)  &#x21d2; String </a>
     
 
     
@@ -356,7 +356,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the account subscription type.</p>
+<p>Sets the subscription type of the account.</p>
 </div></span>
   
 </li>
@@ -374,7 +374,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="character-class_method">
   
-    .<strong>character</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
+    .<strong>character</strong>  &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
@@ -383,34 +383,26 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current character name</p>
+<p>Returns the character associated with the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_character'>character</span> <span class='comment'>#=&gt; &quot;CharacterName&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The current character name or nil if not set</p>
+<p>the character object or nil if not set.</p>
 </div>
       
     </li>
@@ -423,12 +415,12 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_character'>character</span>
   <span class='cvar'>@@character</span>
@@ -441,7 +433,7 @@
       <div class="method_details ">
   <h3 class="signature " id="character=-class_method">
   
-    .<strong>character=</strong>(value)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>character=</strong>(value)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -450,7 +442,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets the current character name</p>
+<p>Sets the character associated with the account.</p>
 
 
   </div>
@@ -461,7 +453,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_character'><span class='object_link'><a href="#character-class_method" title="Lich::Common::Account.character (method)">character</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CharacterName</span><span class='tstring_end'>&quot;</span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_character'><span class='object_link'><a href="#character-class_method" title="Lich::Common::Account.character (method)">character</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_my_character'>my_character</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -472,13 +464,13 @@
         <span class='name'>value</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The character name to set</p>
+<p>the character to set for the account.</p>
 </div>
       
     </li>
@@ -491,13 +483,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The newly set character name</p>
+<p>the character that was set.</p>
 </div>
       
     </li>
@@ -510,12 +502,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_character='>character=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='cvar'>@@character</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -537,21 +529,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets an array of all character names</p>
+<p>Returns the names of the characters associated with the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_characters'>characters</span> <span class='comment'>#=&gt; [&quot;CharacterOne&quot;, &quot;CharacterTwo&quot;]</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -564,7 +548,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array containing all character names</p>
+<p>an array of character names.</p>
 </div>
       
     </li>
@@ -577,12 +561,12 @@
       <pre class="lines">
 
 
-122
-123
-124</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_characters'>characters</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
@@ -604,21 +588,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the game code identifier</p>
+<p>Returns the game code associated with the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_game_code'>game_code</span> <span class='comment'>#=&gt; &quot;DR&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -631,7 +607,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The game code or nil if not set</p>
+<p>the game code or nil if not set.</p>
 </div>
       
     </li>
@@ -644,12 +620,12 @@
       <pre class="lines">
 
 
-79
-80
-81</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_game_code'>game_code</span>
   <span class='cvar'>@@game_code</span>
@@ -671,7 +647,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets the game code identifier</p>
+<p>Sets the game code associated with the account.</p>
 
 
   </div>
@@ -682,7 +658,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_game_code'><span class='object_link'><a href="#game_code-class_method" title="Lich::Common::Account.game_code (method)">game_code</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DR</span><span class='tstring_end'>&quot;</span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_game_code'><span class='object_link'><a href="#game_code-class_method" title="Lich::Common::Account.game_code (method)">game_code</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GAME123</span><span class='tstring_end'>&quot;</span></span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -699,7 +675,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The game code to set</p>
+<p>the game code to set.</p>
 </div>
       
     </li>
@@ -718,7 +694,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The newly set game code</p>
+<p>the game code that was set.</p>
 </div>
       
     </li>
@@ -731,12 +707,12 @@
       <pre class="lines">
 
 
-89
-90
-91</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_game_code='>game_code=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='cvar'>@@game_code</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -749,7 +725,7 @@
       <div class="method_details ">
   <h3 class="signature " id="members-class_method">
   
-    .<strong>members</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>{<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>}</tt> 
+    .<strong>members</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -758,34 +734,26 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the hash of character codes mapped to character names</p>
+<p>Returns the members associated with the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span> <span class='comment'>#=&gt; {&quot;ABC123&quot; =&gt; &quot;CharacterOne&quot;, &quot;XYZ789&quot; =&gt; &quot;CharacterTwo&quot;}</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>{<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>}</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Hash with character codes as keys and names as values</p>
+<p>a hash of member character codes and names.</p>
 </div>
       
     </li>
@@ -798,12 +766,12 @@
       <pre class="lines">
 
 
-98
-99
-100</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span>
   <span class='cvar'>@@members</span>
@@ -816,7 +784,7 @@
       <div class="method_details ">
   <h3 class="signature " id="members=-class_method">
   
-    .<strong>members=</strong>(value)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>{<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>}</tt> 
+    .<strong>members=</strong>(value)  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -825,7 +793,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses and sets character membership data</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method processes the input string to extract character codes and names.</p>
+</div>
+  </div>
+
+
+<p>Sets the members associated with the account.</p>
 
 
   </div>
@@ -836,7 +812,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'><span class='object_link'><a href="#members-class_method" title="Lich::Common::Account.members (method)">members</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C\t1\t2\t3\t4\tABC123\tCharacterOne\tXYZ789\tCharacterTwo</span><span class='tstring_end'>&quot;</span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'><span class='object_link'><a href="#members-class_method" title="Lich::Common::Account.members (method)">members</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C\t1\t2\t3\t4\t\nA\tCharacter1\nB\tCharacter2</span><span class='tstring_end'>&quot;</span></span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -853,7 +829,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Tab-delimited character data string to parse</p>
+<p>a string containing member character codes and names.</p>
 </div>
       
     </li>
@@ -866,13 +842,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>{<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>}</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Processed hash of character codes to names</p>
+<p>the members that were set.</p>
 </div>
       
     </li>
@@ -885,17 +861,17 @@
       <pre class="lines">
 
 
-108
-109
-110
-111
-112
-113
-114
-115</pre>
+95
+96
+97
+98
+99
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members='>members=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_potential_members'>potential_members</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -922,21 +898,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the account holder’s name</p>
+<p>Returns the name of the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='comment'>#=&gt; &quot;PlayerName&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -949,7 +917,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The account holder’s name or nil if not set</p>
+<p>the name of the account or nil if not set.</p>
 </div>
       
     </li>
@@ -962,12 +930,12 @@
       <pre class="lines">
 
 
-19
-20
-21</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
   <span class='cvar'>@@name</span>
@@ -989,7 +957,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets the account holder’s name</p>
+<p>Sets the name of the account.</p>
 
 
   </div>
@@ -1000,7 +968,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="#name-class_method" title="Lich::Common::Account.name (method)">name</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PlayerName</span><span class='tstring_end'>&quot;</span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="#name-class_method" title="Lich::Common::Account.name (method)">name</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Player1</span><span class='tstring_end'>&quot;</span></span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1017,7 +985,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name to set for the account</p>
+<p>the name to set for the account.</p>
 </div>
       
     </li>
@@ -1036,7 +1004,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The newly set name</p>
+<p>the name that was set.</p>
 </div>
       
     </li>
@@ -1049,12 +1017,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name='>name=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='cvar'>@@name</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1076,21 +1044,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the account subscription type</p>
+<p>Returns the subscription type of the account.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_subscription'>subscription</span> <span class='comment'>#=&gt; &quot;PREMIUM&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1103,7 +1063,7 @@
       
         &mdash;
         <div class='inline'>
-<p>One of: “NORMAL”, “PREMIUM”, “TRIAL”, “INTERNAL”, “FREE” or nil if not set</p>
+<p>the subscription type or nil if not set.</p>
 </div>
       
     </li>
@@ -1116,12 +1076,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_subscription'>subscription</span>
   <span class='cvar'>@@subscription</span>
@@ -1134,7 +1094,7 @@
       <div class="method_details ">
   <h3 class="signature " id="subscription=-class_method">
   
-    .<strong>subscription=</strong>(value)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
+    .<strong>subscription=</strong>(value)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -1143,15 +1103,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Only accepts: “NORMAL”, “PREMIUM”, “TRIAL”, “INTERNAL”, “FREE”</p>
-</div>
-  </div>
-
-
-<p>Sets the account subscription type</p>
+<p>Sets the subscription type of the account.</p>
 
 
   </div>
@@ -1179,7 +1131,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The subscription type to set</p>
+<p>the subscription type to set.</p>
 </div>
       
     </li>
@@ -1192,13 +1144,31 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The validated subscription type or nil if invalid</p>
+<p>the subscription type that was set.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the value does not match the expected types.</p>
 </div>
       
     </li>
@@ -1211,14 +1181,14 @@
       <pre class="lines">
 
 
-68
-69
-70
-71
-72</pre>
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/common/account.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_subscription='>subscription=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(NORMAL|PREMIUM|TRIAL|INTERNAL|FREE)</span><span class='regexp_end'>/</span></span>
@@ -1235,7 +1205,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

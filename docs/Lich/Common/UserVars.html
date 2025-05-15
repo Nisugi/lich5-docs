@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Adds a value to an existing comma-separated list variable.</p>
+<p>Adds a value to a user variable, appending it to the existing value.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Changes the value of an existing user variable.</p>
+<p>Changes the value of a user variable.</p>
 </div></span>
   
 </li>
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Deletes a user variable.</p>
+<p>Deletes a user variable by setting it to nil.</p>
 </div></span>
   
 </li>
@@ -173,7 +173,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#list-class_method" title="list (class method)">.<strong>list</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#list-class_method" title="list (class method)">.<strong>list</strong>  &#x21d2; Array </a>
     
 
     
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Lists all user variables currently set.</p>
+<p>Lists all user variables.</p>
 </div></span>
   
 </li>
@@ -197,7 +197,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#list_char-class_method" title="list_char (class method)">.<strong>list_char</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#list_char-class_method" title="list_char (class method)">.<strong>list_char</strong>  &#x21d2; Array </a>
     
 
     
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Lists character-specific variables Alias for UserVars.list.</p>
+<p>Lists character-specific user variables.</p>
 </div></span>
   
 </li>
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Lists global variables (currently returns empty array).</p>
+<p>Lists all global user variables.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets or sets a user variable value.</p>
+<p>Handles missing methods for user variables.</p>
 </div></span>
   
 </li>
@@ -287,7 +287,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Adds a value to an existing comma-separated list variable</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This assumes the existing value is a comma-separated string.</p>
+</div>
+  </div>
+
+
+<p>Adds a value to a user variable, appending it to the existing value.</p>
 
 
   </div>
@@ -298,7 +306,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='symbol'>:mylist</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new item</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>var1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new_value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;existing_value, new_value&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -309,13 +318,13 @@
         <span class='name'>var_name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Name of list variable</p>
+<p>the name of the variable to add to.</p>
 </div>
       
     </li>
@@ -325,13 +334,13 @@
         <span class='name'>value</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Value to append to list</p>
+<p>the value to append to the variable.</p>
 </div>
       
     </li>
@@ -349,7 +358,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unused parameter kept for compatibility</p>
+<p>an optional parameter (not used).</p>
 </div>
       
     </li>
@@ -368,7 +377,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Updated comma-separated list</p>
+<p>the updated value of the variable.</p>
 </div>
       
     </li>
@@ -381,12 +390,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid__t'>_t</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -408,7 +417,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Changes the value of an existing user variable</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This will overwrite the existing value of the variable.</p>
+</div>
+  </div>
+
+
+<p>Changes the value of a user variable.</p>
 
 
   </div>
@@ -419,7 +436,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change'>change</span><span class='lparen'>(</span><span class='symbol'>:myvar</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change'>change</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>var1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new_value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;new_value&quot;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -430,13 +448,13 @@
         <span class='name'>var_name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Name of variable to change</p>
+<p>the name of the variable to change.</p>
 </div>
       
     </li>
@@ -452,7 +470,7 @@
       
         &mdash;
         <div class='inline'>
-<p>New value to set</p>
+<p>the new value to assign to the variable.</p>
 </div>
       
     </li>
@@ -470,7 +488,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unused parameter kept for compatibility</p>
+<p>an optional parameter (not used).</p>
 </div>
       
     </li>
@@ -489,7 +507,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The new value that was set</p>
+<p>the new value of the variable.</p>
 </div>
       
     </li>
@@ -502,12 +520,12 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change'>change</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid__t'>_t</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -529,7 +547,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deletes a user variable</p>
+<p>Deletes a user variable by setting it to nil.</p>
 
 
   </div>
@@ -540,7 +558,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:myvar</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>var1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; nil</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -551,13 +570,13 @@
         <span class='name'>var_name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Name of variable to delete</p>
+<p>the name of the variable to delete.</p>
 </div>
       
     </li>
@@ -575,7 +594,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unused parameter kept for compatibility</p>
+<p>an optional parameter (not used).</p>
 </div>
       
     </li>
@@ -592,6 +611,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>always returns nil.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -602,12 +626,12 @@
       <pre class="lines">
 
 
-60
-61
-62</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='comma'>,</span> <span class='id identifier rubyid__t'>_t</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -620,7 +644,7 @@
       <div class="method_details ">
   <h3 class="signature " id="list-class_method">
   
-    .<strong>list</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>list</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -629,7 +653,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Lists all user variables currently set</p>
+<p>Lists all user variables.</p>
 
 
   </div>
@@ -640,7 +664,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span> <span class='comment'>#=&gt; [&quot;var1&quot;, &quot;var2&quot;, &quot;var3&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
+<span class='comment'># =&gt; [&quot;var1&quot;, &quot;var2&quot;, &quot;var3&quot;]</span></code></pre>
     
   </div>
 
@@ -650,13 +675,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of variable names that are currently set</p>
+<p>an array of user variables.</p>
 </div>
       
     </li>
@@ -669,12 +694,12 @@
       <pre class="lines">
 
 
-13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'><span class='object_link'><a href="Vars.html#list-class_method" title="Lich::Common::Vars.list (method)">list</a></span></span>
@@ -687,7 +712,7 @@
       <div class="method_details ">
   <h3 class="signature " id="list_char-class_method">
   
-    .<strong>list_char</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>list_char</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -696,7 +721,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Lists character-specific variables Alias for UserVars.list</p>
+<p>Lists character-specific user variables.</p>
 
 
   </div>
@@ -707,7 +732,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_char'>list_char</span> <span class='comment'>#=&gt; [&quot;var1&quot;, &quot;var2&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_char'>list_char</span>
+<span class='comment'># =&gt; [&quot;char_var1&quot;, &quot;char_var2&quot;]</span></code></pre>
     
   </div>
 
@@ -717,13 +743,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of variable names for current character</p>
+<p>an array of character-specific user variables.</p>
 </div>
       
     </li>
@@ -736,12 +762,12 @@
       <pre class="lines">
 
 
-80
-81
-82</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_char'>list_char</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'><span class='object_link'><a href="Vars.html#list-class_method" title="Lich::Common::Vars.list (method)">list</a></span></span>
@@ -763,15 +789,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This is a placeholder method that currently returns an empty array</p>
-</div>
-  </div>
-
-
-<p>Lists global variables (currently returns empty array)</p>
+<p>Lists all global user variables.</p>
 
 
   </div>
@@ -782,7 +800,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_global'>list_global</span> <span class='comment'>#=&gt; []</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_global'>list_global</span>
+<span class='comment'># =&gt; []</span></code></pre>
     
   </div>
 
@@ -798,7 +817,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Empty array, as global vars not implemented</p>
+<p>an empty array, as global variables are not implemented.</p>
 </div>
       
     </li>
@@ -811,12 +830,12 @@
       <pre class="lines">
 
 
-70
-71
-72</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_global'>list_global</span>
   <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -838,7 +857,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets or sets a user variable value</p>
+<p>Handles missing methods for user variables.</p>
 
 
   </div>
@@ -849,8 +868,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_myvar'>myvar</span> <span class='comment'>#=&gt; Gets value of &#39;myvar&#39;
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_myvar'>myvar</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new value</span><span class='tstring_end'>&quot;</span></span> <span class='comment'>#=&gt; Sets &#39;myvar&#39; to &quot;new value&quot;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_some_missing_method'>some_missing_method</span>
+<span class='comment'># =&gt; raises NoMethodError</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -861,13 +880,13 @@
         <span class='name'>arg1</span>
       
       
-        <span class='type'>(<tt>Symbol</tt>, <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Variable name to get/set</p>
+<p>the name of the method being called.</p>
 </div>
       
     </li>
@@ -877,7 +896,7 @@
         <span class='name'>arg2</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
         <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
@@ -885,7 +904,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Optional value to set (defaults to empty string)</p>
+<p>an optional argument for the method.</p>
 </div>
       
     </li>
@@ -904,7 +923,25 @@
       
         &mdash;
         <div class='inline'>
-<p>Value of the variable if getting, or the set value if setting</p>
+<p>the result of the Vars method call.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the method does not exist in Vars.</p>
 </div>
       
     </li>
@@ -917,12 +954,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/common/uservars.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_arg1'>arg1</span><span class='comma'>,</span> <span class='id identifier rubyid_arg2'>arg2</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'><span class='object_link'><a href="Vars.html#method_missing-class_method" title="Lich::Common::Vars.method_missing (method)">method_missing</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_arg1'>arg1</span><span class='comma'>,</span> <span class='id identifier rubyid_arg2'>arg2</span><span class='rparen'>)</span>
@@ -937,7 +974,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:38 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

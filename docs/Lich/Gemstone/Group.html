@@ -104,9 +104,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Handles group management, membership tracking, and group-related actions</p>
-
-<p>This class maintains the state of the current group, including members, leadership status, and provides methods for group operations.</p>
+<p>Represents a group of members in the game.</p>
 
 
   </div>
@@ -142,7 +140,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_members-class_method" title="_members (class method)">.<strong>_members</strong>  &#x21d2; Array&lt;GameObj&gt; </a>
+      <a href="#_members-class_method" title="_members (class method)">.<strong>_members</strong>  &#x21d2; Array </a>
     
 
     
@@ -157,7 +155,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets raw member list without status check.</p>
+<p>Retrieves the original group members without duplication.</p>
 </div></span>
   
 </li>
@@ -166,7 +164,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(*members)  &#x21d2; Array&lt;Hash&gt; </a>
+      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(*members)  &#x21d2; Array </a>
     
 
     
@@ -181,7 +179,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Attempts to add members to group.</p>
+<p>Adds members to the group, handling various input types.</p>
 </div></span>
   
 </li>
@@ -205,7 +203,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if group state is broken/invalid.</p>
+<p>Checks if the group is broken based on the current game state.</p>
 </div></span>
   
 </li>
@@ -214,7 +212,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check-class_method" title="check (class method)">.<strong>check</strong>  &#x21d2; Array&lt;GameObj&gt; </a>
+      <a href="#check-class_method" title="check (class method)">.<strong>check</strong>  &#x21d2; Array </a>
     
 
     
@@ -229,7 +227,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Performs initial group status check.</p>
+<p>Initializes the group and checks its status.</p>
 </div></span>
   
 </li>
@@ -253,7 +251,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the checked status flag.</p>
+<p>Sets the checked status of the group.</p>
 </div></span>
   
 </li>
@@ -277,7 +275,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if group status has been verified.</p>
+<p>Checks if the group has been checked.</p>
 </div></span>
   
 </li>
@@ -301,7 +299,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Clears all group members and resets checked status.</p>
+<p>Clears the group members and resets the checked status.</p>
 </div></span>
   
 </li>
@@ -325,7 +323,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if group is closed to new members.</p>
+<p>Checks if the group is closed.</p>
 </div></span>
   
 </li>
@@ -349,7 +347,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Removes one or more members from the group.</p>
+<p>Removes specified members from the group.</p>
 </div></span>
   
 </li>
@@ -358,7 +356,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#disks-class_method" title="disks (class method)">.<strong>disks</strong>  &#x21d2; Array&lt;Disk&gt; </a>
+      <a href="#disks-class_method" title="disks (class method)">.<strong>disks</strong>  &#x21d2; Array </a>
     
 
     
@@ -373,7 +371,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets disk objects for all group members.</p>
+<p>Retrieves the disks associated with the group members.</p>
 </div></span>
   
 </li>
@@ -382,7 +380,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ids-class_method" title="ids (class method)">.<strong>ids</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#ids-class_method" title="ids (class method)">.<strong>ids</strong>  &#x21d2; Array </a>
     
 
     
@@ -397,7 +395,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets IDs of all group members.</p>
+<p>Retrieves the IDs of the group members.</p>
 </div></span>
   
 </li>
@@ -421,7 +419,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if specified members are in group.</p>
+<p>Checks if the specified members are included in the group.</p>
 </div></span>
   
 </li>
@@ -430,7 +428,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#leader-class_method" title="leader (class method)">.<strong>leader</strong>  &#x21d2; GameObj, Symbol </a>
+      <a href="#leader-class_method" title="leader (class method)">.<strong>leader</strong>  &#x21d2; Object </a>
     
 
     
@@ -445,7 +443,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets current group leader.</p>
+<p>Retrieves the current leader of the group.</p>
 </div></span>
   
 </li>
@@ -469,7 +467,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets group leader.</p>
+<p>Sets the leader of the group.</p>
 </div></span>
   
 </li>
@@ -493,7 +491,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if current character is group leader.</p>
+<p>Checks if the current character is the leader of the group.</p>
 </div></span>
   
 </li>
@@ -517,7 +515,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks group status if not already checked.</p>
+<p>Checks the group status if it hasn’t been checked yet.</p>
 </div></span>
   
 </li>
@@ -526,7 +524,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Array&lt;GameObj&gt; </a>
+      <a href="#members-class_method" title="members (class method)">.<strong>members</strong>  &#x21d2; Array </a>
     
 
     
@@ -541,7 +539,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets current group members, checking status if needed.</p>
+<p>Retrieves a duplicate of the current group members.</p>
 </div></span>
   
 </li>
@@ -564,30 +562,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#nonmembers-class_method" title="nonmembers (class method)">.<strong>nonmembers</strong>  &#x21d2; Array&lt;GameObj&gt; </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
     <span class="summary_desc"><div class='inline'>
-<p>Gets list of PCs not in the group.</p>
+<p>Handles missing methods by delegating to the members array.</p>
 </div></span>
   
 </li>
@@ -596,7 +572,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nouns-class_method" title="nouns (class method)">.<strong>nouns</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#nonmembers-class_method" title="nonmembers (class method)">.<strong>nonmembers</strong>  &#x21d2; Array </a>
     
 
     
@@ -611,7 +587,31 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets nouns/names of all group members.</p>
+<p>Retrieves non-member characters.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nouns-class_method" title="nouns (class method)">.<strong>nouns</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the nouns of the group members.</p>
 </div></span>
   
 </li>
@@ -635,7 +635,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if group is open to new members.</p>
+<p>Checks if the group is open.</p>
 </div></span>
   
 </li>
@@ -659,7 +659,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Adds one or more members to the group.</p>
+<p>Adds members to the group if they are not already included.</p>
 </div></span>
   
 </li>
@@ -683,7 +683,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Replaces all group members with new list.</p>
+<p>Refreshes the group members with the provided members.</p>
 </div></span>
   
 </li>
@@ -707,7 +707,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets current group status.</p>
+<p>Retrieves the current status of the group.</p>
 </div></span>
   
 </li>
@@ -731,7 +731,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the group status (open/closed).</p>
+<p>Sets the status of the group.</p>
 </div></span>
   
 </li>
@@ -755,7 +755,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>String representation of group members.</p>
+<p>Returns a string representation of the group members.</p>
 </div></span>
   
 </li>
@@ -773,7 +773,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="_members-class_method">
   
-    .<strong>_members</strong>  &#x21d2; <tt>Array&lt;GameObj&gt;</tt> 
+    .<strong>_members</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -782,26 +782,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets raw member list without status check</p>
+<p>Retrieves the original group members without duplication.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_original_members'>original_members</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid__members'>_members</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Internal member array</p>
+<p>the original array of group members</p>
 </div>
       
     </li>
@@ -814,12 +822,12 @@
       <pre class="lines">
 
 
-70
-71
-72</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__members'>_members</span>
   <span class='cvar'>@@members</span>
@@ -832,7 +840,7 @@
       <div class="method_details ">
   <h3 class="signature " id="add-class_method">
   
-    .<strong>add</strong>(*members)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt> 
+    .<strong>add</strong>(*members)  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -841,7 +849,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Attempts to add members to group</p>
+<p>Adds members to the group, handling various input types.</p>
 
 
   </div>
@@ -852,7 +860,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PlayerName</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; [{ok: player_obj}]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_results'>results</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_member1'>member1</span><span class='comma'>,</span> <span class='id identifier rubyid_member2'>member2</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -863,13 +871,13 @@
         <span class='name'>members</span>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Members to add</p>
+<p>the members to add</p>
 </div>
       
     </li>
@@ -882,13 +890,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Results of add attempts</p>
+<p>an array of results for each member added</p>
 </div>
       
     </li>
@@ -901,36 +909,36 @@
       <pre class="lines">
 
 
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209</pre>
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_members'>members</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_member'>member</span><span class='op'>|</span>
@@ -941,7 +949,7 @@
 
       <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
-      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'>dothistimeout</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>group #</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="../../top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>group #</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
                                                          <span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>You add </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_content'> to your group</span><span class='regexp_end'>}</span></span><span class='comma'>,</span>
                                                          <span class='tstring'><span class='regexp_beg'>%r{</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s group status is closed</span><span class='regexp_end'>}</span></span><span class='comma'>,</span>
                                                          <span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>But </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_content'> is already a member of your group</span><span class='regexp_end'>}</span></span>
@@ -976,13 +984,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if group state is broken/invalid</p>
+<p>Checks if the group is broken based on the current game state.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_broken'>is_broken</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_broken?'>broken?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -995,7 +1011,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if group state is invalid</p>
+<p>true if the group is broken, false otherwise</p>
 </div>
       
     </li>
@@ -1008,22 +1024,22 @@
       <pre class="lines">
 
 
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245</pre>
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_broken?'>broken?</span>
-  <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.1</span><span class='rparen'>)</span> <span class='kw'>while</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Claim</span><span class='op'>::</span><span class='const'>Lock</span><span class='period'>.</span><span class='id identifier rubyid_locked?'>locked?</span>
+  <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.1</span><span class='rparen'>)</span> <span class='kw'>while</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_locked?'>locked?</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leader?'><span class='object_link'><a href="#leader%3F-class_method" title="Lich::Gemstone::Group.leader? (method)">leader?</a></span></span>
     <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1040,7 +1056,7 @@
       <div class="method_details ">
   <h3 class="signature " id="check-class_method">
   
-    .<strong>check</strong>  &#x21d2; <tt>Array&lt;GameObj&gt;</tt> 
+    .<strong>check</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1052,31 +1068,39 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Waits up to 3 seconds for response</p>
+<p>This method will block until the group is checked or the time limit is reached.</p>
 </div>
   </div>
 
 
-<p>Performs initial group status check</p>
+<p>Initializes the group and checks its status.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_members'>members</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_check'>check</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Current group members</p>
+<p>a duplicate of the group members</p>
 </div>
       
     </li>
@@ -1089,22 +1113,22 @@
       <pre class="lines">
 
 
-133
-134
-135
-136
-137
-138
-139</pre>
+176
+177
+178
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_check'>check</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="#clear-class_method" title="Lich::Gemstone::Group.clear (method)">clear</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ttl'>ttl</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='int'>3</span>
-  <span class='const'>Game</span><span class='period'>.</span><span class='id identifier rubyid__puts'>_puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;c&gt;group\r\n</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_wait_until'>wait_until</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked?'><span class='object_link'><a href="#checked%3F-class_method" title="Lich::Gemstone::Group.checked? (method)">checked?</a></span></span> <span class='kw'>or</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_ttl'>ttl</span> <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="Game.html" title="Lich::Gemstone::Game (module)">Game</a></span></span><span class='period'>.</span><span class='id identifier rubyid__puts'><span class='object_link'><a href="Game.html#_puts-class_method" title="Lich::Gemstone::Game._puts (method)">_puts</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;c&gt;group\r\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_wait_until'><span class='object_link'><a href="../../top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked?'><span class='object_link'><a href="#checked%3F-class_method" title="Lich::Gemstone::Group.checked? (method)">checked?</a></span></span> <span class='kw'>or</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_ttl'>ttl</span> <span class='rbrace'>}</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1124,13 +1148,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the checked status flag</p>
+<p>Sets the checked status of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked'>checked</span> <span class='op'>=</span> <span class='kw'>true</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1144,7 +1176,7 @@
       
         &mdash;
         <div class='inline'>
-<p>New checked status</p>
+<p>the new checked status</p>
 </div>
       
     </li>
@@ -1158,12 +1190,12 @@
       <pre class="lines">
 
 
-95
-96
-97</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_checked='>checked=</span><span class='lparen'>(</span><span class='id identifier rubyid_flag'>flag</span><span class='rparen'>)</span>
   <span class='cvar'>@@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_flag'>flag</span>
@@ -1185,13 +1217,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if group status has been verified</p>
+<p>Checks if the group has been checked.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span> <span class='comment'># =&gt; false</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1204,7 +1244,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if group status has been checked</p>
+<p>true if checked, false otherwise</p>
 </div>
       
     </li>
@@ -1217,12 +1257,12 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span>
   <span class='cvar'>@@checked</span>
@@ -1244,13 +1284,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Clears all group members and resets checked status</p>
+<p>Clears the group members and resets the checked status.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -1266,7 +1314,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 20</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='cvar'>@@members</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='cvar'>@@checked</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
@@ -1287,13 +1335,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if group is closed to new members</p>
+<p>Checks if the group is closed.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_closed'>is_closed</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1306,7 +1362,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if group is closed</p>
+<p>true if the group is closed, false otherwise</p>
 </div>
       
     </li>
@@ -1319,12 +1375,12 @@
       <pre class="lines">
 
 
-125
-126
-127</pre>
+164
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span>
   <span class='kw'>not</span> <span class='id identifier rubyid_open?'>open?</span>
@@ -1346,13 +1402,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Removes one or more members from the group</p>
+<p>Removes specified members from the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_member1'>member1</span><span class='comma'>,</span> <span class='id identifier rubyid_member2'>member2</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1360,13 +1424,13 @@
         <span class='name'>members</span>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The members to remove</p>
+<p>the members to remove</p>
 </div>
       
     </li>
@@ -1380,13 +1444,13 @@
       <pre class="lines">
 
 
-46
-47
-48
-49</pre>
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_members'>members</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_gone'>gone</span> <span class='op'>=</span> <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:id</span><span class='rparen'>)</span>
@@ -1400,7 +1464,7 @@
       <div class="method_details ">
   <h3 class="signature " id="disks-class_method">
   
-    .<strong>disks</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Disk.html" title="Lich::Gemstone::Disk (class)">Disk</a></span>&gt;</tt> 
+    .<strong>disks</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1409,26 +1473,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets disk objects for all group members</p>
+<p>Retrieves the disks associated with the group members.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_disks'>disks</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_disks'>disks</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Disk.html" title="Lich::Gemstone::Disk (class)">Disk</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of disk objects for group members</p>
+<p>an array of Disk objects associated with the members</p>
 </div>
       
     </li>
@@ -1441,15 +1513,15 @@
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82</pre>
+98
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_disks'>disks</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="Disk.html" title="Lich::Gemstone::Disk (class)">Disk</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_by_name'><span class='object_link'><a href="Disk.html#find_by_name-class_method" title="Lich::Gemstone::Disk.find_by_name (method)">find_by_name</a></span></span><span class='lparen'>(</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leader?'><span class='object_link'><a href="#leader%3F-class_method" title="Lich::Gemstone::Group.leader? (method)">leader?</a></span></span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1465,7 +1537,7 @@
       <div class="method_details ">
   <h3 class="signature " id="ids-class_method">
   
-    .<strong>ids</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>ids</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1474,26 +1546,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets IDs of all group members</p>
+<p>Retrieves the IDs of the group members.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_member_ids'>member_ids</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ids'>ids</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Member IDs</p>
+<p>an array of member IDs</p>
 </div>
       
     </li>
@@ -1506,12 +1586,12 @@
       <pre class="lines">
 
 
-214
-215
-216</pre>
+276
+277
+278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 276</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ids'>ids</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:id</span><span class='rparen'>)</span>
@@ -1533,13 +1613,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if specified members are in group</p>
+<p>Checks if the specified members are included in the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_included'>is_included</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_member1'>member1</span><span class='comma'>,</span> <span class='id identifier rubyid_member2'>member2</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1547,13 +1635,13 @@
         <span class='name'>members</span>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Members to check</p>
+<p>the members to check</p>
 </div>
       
     </li>
@@ -1572,7 +1660,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if all specified members are in group</p>
+<p>true if all members are included, false otherwise</p>
 </div>
       
     </li>
@@ -1585,12 +1673,12 @@
       <pre class="lines">
 
 
-229
-230
-231</pre>
+297
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_members'>members</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1603,7 +1691,7 @@
       <div class="method_details ">
   <h3 class="signature " id="leader-class_method">
   
-    .<strong>leader</strong>  &#x21d2; <tt>GameObj</tt>, <tt>Symbol</tt> 
+    .<strong>leader</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1612,26 +1700,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets current group leader</p>
+<p>Retrieves the current leader of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_current_leader'>current_leader</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leader'>leader</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>GameObj</tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Leader object or :self</p>
+<p>the current leader of the group</p>
 </div>
       
     </li>
@@ -1644,12 +1740,12 @@
       <pre class="lines">
 
 
-166
-167
-168</pre>
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 166</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_leader'>leader</span>
   <span class='cvar'>@@leader</span>
@@ -1671,13 +1767,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets group leader</p>
+<p>Sets the leader of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leader'><span class='object_link'><a href="#leader-class_method" title="Lich::Gemstone::Group.leader (method)">leader</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_character'>character</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1685,13 +1789,13 @@
         <span class='name'>char</span>
       
       
-        <span class='type'>(<tt>GameObj</tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Character object or :self</p>
+<p>the character to set as leader</p>
 </div>
       
     </li>
@@ -1705,12 +1809,12 @@
       <pre class="lines">
 
 
-159
-160
-161</pre>
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_leader='>leader=</span><span class='lparen'>(</span><span class='id identifier rubyid_char'>char</span><span class='rparen'>)</span>
   <span class='cvar'>@@leader</span> <span class='op'>=</span> <span class='id identifier rubyid_char'>char</span>
@@ -1732,13 +1836,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if current character is group leader</p>
+<p>Checks if the current character is the leader of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_leader'>is_leader</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leader?'>leader?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1751,7 +1863,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if self is leader</p>
+<p>true if the current character is the leader, false otherwise</p>
 </div>
       
     </li>
@@ -1764,12 +1876,12 @@
       <pre class="lines">
 
 
-173
-174
-175</pre>
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_leader?'>leader?</span>
   <span class='cvar'>@@leader</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='symbol'>:self</span><span class='rparen'>)</span>
@@ -1791,13 +1903,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Checks group status if not already checked</p>
+<p>Checks the group status if it hasn’t been checked yet.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maybe_check'>maybe_check</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -1805,12 +1925,12 @@
       <pre class="lines">
 
 
-144
-145
-146</pre>
+190
+191
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maybe_check'>maybe_check</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_check'><span class='object_link'><a href="#check-class_method" title="Lich::Gemstone::Group.check (method)">check</a></span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_checked?'>checked?</span>
@@ -1823,7 +1943,7 @@
       <div class="method_details ">
   <h3 class="signature " id="members-class_method">
   
-    .<strong>members</strong>  &#x21d2; <tt>Array&lt;GameObj&gt;</tt> 
+    .<strong>members</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1832,26 +1952,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets current group members, checking status if needed</p>
+<p>Retrieves a duplicate of the current group members.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_members'>members</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Copy of current group members</p>
+<p>a duplicate array of group members</p>
 </div>
       
     </li>
@@ -1864,13 +1992,13 @@
       <pre class="lines">
 
 
-62
-63
-64
-65</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span>
   <span class='id identifier rubyid_maybe_check'>maybe_check</span>
@@ -1890,18 +2018,107 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles missing methods by delegating to the members array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_some_missing_method'>some_missing_method</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the method name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the arguments for the method</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an optional block</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the result of the method call on members</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-247
-248
-249</pre>
+327
+328
+329</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 247</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 327</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1914,7 +2131,7 @@
       <div class="method_details ">
   <h3 class="signature " id="nonmembers-class_method">
   
-    .<strong>nonmembers</strong>  &#x21d2; <tt>Array&lt;GameObj&gt;</tt> 
+    .<strong>nonmembers</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1923,26 +2140,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets list of PCs not in the group</p>
+<p>Retrieves non-member characters.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_nonmembers'>nonmembers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nonmembers'>nonmembers</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>PCs that aren’t group members</p>
+<p>an array of non-member characters</p>
 </div>
       
     </li>
@@ -1955,12 +2180,12 @@
       <pre class="lines">
 
 
-151
-152
-153</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_nonmembers'>nonmembers</span>
   <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pc'>pc</span><span class='op'>|</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_pc'>pc</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1973,7 +2198,7 @@
       <div class="method_details ">
   <h3 class="signature " id="nouns-class_method">
   
-    .<strong>nouns</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>nouns</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1982,26 +2207,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets nouns/names of all group members</p>
+<p>Retrieves the nouns of the group members.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_member_nouns'>member_nouns</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nouns'>nouns</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Member names</p>
+<p>an array of member nouns</p>
 </div>
       
     </li>
@@ -2014,12 +2247,12 @@
       <pre class="lines">
 
 
-221
-222
-223</pre>
+286
+287
+288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 286</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_nouns'>nouns</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:noun</span><span class='rparen'>)</span>
@@ -2041,13 +2274,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if group is open to new members</p>
+<p>Checks if the group is open.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_open'>is_open</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_open?'>open?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2060,7 +2301,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if group is open</p>
+<p>true if the group is open, false otherwise</p>
 </div>
       
     </li>
@@ -2073,13 +2314,13 @@
       <pre class="lines">
 
 
-117
-118
-119
-120</pre>
+153
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_open?'>open?</span>
   <span class='id identifier rubyid_maybe_check'>maybe_check</span>
@@ -2102,13 +2343,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Adds one or more members to the group</p>
+<p>Adds members to the group if they are not already included.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_member1'>member1</span><span class='comma'>,</span> <span class='id identifier rubyid_member2'>member2</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2116,13 +2365,13 @@
         <span class='name'>members</span>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The members to add to the group</p>
+<p>the members to add</p>
 </div>
       
     </li>
@@ -2136,14 +2385,14 @@
       <pre class="lines">
 
 
-36
-37
-38
-39
-40</pre>
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_members'>members</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_member'>member</span><span class='op'>|</span>
@@ -2167,13 +2416,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Replaces all group members with new list</p>
+<p>Refreshes the group members with the provided members.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span><span class='lparen'>(</span><span class='id identifier rubyid_new_member1'>new_member1</span><span class='comma'>,</span> <span class='id identifier rubyid_new_member2'>new_member2</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2181,13 +2438,13 @@
         <span class='name'>members</span>
       
       
-        <span class='type'>(<tt>Array&lt;GameObj&gt;</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The new member list</p>
+<p>the new members to set</p>
 </div>
       
     </li>
@@ -2201,12 +2458,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_members'>members</span><span class='rparen'>)</span>
   <span class='cvar'>@@members</span> <span class='op'>=</span> <span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -2228,13 +2485,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets current group status</p>
+<p>Retrieves the current status of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_current_status'>current_status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2247,7 +2512,7 @@
       
         &mdash;
         <div class='inline'>
-<p>:open or :closed</p>
+<p>the current status of the group</p>
 </div>
       
     </li>
@@ -2260,12 +2525,12 @@
       <pre class="lines">
 
 
-110
-111
-112</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='cvar'>@@status</span>
@@ -2287,13 +2552,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the group status (open/closed)</p>
+<p>Sets the status of the group.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_status'><span class='object_link'><a href="#status-class_method" title="Lich::Gemstone::Group.status (method)">status</a></span></span> <span class='op'>=</span> <span class='symbol'>:open</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2307,7 +2580,7 @@
       
         &mdash;
         <div class='inline'>
-<p>:open or :closed</p>
+<p>the new status (:open or :closed)</p>
 </div>
       
     </li>
@@ -2321,12 +2594,12 @@
       <pre class="lines">
 
 
-103
-104
-105</pre>
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_status='>status=</span><span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
   <span class='cvar'>@@status</span> <span class='op'>=</span> <span class='id identifier rubyid_state'>state</span>
@@ -2348,13 +2621,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>String representation of group members</p>
+<p>Returns a string representation of the group members.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_group_string'>group_string</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2367,7 +2648,7 @@
       
         &mdash;
         <div class='inline'>
-<p>String showing group members</p>
+<p>string representation of the group members</p>
 </div>
       
     </li>
@@ -2380,12 +2661,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/group.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
   <span class='cvar'>@@members</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -2400,7 +2681,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:40 2025 by
+  Generated on Thu May 15 06:53:02 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

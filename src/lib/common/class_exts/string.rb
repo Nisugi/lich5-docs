@@ -1,41 +1,38 @@
-# Extensions to the Ruby String class for Lich5 functionality
-#
-# @author Lich5 Documentation Generator
+# Carve out from lich.rbw
+# extension to String class
+
 class String
-  # Returns a duplicate of the string
+  # Returns a duplicate of the string.
   #
-  # @return [String] A new copy of the string object
+  # @return [String] a duplicate of the original string.
+  #
   # @example
-  #   str = "test"
-  #   copy = str.to_s #=> "test"
-  #
-  # @note This overrides the default to_s method to ensure a new string copy is returned
+  #   "hello".to_s # => "hello"
   def to_s
     self.dup
   end
 
-  # Gets the stream associated with this string
+  # Returns the current stream value.
   #
-  # @return [Object, nil] The stream object associated with this string or nil if not set
+  # @return [Object, nil] the current stream value or nil if not set.
+  #
   # @example
-  #   str = "test"
-  #   str.stream #=> nil
-  #
-  # @note Used internally by Lich5 for stream handling
+  #   str = "example"
+  #   str.stream # => nil
   def stream
     @stream
   end
 
-  # Sets the stream associated with this string
+  # Sets the stream value if it is not already set.
   #
-  # @param val [Object] The stream object to associate with this string
-  # @return [Object] The stream that was set
+  # @param [Object] val the value to set as the stream.
+  # @return [Object] the value that was set as the stream.
+  #
   # @example
-  #   str = "test" 
-  #   str.stream = some_stream_obj
+  #   str = "example"
+  #   str.stream = "new_stream" # => "new_stream"
   #
-  # @note Will only set the stream if it hasn't been set before (uses ||=)
-  # @note Used internally by Lich5 for stream handling
+  # @note This method will only set the stream if it is currently nil.
   def stream=(val)
     @stream ||= val
   end

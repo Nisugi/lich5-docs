@@ -1,29 +1,21 @@
-# Provides GTK-related functionality for the Lich system
-# @author Lich5 Documentation Generator
 module Lich
-  # Common functionality shared across the Lich system
   module Common
     if defined?(Gtk)
-      # Safely executes GTK operations by queuing them for execution on the main thread.
-      # This prevents random segfaults that can occur when calling GTK APIs from other threads.
-      #
-      # @param [Block] block The code block to execute in the GTK main thread
-      # @return [Boolean] Always returns false to prevent timeout repetition
-      # @raise [StandardError] If the block execution fails with a standard error
-      # @raise [SyntaxError] If there is a syntax error in the block
-      # @raise [SecurityError] If there are permission issues
-      # @raise [ThreadError] If there are threading-related issues
-      # @raise [SystemStackError] If stack overflow occurs
-      # @raise [LoadError] If required files cannot be loaded
-      # @raise [NoMemoryError] If system runs out of memory
-      #
+      # Calling Gtk API in a thread other than the main thread may cause random segfaults
+      # 
+      # @param block [Proc] The block of code to be executed in the GTK main thread.
+      # @return [Boolean] Returns false to indicate that the timeout should not repeat.
+      # @raise [StandardError] If any standard error occurs during the execution of the block.
+      # @raise [SyntaxError] If a syntax error occurs in the block.
+      # @raise [SystemExit] If the block calls exit.
+      # @raise [SecurityError] If a security violation occurs.
+      # @raise [ThreadError] If there is a thread-related error.
+      # @raise [SystemStackError] If the system stack is exhausted.
+      # @raise [LoadError] If there is an error loading a file.
+      # @raise [NoMemoryError] If there is insufficient memory.
+      # @raise [RuntimeError] For any other runtime errors.
       # @example
-      #   Gtk.queue do
-      #     # GTK operations here
-      #     window.show_all
-      #   end
-      #
-      # @note All errors are caught, logged, and reported through the respond mechanism
+      #   Gtk.queue { puts "This runs in the GTK main thread." }
       def Gtk.queue(&block)
         GLib::Timeout.add(1) {
           begin
@@ -70,6 +62,12 @@ module Lich
     end
 
     unless File.exist?('logo.png')
+      # Creates a default logo file if it does not exist.
+      #
+      # @return [void]
+      # @example
+      #   # This will create a logo.png file if it doesn't exist.
+      #   Lich::Common.create_logo_if_not_exists
       File.open('logo.png', 'wb') { |f|
         f.write '
       iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAA
@@ -114,7 +112,7 @@ module Lich
       hQPENEn3Icd+LIkSMoRXetX7/e9+yzz8IPwDz0RP7VgiOiq+AMYTJJSUkRfQ
       TsOjs7myUmJuK+diI6R0SfEVFO4CgmIh0RQfV9nZ2d/U6nU2UwGAqUSmVBZW
       Ul4v6oTSgUflpeXu4N3S8Qfq5UKhkmCmyT0+k8FrUzIgL58Cci0qSlpXXv3r
-      3bl5GR4Vu5cmUbEUmJaDkR/ZaIkKL+joheJaK8wMB8QqFwiJPEzEOYtLQ0z6
+      3bl5GR4Vu5cmUbEUmJaDkR/ZaIkKL+noheJaK8wMB8QqFwiJPEzEOYtLQ0z6
       ZNm84Q0YpAGDuNiH4QOH4S4CAx0zC1/paWll6r1drC83yOxWLBvdEa5B1Qq9
       VD3htNG5Fm2+32F6N1husgHzDQAURNhw4d8m7dutW+atWqpJkzZ36fiMJLWF
       8lItjT34noIjRBoVAMCsPzPMvJyfFJpVJeLBbPe+WVV8A2R2sowDwV0DBfe3
@@ -166,22 +164,6 @@ module Lich
       }
     end
 
-    # Initializes GTK-related resources including the application icon and idle handler
-    #
-    # Creates the logo.png file if it doesn't exist
-    # Sets up the default icon for GTK windows
-    # Configures an idle handler to prevent CPU overuse
-    # Initializes theme state tracking
-    #
-    # @note This initialization is wrapped in a begin/rescue block to gracefully handle failures
-    # @note The logo is stored as a base64 encoded PNG file
-    # @note Uses GLib::Idle.add to implement a small sleep during idle time
-    #
-    # @example
-    #   # This initialization happens automatically when the module loads
-    #   # No explicit calls needed
-    #
-    # @raise [StandardError] Various errors may occur during GTK initialization
     begin
       Gtk.queue {
         @default_icon = GdkPixbuf::Pixbuf.new(:file => 'logo.png')

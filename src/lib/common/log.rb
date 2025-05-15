@@ -1,22 +1,21 @@
-# Provides contextual logging functionality for the Lich system
-# @author Lich5 Documentation Generator
+##
+## contextual logging
+##
+
 module Lich
   module Common
     module Log
       @@log_enabled = nil
       @@log_filter  = nil
 
-      # Enables logging with an optional filter pattern
+      ##
+      # Enables logging with an optional filter.
       #
-      # @param filter [Regexp] Regular expression pattern to filter log messages (default: //)
-      # @return [nil]
-      # @raise [SQLite3::BusyException] When database is locked, will retry automatically
-      # @example Enable all logging
-      #   Lich::Common::Log.on
-      # @example Enable logging with filter
-      #   Lich::Common::Log.on(/combat/)
-      #
-      # @note Persists the logging state to the database
+      # @param filter [Regexp] the filter to apply to log messages (default: //)
+      # @return [nil] always returns nil
+      # @raise [SQLite3::BusyException] if the database is busy
+      # @example
+      #   Log.on(/error/)
       def self.on(filter = //)
         @@log_enabled = true
         @@log_filter = filter
@@ -30,14 +29,13 @@ module Lich
         return nil
       end
 
-      # Disables logging functionality
+      ##
+      # Disables logging.
       #
-      # @return [nil]
-      # @raise [SQLite3::BusyException] When database is locked, will retry automatically
+      # @return [nil] always returns nil
+      # @raise [SQLite3::BusyException] if the database is busy
       # @example
-      #   Lich::Common::Log.off
-      #
-      # @note Resets filter to default and persists state to database
+      #   Log.off
       def self.off
         @@log_enabled = false
         @@log_filter = //
@@ -51,16 +49,15 @@ module Lich
         return nil
       end
 
-      # Checks if logging is currently enabled
+      ##
+      # Checks if logging is enabled.
       #
       # @return [Boolean] true if logging is enabled, false otherwise
-      # @raise [SQLite3::BusyException] When database is locked, will retry automatically
+      # @raise [SQLite3::BusyException] if the database is busy
       # @example
-      #   if Lich::Common::Log.on?
-      #     # perform logging
+      #   if Log.on?
+      #     puts "Logging is enabled"
       #   end
-      #
-      # @note Lazy loads setting from database on first access
       def self.on?
         if @@log_enabled.nil?
           begin
@@ -75,14 +72,13 @@ module Lich
         return @@log_enabled
       end
 
-      # Retrieves the current log filter pattern
+      ##
+      # Retrieves the current log filter.
       #
-      # @return [Regexp] Current filter regular expression
-      # @raise [SQLite3::BusyException] When database is locked, will retry automatically
+      # @return [Regexp] the current log filter
+      # @raise [SQLite3::BusyException] if the database is busy
       # @example
-      #   current_filter = Lich::Common::Log.filter
-      #
-      # @note Lazy loads filter from database on first access
+      #   filter = Log.filter
       def self.filter
         if @@log_filter.nil?
           begin
@@ -97,21 +93,14 @@ module Lich
         return @@log_filter
       end
 
-      # Outputs a message to the log if logging is enabled and message matches filter
+      ##
+      # Outputs a log message if logging is enabled and the message matches the filter.
       #
-      # @param msg [Object, Exception] Message or exception to log
-      # @param label [Symbol] Label to categorize the log message (default: :debug)
-      # @return [void]
-      # @example Log a message
-      #   Log.out("Player entered combat", label: :combat)
-      # @example Log an exception
-      #   begin
-      #     # some code
-      #   rescue => e
-      #     Log.out(e)
-      #   end
-      #
-      # @note For exceptions, includes message and first 6 stack frames
+      # @param msg [String, Exception] the message to log
+      # @param label [Symbol] the label for the log message (default: :debug)
+      # @return [nil] always returns nil
+      # @example
+      #   Log.out("This is a debug message")
       def self.out(msg, label: :debug)
         return unless Script.current.vars.include?("--debug") || Log.on?
         return if msg.to_s !~ Log.filter
@@ -124,11 +113,13 @@ module Lich
         end
       end
 
-      # Internal method for writing log lines
+      ##
+      # Writes a line to the appropriate output based on the current environment.
       #
-      # @param line [String] The formatted log line to write
-      # @return [void]
-      # @private
+      # @param line [String] the line to write
+      # @return [nil] always returns nil
+      # @example
+      #   Log._write("This is a log line")
       def self._write(line)
         if Script.current.vars.include?("--headless") or not defined?(:_respond)
           $stdout.write(line + "\n")
@@ -139,12 +130,14 @@ module Lich
         end
       end
 
-      # Internal method for formatting log messages
+      ##
+      # Formats a message for logging with a label.
       #
-      # @param msg [Object] Message to format
-      # @param label [Symbol] Category label
-      # @return [String] Formatted log line
-      # @private
+      # @param msg [String] the message to format
+      # @param label [Symbol] the label for the message
+      # @return [String] the formatted log message
+      # @example
+      #   formatted_message = Log._view("An error occurred", :error)
       def self._view(msg, label)
         label = [Script.current.name, label].flatten.compact.join(".")
         safe = msg.inspect
@@ -152,41 +145,38 @@ module Lich
         "[#{label}] #{safe}"
       end
 
-      # Pretty prints a message to the log with formatting
+      ##
+      # Responds with a formatted log message.
       #
-      # @param msg [Object] Message to print
-      # @param label [Symbol] Category label for the message (default: :debug)
-      # @return [void]
+      # @param msg [String] the message to log
+      # @param label [Symbol] the label for the log message (default: :debug)
+      # @return [nil] always returns nil
       # @example
-      #   Log.pp({ status: "ready" }, :system)
-      #
-      # @note Alias method for debugging/inspection purposes
+      #   Log.pp("This is a pretty printed message")
       def self.pp(msg, label = :debug)
         respond _view(msg, label)
       end
 
-      # Alias for pp method
+      ##
+      # Dumps a message to the log.
       #
-      # @param args [Array] Arguments to pass to pp
-      # @return [void]
+      # @param args [*Object] the messages to log
+      # @return [nil] always returns nil
       # @example
-      #   Log.dump(complex_object)
-      #
-      # @note Convenience method for debugging
+      #   Log.dump("Dumping this message")
       def self.dump(*args)
         pp(*args)
       end
 
-      # Nested module for handling preset formatting
       module Preset
-        # Wraps content in XML-style preset tags
+        ##
+        # Formats a message as a preset for logging.
         #
-        # @param kind [Symbol] The preset identifier
-        # @param body [String] Content to wrap in preset tags
-        # @return [String] Formatted preset string
+        # @param kind [Symbol] the kind of preset
+        # @param body [String] the body of the preset
+        # @return [String] the formatted preset
         # @example
-        #   Preset.as(:error, "Invalid input")
-        #   # => "<preset id="error">Invalid input</preset>"
+        #   preset_message = Preset.as(:info, "This is an info message")
         def self.as(kind, body)
           %[<preset id="#{kind}">#{body}</preset>]
         end

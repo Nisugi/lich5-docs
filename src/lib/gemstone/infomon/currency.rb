@@ -1,125 +1,121 @@
-# A module for accessing various currency values in the Gemstone game
-# through the Infomon system.
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Currency
-    # Gets the current amount of silver coins the character has
+    # Retrieves the current amount of silver currency.
     #
-    # @return [Integer] The number of silver coins
+    # @return [Integer] the amount of silver.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   silver_amount = Lich::Currency.silver
-    #   #=> 1234
+    #   amount_of_silver = Lich::Currency.silver
     def self.silver
       Lich::Gemstone::Infomon.get('currency.silver')
     end
 
-    # Gets the container where silver coins are stored
+    # Retrieves the current amount of silver container currency.
     #
-    # @return [String] The name of the container holding silver
+    # @return [Integer] the amount of silver container.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   container = Lich::Currency.silver_container
-    #   #=> "leather bag"
+    #   amount_of_silver_container = Lich::Currency.silver_container
     def self.silver_container
       Lich::Gemstone::Infomon.get('currency.silver_container')
     end
 
-    # Gets the current amount of redsteel marks
+    # Retrieves the current amount of redsteel marks currency.
     #
-    # @return [Integer] The number of redsteel marks
+    # @return [Integer] the amount of redsteel marks.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   marks = Lich::Currency.redsteel_marks
-    #   #=> 50
+    #   amount_of_redsteel_marks = Lich::Currency.redsteel_marks
     def self.redsteel_marks
       Lich::Gemstone::Infomon.get('currency.redsteel_marks')
     end
 
-    # Gets the current number of tickets
+    # Retrieves the current amount of tickets currency.
     #
-    # @return [Integer] The number of tickets
+    # @return [Integer] the amount of tickets.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   tickets = Lich::Currency.tickets
-    #   #=> 10
+    #   amount_of_tickets = Lich::Currency.tickets
     def self.tickets
       Lich::Gemstone::Infomon.get('currency.tickets')
     end
 
-    # Gets the current amount of blackscrip
+    # Retrieves the current amount of blackscrip currency.
     #
-    # @return [Integer] The amount of blackscrip
+    # @return [Integer] the amount of blackscrip.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   scrip = Lich::Currency.blackscrip
-    #   #=> 500
+    #   amount_of_blackscrip = Lich::Currency.blackscrip
     def self.blackscrip
       Lich::Gemstone::Infomon.get('currency.blackscrip')
     end
 
-    # Gets the current amount of bloodscrip
+    # Retrieves the current amount of bloodscrip currency.
     #
-    # @return [Integer] The amount of bloodscrip
+    # @return [Integer] the amount of bloodscrip.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   scrip = Lich::Currency.bloodscrip
-    #   #=> 250
+    #   amount_of_bloodscrip = Lich::Currency.bloodscrip
     def self.bloodscrip
       Lich::Gemstone::Infomon.get('currency.bloodscrip')
     end
 
-    # Gets the current amount of ethereal scrip
+    # Retrieves the current amount of ethereal scrip currency.
     #
-    # @return [Integer] The amount of ethereal scrip
+    # @return [Integer] the amount of ethereal scrip.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   scrip = Lich::Currency.ethereal_scrip
-    #   #=> 100
+    #   amount_of_ethereal_scrip = Lich::Currency.ethereal_scrip
     def self.ethereal_scrip
       Lich::Gemstone::Infomon.get('currency.ethereal_scrip')
     end
 
-    # Gets the current amount of raikhen
+    # Retrieves the current amount of raikhen currency.
     #
-    # @return [Integer] The amount of raikhen
+    # @return [Integer] the amount of raikhen.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   raikhen = Lich::Currency.raikhen
-    #   #=> 75
+    #   amount_of_raikhen = Lich::Currency.raikhen
     def self.raikhen
       Lich::Gemstone::Infomon.get('currency.raikhen')
     end
 
-    # Gets the current number of elans
+    # Retrieves the current amount of elans currency.
     #
-    # @return [Integer] The number of elans
+    # @return [Integer] the amount of elans.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   elans = Lich::Currency.elans
-    #   #=> 25
+    #   amount_of_elans = Lich::Currency.elans
     def self.elans
       Lich::Gemstone::Infomon.get('currency.elans')
     end
 
-    # Gets the current number of soul shards
+    # Retrieves the current amount of soul shards currency.
     #
-    # @return [Integer] The number of soul shards
+    # @return [Integer] the amount of soul shards.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   shards = Lich::Currency.soul_shards
-    #   #=> 15
+    #   amount_of_soul_shards = Lich::Currency.soul_shards
     def self.soul_shards
       Lich::Gemstone::Infomon.get('currency.soul_shards')
     end
 
-    # Gets the current number of gigas artifact fragments
+    # Retrieves the current amount of gigas artifact fragments currency.
     #
-    # @return [Integer] The number of gigas artifact fragments
+    # @return [Integer] the amount of gigas artifact fragments.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   fragments = Lich::Currency.gigas_artifact_fragments
-    #   #=> 5
+    #   amount_of_gigas_artifact_fragments = Lich::Currency.gigas_artifact_fragments
     def self.gigas_artifact_fragments
       Lich::Gemstone::Infomon.get('currency.gigas_artifact_fragments')
     end
 
-    # Gets the current amount of gemstone dust
+    # Retrieves the current amount of gemstone dust currency.
     #
-    # @return [Integer] The amount of gemstone dust
+    # @return [Integer] the amount of gemstone dust.
+    # @raise [StandardError] if there is an issue retrieving the data.
     # @example
-    #   dust = Lich::Currency.gemstone_dust
-    #   #=> 1000
+    #   amount_of_gemstone_dust = Lich::Currency.gemstone_dust
     def self.gemstone_dust
       Lich::Gemstone::Infomon.get('currency.gemstone_dust')
     end

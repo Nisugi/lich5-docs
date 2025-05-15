@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Nested module for handling preset formatting</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -127,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Wraps content in XML-style preset tags.</p>
+<p>Formats a message as a preset for logging.</p>
 </div></span>
   
 </li>
@@ -154,7 +143,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Wraps content in XML-style preset tags</p>
+<p>Formats a message as a preset for logging.</p>
 
 
   </div>
@@ -165,8 +154,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Log::Preset (module)">Preset</a></span></span><span class='period'>.</span><span class='id identifier rubyid_as'>as</span><span class='lparen'>(</span><span class='symbol'>:error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid input</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='comment'># =&gt; &quot;&lt;preset id=&quot;error&quot;&gt;Invalid input&lt;/preset&gt;&quot;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_preset_message'>preset_message</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Log::Preset (module)">Preset</a></span></span><span class='period'>.</span><span class='id identifier rubyid_as'>as</span><span class='lparen'>(</span><span class='symbol'>:info</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is an info message</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -183,7 +171,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The preset identifier</p>
+<p>the kind of preset</p>
 </div>
       
     </li>
@@ -199,7 +187,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Content to wrap in preset tags</p>
+<p>the body of the preset</p>
 </div>
       
     </li>
@@ -218,7 +206,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Formatted preset string</p>
+<p>the formatted preset</p>
 </div>
       
     </li>
@@ -231,12 +219,12 @@
       <pre class="lines">
 
 
-190
-191
-192</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/log.rb', line 190</span>
+      <pre class="code"><span class="info file"># File 'lib/common/log.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_as'>as</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>%[</span><span class='tstring_content'>&lt;preset id=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_kind'>kind</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body'>body</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/preset&gt;</span><span class='tstring_end'>]</span></span>
@@ -251,7 +239,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

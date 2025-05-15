@@ -96,7 +96,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/gemstone/scars.rb</dd>
+    <dd>lib/gemstone/scars.rb<span class="defines">,<br />
+  lib/games.rb</span>
+</dd>
   </dl>
   
 </div>
@@ -104,29 +106,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Tracks and manages character scars/scarring for different body parts Inherits from Gemstone::CharacterStatus</p>
+<p>Scars class for tracking character scars</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Lich5 Documentation Generator</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
   
@@ -141,31 +127,13 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Hash mapping body part names to their shorthand aliases The keys are the official XML body part names, and values are arrays of alias names</p>
+<p>Body part accessor methods XML from Simutronics drives the structure of the scar naming (eg. leftEye) The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;Symbol, Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Mapping of body parts to aliases</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -208,7 +176,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#all_scars-class_method" title="all_scars (class method)">.<strong>all_scars</strong>  &#x21d2; Hash&lt;String, Integer&gt; </a>
+      <a href="#abdomen-class_method" title="abdomen (class method)">.<strong>abdomen</strong>  &#x21d2; Scar </a>
     
 
     
@@ -223,7 +191,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets a hash of all body parts and their current scar levels.</p>
+<p>Returns the scar status of the abdomen.</p>
 </div></span>
   
 </li>
@@ -232,7 +200,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#arms-class_method" title="arms (class method)">.<strong>arms</strong>  &#x21d2; Integer </a>
+      <a href="#abs-class_method" title="abs (class method)">.<strong>abs</strong>  &#x21d2; Scar </a>
     
 
     
@@ -247,7 +215,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the maximum scar level across all arm-related body parts.</p>
+<p>Alias for abdomen.</p>
 </div></span>
   
 </li>
@@ -256,7 +224,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_arm-class_method" title="left_arm (class method)">.<strong>left_arm</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#all_scars-class_method" title="all_scars (class method)">.<strong>all_scars</strong>  &#x21d2; Hash </a>
     
 
     
@@ -271,7 +239,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the left arm (snake_case version).</p>
+<p>Helper method to get all scar levels for all body parts.</p>
 </div></span>
   
 </li>
@@ -280,7 +248,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_eye-class_method" title="left_eye (class method)">.<strong>left_eye</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#arms-class_method" title="arms (class method)">.<strong>arms</strong>  &#x21d2; Integer<sup>?</sup> </a>
     
 
     
@@ -295,7 +263,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the left eye (snake_case version).</p>
+<p>Retrieves the maximum scar level for arms (left arm, right arm, left hand, right hand).</p>
 </div></span>
   
 </li>
@@ -304,7 +272,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_foot-class_method" title="left_foot (class method)">.<strong>left_foot</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#back-class_method" title="back (class method)">.<strong>back</strong>  &#x21d2; Scar </a>
     
 
     
@@ -319,7 +287,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the left foot (snake_case version).</p>
+<p>Returns the scar status of the back.</p>
 </div></span>
   
 </li>
@@ -328,7 +296,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_hand-class_method" title="left_hand (class method)">.<strong>left_hand</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#chest-class_method" title="chest (class method)">.<strong>chest</strong>  &#x21d2; Scar </a>
     
 
     
@@ -343,7 +311,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the left hand (snake_case version).</p>
+<p>Returns the scar status of the chest.</p>
 </div></span>
   
 </li>
@@ -352,7 +320,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_leg-class_method" title="left_leg (class method)">.<strong>left_leg</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#head-class_method" title="head (class method)">.<strong>head</strong>  &#x21d2; Scar </a>
     
 
     
@@ -367,7 +335,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the left leg (snake_case version).</p>
+<p>Returns the scar status of the head.</p>
 </div></span>
   
 </li>
@@ -376,7 +344,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#limbs-class_method" title="limbs (class method)">.<strong>limbs</strong>  &#x21d2; Integer </a>
+      <a href="#larm-class_method" title="larm (class method)">.<strong>larm</strong>  &#x21d2; Scar </a>
     
 
     
@@ -391,7 +359,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the maximum scar level across all limbs (arms and legs).</p>
+<p>Alias for leftArm.</p>
 </div></span>
   
 </li>
@@ -400,7 +368,29 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#right_arm-class_method" title="right_arm (class method)">.<strong>right_arm</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#left_arm-class_method" title="left_arm (class method)">.<strong>left_arm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#left_eye-class_method" title="left_eye (class method)">.<strong>left_eye</strong>  &#x21d2; Object </a>
     
 
     
@@ -415,7 +405,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the right arm (snake_case version).</p>
+<p>Alias snake_case methods for overachievers.</p>
 </div></span>
   
 </li>
@@ -424,7 +414,73 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#right_eye-class_method" title="right_eye (class method)">.<strong>right_eye</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#left_foot-class_method" title="left_foot (class method)">.<strong>left_foot</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#left_hand-class_method" title="left_hand (class method)">.<strong>left_hand</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#left_leg-class_method" title="left_leg (class method)">.<strong>left_leg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leftArm-class_method" title="leftArm (class method)">.<strong>leftArm</strong>  &#x21d2; Scar </a>
     
 
     
@@ -439,7 +495,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the right eye (snake_case version).</p>
+<p>Returns the scar status of the left arm.</p>
 </div></span>
   
 </li>
@@ -448,7 +504,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#right_foot-class_method" title="right_foot (class method)">.<strong>right_foot</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#leftEye-class_method" title="leftEye (class method)">.<strong>leftEye</strong>  &#x21d2; Scar </a>
     
 
     
@@ -463,7 +519,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the right foot (snake_case version).</p>
+<p>Returns the scar status of the left eye.</p>
 </div></span>
   
 </li>
@@ -472,7 +528,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#right_hand-class_method" title="right_hand (class method)">.<strong>right_hand</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#leftFoot-class_method" title="leftFoot (class method)">.<strong>leftFoot</strong>  &#x21d2; Scar </a>
     
 
     
@@ -487,7 +543,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the right hand (snake_case version).</p>
+<p>Returns the scar status of the left foot.</p>
 </div></span>
   
 </li>
@@ -496,7 +552,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#right_leg-class_method" title="right_leg (class method)">.<strong>right_leg</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#leftHand-class_method" title="leftHand (class method)">.<strong>leftHand</strong>  &#x21d2; Scar </a>
     
 
     
@@ -511,7 +567,573 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for the right leg (snake_case version).</p>
+<p>Returns the scar status of the left hand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leftLeg-class_method" title="leftLeg (class method)">.<strong>leftLeg</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the left leg.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leye-class_method" title="leye (class method)">.<strong>leye</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for leftEye.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lhand-class_method" title="lhand (class method)">.<strong>lhand</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for leftHand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#limbs-class_method" title="limbs (class method)">.<strong>limbs</strong>  &#x21d2; Integer<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the maximum scar level for limbs (arms and legs).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lleg-class_method" title="lleg (class method)">.<strong>lleg</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for leftLeg.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-class_method" title="method_missing (class method)">.<strong>method_missing</strong>(_arg = nil)  &#x21d2; nil </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Handles calls to undefined methods for the Scars class.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#neck-class_method" title="neck (class method)">.<strong>neck</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the neck.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nerves-class_method" title="nerves (class method)">.<strong>nerves</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the scar value for the nerves area after fixing the injury mode.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nsys-class_method" title="nsys (class method)">.<strong>nsys</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the scar value for the nsys area after fixing the injury mode.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#part-class_method" title="part (class method)">.<strong>part</strong>  &#x21d2; Hash<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define methods for each body part and its aliases Retrieves the scar information for the body part.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rarm-class_method" title="rarm (class method)">.<strong>rarm</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for rightArm.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reye-class_method" title="reye (class method)">.<strong>reye</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for rightEye.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rhand-class_method" title="rhand (class method)">.<strong>rhand</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for rightHand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#right_arm-class_method" title="right_arm (class method)">.<strong>right_arm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#right_eye-class_method" title="right_eye (class method)">.<strong>right_eye</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#right_foot-class_method" title="right_foot (class method)">.<strong>right_foot</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#right_hand-class_method" title="right_hand (class method)">.<strong>right_hand</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#right_leg-class_method" title="right_leg (class method)">.<strong>right_leg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightArm-class_method" title="rightArm (class method)">.<strong>rightArm</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the right arm.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightEye-class_method" title="rightEye (class method)">.<strong>rightEye</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the right eye.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightFoot-class_method" title="rightFoot (class method)">.<strong>rightFoot</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the right foot.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightHand-class_method" title="rightHand (class method)">.<strong>rightHand</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the right hand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightLeg-class_method" title="rightLeg (class method)">.<strong>rightLeg</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the scar status of the right leg.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rleg-class_method" title="rleg (class method)">.<strong>rleg</strong>  &#x21d2; Scar </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Alias for rightLeg.</p>
 </div></span>
   
 </li>
@@ -535,7 +1157,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the scar level for any specified body part.</p>
+<p>Helper method to get scar level for any body part.</p>
 </div></span>
   
 </li>
@@ -544,7 +1166,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#torso-class_method" title="torso (class method)">.<strong>torso</strong>  &#x21d2; Integer </a>
+      <a href="#torso-class_method" title="torso (class method)">.<strong>torso</strong>  &#x21d2; Integer<sup>?</sup> </a>
     
 
     
@@ -559,7 +1181,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the maximum scar level across torso-related body parts.</p>
+<p>Retrieves the maximum scar level for the torso (chest, abdomen, back, eyes).</p>
 </div></span>
   
 </li>
@@ -576,9 +1198,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="all_scars-class_method">
+  <h3 class="signature first" id="abdomen-class_method">
   
-    .<strong>all_scars</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Integer&gt;</tt> 
+    .<strong>abdomen</strong>  &#x21d2; <tt>Scar</tt> 
   
 
   
@@ -587,15 +1209,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Temporarily switches to scar-only mode to get accurate data</p>
-</div>
-  </div>
-
-
-<p>Gets a hash of all body parts and their current scar levels</p>
+<p>Returns the scar status of the abdomen.</p>
 
 
   </div>
@@ -606,7 +1220,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all_scars'>all_scars</span> <span class='comment'>#=&gt; {&quot;leftArm&quot; =&gt; 2, &quot;head&quot; =&gt; 1, ...}</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_abdomen'>abdomen</span></code></pre>
     
   </div>
 
@@ -616,13 +1230,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Integer&gt;</tt>)</span>
+        <span class='type'>(<tt>Scar</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Mapping of body part names to scar levels</p>
+<p>the scar status of the abdomen</p>
 </div>
       
     </li>
@@ -635,37 +1249,21 @@
       <pre class="lines">
 
 
-187
-188
-189
-190
-191
-192
-193
-194
-195</pre>
+867</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 867</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_all_scars'>all_scars</span>
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># for this one call, we want to get actual scar level data
-</span>    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='period'>.</span><span class='id identifier rubyid_transform_values'>transform_values</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
-  <span class='kw'>ensure</span>
-    <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># reset to both
-</span>  <span class='kw'>end</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
-<span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_abdomen'>abdomen</span><span class='semicolon'>;</span>   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="arms-class_method">
+  <h3 class="signature " id="abs-class_method">
   
-    .<strong>arms</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>abs</strong>  &#x21d2; <tt>Scar</tt> 
   
 
   
@@ -674,7 +1272,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the maximum scar level across all arm-related body parts</p>
+<p>Alias for abdomen.</p>
 
 
   </div>
@@ -685,7 +1283,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span> <span class='comment'>#=&gt; 3 # Returns highest scar level among all arm parts</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span></code></pre>
     
   </div>
 
@@ -695,13 +1293,94 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Scar</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Highest scar level among arms and hands</p>
+<p>the scar status of the abdomen</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+874</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 874</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span><span class='semicolon'>;</span>       <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_scars-class_method">
+  
+    .<strong>all_scars</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Helper method to get all scar levels for all body parts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all_scars'>all_scars</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash of all body parts and their corresponding scar levels.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If there is an issue retrieving the data.</p>
 </div>
       
     </li>
@@ -727,14 +1406,14 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 126</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_arms'>arms</span>
-  <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-  <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_all_scars'>all_scars</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># for this one call, we want to get actual scar level data
+</span>    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='period'>.</span><span class='id identifier rubyid_transform_values'>transform_values</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='kw'>ensure</span>
+    <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># reset to both
+</span>  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -742,9 +1421,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="left_arm-class_method">
+  <h3 class="signature " id="arms-class_method">
   
-    .<strong>left_arm</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>arms</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
   
 
   
@@ -753,7 +1432,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for the left arm (snake_case version)</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Continues to use ‘both’ (_injury2) for now.</p>
+</div>
+  </div>
+
+
+<p>Retrieves the maximum scar level for arms (left arm, right arm, left hand, right hand).</p>
 
 
   </div>
@@ -764,7 +1451,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_arm'>left_arm</span> <span class='comment'>#=&gt; 2</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
     
   </div>
 
@@ -780,7 +1467,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
+<p>The maximum scar level for arms or nil if not present.</p>
 </div>
       
     </li>
@@ -793,10 +1480,294 @@
       <pre class="lines">
 
 
-70</pre>
+993
+994
+995
+996</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 993</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span>
+  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span>
+  <span class='lbracket'>[</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="back-class_method">
+  
+    .<strong>back</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the back.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_back'>back</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the back</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+853</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 853</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_back'>back</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>back</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>      <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="chest-class_method">
+  
+    .<strong>chest</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the chest.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_chest'>chest</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the chest</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+860</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 860</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_chest'>chest</span><span class='semicolon'>;</span>     <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chest</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>     <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="head-class_method">
+  
+    .<strong>head</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the head.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_head'>head</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the head</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+839</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 839</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_head'>head</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>head</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>      <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="larm-class_method">
+  
+    .<strong>larm</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for leftArm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_larm'>larm</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left arm</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+888</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 888</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_larm'>larm</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="left_arm-class_method">
+  
+    .<strong>left_arm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_arm'>left_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -807,7 +1778,7 @@
       <div class="method_details ">
   <h3 class="signature " id="left_eye-class_method">
   
-    .<strong>left_eye</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>left_eye</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -816,39 +1787,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for the left eye (snake_case version)</p>
+<p>Alias snake_case methods for overachievers</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span> <span class='comment'>#=&gt; 2</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -856,10 +1801,10 @@
       <pre class="lines">
 
 
-56</pre>
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_eye'>left_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -870,59 +1815,22 @@
       <div class="method_details ">
   <h3 class="signature " id="left_foot-class_method">
   
-    .<strong>left_foot</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>left_foot</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets the scar level for the left foot (snake_case version)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_foot'>left_foot</span> <span class='comment'>#=&gt; 0</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-112</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_foot'>left_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -933,59 +1841,22 @@
       <div class="method_details ">
   <h3 class="signature " id="left_hand-class_method">
   
-    .<strong>left_hand</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>left_hand</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets the scar level for the left hand (snake_case version)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span> <span class='comment'>#=&gt; 0</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-84</pre>
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_hand'>left_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -996,7 +1867,33 @@
       <div class="method_details ">
   <h3 class="signature " id="left_leg-class_method">
   
-    .<strong>left_leg</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>left_leg</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftArm-class_method">
+  
+    .<strong>leftArm</strong>  &#x21d2; <tt>Scar</tt> 
   
 
   
@@ -1005,7 +1902,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for the left leg (snake_case version)</p>
+<p>Returns the scar status of the left arm.</p>
 
 
   </div>
@@ -1016,7 +1913,456 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_leg'>left_leg</span> <span class='comment'>#=&gt; 2</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftArm'>leftArm</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left arm</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+881</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 881</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span>   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftEye-class_method">
+  
+    .<strong>leftEye</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the left eye.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left eye</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+811</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 811</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span>   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftFoot-class_method">
+  
+    .<strong>leftFoot</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the left foot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftFoot'>leftFoot</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left foot</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+965</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 965</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span>  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftFoot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftHand-class_method">
+  
+    .<strong>leftHand</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the left hand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftHand'>leftHand</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+923</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 923</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span>  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftLeg-class_method">
+  
+    .<strong>leftLeg</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the left leg.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lefgLeg'>lefgLeg</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left leg</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+937</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 937</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span>   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leye-class_method">
+  
+    .<strong>leye</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for leftEye.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leye'>leye</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left eye</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+818</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 818</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leye'>leye</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lhand-class_method">
+  
+    .<strong>lhand</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for leftHand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lhand'>lhand</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+930</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 930</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lhand'>lhand</span><span class='semicolon'>;</span>     <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="limbs-class_method">
+  
+    .<strong>limbs</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Continues to use ‘both’ (_injury2) for now.</p>
+</div>
+  </div>
+
+
+<p>Retrieves the maximum scar level for limbs (arms and legs).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
     
   </div>
 
@@ -1032,7 +2378,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
+<p>The maximum scar level for limbs or nil if not present.</p>
 </div>
       
     </li>
@@ -1045,21 +2391,27 @@
       <pre class="lines">
 
 
-98</pre>
+1003
+1004
+1005
+1006</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 1003</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span>
+  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span>
+  <span class='lbracket'>[</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="limbs-class_method">
+  <h3 class="signature " id="lleg-class_method">
   
-    .<strong>limbs</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>lleg</strong>  &#x21d2; <tt>Scar</tt> 
   
 
   
@@ -1068,7 +2420,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the maximum scar level across all limbs (arms and legs)</p>
+<p>Alias for leftLeg.</p>
 
 
   </div>
@@ -1079,7 +2431,232 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span> <span class='comment'>#=&gt; 2 # Returns highest scar level among all limbs</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lleg'>lleg</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the left leg</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+944</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 944</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lleg'>lleg</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>   <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="method_missing-class_method">
+  
+    .<strong>method_missing</strong>(_arg = nil)  &#x21d2; <tt>nil</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method provides feedback on valid areas to check for scars.</p>
+</div>
+  </div>
+
+
+<p>Handles calls to undefined methods for the Scars class.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_invalid_method'>invalid_method</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>_arg</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an optional argument that is ignored.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1025
+1026
+1027
+1028</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 1025</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid__arg'>_arg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scars: Invalid area, try one of these: arms, limbs, torso, </span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="neck-class_method">
+  
+    .<strong>neck</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the neck.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_neck'>neck</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the neck</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+846</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 846</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_neck'>neck</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>neck</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>      <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="nerves-class_method">
+  
+    .<strong>nerves</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves the scar value for the nerves area after fixing the injury mode.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nerves'>nerves</span></code></pre>
     
   </div>
 
@@ -1095,7 +2672,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Highest scar level among all limbs</p>
+<p>the scar value for the nerves area.</p>
 </div>
       
     </li>
@@ -1108,41 +2685,21 @@
       <pre class="lines">
 
 
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151</pre>
+986</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 986</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_limbs'>limbs</span>
-  <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-  <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
-<span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nerves'>nerves</span><span class='semicolon'>;</span>    <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nsys</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>      <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="right_arm-class_method">
+  <h3 class="signature " id="nsys-class_method">
   
-    .<strong>right_arm</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>nsys</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -1151,7 +2708,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for the right arm (snake_case version)</p>
+<p>Retrieves the scar value for the nsys area after fixing the injury mode.</p>
 
 
   </div>
@@ -1162,7 +2719,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_arm'>right_arm</span> <span class='comment'>#=&gt; 1</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nsys'>nsys</span></code></pre>
     
   </div>
 
@@ -1172,13 +2729,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
+<p>the scar value for the nsys area.</p>
 </div>
       
     </li>
@@ -1191,10 +2748,320 @@
       <pre class="lines">
 
 
-77</pre>
+979</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 979</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nsys'>nsys</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nsys</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>      <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="part-class_method">
+  
+    .<strong>part</strong>  &#x21d2; <tt>Hash</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Continues to use ‘both’ (_injury2) for now.</p>
+</div>
+  </div>
+
+
+<p>Define methods for each body part and its aliases Retrieves the scar information for the body part.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_leftEye'><span class='object_link'><a href="#leftEye-class_method" title="Lich::Gemstone::Scars.leftEye (method)">leftEye</a></span></span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The scar data for the body part or nil if not present.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 36</span>
+
+<span class='const'><span class='object_link'><a href="#BODY_PARTS-constant" title="Lich::Gemstone::Scars::BODY_PARTS (constant)">BODY_PARTS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='comma'>,</span> <span class='id identifier rubyid_aliases'>aliases</span><span class='op'>|</span>
+  <span class='comment'># Define the primary method
+</span>  <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># continue to use &#39;both&#39; (_injury2) for now
+</span>
+    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Define shorthand alias methods
+</span>  <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ali'>ali</span><span class='op'>|</span>
+    <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='id identifier rubyid_ali'>ali</span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rarm-class_method">
+  
+    .<strong>rarm</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for rightArm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rarm'>rarm</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right arm</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+902</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 902</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rarm'>rarm</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reye-class_method">
+  
+    .<strong>reye</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for rightEye.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reye'>reye</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right eye</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+832</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 832</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reye'>reye</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rhand-class_method">
+  
+    .<strong>rhand</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for rightHand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rhand'>rhand</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+916</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 916</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rhand'>rhand</span><span class='semicolon'>;</span>     <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="right_arm-class_method">
+  
+    .<strong>right_arm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_arm'>right_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1205,59 +3072,22 @@
       <div class="method_details ">
   <h3 class="signature " id="right_eye-class_method">
   
-    .<strong>right_eye</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>right_eye</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets the scar level for the right eye (snake_case version)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_eye'>right_eye</span> <span class='comment'>#=&gt; 1</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-63</pre>
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_eye'>right_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1268,59 +3098,22 @@
       <div class="method_details ">
   <h3 class="signature " id="right_foot-class_method">
   
-    .<strong>right_foot</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>right_foot</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets the scar level for the right foot (snake_case version)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_foot'>right_foot</span> <span class='comment'>#=&gt; 1</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-119</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_foot'>right_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1331,59 +3124,22 @@
       <div class="method_details ">
   <h3 class="signature " id="right_hand-class_method">
   
-    .<strong>right_hand</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>right_hand</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets the scar level for the right hand (snake_case version)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span> <span class='comment'>#=&gt; 1</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-91</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_hand'>right_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1394,7 +3150,33 @@
       <div class="method_details ">
   <h3 class="signature " id="right_leg-class_method">
   
-    .<strong>right_leg</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>right_leg</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightArm-class_method">
+  
+    .<strong>rightArm</strong>  &#x21d2; <tt>Scar</tt> 
   
 
   
@@ -1403,7 +3185,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for the right leg (snake_case version)</p>
+<p>Returns the scar status of the right arm.</p>
 
 
   </div>
@@ -1414,7 +3196,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_leg'>right_leg</span> <span class='comment'>#=&gt; 1</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightArm'>rightArm</span></code></pre>
     
   </div>
 
@@ -1424,13 +3206,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Scar</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Scar level from 0-3, or nil if no data</p>
+<p>the scar status of the right arm</p>
 </div>
       
     </li>
@@ -1443,12 +3225,327 @@
       <pre class="lines">
 
 
-105</pre>
+895</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 895</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span>  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightEye-class_method">
+  
+    .<strong>rightEye</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the right eye.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightEye'>rightEye</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right eye</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+825</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 825</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span>  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightFoot-class_method">
+  
+    .<strong>rightFoot</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the right foot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightFoot'>rightFoot</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right foot</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+972</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 972</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightFoot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightHand-class_method">
+  
+    .<strong>rightHand</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the right hand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightHand'>rightHand</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+909</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 909</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightLeg-class_method">
+  
+    .<strong>rightLeg</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the scar status of the right leg.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightLeg'>rightLeg</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right leg</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+951</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 951</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span>  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rleg-class_method">
+  
+    .<strong>rleg</strong>  &#x21d2; <tt>Scar</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Alias for rightLeg.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rleg'>rleg</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Scar</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the scar status of the right leg</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+958</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 958</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rleg'>rleg</span><span class='semicolon'>;</span>      <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='semicolon'>;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='semicolon'>;</span>  <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1466,7 +3563,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the scar level for any specified body part</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Continues to use ‘both’ (_injury2) for now.</p>
+</div>
+  </div>
+
+
+<p>Helper method to get scar level for any body part.</p>
 
 
   </div>
@@ -1477,8 +3582,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 2
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='symbol'>:head</span><span class='rparen'>)</span>     <span class='comment'>#=&gt; 1</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='symbol'>:leftArm</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1489,13 +3593,13 @@
         <span class='name'>part</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The body part name to check</p>
+<p>The body part to retrieve the scar level for.</p>
 </div>
       
     </li>
@@ -1514,7 +3618,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Scar level from 0-3, or nil if invalid part</p>
+<p>The scar level for the specified body part or nil if not present.</p>
 </div>
       
     </li>
@@ -1527,16 +3631,16 @@
       <pre class="lines">
 
 
-176
-177
-178
-179</pre>
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1547,7 +3651,7 @@
       <div class="method_details ">
   <h3 class="signature " id="torso-class_method">
   
-    .<strong>torso</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>torso</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
   
 
   
@@ -1556,7 +3660,15 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the maximum scar level across torso-related body parts</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Continues to use ‘both’ (_injury2) for now.</p>
+</div>
+  </div>
+
+
+<p>Retrieves the maximum scar level for the torso (chest, abdomen, back, eyes).</p>
 
 
   </div>
@@ -1567,7 +3679,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span> <span class='comment'>#=&gt; 1 # Returns highest scar level among torso parts</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
     
   </div>
 
@@ -1577,13 +3689,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Highest scar level among torso parts</p>
+<p>The maximum scar level for the torso or nil if not present.</p>
 </div>
       
     </li>
@@ -1596,29 +3708,17 @@
       <pre class="lines">
 
 
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167</pre>
+1013
+1014
+1015
+1016</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/scars.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/games.rb', line 1013</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_torso'>torso</span>
-  <span class='id identifier rubyid_fix_injury_mode'>fix_injury_mode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chest</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>back</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-  <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span>
+  <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span>
+  <span class='lbracket'>[</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chest</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>back</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1630,7 +3730,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:40 2025 by
+  Generated on Thu May 15 06:53:01 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

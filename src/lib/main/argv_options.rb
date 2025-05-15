@@ -1,52 +1,18 @@
-# Handles command line argument parsing and configuration for the Lich application.
-# This module processes various command-line options to configure game settings,
-# frontend selection, connection details, and other runtime parameters.
-#
-# Command line options include:
-#
-# @note General Options:
-# - -h, --help            Display help information
-# - -V, --version         Display version and credits
-# - -d, --directory       Set main program directory
-# - --script-dir          Set scripts directory
-# - --data-dir           Set data directory
-# - --temp-dir           Set temp directory
-#
-# @note Frontend Options:  
-# - -w, --wizard         Use Wizard frontend (default)
-# - -s, --stormfront     Use StormFront frontend
-# - --avalon            Use Avalon frontend
-# - --frostbite         Use Frostbite frontend
-#
-# @note Game Options:
-# - --gemstone          Connect to Gemstone IV (default)
-# - --dragonrealms      Connect to DragonRealms
-# - --platinum          Connect to Platinum server
-# - --test              Connect to test server
-# - -g, --game          Specify custom game host:port
-#
-# @note Other Options:
-# - --dark-mode         Enable/disable dark mode
-# - --install          Install registry entries
-# - --uninstall        Remove registry entries
-# - --no-gui           Disable GUI
-# - --reconnect        Enable auto-reconnect
-# - --start-scripts    Scripts to run on startup
-#
-# @note Most functionality is designed for Simutronics MUDs and may not work with other games
-# @note Running in bare-bones mode (--bare) can improve performance for non-Simutronics games
-
 # break out for CLI options selected at launch
 # 2024-06-13
 
 ARGV.delete_if { |arg| arg =~ /launcher\.exe/i } # added by Simutronics Game Entry
 
-# @!attribute [r] argv_options
-#   @return [Hash] Global hash containing parsed command line options
 @argv_options = Hash.new
 bad_args = Array.new
 
 for arg in ARGV
+  # Displays help information for the Lich program.
+  #
+  # @example
+  #   lich -h
+  #
+  # @return [void]
   if (arg == '-h') or (arg == '--help')
     puts 'Usage:  lich [OPTION]'
     puts ''
@@ -90,5 +56,452 @@ for arg in ARGV
     puts '       ... (run Lich and login without the GUI in a headless state while enabling dark mode for Lich spawned windows)'
     puts ''
     exit
+  # Displays the version information for the Lich program.
+  #
+  # @example
+  #   lich -v
+  #
+  # @return [void]
+  elsif (arg == '-v') or (arg == '--version')
+    puts "The Lich, version #{LICH_VERSION}"
+    puts ' (an implementation of the Ruby interpreter by Yukihiro Matsumoto designed to be a \'script engine\' for text-based MUDs)'
+    puts ''
+    puts '- The Lich program and all material collectively referred to as "The Lich project" is copyright (C) 2005-2006 Murray Miron.'
+    puts '- The Gemstone IV and DragonRealms games are copyright (C) Simutronics Corporation.'
+    puts '- The Wizard front-end and the StormFront front-end are also copyrighted by the Simutronics Corporation.'
+    puts '- Ruby is (C) Yukihiro \'Matz\' Matsumoto.'
+    puts ''
+    puts 'Thanks to all those who\'ve reported bugs and helped me track down problems on both Windows and Linux.'
+    exit
+  # Links to the Simutronics Game Entry (SGE).
+  #
+  # @example
+  #   lich --link-to-sge
+  #
+  # @return [void]
+  elsif arg == '--link-to-sge'
+    result = Lich.link_to_sge
+    if $stdout.isatty
+      if result
+        $stdout.puts "Successfully linked to SGE."
+      else
+        $stdout.puts "Failed to link to SGE."
+      end
+    end
+    exit
+  # Unlinks from the Simutronics Game Entry (SGE).
+  #
+  # @example
+  #   lich --unlink-from-sge
+  #
+  # @return [void]
+  elsif arg == '--unlink-from-sge'
+    result = Lich.unlink_from_sge
+    if $stdout.isatty
+      if result
+        $stdout.puts "Successfully unlinked from SGE."
+      else
+        $stdout.puts "Failed to unlink from SGE."
+      end
+    end
+    exit
+  # Links to the Simutronics Application Launcher (SAL).
+  #
+  # @example
+  #   lich --link-to-sal
+  #
+  # @return [void]
+  elsif arg == '--link-to-sal'
+    result = Lich.link_to_sal
+    if $stdout.isatty
+      if result
+        $stdout.puts "Successfully linked to SAL files."
+      else
+        $stdout.puts "Failed to link to SAL files."
+      end
+    end
+    exit
+  # Unlinks from the Simutronics Application Launcher (SAL).
+  #
+  # @example
+  #   lich --unlink-from-sal
+  #
+  # @return [void]
+  elsif arg == '--unlink-from-sal'
+    result = Lich.unlink_from_sal
+    if $stdout.isatty
+      if result
+        $stdout.puts "Successfully unlinked from SAL files."
+      else
+        $stdout.puts "Failed to unlink from SAL files."
+      end
+    end
+    exit
+  # Installs Lich to the Windows/WINE registry.
+  #
+  # @deprecated
+  # @example
+  #   lich --install
+  #
+  # @return [void]
+  elsif arg == '--install' # deprecated
+    if Lich.link_to_sge and Lich.link_to_sal
+      $stdout.puts 'Install was successful.'
+      Lich.log 'Install was successful.'
+    else
+      $stdout.puts 'Install failed.'
+      Lich.log 'Install failed.'
+    end
+    exit
+  # Uninstalls Lich from the Windows/WINE registry.
+  #
+  # @deprecated
+  # @example
+  #   lich --uninstall
+  #
+  # @return [void]
+  elsif arg == '--uninstall' # deprecated
+    if Lich.unlink_from_sge and Lich.unlink_from_sal
+      $stdout.puts 'Uninstall was successful.'
+      Lich.log 'Uninstall was successful.'
+    else
+      $stdout.puts 'Uninstall failed.'
+      Lich.log 'Uninstall failed.'
+    end
+    exit
+  # Sets the starting scripts option.
+  #
+  # @param [String] arg The starting scripts to be set.
+  # @return [void]
+  elsif arg =~ /^--start-scripts=(.+)$/i
+    @argv_options[:start_scripts] = $1
+  # Enables reconnection option.
+  #
+  # @return [void]
+  elsif arg =~ /^--reconnect$/i
+    @argv_options[:reconnect] = true
+  # Sets the reconnect delay option.
+  #
+  # @param [String] arg The delay time to be set.
+  # @return [void]
+  elsif arg =~ /^--reconnect-delay=(.+)$/i
+    @argv_options[:reconnect_delay] = $1
+  # Sets the game host and port.
+  #
+  # @param [String] arg The host and port in the format 'host:port'.
+  # @return [void]
+  elsif arg =~ /^--host=(.+):(.+)$/
+    @argv_options[:host] = { :domain => $1, :port => $2.to_i }
+  # Sets the hosts file option.
+  #
+  # @param [String] arg The path to the hosts file.
+  # @return [void]
+  elsif arg =~ /^--hosts-file=(.+)$/i
+    @argv_options[:hosts_file] = $1
+  # Disables the GUI.
+  #
+  # @return [void]
+  elsif arg =~ /^--no-gui$/i
+    @argv_options[:gui] = false
+  # Enables the GUI.
+  #
+  # @return [void]
+  elsif arg =~ /^--gui$/i
+    @argv_options[:gui] = true
+  # Sets the game option.
+  #
+  # @param [String] arg The game to be set.
+  # @return [void]
+  elsif arg =~ /^--game=(.+)$/i
+    @argv_options[:game] = $1
+  # Sets the account option.
+  #
+  # @param [String] arg The account name to be set.
+  # @return [void]
+  elsif arg =~ /^--account=(.+)$/i
+    @argv_options[:account] = $1
+  # Sets the password option.
+  #
+  # @param [String] arg The password to be set.
+  # @return [void]
+  elsif arg =~ /^--password=(.+)$/i
+    @argv_options[:password] = $1
+  # Sets the character option.
+  #
+  # @param [String] arg The character name to be set.
+  # @return [void]
+  elsif arg =~ /^--character=(.+)$/i
+    @argv_options[:character] = $1
+  # Sets the frontend option.
+  #
+  # @param [String] arg The frontend to be set.
+  # @return [void]
+  elsif arg =~ /^--frontend=(.+)$/i
+    @argv_options[:frontend] = $1
+  # Sets the frontend command option.
+  #
+  # @param [String] arg The frontend command to be set.
+  # @return [void]
+  elsif arg =~ /^--frontend-command=(.+)$/i
+    @argv_options[:frontend_command] = $1
+  # Enables saving option.
+  #
+  # @return [void]
+  elsif arg =~ /^--save$/i
+    @argv_options[:save] = true
+  # Handles Wine prefix option.
+  #
+  # @return [void]
+  elsif arg =~ /^--wine(?:\-prefix)?=.+$/i
+    nil # already used when defining the Wine module
+  # Sets the SAL file option.
+  #
+  # @param [String] arg The path to the SAL file.
+  # @return [void]
+  elsif arg =~ /\.sal$|Gse\.~xt$/i
+    @argv_options[:sal] = arg
+    unless File.exist?(@argv_options[:sal])
+      if ARGV.join(' ') =~ /([A-Z]:\\.+?\.(?:sal|~xt))/i
+        @argv_options[:sal] = $1
+      end
+    end
+    unless File.exist?(@argv_options[:sal])
+      if defined?(Wine)
+        @argv_options[:sal] = "#{Wine::PREFIX}/drive_c/#{@argv_options[:sal][3..-1].split('\\').join('/')}"
+      end
+    end
+    bad_args.clear
+  # Sets the dark mode option.
+  #
+  # @param [String] arg The value for dark mode (true/false/on/off).
+  # @return [void]
+  elsif arg =~ /^--dark-mode=(true|false|on|off)$/i
+    value = $1
+    if value =~ /^(true|on)$/i
+      @argv_options[:dark_mode] = true
+    elsif value =~ /^(false|off)$/i
+      @argv_options[:dark_mode] = false
+    end
+    if defined?(Gtk)
+      @theme_state = Lich.track_dark_mode = @argv_options[:dark_mode]
+      Gtk::Settings.default.gtk_application_prefer_dark_theme = true if @theme_state == true
+    end
+  else
+    bad_args.push(arg)
+  end
+end
+# rubocop:disable Lint/UselessAssignment
 
-[... rest of the original code continues unchanged ...]
+# Processes the hosts directory option.
+#
+# @return [void]
+if (arg = ARGV.find { |a| a == '--hosts-dir' })
+  i = ARGV.index(arg)
+  ARGV.delete_at(i)
+  hosts_dir = ARGV[i]
+  ARGV.delete_at(i)
+  if hosts_dir and File.exist?(hosts_dir)
+    hosts_dir = hosts_dir.tr('\\', '/')
+    hosts_dir += '/' unless hosts_dir[-1..-1] == '/'
+  else
+    $stdout.puts "warning: given hosts directory does not exist: #{hosts_dir}"
+    hosts_dir = nil
+  end
+else
+  hosts_dir = nil
+end
+
+@detachable_client_host = '127.0.0.1'
+@detachable_client_port = nil
+# Processes the detachable client option.
+#
+# @return [void]
+if (arg = ARGV.find { |a| a =~ /^\-\-detachable\-client=[0-9]+$/ })
+  @detachable_client_port = /^\-\-detachable\-client=([0-9]+)$/.match(arg).captures.first
+elsif (arg = ARGV.find { |a| a =~ /^\-\-detachable\-client=((?:\d{1,3}\.){3}\d{1,3}):([0-9]{1,5})$/ })
+  @detachable_client_host, @detachable_client_port = /^\-\-detachable\-client=((?:\d{1,3}\.){3}\d{1,3}):([0-9]{1,5})$/.match(arg).captures
+end
+
+# Checks if the specified launch file exists and executes it using the appropriate launcher.
+# 
+# @param [Hash] @argv_options The options provided via command line arguments.
+# @option @argv_options [String] :sal The path to the launch file.
+# 
+# @return [void] This method does not return a value.
+# 
+# @raise [SystemExit] Exits the program if the launch file does not exist or if the launcher cannot be found.
+# 
+# @example
+#   @argv_options = { sal: 'path/to/launch_file.sge.sal' }
+#   # This will check for the existence of the launch file and execute it if found.
+if @argv_options[:sal]
+  unless File.exist?(@argv_options[:sal])
+    Lich.log "error: launch file does not exist: #{@argv_options[:sal]}"
+    Lich.msgbox "error: launch file does not exist: #{@argv_options[:sal]}"
+    exit
+  end
+  Lich.log "info: launch file: #{@argv_options[:sal]}"
+  if @argv_options[:sal] =~ /SGE\.sal/i
+    unless (launcher_cmd = Lich.get_simu_launcher)
+      $stdout.puts 'error: failed to find the Simutronics launcher'
+      Lich.log 'error: failed to find the Simutronics launcher'
+      exit
+    end
+    launcher_cmd.sub!('%1', @argv_options[:sal])
+    Lich.log "info: launcher_cmd: #{launcher_cmd}"
+    if defined?(Win32) and launcher_cmd =~ /^"(.*?)"\s*(.*)$/
+      dir_file = $1
+      param = $2
+      dir = dir_file.slice(/^.*[\\\/]/)
+      file = dir_file.sub(/^.*[\\\/]/, '')
+      operation = (Win32.isXP? ? 'open' : 'runas')
+      Win32.ShellExecute(:lpOperation => operation, :lpFile => file, :lpDirectory => dir, :lpParameters => param)
+      if r < 33
+        Lich.log "error: Win32.ShellExecute returned #{r}; Win32.GetLastError: #{Win32.GetLastError}"
+      end
+    elsif defined?(Wine)
+      system("#{Wine::BIN} #{launcher_cmd}")
+    else
+      system(launcher_cmd)
+    end
+    exit
+  end
+end
+
+# This script processes command-line arguments to configure game host, port, and frontend settings.
+# It supports multiple game types and configurations based on the provided arguments.
+#
+# @param [Array<String>] ARGV The command-line arguments passed to the script.
+# @return [void]
+# @note This script modifies global variables such as $frontend and $platinum based on the input arguments.
+# @example
+#   ruby script.rb --game -g mygame:1234 --stormfront
+#   # This will set the game host to 'mygame' and port to 1234, and frontend to 'stormfront'.
+if (arg = ARGV.find { |a| (a == '-g') or (a == '--game') })
+  @game_host, @game_port = ARGV[ARGV.index(arg) + 1].split(':')
+  @game_port = @game_port.to_i
+  if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+    $frontend = 'stormfront'
+  elsif ARGV.any? { |arg| (arg == '-w') or (arg == '--wizard') }
+    $frontend = 'wizard'
+  elsif ARGV.any? { |arg| arg == '--avalon' }
+    $frontend = 'avalon'
+  elsif ARGV.any? { |arg| arg == '--frostbite' }
+    $frontend = 'frostbite'
+  else
+    $frontend = 'unknown'
+  end
+elsif ARGV.include?('--gemstone')
+  if ARGV.include?('--platinum')
+    $platinum = true
+    if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+      @game_host = 'storm.gs4.game.play.net'
+      @game_port = 10124
+      $frontend = 'stormfront'
+    else
+      @game_host = 'gs-plat.simutronics.net'
+      @game_port = 10121
+      if ARGV.any? { |arg| arg == '--avalon' }
+        $frontend = 'avalon'
+      else
+        $frontend = 'wizard'
+      end
+    end
+  else
+    $platinum = false
+    if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+      @game_host = 'storm.gs4.game.play.net'
+      @game_port = 10024
+      $frontend = 'stormfront'
+    else
+      @game_host = 'gs3.simutronics.net'
+      @game_port = 4900
+      if ARGV.any? { |arg| arg == '--avalon' }
+        $frontend = 'avalon'
+      else
+        $frontend = 'wizard'
+      end
+    end
+  end
+elsif ARGV.include?('--shattered')
+  $platinum = false
+  if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+    @game_host = 'storm.gs4.game.play.net'
+    @game_port = 10324
+    $frontend = 'stormfront'
+  else
+    @game_host = 'gs4.simutronics.net'
+    @game_port = 10321
+    if ARGV.any? { |arg| arg == '--avalon' }
+      $frontend = 'avalon'
+    else
+      $frontend = 'wizard'
+    end
+  end
+elsif ARGV.include?('--fallen')
+  $platinum = false
+  # Not sure what the port info is for anything else but Genie :(
+  if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+    $frontend = 'stormfront'
+    $stdout.puts "fixme"
+    Lich.log "fixme"
+    exit
+  elsif ARGV.grep(/--genie/).any?
+    @game_host = 'dr.simutronics.net'
+    @game_port = 11324
+    $frontend = 'genie'
+  else
+    $stdout.puts "fixme"
+    Lich.log "fixme"
+    exit
+  end
+elsif ARGV.include?('--dragonrealms')
+  if ARGV.include?('--platinum')
+    $platinum = true
+    if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+      $frontend = 'stormfront'
+      $stdout.puts "fixme"
+      Lich.log "fixme"
+      exit
+    elsif ARGV.grep(/--genie/).any?
+      @game_host = 'dr.simutronics.net'
+      @game_port = 11124
+      $frontend = 'genie'
+    elsif ARGV.grep(/--frostbite/).any?
+      @game_host = 'dr.simutronics.net'
+      @game_port = 11124
+      $frontend = 'frostbite'
+    else
+      $frontend = 'wizard'
+      $stdout.puts "fixme"
+      Lich.log "fixme"
+      exit
+    end
+  else
+    $platinum = false
+    if ARGV.any? { |arg| (arg == '-s') or (arg == '--stormfront') }
+      $frontend = 'stormfront'
+      $stdout.puts "fixme"
+      Lich.log "fixme"
+      exit
+    elsif ARGV.grep(/--genie/).any?
+      @game_host = 'dr.simutronics.net'
+      @game_port = ARGV.include?('--test') ? 11624 : 11024
+      $frontend = 'genie'
+    else
+      @game_host = 'dr.simutronics.net'
+      @game_port = ARGV.include?('--test') ? 11624 : 11024
+      if ARGV.any? { |arg| arg == '--avalon' }
+        $frontend = 'avalon'
+      elsif ARGV.any? { |arg| arg == '--frostbite' }
+        $frontend = 'frostbite'
+      else
+        $frontend = 'wizard'
+      end
+    end
+  end
+else
+  @game_host, @game_port = nil, nil
+  Lich.log "info: no force-mode info given"
+end
+# rubocop:enable Lint/UselessAssignment

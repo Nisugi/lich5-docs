@@ -1,26 +1,16 @@
 # frozen_string_literal: true
 
-# Provides command-line interface functionality for the Infomon system in Lich Gemstone
-# Handles character information synchronization and database management
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Gemstone
     module Infomon
       # CLI commands for Infomon
-
-      # Synchronizes character information by executing a series of game commands
-      # and capturing their responses. Temporarily disables Shroud of Deception if active.
       #
-      # @return [void]
-      # @note This method will automatically disable Shroud of Deception (spell 1212) if active,
-      #   and notify the user to reactivate it after completion
+      # This method synchronizes the character's Infomon settings.
+      #
+      # @return [void] This method does not return a value.
+      # @raise [StandardError] Raises an error if the command execution fails.
       # @example
       #   Lich::Gemstone::Infomon.sync
-      #
-      # @note Commands executed include: info, skill, spell, experience, society, citizenship,
-      #   armor list all, cman list all, feat list all, shield list all, weapon list all,
-      #   ascension list all, resource, and warcry
       def self.sync
         # since none of this information is 3rd party displayed, silence is golden.
         shroud_detected = false
@@ -58,10 +48,12 @@ module Lich
         Infomon.set('infomon.last_sync', Time.now.to_i)
       end
 
-      # Performs a complete reset of the Infomon database and repopulates it with fresh data
+      # Resets the Infomon data for the character.
       #
-      # @return [void]
-      # @note This is a destructive operation that will delete all existing character data
+      # This method deletes the character table, recreates it, and repopulates it.
+      #
+      # @return [void] This method does not return a value.
+      # @raise [StandardError] Raises an error if the reset fails.
       # @example
       #   Lich::Gemstone::Infomon.redo!
       def self.redo!
@@ -72,15 +64,12 @@ module Lich
         respond 'Infomon reset is now complete.'
       end
 
-      # Displays stored information for the current character
+      # Displays stored Infomon data for the character.
       #
-      # @param full [Boolean] When true, shows all values including zeros. When false,
-      #   filters out entries with zero values
-      # @return [void]
-      # @example Show non-zero values only
+      # @param full [Boolean] If true, displays all data including zero values.
+      # @return [Array<String>] An array of strings representing the stored data.
+      # @example
       #   Lich::Gemstone::Infomon.show
-      # @example Show all values including zeros
-      #   Lich::Gemstone::Infomon.show(true)
       def self.show(full = false)
         response = []
         # display all stored db values
@@ -98,15 +87,11 @@ module Lich
         respond response
       end
 
-      # Determines if the database needs to be refreshed based on last sync time
+      # Checks if a refresh of the Infomon database is needed.
       #
-      # @return [Boolean] Returns true if the database needs refreshing, false otherwise
-      # @note The refresh check is based on a hardcoded date (August 5, 2024) which represents
-      #   the last database structure change
+      # @return [Boolean] Returns true if a refresh is needed, false otherwise.
       # @example
-      #   if Lich::Gemstone::Infomon.db_refresh_needed?
-      #     # perform refresh operations
-      #   end
+      #   Lich::Gemstone::Infomon.db_refresh_needed?
       def self.db_refresh_needed?
         # Change date below to the last date of infomon.db structure change to allow for a forced reset of data.
         Infomon.get("infomon.last_sync").nil? || Infomon.get("infomon.last_sync") < Time.new(2024, 8, 5, 20, 0, 0).to_i

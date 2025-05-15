@@ -8,54 +8,45 @@ require_relative('./psms/weapon.rb')
 require_relative('./psms/warcry.rb')
 require_relative('./psms/ascension.rb')
 
-# Provides functionality for managing and checking Physical Skills Management System (PSMS)
-# abilities in the Gemstone IV game, including armor, combat maneuvers, feats, shields,
-# weapons, warcries, and ascension abilities.
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Gemstone
     module PSMS
-      # Normalizes a skill name using the Lich utility function
+      
+      # Normalizes the given name using the Lich::Util module.
       #
-      # @param name [String] The raw skill name to normalize
-      # @return [String] The normalized skill name
+      # @param name [String] the name to normalize
+      # @return [String] the normalized name
+      #
       # @example
-      #   PSMS.name_normal("Shield bash") #=> "shield bash"
-      #
-      # @note Uses Lich::Util.normalize_name internally
+      #   normalized_name = Lich::Gemstone::PSMS.name_normal("Some Name")
       def self.name_normal(name)
         Lich::Util.normalize_name(name)
       end
 
-      # Finds a PSMS ability by name within a specific category
+      # Finds a name of a specified type in the PSMS.
       #
-      # @param name [String] The normalized name of the ability to find
-      # @param type [String] The category type (Armor, CMan, Feat, Shield, Weapon, Warcry, Ascension)
-      # @return [Hash, nil] Hash containing ability details if found, nil if not found
+      # @param name [String] the name to find
+      # @param type [String] the type of the name (e.g., Armor, CMan, etc.)
+      # @return [Hash, nil] the found name hash or nil if not found
+      #
       # @example
-      #   PSMS.find_name("shield bash", "Shield") 
-      #   #=> {long_name: "shield bash", short_name: "bash", cost: 10}
+      #   found_name = Lich::Gemstone::PSMS.find_name("Some Name", "Armor")
       def self.find_name(name, type)
         Object.const_get("Lich::Gemstone::#{type}").method("#{type.downcase}_lookups").call
               .find { |h| h[:long_name].eql?(name) || h[:short_name].eql?(name) }
       end
 
-      # Assesses if a PSMS ability can be used or checks its training level
+      # Assesses the validity and cost of a specified name and type.
       #
-      # @param name [String] The name of the ability to assess
-      # @param type [String] The category type (Armor, CMan, Feat, Shield, Weapon, Warcry, Ascension)
-      # @param costcheck [Boolean] If true, checks if player has enough stamina to use ability
-      # @return [Boolean, Integer] Boolean for cost checks, Integer for training level checks
-      # @raise [StandardError] When the specified ability name or type is invalid
+      # @param name [String] the name to assess
+      # @param type [String] the type of the name (e.g., Armor, CMan, etc.)
+      # @param costcheck [Boolean] whether to check the cost (default: false)
+      # @return [Boolean, Object] true if cost is valid, otherwise returns Infomon data
+      #
+      # @raise [StandardError] if the referenced skill is invalid
+      #
       # @example
-      #   # Check if can use ability
-      #   PSMS.assess("shield bash", "Shield", true) #=> true
-      #   
-      #   # Check training level
-      #   PSMS.assess("shield bash", "Shield") #=> 34
-      #
-      # @note Requires valid XMLData.stamina for cost checks
+      #   valid = Lich::Gemstone::PSMS.assess("Some Name", "Armor", true)
       def self.assess(name, type, costcheck = false)
         name = self.name_normal(name)
         seek_psm = self.find_name(name, type)
@@ -73,10 +64,7 @@ module Lich
         end
       end
 
-      # Common failure messages that can occur when using any PSMS ability
-      #
-      # @return [Regexp] A union of regular expressions matching various failure messages
-      # @note These are used to detect when PSMS abilities fail to activate
+      # Common failure messages potentially used across all PSMs.
       FAILURES_REGEXES = Regexp.union(
         /^And give yourself away!  Never!$/,
         /^You are unable to do that right now\.$/,

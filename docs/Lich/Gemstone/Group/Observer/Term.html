@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Collection of regex patterns for parsing group-related messages</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -107,7 +96,9 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Matches group join message</p>
+<p>Regular expressions for passive messages related to group membership.</p>
+
+<p>These patterns are used to match various messages that indicate changes in group membership status.</p>
 
 
   </div>
@@ -120,50 +111,17 @@
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; joins your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="LEAVE-constant" class="">LEAVE =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches group leave message</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; leaves your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="ADD-constant" class="">ADD =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches group add message</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You add &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; to your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="REMOVE-constant" class="">REMOVE =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches group remove message</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You remove &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; from the group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
@@ -278,7 +236,20 @@
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; joins &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="NO_GROUP-constant" class="">NO_GROUP =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regular expressions for active messages related to group membership.</p>
+
+<p>These patterns are used to match various messages that indicate the current status of group membership.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are not currently in a group</span><span class='regexp_end'>/</span></span></pre></dd>
       
@@ -361,7 +332,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

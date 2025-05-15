@@ -1,108 +1,111 @@
 # frozen_string_literal: true
 
-# Lich is the main namespace module for the Lich game scripting system
-#
-# @author Lich5 Documentation Generator
 module Lich
-
-  # Gemstone module contains classes specific to the Gemstone IV game
   module Gemstone
-
-    # Gift class tracks and manages gift box status and timing
-    # Used to monitor the gift box feature which pulses every minute up to 360 times
+    # Gift class for tracking gift box status
     class Gift
       class << self
-        # Gets the timestamp when the gift box tracking started
+        # Returns the start time of the gift and the pulse count.
         #
-        # @return [Time] The time when the gift box was started
-        attr_reader :gift_start
-
-        # Gets the current count of gift box pulses
+        # @return [Time] the time when the gift was started
+        # @return [Integer] the current pulse count, initialized to 0
         #
-        # @return [Integer] Number of pulses that have occurred
-        attr_reader :pulse_count
-
-        # Initializes the gift box tracking with a start time and zero pulse count
-        #
-        # @return [void]
         # @example
         #   Gift.init_gift
+        #   # => Initializes the gift with the current time and pulse count set to 0
         def init_gift
           @gift_start = Time.now
           @pulse_count = 0
         end
 
-        # Marks the start of gift box tracking by setting start time and resetting pulse count
+        # Starts the gift timer and resets the pulse count.
         #
-        # @return [void]
+        # @return [Time] the time when the gift was started
+        # @return [Integer] the pulse count, reset to 0
+        #
         # @example
         #   Gift.started
+        #   # => Starts the gift timer and resets pulse count
         def started
           @gift_start = Time.now
           @pulse_count = 0
         end
 
-        # Increments the pulse counter by 1
+        # Increments the pulse count by one.
         #
-        # @return [Integer] The new pulse count after incrementing
+        # @return [Integer] the updated pulse count after increment
+        #
         # @example
         #   Gift.pulse
+        #   # => Increments the pulse count by 1
         def pulse
           @pulse_count += 1
         end
 
-        # Calculates remaining time in seconds before gift box expires
+        # Calculates the remaining time in seconds based on the pulse count.
         #
-        # @return [Float] Seconds remaining before expiration (max 21600, min 0)
+        # @return [Float] the remaining time in seconds
+        #
         # @example
-        #   remaining = Gift.remaining # => 12360.0
+        #   Gift.remaining
+        #   # => Returns the remaining time in seconds based on pulse count
         def remaining
           ([360 - @pulse_count, 0].max * 60).to_f
         end
 
-        # Calculates when the gift box will restart
-        # Gift boxes restart after 165 hours (594000 seconds)
+        # Calculates the time when the gift will restart.
         #
-        # @return [Time] Timestamp when the gift box will be available again
+        # @return [Time] the time when the gift restarts
+        #
         # @example
-        #   next_start = Gift.restarts_on
+        #   Gift.restarts_on
+        #   # => Returns the time when the gift will restart
         def restarts_on
           @gift_start + 594000
         end
 
-        # Serializes the gift box state for persistence
+        # Serializes the current state of the gift.
         #
-        # @return [Array<Time, Integer>] Array containing start time and pulse count
+        # @return [Array] an array containing the gift start time and pulse count
+        #
         # @example
-        #   state = Gift.serialize
+        #   Gift.serialize
+        #   # => Returns an array with the gift start time and pulse count
         def serialize
           [@gift_start, @pulse_count]
         end
 
-        # Loads a previously serialized gift box state
+        # Loads the serialized state of the gift from an array.
         #
-        # @param array [Array<Time, Integer>] Array containing start time and pulse count
+        # @param array [Array] an array containing the gift start time and pulse count
         # @return [void]
+        #
         # @example
-        #   Gift.load_serialized = [Time.now, 120]
+        #   Gift.load_serialized = [Time.now, 5]
+        #   # => Loads the serialized state into the gift
         def load_serialized=(array)
           @gift_start = array[0]
           @pulse_count = array[1].to_i
         end
 
-        # Marks the gift box as ended by setting pulse count to maximum
+        # Ends the gift by setting the pulse count to 360.
         #
-        # @return [void]
+        # @return [Integer] the pulse count set to 360
+        #
         # @example
         #   Gift.ended
+        #   # => Ends the gift by setting pulse count to 360
         def ended
           @pulse_count = 360
         end
 
-        # Placeholder method for stopwatch functionality
+        # Placeholder for a stopwatch method.
         #
-        # @return [nil] Always returns nil
-        # @note This appears to be a stub method for future implementation
+        # @return [nil] always returns nil
+        #
+        # @example
+        #   Gift.stopwatch
+        #   # => Returns nil
         def stopwatch
           nil
         end

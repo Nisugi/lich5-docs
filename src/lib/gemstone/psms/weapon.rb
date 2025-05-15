@@ -1,20 +1,19 @@
 ## breakout for Weapon released with PSM3
 ## updated for Ruby 3.2.1 and new Infomon module
 
-# Module for handling weapon techniques and abilities in the Gemstone game
-# Provides functionality for checking, using and managing combat weapon skills
-#
-# @author Lich5 Documentation Generator
 module Lich
   module Gemstone
     module Weapon
-      # Returns an array of weapon technique definitions with their names and costs
+      # Retrieves a list of weapon lookups with their long names, short names, and costs.
       #
-      # @return [Array<Hash>] Array of hashes containing :long_name, :short_name, and :cost for each technique
+      # @return [Array<Hash>] An array of hashes, each containing:
+      #   - :long_name [String] The full name of the weapon.
+      #   - :short_name [String] The abbreviated name of the weapon.
+      #   - :cost [Integer] The cost associated with the weapon.
       #
       # @example
-      #   Weapon.weapon_lookups
-      #   # => [{long_name: 'barrage', short_name: 'barrage', cost: 15}, ...]
+      #   weapons = Weapon.weapon_lookups
+      #   puts weapons.first[:long_name] # => "barrage"
       def self.weapon_lookups
         # rubocop:disable Layout/ExtraSpacing
         [{ long_name: 'barrage',                  short_name: 'barrage',          cost: 15 },
@@ -136,72 +135,82 @@ module Lich
         },
       }
 
-      # Retrieves the rank/level of a specified weapon technique
+      # Retrieves the weapon technique based on the name provided.
       #
-      # @param name [String] The name of the weapon technique
-      # @return [Integer] The rank/level of the technique
+      # @param name [String] The name of the weapon technique.
+      # @return [Hash] The weapon technique details including regex and optional usage.
+      # @raise [KeyError] If the weapon technique does not exist.
+      #
       # @example
-      #   Weapon['barrage'] # => 3
+      #   technique = Weapon["barrage"]
+      #   puts technique[:regex] # => /Drawing several (?:arrows|bolts) from your .+, you grip them loosely between your fingers in preparation for a rapid barrage\./
       def Weapon.[](name)
         return PSMS.assess(name, 'Weapon')
       end
 
-      # Checks if a weapon technique is known at or above a minimum rank
+      # Checks if a weapon is known based on the provided name and minimum rank.
       #
-      # @param name [String] The name of the weapon technique
-      # @param min_rank [Integer] Minimum rank required (defaults to 1)
-      # @return [Boolean] True if technique is known at specified rank
+      # @param name [String] The name of the weapon.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the weapon is known and meets the minimum rank, false otherwise.
+      #
       # @example
-      #   Weapon.known?('barrage', min_rank: 2) # => true
+      #   known = Weapon.known?("barrage", min_rank: 1)
+      #   puts known # => true
       def Weapon.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Weapon[name] >= min_rank
       end
 
-      # Checks if a weapon technique can be afforded with current resources
+      # Checks if a weapon is affordable based on the provided name.
       #
-      # @param name [String] The name of the weapon technique
-      # @return [Boolean] True if technique can be afforded
+      # @param name [String] The name of the weapon.
+      # @return [Boolean] True if the weapon is affordable, false otherwise.
+      #
       # @example
-      #   Weapon.affordable?('barrage') # => true
+      #   affordable = Weapon.affordable?("barrage")
+      #   puts affordable # => true or false
       def Weapon.affordable?(name)
         return PSMS.assess(name, 'Weapon', true)
       end
 
-      # Checks if a weapon technique is available for use
+      # Checks if a weapon is available based on the provided name and minimum rank.
       #
-      # @param name [String] The name of the weapon technique
-      # @param min_rank [Integer] Minimum rank required (defaults to 1)
-      # @return [Boolean] True if technique is known, affordable, not on cooldown and not overexerted
+      # @param name [String] The name of the weapon.
+      # @param min_rank [Integer] The minimum rank to check against (default is 1).
+      # @return [Boolean] True if the weapon is known, affordable, and not on cooldown or debuffed, false otherwise.
+      #
       # @example
-      #   Weapon.available?('barrage') # => true
+      #   available = Weapon.available?("barrage", min_rank: 1)
+      #   puts available # => true or false
       def Weapon.available?(name, min_rank: 1)
         Weapon.known?(name, min_rank: min_rank) and Weapon.affordable?(name) and !Lich::Util.normalize_lookup('Cooldowns', name) and !Lich::Util.normalize_lookup('Debuffs', 'Overexerted')
       end
 
-      # Checks if a weapon technique's buff effect is currently active
+      # Checks if a weapon is currently active based on the provided name.
       #
-      # @param name [String] The name of the weapon technique
-      # @return [Boolean, nil] True if buff is active, nil if technique has no buff
+      # @param name [String] The name of the weapon.
+      # @return [Boolean, nil] True if the weapon has an active buff, false if not, nil if the weapon does not exist.
+      #
       # @example
-      #   Weapon.active?('flurry') # => true
+      #   active = Weapon.active?("barrage")
+      #   puts active # => true or false
       def Weapon.active?(name)
         name = PSMS.name_normal(name)
         return unless @@weapon_techniques.fetch(name).key?(:buff)
         Effects::Buffs.active?(@@weapon_techniques.fetch(name)[:buff])
       end
 
-      # Executes a weapon technique against an optional target
+      # Uses the specified weapon on a target and returns the result of the action.
       #
-      # @param name [String] The name of the weapon technique
-      # @param target [String, GameObj, Integer] The target of the technique (optional)
-      # @param results_of_interest [Regexp] Additional regex pattern to match in results (optional)
-      # @return [String, nil] The result of the technique execution or nil if unavailable
+      # @param name [String] The name of the weapon to use.
+      # @param target [String, GameObj, Integer] The target of the weapon use (default is an empty string).
+      # @param results_of_interest [Regexp, nil] Additional regex patterns to match against results (default is nil).
+      # @return [String, nil] The result of the weapon use or nil if the weapon is not available.
+      #
       # @example
-      #   Weapon.use('barrage', monster)
-      #   Weapon.use('flurry', '#1234')
-      #
-      # @note Will wait for roundtime and casting roundtime before executing
+      #   result = Weapon.use("barrage", "goblin")
+      #   puts result # => "You unleash a barrage of arrows at the goblin!"
       def Weapon.use(name, target = "", results_of_interest: nil)
         return unless Weapon.available?(name)
         name_normalized = PSMS.name_normal(name)
@@ -258,23 +267,19 @@ module Lich
         usage_result
       end
 
-      # Gets the regex pattern that matches the technique's execution message
+      # Retrieves the regular expression associated with the specified weapon technique.
       #
-      # @param name [String] The name of the weapon technique
-      # @return [Regexp] The regex pattern for the technique
+      # @param name [String] The name of the weapon technique.
+      # @return [Regexp] The regular expression for the weapon technique.
+      # @raise [KeyError] If the weapon technique does not exist.
+      #
       # @example
-      #   Weapon.regexp('barrage')
-      #   # => /Drawing several (?:arrows|bolts) from your .+, you grip them loosely.../
+      #   regex = Weapon.regexp("barrage")
+      #   puts regex # => /Drawing several (?:arrows|bolts) from your .+, you grip them loosely between your fingers in preparation for a rapid barrage\./
       def Weapon.regexp(name)
         @@weapon_techniques.fetch(PSMS.name_normal(name))[:regex]
       end
 
-      # For each weapon technique, creates convenience methods using both long and short names
-      # that return the technique's rank
-      #
-      # @example
-      #   Weapon.barrage # => 3
-      #   Weapon.dizzying_swing # => 2
       Weapon.weapon_lookups.each { |weapon|
         self.define_singleton_method(weapon[:short_name]) do
           Weapon[weapon[:short_name]]

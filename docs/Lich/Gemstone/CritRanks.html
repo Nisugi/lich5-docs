@@ -78,140 +78,16 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/gemstone/critranks/generic_critical_table.rb<span class="defines">,<br />
-  lib/gemstone/critranks.rb</span>
+    <dd>lib/gemstone/critranks.rb<span class="defines">,<br />
+  lib/gemstone/critranks/generic_critical_table.rb</span>
 </dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Generic crits use a standardized format with required fields for damage, effects, and matching regex patterns</p>
-</div>
-  </div>
-
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Critical table entries must include:</p>
-<ul><li>
-<p>:type - Must match the table name</p>
-</li><li>
-<p>:location - Body location affected</p>
-</li><li>
-<p>:rank - Severity ranking</p>
-</li><li>
-<p>:damage - Additional damage dealt</p>
-</li><li>
-<p>:position - Forced position changes</p>
-</li><li>
-<p>:fatal - Whether crit causes death</p>
-</li><li>
-<p>:stunned - Rounds of stun (999 for unknown)</p>
-</li><li>
-<p>:amputated - Whether location is severed</p>
-</li><li>
-<p>:crippled - Whether location becomes unusable</p>
-</li><li>
-<p>:sleeping - Whether target falls unconscious</p>
-</li><li>
-<p>:dazed - Mental effect status</p>
-</li><li>
-<p>:limb_favored - Limb favor status</p>
-</li><li>
-<p>:roundtime - Additional action delay</p>
-</li><li>
-<p>:silenced - Speaking/casting prevention</p>
-</li><li>
-<p>:slowed - Movement speed reduction</p>
-</li><li>
-<p>:wound_rank - Severity of wound</p>
-</li><li>
-<p>:secondary_wound - Additional wound location</p>
-</li><li>
-<p>:regex - Pattern matching the crit message</p>
-</li></ul>
-</div>
-  </div>
-
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>As of 2025/03/14, regex patterns use standardized /^String format and consistent .*? patterns for XML parsing compatibility</p>
-</div>
-  </div>
-
-
-<p>Defines critical hit tables and rankings for the combat system This module handles generic critical hits that are not specific to a particular location or type of damage.</p>
-
-<p>Generic crits represent universal effects that can apply to any target, regardless of their anatomy or damage type. For example, a stunning effect that works on any creature even if they lack the specific body part targeted.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Critical Table Structure</p>
-</div></h5>
-      
-      <pre class="example code"><code>GENERIC:
-  UNSPECIFIED:
-    0:
-      type: GENERIC
-      location: UNSPECIFIED
-      rank: 0
-      # ... additional attributes</code></pre>
-    
-  </div>
-
-
-</div>
 
 
 
-  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#table-instance_method" title="#table (instance method)">#<strong>table</strong>  &#x21d2; Hash </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-      <span class="note title readonly">readonly</span>
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>The complete critical hit table definitions.</p>
-</div></span>
-  
-</li>
-
-    
-  </ul>
 
 
 
@@ -242,7 +118,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Normalizes input keys by converting to proper format.</p>
+<p>Cleans the provided key by converting it to a standardized format.</p>
 </div></span>
   
 </li>
@@ -266,7 +142,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates lookup indices for critical hit records.</p>
+<p>Creates indices for types, locations, and ranks from the critical table.</p>
 </div></span>
   
 </li>
@@ -290,7 +166,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves a specific critical hit record.</p>
+<p>Fetches the critical hit data for a given type, location, and rank.</p>
 </div></span>
   
 </li>
@@ -314,7 +190,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Initializes the critical hit tables by loading all *critical_table.rb files from the critranks directory and creating necessary indices.</p>
+<p>Initializes the critical table by loading all critical table files.</p>
 </div></span>
   
 </li>
@@ -338,7 +214,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the list of valid hit locations.</p>
+<p>Returns an array of locations available in the critical table.</p>
 </div></span>
   
 </li>
@@ -347,7 +223,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Hash </a>
+      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Array </a>
     
 
     
@@ -362,7 +238,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parses a line of text to find matching critical hit results.</p>
+<p>Parses a line to find matches against the critical table’s regex patterns.</p>
 </div></span>
   
 </li>
@@ -371,7 +247,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ranks-class_method" title="ranks (class method)">.<strong>ranks</strong>  &#x21d2; Array&lt;Symbol,Integer&gt; </a>
+      <a href="#ranks-class_method" title="ranks (class method)">.<strong>ranks</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
     
 
     
@@ -386,7 +262,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the list of valid critical hit ranks.</p>
+<p>Returns an array of ranks available in the critical table.</p>
 </div></span>
   
 </li>
@@ -410,7 +286,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Reloads all critical hit tables by clearing existing data and reinitializing.</p>
+<p>Reloads the critical table by clearing the current data and reinitializing it.</p>
 </div></span>
   
 </li>
@@ -434,7 +310,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the current critical hit table hash.</p>
+<p>Returns the current critical table.</p>
 </div></span>
   
 </li>
@@ -458,7 +334,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns a list of available critical hit table names.</p>
+<p>Returns an array of types available in the critical table.</p>
 </div></span>
   
 </li>
@@ -482,7 +358,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the list of valid critical hit types.</p>
+<p>Returns an array of types available in the critical table.</p>
 </div></span>
   
 </li>
@@ -491,7 +367,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#validate-class_method" title="validate (class method)">.<strong>validate</strong>(key, valid)  &#x21d2; String, Integer </a>
+      <a href="#validate-class_method" title="validate (class method)">.<strong>validate</strong>(key, valid)  &#x21d2; String </a>
     
 
     
@@ -506,7 +382,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Validates that a given key exists in the valid options list.</p>
+<p>Validates the provided key against a list of valid keys.</p>
 </div></span>
   
 </li>
@@ -515,102 +391,6 @@
     </ul>
   
 
-
-  <div id="instance_attr_details" class="attr_details">
-    <h2>Instance Attribute Details</h2>
-    
-      
-      <span id=""></span>
-      <div class="method_details first">
-  <h3 class="signature first" id="table-instance_method">
-  
-    #<strong>table</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>  <span class="extras">(readonly)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns The complete critical hit table definitions.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The complete critical hit table definitions</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks/generic_critical_table.rb', line 54</span>
-
-<span class='kw'>module</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span>
-  <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_table'><span class='object_link'><a href="#table-class_method" title="Lich::Gemstone::CritRanks.table (method)">table</a></span></span><span class='lbracket'>[</span><span class='symbol'>:generic</span><span class='rbracket'>]</span> <span class='op'>=</span>
-    <span class='lbrace'>{</span> <span class='symbol'>:unspecified</span> <span class='op'>=&gt;</span>
-                      <span class='lbrace'>{</span> <span class='int'>0</span> <span class='op'>=&gt;</span>
-                             <span class='lbrace'>{</span> <span class='symbol'>:type</span>            <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>generic</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-                               <span class='symbol'>:location</span>        <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unspecified</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
-                               <span class='symbol'>:rank</span>            <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
-                               <span class='symbol'>:damage</span>          <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
-                               <span class='symbol'>:position</span>        <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
-                               <span class='symbol'>:fatal</span>           <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-                               <span class='symbol'>:stunned</span>         <span class='op'>=&gt;</span> <span class='int'>999</span><span class='comma'>,</span> <span class='comment'># generic crits cannot have legitimate stun values (or any other value)
-</span>                               <span class='symbol'>:amputated</span>       <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-                               <span class='symbol'>:crippled</span>        <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-                               <span class='symbol'>:sleeping</span>        <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-                               <span class='symbol'>:wound_rank</span>      <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
-                               <span class='symbol'>:secondary_wound</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
-                               <span class='symbol'>:regex</span>           <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.*? is stunned.</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -629,7 +409,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Normalizes input keys by converting to proper format</p>
+<p>Cleans the provided key by converting it to a standardized format.</p>
 
 
   </div>
@@ -640,8 +420,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clean_key'>clean_key</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Head-Shot</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;head_shot&quot;
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clean_key'>clean_key</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#=&gt; 123</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_cleaned_key'>cleaned_key</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clean_key'>clean_key</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some Key - Example</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -652,13 +431,13 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>, <tt>Symbol</tt>, <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The key to clean</p>
+<p>the key to clean.</p>
 </div>
       
     </li>
@@ -677,7 +456,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Normalized key value</p>
+<p>the cleaned key.</p>
 </div>
       
     </li>
@@ -690,15 +469,15 @@
       <pre class="lines">
 
 
-85
-86
-87
-88
-89
-90</pre>
+123
+124
+125
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_key'>clean_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=~</span> <span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\d+$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
@@ -726,12 +505,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Builds @types, @locations, @ranks, and regex lookup tables</p>
+<p>This method is called internally during initialization.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates lookup indices for critical hit records</p>
+<p>Creates indices for types, locations, and ranks from the critical table.</p>
 
 
   </div>
@@ -745,22 +524,22 @@
       <pre class="lines">
 
 
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123</pre>
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_indices'>create_indices</span>
   <span class='ivar'>@index_rx</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -783,7 +562,7 @@
       <div class="method_details ">
   <h3 class="signature " id="fetch-class_method">
   
-    .<strong>fetch</strong>(type, location, rank)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
+    .<strong>fetch</strong>(type, location, rank)  &#x21d2; <tt>Hash</tt><sup>?</sup> 
   
 
   
@@ -792,15 +571,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Returns nil and logs error if lookup fails</p>
-</div>
-  </div>
-
-
-<p>Retrieves a specific critical hit record</p>
+<p>Fetches the critical hit data for a given type, location, and rank.</p>
 
 
   </div>
@@ -811,7 +582,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:crushing</span><span class='comma'>,</span> <span class='symbol'>:head</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='symbol'>:location</span><span class='comma'>,</span> <span class='symbol'>:rank</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -828,7 +599,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The critical hit type (crushing, slashing, etc)</p>
+<p>the type of critical hit.</p>
 </div>
       
     </li>
@@ -844,7 +615,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The hit location (head, torso, etc)</p>
+<p>the location of the critical hit.</p>
 </div>
       
     </li>
@@ -854,13 +625,13 @@
         <span class='name'>rank</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The critical hit rank</p>
+<p>the rank of the critical hit.</p>
 </div>
       
     </li>
@@ -873,13 +644,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The critical hit record if found</p>
+<p>the critical hit data or nil if not found.</p>
 </div>
       
     </li>
@@ -897,7 +668,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If any parameter is invalid</p>
+<p>if any of the keys are invalid.</p>
 </div>
       
     </li>
@@ -910,18 +681,18 @@
       <pre class="lines">
 
 
-147
-148
-149
-150
-151
-152
-153
-154
-155</pre>
+196
+197
+198
+199
+200
+201
+202
+203
+204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_rank'>rank</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_table'>table</span><span class='period'>.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span>
@@ -929,8 +700,8 @@
     <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_locations'>locations</span><span class='rparen'>)</span><span class='comma'>,</span>
     <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_rank'>rank</span><span class='comma'>,</span> <span class='id identifier rubyid_ranks'>ranks</span><span class='rparen'>)</span>
   <span class='rparen'>)</span>
-<span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error! </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error! </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -952,18 +723,26 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Only initializes if the critical table is empty</p>
+<p>This method will only run if the critical table is empty.</p>
 </div>
   </div>
 
 <p class="note returns_void">This method returns an undefined value.</p>
-<p>Initializes the critical hit tables by loading all *critical_table.rb files from the critranks directory and creating necessary indices.</p>
+<p>Initializes the critical table by loading all critical table files.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -971,16 +750,16 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
-25
-26
-27</pre>
+29
+30
+31
+32
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@critical_table</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1006,13 +785,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the list of valid hit locations</p>
+<p>Returns an array of locations available in the critical table.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_locations'>locations</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_locations'>locations</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1025,7 +812,7 @@
       
         &mdash;
         <div class='inline'>
-<p>List of body locations for critical hits</p>
+<p>the locations of critical hits.</p>
 </div>
       
     </li>
@@ -1038,12 +825,12 @@
       <pre class="lines">
 
 
-67
-68
-69</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_locations'>locations</span>
   <span class='ivar'>@locations</span>
@@ -1056,7 +843,7 @@
       <div class="method_details ">
   <h3 class="signature " id="parse-class_method">
   
-    .<strong>parse</strong>(line)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>parse</strong>(line)  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1065,7 +852,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses a line of text to find matching critical hit results</p>
+<p>Parses a line to find matches against the critical table’s regex patterns.</p>
 
 
   </div>
@@ -1076,7 +863,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You score a solid hit to the head!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_matches'>matches</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some input line</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1093,7 +880,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The text line to parse</p>
+<p>the line to parse.</p>
 </div>
       
     </li>
@@ -1106,13 +893,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Matching critical hit records</p>
+<p>an array of matches found.</p>
 </div>
       
     </li>
@@ -1125,14 +912,14 @@
       <pre class="lines">
 
 
-131
-132
-133
-134
-135</pre>
+178
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='ivar'>@index_rx</span><span class='period'>.</span><span class='id identifier rubyid_filter'>filter</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rx'>rx</span><span class='comma'>,</span> <span class='id identifier rubyid__data'>_data</span><span class='op'>|</span>
@@ -1147,7 +934,7 @@
       <div class="method_details ">
   <h3 class="signature " id="ranks-class_method">
   
-    .<strong>ranks</strong>  &#x21d2; <tt>Array&lt;Symbol,Integer&gt;</tt> 
+    .<strong>ranks</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
   
 
   
@@ -1156,26 +943,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the list of valid critical hit ranks</p>
+<p>Returns an array of ranks available in the critical table.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ranks'>ranks</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;Symbol,Integer&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>List of critical hit rank values</p>
+<p>the ranks of critical hits.</p>
 </div>
       
     </li>
@@ -1188,12 +983,12 @@
       <pre class="lines">
 
 
-74
-75
-76</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ranks'>ranks</span>
   <span class='ivar'>@ranks</span>
@@ -1215,13 +1010,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Reloads all critical hit tables by clearing existing data and reinitializing</p>
+<p>Reloads the critical table by clearing the current data and reinitializing it.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reload!'>reload!</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -1229,13 +1032,13 @@
       <pre class="lines">
 
 
-39
-40
-41
-42</pre>
+57
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reload!'>reload!</span>
   <span class='ivar'>@critical_table</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1249,7 +1052,7 @@
       <div class="method_details ">
   <h3 class="signature " id="table-class_method">
   
-    .<strong>table</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>table</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -1258,26 +1061,34 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the current critical hit table hash</p>
+<p>Returns the current critical table.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_table'>table</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_table'>table</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The complete critical hit table data structure</p>
+<p>the critical table containing critical hit data.</p>
 </div>
       
     </li>
@@ -1290,12 +1101,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table'>table</span>
   <span class='ivar'>@critical_table</span>
@@ -1317,7 +1128,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a list of available critical hit table names</p>
+<p>Returns an array of types available in the critical table.</p>
 
 
   </div>
@@ -1328,7 +1139,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span> <span class='comment'>#=&gt; [&quot;crushing&quot;, &quot;slashing&quot;, &quot;piercing&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span></code></pre>
     
   </div>
 
@@ -1344,7 +1155,7 @@
       
         &mdash;
         <div class='inline'>
-<p>List of table names with colons removed</p>
+<p>the types of critical hits.</p>
 </div>
       
     </li>
@@ -1357,16 +1168,16 @@
       <pre class="lines">
 
 
-49
-50
-51
-52
-53
-54
-55</pre>
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tables'>tables</span>
   <span class='ivar'>@tables</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1392,13 +1203,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the list of valid critical hit types</p>
+<p>Returns an array of types available in the critical table.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1411,7 +1230,7 @@
       
         &mdash;
         <div class='inline'>
-<p>List of critical hit types</p>
+<p>the types of critical hits.</p>
 </div>
       
     </li>
@@ -1424,12 +1243,12 @@
       <pre class="lines">
 
 
-60
-61
-62</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
   <span class='ivar'>@types</span>
@@ -1442,7 +1261,7 @@
       <div class="method_details ">
   <h3 class="signature " id="validate-class_method">
   
-    .<strong>validate</strong>(key, valid)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Integer</tt> 
+    .<strong>validate</strong>(key, valid)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -1451,7 +1270,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Validates that a given key exists in the valid options list</p>
+<p>Validates the provided key against a list of valid keys.</p>
 
 
   </div>
@@ -1462,7 +1281,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:head</span><span class='comma'>,</span> <span class='symbol'>:torso</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='comment'>#=&gt; :head</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_valid_key'>valid_key</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='symbol'>:some_key</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CritRanks (module)">CritRanks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_types'><span class='object_link'><a href="#types-class_method" title="Lich::Gemstone::CritRanks.types (method)">types</a></span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1473,13 +1292,13 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The key to validate</p>
+<p>the key to validate.</p>
 </div>
       
     </li>
@@ -1489,13 +1308,13 @@
         <span class='name'>valid</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>List of valid values</p>
+<p>the list of valid keys.</p>
 </div>
       
     </li>
@@ -1508,13 +1327,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The cleaned, validated key</p>
+<p>the cleaned key if valid.</p>
 </div>
       
     </li>
@@ -1532,7 +1351,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If key is not in valid list</p>
+<p>if the key is invalid.</p>
 </div>
       
     </li>
@@ -1545,15 +1364,15 @@
       <pre class="lines">
 
 
-100
-101
-102
-103
-104
-105</pre>
+141
+142
+143
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/critranks.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_valid'>valid</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_clean'>clean</span> <span class='op'>=</span> <span class='id identifier rubyid_clean_key'>clean_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1571,7 +1390,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:38 2025 by
+  Generated on Thu May 15 06:53:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

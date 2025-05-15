@@ -101,7 +101,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(*numbers)  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(*numbers)  &#x21d2; void </a>
     
 
     
@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Adds one or more spell numbers to the known spells list.</p>
+<p>Adds one or more spell numbers to the list of known SK spells.</p>
 </div></span>
   
 </li>
@@ -125,7 +125,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#help-class_method" title="help (class method)">.<strong>help</strong>  &#x21d2; nil </a>
+      <a href="#help-class_method" title="help (class method)">.<strong>help</strong>  &#x21d2; void </a>
     
 
     
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays help information about SK commands.</p>
+<p>Provides help information for SK spell commands.</p>
 </div></span>
   
 </li>
@@ -173,7 +173,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#list-class_method" title="list (class method)">.<strong>list</strong>  &#x21d2; nil </a>
+      <a href="#list-class_method" title="list (class method)">.<strong>list</strong>  &#x21d2; void </a>
     
 
     
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Displays the current list of known SK spells.</p>
+<p>Lists the current known SK spells.</p>
 </div></span>
   
 </li>
@@ -197,7 +197,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#main-class_method" title="main (class method)">.<strong>main</strong>(action = help, spells = nil)  &#x21d2; nil </a>
+      <a href="#main-class_method" title="main (class method)">.<strong>main</strong>(action = help, spells = nil)  &#x21d2; void </a>
     
 
     
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Main command processor for SK functionality.</p>
+<p>Main entry point for SK spell commands.</p>
 </div></span>
   
 </li>
@@ -221,7 +221,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#remove-class_method" title="remove (class method)">.<strong>remove</strong>(*numbers)  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#remove-class_method" title="remove (class method)">.<strong>remove</strong>(*numbers)  &#x21d2; void </a>
     
 
     
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Removes one or more spell numbers from the known spells list.</p>
+<p>Removes one or more spell numbers from the list of known SK spells.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Gets the list of known SK spells for the current character.</p>
+<p>Retrieves the list of known SK spells.</p>
 </div></span>
   
 </li>
@@ -284,7 +284,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the list of known SK spells for the current character.</p>
+<p>Sets the list of known SK spells.</p>
 </div></span>
   
 </li>
@@ -302,7 +302,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="add-class_method">
   
-    .<strong>add</strong>(*numbers)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>add</strong>(*numbers)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -310,16 +310,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Automatically deduplicates the list</p>
-</div>
-  </div>
-
-
-<p>Adds one or more spell numbers to the known spells list</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Adds one or more spell numbers to the list of known SK spells.</p>
 
 
   </div>
@@ -330,7 +322,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>101</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>102</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -347,31 +339,13 @@
       
         &mdash;
         <div class='inline'>
-<p>Spell numbers to add</p>
+<p>the spell numbers to add.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Updated list of known spells</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -379,13 +353,13 @@
       <pre class="lines">
 
 
-95
-96
-97
-98</pre>
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@sk_known</span> <span class='op'>+</span> <span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -399,7 +373,7 @@
       <div class="method_details ">
   <h3 class="signature " id="help-class_method">
   
-    .<strong>help</strong>  &#x21d2; <tt>nil</tt> 
+    .<strong>help</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -407,8 +381,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Displays help information about SK commands</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Provides help information for SK spell commands.</p>
 
 
   </div>
@@ -419,28 +393,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span></code></pre>
     
   </div>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Outputs help text to game window</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -448,27 +404,27 @@
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82
-83
-84
-85</pre>
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   Script to add SK spells to be known and used with Spell API calls.</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk add &lt;SPELL_NUMBER&gt;  - Add spell number to saved list</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk rm &lt;SPELL_NUMBER&gt;   - Remove spell number from saved list</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk list                - Show all currently saved SK spell numbers</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk help                - Show this menu</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   Script to add SK spells to be known and used with Spell API calls.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk add &lt;SPELL_NUMBER&gt;  - Add spell number to saved list</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk rm &lt;SPELL_NUMBER&gt;   - Remove spell number from saved list</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk list                - Show all currently saved SK spell numbers</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   ;sk help                - Show this menu</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -487,7 +443,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if a specific spell is known</p>
+<p>Checks if a specific spell is known.</p>
 
 
   </div>
@@ -498,7 +454,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_some_spell'>some_spell</span><span class='rparen'>)</span> <span class='comment'>#=&gt; true</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_known'>is_known</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_some_spell'>some_spell</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -515,7 +471,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Spell object with a num attribute</p>
+<p>the spell object to check.</p>
 </div>
       
     </li>
@@ -534,7 +490,25 @@
       
         &mdash;
         <div class='inline'>
-<p>true if spell is known, false otherwise</p>
+<p>true if the spell is known, false otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if spell does not respond to ‘num`.</p>
 </div>
       
     </li>
@@ -547,13 +521,13 @@
       <pre class="lines">
 
 
-55
-56
-57
-58</pre>
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell'>spell</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -567,7 +541,7 @@
       <div class="method_details ">
   <h3 class="signature " id="list-class_method">
   
-    .<strong>list</strong>  &#x21d2; <tt>nil</tt> 
+    .<strong>list</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -575,8 +549,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Displays the current list of known SK spells</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Lists the current known SK spells.</p>
 
 
   </div>
@@ -587,28 +561,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
     
   </div>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Outputs spell list to game window</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -616,17 +572,17 @@
       <pre class="lines">
 
 
-66
-67
-68
-69</pre>
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Current SK Spells: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_respond'>respond</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Current SK Spells: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -636,7 +592,7 @@
       <div class="method_details ">
   <h3 class="signature " id="main-class_method">
   
-    .<strong>main</strong>(action = help, spells = nil)  &#x21d2; <tt>nil</tt> 
+    .<strong>main</strong>(action = help, spells = nil)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -644,16 +600,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Default action is help if no valid command given</p>
-</div>
-  </div>
-
-
-<p>Main command processor for SK functionality</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Main entry point for SK spell commands.</p>
 
 
   </div>
@@ -664,9 +612,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='symbol'>:add</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>101 102</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='rparen'>)</span>
-<span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='symbol'>:rm</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>101</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='symbol'>:add</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -685,7 +631,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Command to execute (:add, :rm, :list, :help)</p>
+<p>the action to perform (add, rm, list, help).</p>
 </div>
       
     </li>
@@ -703,31 +649,13 @@
       
         &mdash;
         <div class='inline'>
-<p>Space-separated spell numbers</p>
+<p>the spell numbers to process (if applicable).</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Executes requested command and displays output</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -735,26 +663,26 @@
       <pre class="lines">
 
 
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='id identifier rubyid_help'>help</span><span class='comma'>,</span> <span class='id identifier rubyid_spells'>spells</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -781,7 +709,7 @@
       <div class="method_details ">
   <h3 class="signature " id="remove-class_method">
   
-    .<strong>remove</strong>(*numbers)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+    .<strong>remove</strong>(*numbers)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -789,16 +717,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Automatically deduplicates the list</p>
-</div>
-  </div>
-
-
-<p>Removes one or more spell numbers from the known spells list</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Removes one or more spell numbers from the list of known SK spells.</p>
 
 
   </div>
@@ -809,7 +729,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>101</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>102</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -826,31 +746,13 @@
       
         &mdash;
         <div class='inline'>
-<p>Spell numbers to remove</p>
+<p>the spell numbers to remove.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Updated list of known spells</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -858,13 +760,13 @@
       <pre class="lines">
 
 
-108
-109
-110
-111</pre>
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@sk_known</span> <span class='op'>-</span> <span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -890,12 +792,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Loads from database storage, falling back to legacy storage if needed</p>
+<p>If the known spells are not set, it attempts to read from the database.</p>
 </div>
   </div>
 
 
-<p>Gets the list of known SK spells for the current character</p>
+<p>Retrieves the list of known SK spells.</p>
 
 
   </div>
@@ -906,7 +808,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='comment'>#=&gt; [&quot;101&quot;, &quot;102&quot;, &quot;103&quot;]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_known_spells'>known_spells</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span></code></pre>
     
   </div>
 
@@ -922,7 +824,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of known spell numbers as strings</p>
+<p>the list of known SK spell numbers as strings.</p>
 </div>
       
     </li>
@@ -935,6 +837,11 @@
       <pre class="lines">
 
 
+12
+13
+14
+15
+16
 17
 18
 19
@@ -945,20 +852,15 @@
 24
 25
 26
-27
-28
-29
-30
-31
-32</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span>
   <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='const'>DB_Store</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sk_known</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Hash</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_old_settings'>old_settings</span> <span class='op'>=</span> <span class='const'>DB_Store</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vars</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sk/known</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_old_settings'>old_settings</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
         <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='id identifier rubyid_old_settings'>old_settings</span>
@@ -991,12 +893,12 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Persists changes to database storage</p>
+<p>This method saves the new list to the database.</p>
 </div>
   </div>
 
 
-<p>Sets the list of known SK spells for the current character</p>
+<p>Sets the list of known SK spells.</p>
 
 
   </div>
@@ -1007,7 +909,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sk_known'><span class='object_link'><a href="#sk_known-class_method" title="Lich::Gemstone::SK.sk_known (method)">sk_known</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>101</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>102</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sk_known'><span class='object_link'><a href="#sk_known-class_method" title="Lich::Gemstone::SK.sk_known (method)">sk_known</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>3</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1024,7 +926,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of spell numbers to save</p>
+<p>the new list of known SK spell numbers.</p>
 </div>
       
     </li>
@@ -1043,7 +945,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The updated spell list</p>
+<p>the updated list of known SK spell numbers.</p>
 </div>
       
     </li>
@@ -1056,14 +958,14 @@
       <pre class="lines">
 
 
-42
-43
-44
-45
-46</pre>
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/gemstone/sk.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known='>sk_known=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span> <span class='op'>==</span> <span class='id identifier rubyid_val'>val</span>
@@ -1080,7 +982,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>

@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Handles authentication and connection to the EAccess game service This module manages SSL certificates and login protocols for game access</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -104,36 +93,7 @@
     <dl class="constants">
       
         <dt id="PEM-constant" class="">PEM =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Path to the SSL certificate file</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Path to simu.pem certificate file</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>simu.pem</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></pre></dd>
       
@@ -141,31 +101,13 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Size of network packets for reading data</p>
+<p>pp PEM</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Packet size in bytes</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -191,7 +133,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#auth-class_method" title="auth (class method)">.<strong>auth</strong>(password:, account:, character: nil, game_code: nil, legacy: false)  &#x21d2; Hash, ... </a>
+      <a href="#auth-class_method" title="auth (class method)">.<strong>auth</strong>(password:, account:, character: nil, game_code: nil, legacy: false)  &#x21d2; String, Array&lt;Hash&gt; </a>
     
 
     
@@ -206,7 +148,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Authenticates with the game service.</p>
+<p>Authenticates a user with the specified credentials.</p>
 </div></span>
   
 </li>
@@ -230,7 +172,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Downloads the SSL certificate from the game server.</p>
+<p>Downloads the PEM file from the specified hostname and port.</p>
 </div></span>
   
 </li>
@@ -254,7 +196,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the SSL certificate file exists.</p>
+<p>Checks if the PEM file exists.</p>
 </div></span>
   
 </li>
@@ -278,7 +220,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Reads data from a connection.</p>
+<p>Reads data from the connection.</p>
 </div></span>
   
 </li>
@@ -302,7 +244,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Creates an SSL socket connection to the game server.</p>
+<p>Establishes a secure socket connection to the specified hostname and port.</p>
 </div></span>
   
 </li>
@@ -326,7 +268,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Verifies the SSL certificate matches the stored certificate.</p>
+<p>Verifies the PEM certificate against the stored PEM file.</p>
 </div></span>
   
 </li>
@@ -344,7 +286,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="auth-class_method">
   
-    .<strong>auth</strong>(password:, account:, character: nil, game_code: nil, legacy: false)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, ... 
+    .<strong>auth</strong>(password:, account:, character: nil, game_code: nil, legacy: false)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Array&lt;Hash&gt;</tt> 
   
 
   
@@ -353,15 +295,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>The legacy parameter changes the return format and login protocol</p>
-</div>
-  </div>
-
-
-<p>Authenticates with the game service</p>
+<p>Authenticates a user with the specified credentials.</p>
 
 
   </div>
@@ -372,27 +306,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Normal login</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auth'>auth</span><span class='lparen'>(</span>
-  <span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>secret</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='label'>account:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>myaccount</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='label'>character:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MyChar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='label'>game_code:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DR</span><span class='tstring_end'>&quot;</span></span>
-<span class='rparen'>)</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Legacy login</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auth'>auth</span><span class='lparen'>(</span>
-  <span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>secret</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
-  <span class='label'>account:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>myaccount</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='label'>legacy:</span> <span class='kw'>true</span>
-<span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_login_info'>login_info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auth'>auth</span><span class='lparen'>(</span><span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>secret</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>account:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -409,7 +323,7 @@
       
         &mdash;
         <div class='inline'>
-<p>account password</p>
+<p>the user’s password.</p>
 </div>
       
     </li>
@@ -425,7 +339,7 @@
       
         &mdash;
         <div class='inline'>
-<p>account name</p>
+<p>the user’s account name.</p>
 </div>
       
     </li>
@@ -443,7 +357,7 @@
       
         &mdash;
         <div class='inline'>
-<p>character name to login as</p>
+<p>the character name (optional).</p>
 </div>
       
     </li>
@@ -461,7 +375,7 @@
       
         &mdash;
         <div class='inline'>
-<p>game code to connect to</p>
+<p>the game code (optional).</p>
 </div>
       
     </li>
@@ -479,7 +393,7 @@
       
         &mdash;
         <div class='inline'>
-<p>whether to use legacy login protocol</p>
+<p>whether to use legacy authentication (default: false).</p>
 </div>
       
     </li>
@@ -492,13 +406,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>Array</tt>, <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Array&lt;Hash&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Login information on success, error message on failure</p>
+<p>an error message or an array of login information hashes.</p>
 </div>
       
     </li>
@@ -516,7 +430,7 @@
       
         &mdash;
         <div class='inline'>
-<p>if authentication protocol fails</p>
+<p>if authentication fails or the response is invalid.</p>
 </div>
       
     </li>
@@ -529,6 +443,37 @@
       <pre class="lines">
 
 
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
 122
 123
 124
@@ -587,41 +532,10 @@
 177
 178
 179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211</pre>
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_auth'>auth</span><span class='lparen'>(</span><span class='label'>password:</span><span class='comma'>,</span> <span class='label'>account:</span><span class='comma'>,</span> <span class='label'>character:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>legacy:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Account.html" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="Account.html#name-class_method" title="Lich::Common::Account.name (method)">name</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_account'>account</span>
@@ -640,7 +554,7 @@
   <span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='id identifier rubyid_password'>password</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
   <span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account'>account</span><span class='embexpr_end'>}</span><span class='tstring_content'>\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_read'><span class='object_link'><a href="#read-class_method" title="Lich::Common::EAccess.read (method)">read</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>KEY\t(?&lt;key&gt;.*)\t</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>KEY\t(?&lt;key&gt;.*)\t</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_eaccess_error'>eaccess_error</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error(%s)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_eaccess_error'>eaccess_error</span>
   <span class='kw'>end</span>
@@ -675,7 +589,7 @@
     <span class='id identifier rubyid_fail'>fail</span> <span class='const'>StandardError</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span> <span class='kw'>unless</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^L\t</span><span class='regexp_end'>/</span></span>
     <span class='comment'># pp &quot;L:response=%s&quot; % response
 </span>    <span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span>
-    <span class='id identifier rubyid_login_info'>login_info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^L\tOK\t</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_login_info'>login_info</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^L\tOK\t</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
                               <span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
                               <span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_kv'>kv</span><span class='op'>|</span>
                         <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_kv'>kv</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -730,7 +644,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Downloads the SSL certificate from the game server</p>
+<p>Downloads the PEM file from the specified hostname and port.</p>
 
 
   </div>
@@ -741,7 +655,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_download_pem'>download_pem</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>eaccess.play.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>7910</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_download_pem'>download_pem</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>example.com</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1234</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -760,7 +674,7 @@
       
         &mdash;
         <div class='inline'>
-<p>game server hostname</p>
+<p>the hostname to connect to (default: “eaccess.play.net”).</p>
 </div>
       
     </li>
@@ -778,7 +692,7 @@
       
         &mdash;
         <div class='inline'>
-<p>server port number</p>
+<p>the port to connect to (default: 7910).</p>
 </div>
       
     </li>
@@ -791,13 +705,13 @@
     <li>
       
       
-        <span class='type'>(<tt>OpenSSL::SSL::SSLError</tt>)</span>
+        <span class='type'>(<tt>StandardError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>if SSL connection fails</p>
+<p>if the connection fails or the PEM file cannot be written.</p>
 </div>
       
     </li>
@@ -810,21 +724,21 @@
       <pre class="lines">
 
 
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52</pre>
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_download_pem'>download_pem</span><span class='lparen'>(</span><span class='id identifier rubyid_hostname'>hostname</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>eaccess.play.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span> <span class='op'>=</span> <span class='int'>7910</span><span class='rparen'>)</span>
   <span class='comment'># Create an OpenSSL context
@@ -855,21 +769,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the SSL certificate file exists</p>
+<p>Checks if the PEM file exists.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pem_exist?'>pem_exist?</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -882,7 +788,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if certificate exists, false otherwise</p>
+<p>true if the PEM file exists, false otherwise.</p>
 </div>
       
     </li>
@@ -895,12 +801,12 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pem_exist?'>pem_exist?</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span> <span class='const'><span class='object_link'><a href="#PEM-constant" title="Lich::Common::EAccess::PEM (constant)">PEM</a></span></span>
@@ -922,15 +828,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Uses PACKET_SIZE constant for read buffer size</p>
-</div>
-  </div>
-
-
-<p>Reads data from a connection</p>
+<p>Reads data from the connection.</p>
 
 
   </div>
@@ -941,7 +839,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_socket'>socket</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -952,13 +850,13 @@
         <span class='name'>conn</span>
       
       
-        <span class='type'>(<tt>OpenSSL::SSL::SSLSocket</tt>)</span>
+        <span class='type'>(<tt>TCPSocket</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Socket to read from</p>
+<p>the connection to read from.</p>
 </div>
       
     </li>
@@ -977,7 +875,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Data read from socket</p>
+<p>the data read from the connection.</p>
 </div>
       
     </li>
@@ -995,7 +893,7 @@
       
         &mdash;
         <div class='inline'>
-<p>if connection is closed</p>
+<p>if the read operation fails.</p>
 </div>
       
     </li>
@@ -1008,12 +906,12 @@
       <pre class="lines">
 
 
-223
-224
-225</pre>
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 223</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_sysread'>sysread</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PACKET_SIZE-constant" title="Lich::Common::EAccess::PACKET_SIZE (constant)">PACKET_SIZE</a></span></span><span class='rparen'>)</span>
@@ -1035,7 +933,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Creates an SSL socket connection to the game server</p>
+<p>Establishes a secure socket connection to the specified hostname and port.</p>
 
 
   </div>
@@ -1046,7 +944,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_socket'>socket</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_socket'>socket</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>eaccess.play.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>7910</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_ssl_socket'>ssl_socket</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_socket'>socket</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>example.com</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1234</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1065,7 +963,7 @@
       
         &mdash;
         <div class='inline'>
-<p>game server hostname</p>
+<p>the hostname to connect to (default: “eaccess.play.net”).</p>
 </div>
       
     </li>
@@ -1083,7 +981,7 @@
       
         &mdash;
         <div class='inline'>
-<p>server port number</p>
+<p>the port to connect to (default: 7910).</p>
 </div>
       
     </li>
@@ -1102,7 +1000,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Connected and verified SSL socket</p>
+<p>the established SSL socket.</p>
 </div>
       
     </li>
@@ -1114,13 +1012,13 @@
     <li>
       
       
-        <span class='type'>(<tt>OpenSSL::SSL::SSLError</tt>)</span>
+        <span class='type'>(<tt>StandardError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>if SSL connection fails</p>
+<p>if the PEM file does not exist or the connection fails.</p>
 </div>
       
     </li>
@@ -1133,22 +1031,22 @@
       <pre class="lines">
 
 
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94</pre>
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_socket'>socket</span><span class='lparen'>(</span><span class='id identifier rubyid_hostname'>hostname</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>eaccess.play.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span> <span class='op'>=</span> <span class='int'>7910</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_download_pem'>download_pem</span> <span class='kw'>unless</span> <span class='id identifier rubyid_pem_exist?'>pem_exist?</span>
@@ -1180,7 +1078,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Verifies the SSL certificate matches the stored certificate</p>
+<p>Verifies the PEM certificate against the stored PEM file.</p>
 
 
   </div>
@@ -1191,7 +1089,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_verify_pem'>verify_pem</span><span class='lparen'>(</span><span class='id identifier rubyid_ssl_connection'>ssl_connection</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='period'>.</span><span class='id identifier rubyid_verify_pem'>verify_pem</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1208,7 +1106,7 @@
       
         &mdash;
         <div class='inline'>
-<p>SSL connection to verify</p>
+<p>the SSL connection to verify.</p>
 </div>
       
     </li>
@@ -1227,7 +1125,7 @@
       
         &mdash;
         <div class='inline'>
-<p>true if certificate matches</p>
+<p>true if the certificate matches, false otherwise.</p>
 </div>
       
     </li>
@@ -1239,13 +1137,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Exception</tt>)</span>
+        <span class='type'>(<tt>StandardError</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>if certificates don’t match</p>
+<p>if the certificate does not match and downloading fails.</p>
 </div>
       
     </li>
@@ -1258,24 +1156,24 @@
       <pre class="lines">
 
 
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71</pre>
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/common/eaccess.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_verify_pem'>verify_pem</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
   <span class='comment'># return if conn.peer_cert.to_s = File.read(EAccess::PEM)
 </span>  <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#PEM-constant" title="Lich::Common::EAccess::PEM (constant)">PEM</a></span></span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exception, \nssl peer certificate did not match </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#PEM-constant" title="Lich::Common::EAccess::PEM (constant)">PEM</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\nwas:\n</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exception, \nssl peer certificate did not match </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::EAccess (module)">EAccess</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#PEM-constant" title="Lich::Common::EAccess::PEM (constant)">PEM</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>\nwas:\n</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_download_pem'>download_pem</span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='kw'>true</span>
@@ -1292,7 +1190,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 14 19:47:37 2025 by
+  Generated on Thu May 15 06:52:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.4).
 </div>
