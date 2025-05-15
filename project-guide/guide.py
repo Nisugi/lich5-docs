@@ -4,7 +4,9 @@ import json
 import re
 from pathlib import Path
 from datetime import datetime
-import anthropic
+import openai
+
+# import anthropic
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -32,7 +34,8 @@ class Lich5DocumentationGenerator:
         self.raw_docs_path = self.output_dir / 'raw_documentation.json'
         
         # Initialize anthropic client
-        self.client = anthropic.Anthropic()
+        # self.client = anthropic.Anthropic()
+        self.client = openai.OpenAI()
         
         # Initialize documentation storage
         self.documentation = {}
@@ -88,19 +91,14 @@ class Lich5DocumentationGenerator:
             # Build prompt
             prompt = self._create_ruby_prompt(rel_path, content)
 
-            # Send to Claude
-            message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=4000,
-                temperature=0,
-                system="You are an expert code documentation specialist who can analyze source code and create detailed API documentation with examples.",
-                messages=[{
-                    "role": "user",
-                    "content": prompt
-                }]
+            # Send to OpenAI
+            raw_doc = self._chat(
+              model="gpt-4o-mini",                # or gpt‑4o if you have access
+              max_tokens=4096,
+              temperature=0,
+              system_prompt="You are an expert code documentation specialist …",
+              messages=[{ "role": "user", "content": prompt }],
             )
-
-            raw_doc = message.content[0].text
 
             # Store into our dict
             self.documentation[rel_path] = {
@@ -119,54 +117,79 @@ class Lich5DocumentationGenerator:
             logging.error(f"Error analyzing file {file_path}: {e}", exc_info=True)
             return None
 
-    def _create_ruby_prompt(self, file_name, content):
-        """Create a specialized prompt for Ruby files with YARD format focus"""
-        return f"""Analyze this Ruby file from the Lich5 project: {file_name}
+    # ------------------------------------------------------------------
+    #  Unified chat helper
+    # ------------------------------------------------------------------
+    def _chat(
+        self,
+        messages,
+        model="gpt-4o-mini",      # sensible default
+        max_tokens=4096,
+        temperature=0.0,
+        system_prompt=None,
+    ):
+        """
+        Thin wrapper around OpenAI ChatCompletions.create.
 
-```ruby
-{content}
-```
+        * Accepts the same args your previous Anthropic calls used.
+        * Returns assistant text (string), not the whole response object.
+        """
+        if system_prompt:
+            messages = [{"role": "system", "content": system_prompt}] + messages
 
-Generate detailed YARD-compatible documentation for all classes, modules, methods, and constants.
+        resp = self.client.chat.completions.create(
+            model=model,
+            messages=messages,
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+        return resp.choices[0].message.content
 
-For each method:
-1. Purpose and behavior
-2. All parameters with types and descriptions
-3. Return value with type and description
-4. Any exceptions or errors that might be raised
-5. Example usage with code snippet
-6. Any important notes or caveats
+    def _create_ruby_prompt(self, file_name: str, content: str) -> str:
+        """
+        Build a prompt that forces complete YARD tags on every method.
+        """
+        return f"""Analyze this Ruby file from the Lich5 project: **{file_name}**
 
-Use the YARD format for documentation, which looks like:
-```ruby
-# Description of what the method does.
-#
-# @param param_name [Type] description of the parameter
-# @return [Type] description of the return value
-# @raise [ErrorType] description of when this error occurs
-# @example
-#   example_code_here
-#
-# @note Any additional information
-```
+    \\```ruby
+    {content}
+    \\```
 
-VERY IMPORTANT: Only provide the documentation comments WITHOUT duplicating the original code. Do not include any Ruby code, only provide YARD-formatted documentation comments.
+    Generate **YARD-compatible** documentation for every public class, module,
+    method, and constant.
 
-Format your response like this, with just the documentation comments:
-```
-# Module/class description
-#
-# @author Lich5 Documentation Generator
+    Rules - apply to *each* method / function
+    ----------------------------------------
+    • Include these tags whenever they contain real information 
 
-# Method description
-#
-# @param [Type] parameter_name Parameter description
-# @return [Type] Return value description
-# ...
-```
+    @param    - list every parameter
+    @return   - state return type + meaning
+    @raise    - brief description for each possible exception
+    @example  - one concise code example, always include an example
+    @note     - caveat, side-effect.
 
-Ensure completeness - document ALL public methods and attributes.
-"""
+    • Place every comment block **immediately above** the class / module / method
+  it documents (same indentation as the `def`, *never* inside the body).
+    • **Do NOT** alter, delete, reorder, or re-format any executable code.  
+    • Preserve original indentation and blank lines.  
+    • Return the *entire* documentation block only - **no Ruby source**.
+
+    Output template
+    ---------------
+
+    \\```ruby
+    # <Class/Module description>
+    #
+    # @param <name> [Type] …
+    # @return [Type] …
+    # @raise [ErrorClass] …
+    # @example
+    #   # example code here
+    # @note …
+    \\```
+
+    Ensure you cover **all** public methods and attributes.
+    """
 
     def _create_generic_prompt(self, file_name, content, language):
         """Create a prompt for other programming languages"""
@@ -316,53 +339,195 @@ Ensure completeness - document ALL public methods and attributes.
             
             if not original_code:
                 continue
-                
-            # Use a second API call to merge documentation with code
-            message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=8000,
-                temperature=0,
-                system="You are an expert documentation specialist. Your task is to insert appropriate documentation comments into existing code.",
-                messages=[{
-                    "role": "user",
-                    "content": f"""
-I have the following code file and separately generated documentation for it.
+            
+            # Count lines to estimate size
+            code_line_count = len(original_code.split('\n'))
+            logging.info(f"Processing {file_name} with {code_line_count} lines")
+            
+            # For large files, process in chunks
+            if code_line_count > 600:  # Lower threshold for chunking
+                logging.info(f"File {file_name} is large ({code_line_count} lines). Processing in chunks.")
+                annotated_code = self._process_large_file(file_name, original_code, doc_data['raw_doc'])
+                annotated_code = self._restore_missing_defs(original_code, annotated_code)
+            else:
+                # Process normally for smaller files
+                annotated_code = self._process_small_file(file_name, original_code, doc_data['raw_doc'])
+                annotated_code = self._restore_missing_defs(original_code, annotated_code)
+            
+            output_path = annotated_dir / file_name
+            
+            # Ensure we have content to write
+            if not annotated_code or len(annotated_code.strip()) < 10:
+                logging.error(f"Generated empty or very small annotated code for {file_name}. Using original code instead.")
+                annotated_code = original_code  # Fallback to original if something went wrong
+            
+            # Write the file
+            with open(output_path, 'w') as f:
+                f.write(annotated_code)
+            
+            logging.info(f"Generated annotated code: {output_path} with {len(annotated_code.split('\\n'))} lines")
+            
+            # Verify content length against original
+            percent = (len(annotated_code.split('\\n')) / code_line_count) * 100
+            if percent < 90:
+                logging.warning(f"WARNING: Annotated code for {file_name} is only {percent:.1f}% of the original line count!")
+            
+        return annotated_dir
+        
+    def _process_small_file(self, file_name, original_code, documentation):
+        """Process a small file normally"""
+        raw_doc = self._chat(
+          model="gpt-4o-mini",
+          max_tokens=4096,
+          temperature=0,
+          system_prompt="You are an expert code documentation specialist. Your task is to insert appropriate documentation comments into existing code.",
+          messages=[{
+                "role": "user",
+                "content": f"""
+Insert YARD-format comments into the Ruby code below.
 
 Original code:
 ```
 {original_code}
 ```
 
-Documentation (YARD format for Ruby):
-```
-{doc_data['raw_doc']}
-```
+Rules - apply to each method / class / module
+• Include these tags whenever they contain real information 
+• @param    - list every parameter
+• @return   - return type + meaning
+• @raise    - every possible exception
+• @example  - one concise code snippet, always include an example.
+• @note     - hidden caveat / side-effect
 
-Please create a new version of the code file with the documentation inserted at the appropriate places. 
-For Ruby files, use YARD format comments directly above each method, class, module, or constant being documented.
-Ensure you:
-1. Don't modify the actual code logic
-2. Place each documentation comment directly above the relevant code element
-3. Maintain proper indentation for the comments
-4. Include all the original code
-
-Return just the fully annotated code file.
+• Place every comment block **immediately above** the class / module / method
+  it documents (same indentation as the `def`, *never* inside the body).
+• Do NOT change, delete, reorder, or re-format any executable code.
+• Preserve original indentation and blank lines.
+• Wrap the entire annotated file in a single ```ruby block and output nothing else.
+ABSOLUTELY DO NOT delete, rename, reorder, or modify ANY existing code lines, even if they appear duplicated or redundant.
 """
-                }]
-            )
-            
-            annotated_code = message.content[0].text
-            
-            # Clean up the response to extract just the code
-            clean_code = self._extract_code_from_response(annotated_code)
-            
-            output_path = annotated_dir / file_name
-            with open(output_path, 'w') as f:
-                f.write(clean_code)
-            
-            logging.info(f"Generated annotated code: {output_path}")
+            }]
+        )
         
-        return annotated_dir
+        return self._extract_code_from_response(raw_doc)
+        
+    def _process_large_file(self, file_name, original_code, documentation):
+        """Process a large file by breaking it into chunks and reassembling"""
+        # Split the code into logical chunks (classes/modules where possible)
+        code_chunks = self._split_code_into_chunks(original_code)
+        
+        # Process each chunk separately
+        annotated_chunks = []
+        
+        for i, chunk in enumerate(code_chunks):
+            logging.info(f"Processing chunk {i+1}/{len(code_chunks)} of {file_name} ({len(chunk.split('\\n'))} lines)")
+            
+            try:
+                # Create a prompt focused on this chunk
+                raw_doc = self._chat(
+                    model="gpt-4o-mini",
+                    max_tokens=4096,
+                    temperature=0,
+                    system_prompt="You are an expert documentation specialist. Your task is to insert appropriate documentation comments into existing code.",
+                    messages=[{
+                        "role": "user",
+                        "content": f"""
+I have a chunk of a larger Ruby file and documentation for the entire file.
+Your task is to identify which parts of the documentation apply to this code chunk
+and insert those comments at the appropriate places.
+
+Code chunk {i+1}/{len(code_chunks)}:
+```ruby
+{chunk}
+```
+
+Rules - apply to each method / class / module
+• Include these tags whenever they contain real information 
+• @param    - list every parameter
+• @return   - return type + meaning
+• @raise    - every possible exception
+• @example  - one concise code snippet, always include an example.
+• @note     - hidden caveat / side-effect.
+
+• Place every comment block **immediately above** the class / module / method
+  it documents (same indentation as the `def`, *never* inside the body).
+• Do NOT change, delete, reorder, or re-format any executable code.
+• Preserve original indentation and blank lines.
+• Wrap the entire annotated file in a single ```ruby block and output nothing else.
+ABSOLUTELY DO NOT delete, rename, reorder, or modify ANY existing code lines, even if they appear duplicated or redundant.
+"""
+                    }]
+                )
+                
+                annotated_chunk = self._extract_code_from_response(raw_doc)
+                logging.info(f"Successfully processed chunk {i+1}/{len(code_chunks)}")
+                annotated_chunks.append(annotated_chunk)
+            except Exception as e:
+                logging.error(f"Error processing chunk {i+1}: {e}")
+                # In case of error, include the original chunk to avoid data loss
+                annotated_chunks.append(chunk)
+        
+        # Combine the annotated chunks
+        full_annotated_code = '\n\n'.join(annotated_chunks)
+        logging.info(f"Completed annotating all {len(code_chunks)} chunks with total length {len(full_annotated_code)}")
+        return full_annotated_code
+    
+    # ------------------------------------------------------------------
+    #  Very robust Ruby chunker – splits only *between* top‑level methods
+    # ------------------------------------------------------------------
+    def _split_code_into_chunks(self, code: str, chunk_size: int = 200):
+        """
+        Split Ruby *code* into chunks that never break a method in half.
+
+        Strategy
+        --------
+        1. Scan line‑by‑line.
+        2. When we hit a *top‑level* `def`, remember its line number.
+        3. If the current chunk length >= chunk_size **and**
+        we’re *at* a top‑level `def` (not the first),
+        cut the chunk *before* that `def`.
+        4. At EOF emit whatever is left.
+
+        This deliberately ignores `end` – so nested `if … end` blocks can’t
+        confuse the counter.
+        """
+        lines          = code.splitlines()
+        chunks         = []
+        current_chunk  = []
+        current_length = 0
+        pending_comments = []
+
+        # Regex for *top‑level* method: starts with optional spaces then 'def'
+        re_toplevel_def = re.compile(r'^\s*def\b')
+
+        for line in lines:
+            if re_toplevel_def.match(line):
+                lookback = len(current_chunk) - 1
+                while lookback >= 0 and current_chunk[lookback].lstrip().startswith('#'):
+                    lookback -= 1
+                pending_comments = current_chunk[lookback + 1 :]
+                current_chunk = current_chunk[: lookback + 1]
+                current_length = len(current_chunk)
+                
+            # Should we start a new chunk *before* this line?
+            if (
+                re_toplevel_def.match(line)          # we’re at a new method
+                and current_length >= chunk_size     # current chunk is “full”
+            ):
+                chunks.append('\n'.join(current_chunk).rstrip('\n'))
+                current_chunk = pending_comments + [line]
+                current_length = len(current_chunk)
+                pending_comments = []
+                continue
+
+            current_chunk.append(line)
+            current_length += 1
+
+        # flush the tail
+        if current_chunk:
+            chunks.append('\n'.join(current_chunk).rstrip('\n'))
+
+        return chunks or [code]
 
     def _extract_code_from_response(self, response):
         """Extract clean code from an LLM response"""
@@ -390,6 +555,26 @@ Return just the fully annotated code file.
         
         return '\n'.join(clean_lines).strip()
 
+    # ------------------------------------------------------------------
+    #   Verify that all original top‑level defs are still present
+    #   If any are missing, splice them back in.
+    # ------------------------------------------------------------------
+    def _restore_missing_defs(self, original: str, annotated: str) -> str:
+        def_names = re.findall(r'^\s*def\s+([A-Za-z0-9_\.!?]+)', original, re.M)
+        out = annotated.splitlines()
+
+        for name in def_names:
+            pattern = rf'^\s*def\s+{re.escape(name)}\b'
+            if not re.search(pattern, annotated, re.M):
+                # grab the entire original def … end block
+                block_re = re.compile(rf'^\s*def\s+{re.escape(name)}\b.*?^\s*end\b',
+                                    re.M | re.S)
+                block = re.search(block_re, original)
+                if block:
+                    out.append("\n\n" + block.group(0))  # append at end
+
+        return "\n".join(out)
+
     def _generate_markdown_docs(self):
         """Generate Markdown documentation files"""
         md_dir = self.output_dir / 'markdown'
@@ -399,11 +584,11 @@ Return just the fully annotated code file.
         for file_name, doc_data in self.documentation.items():
             output_path = md_dir / f"{file_name}.md"
             
-            message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=4000,
+            raw_doc = self._chat(
+                model="gpt-4o-mini",
+                max_tokens=4096,
                 temperature=0,
-                system="You are a technical writer who creates clear, well-organized API documentation.",
+                system_prompt="You are a technical writer who creates clear, well-organized API documentation.",
                 messages=[{
                     "role": "user",
                     "content": f"""
@@ -421,7 +606,7 @@ Format it as a proper Markdown document with:
             )
             
             with open(output_path, 'w') as f:
-                f.write(message.content[0].text)
+                f.write(raw_doc)
             
             logging.info(f"Generated Markdown documentation: {output_path}")
         
